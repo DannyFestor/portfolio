@@ -14,18 +14,29 @@
         @vite(['resources/css/app.css', 'resources/js/app.js'])
         @stack('styles')
     </head>
-    <body class="font-sans antialiased">
+    <body class="min-h-screen font-sans antialiased flex flex-col bg-gradient-to-r from-white to-slate-200">
         <x-layouts.partials.navigation />
         <x-layouts.partials.hamburger />
-        <div class="min-h-screen">
-            <main class="min-h-screen">
-                {{ $slot }}
 
-                super duper gut
-            </main>
-        </div>
+        <main class="relative flex-1 p-4 ml-12 sm:ml-52">
+            {{ $slot }}
 
-        <button x-data @click="$store.navigation.toggle()" class="relative z-50">toggle</button>
+            super duper gut
+        </main>
+
+        <footer class="flex flex-col items-center relative p-4 ml-12 sm:ml-52">
+            <section>
+                &copy; Brücke - 2020-{{ now()->year }}
+            </section>
+            <section>
+                Made with
+                <a href="https://laravel.com" class="underline">Laravel</a>,
+                <a href="https://laravel-livewire.com" class="underline">Livewire</a>
+                and
+                <a href="https://alpinejs.dev" class="underline">Alpine.js</a>
+            </section>
+        </footer>
+
 
         <script>
             document.addEventListener('alpine:init', () => {
