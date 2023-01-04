@@ -51,7 +51,7 @@
                         this.open = ! this.open
                     },
                 });
-            })
+            });
         </script>
         @stack('scripts')
     </body>

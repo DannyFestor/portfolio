@@ -1,7 +1,8 @@
 <section id="nav-logo"
          class="relative flex h-[5rem]">
     <svg id="logo-b"
-         class="absolute mt-2 ml-2 left-1/2 -translate-x-1/2 group-hover:visible group-hover:opacity-100 group-hover:w-[34px] group-hover:h-[48px] group-hover:-translate-x-[310%] group-hover:translate-y-[30%] transition-all invisible opacity-0 w-[70%] h-[70%] flex-shrink-0 translate-y-[20px]"
+         class="absolute mt-2 ml-2 left-1/2 group-hover:visible group-hover:opacity-100 group-hover:w-[34px] group-hover:h-[48px] group-hover:-translate-x-[310%] group-hover:translate-y-[30%] transition-all flex-shrink-0"
+         :class="$store.navigation.open ? 'visible opacity-100 w-[34px] h-[48px] -translate-x-[310%] translate-y-[30%]' : 'invisible opacity-0 w-[70%] h-[70%] -translate-x-1/2 translate-y-[20px]'"
          width="7.3515mm"
          height="10.654mm"
          version="1.1"
@@ -14,7 +15,8 @@
         </g>
     </svg>
     <svg id="logo-r"
-         class="absolute mt-2 ml-2 left-1/2 -translate-x-1/2 group-hover:visible group-hover:opacity-100 group-hover:w-[34px] group-hover:h-[48px] group-hover:-translate-x-[215%] group-hover:translate-y-[40%] transition-all invisible opacity-0 w-[70%] h-[70%] flex-shrink-0 translate-y-[20px]"
+         class="absolute mt-2 ml-2 left-1/2 group-hover:visible group-hover:opacity-100 group-hover:w-[34px] group-hover:h-[48px] group-hover:-translate-x-[215%] group-hover:translate-y-[40%] transition-all flex-shrink-0"
+         :class="$store.navigation.open ? 'visible opacity-100 w-[34px] h-[48px] -translate-x-[215%] translate-y-[40%]' : 'invisible opacity-0 w-[70%] h-[70%] -translate-x-1/2 translate-y-[20px]'"
          width="7.7388mm"
          height="10.652mm"
          version="1.1"
@@ -27,7 +29,8 @@
         </g>
     </svg>
     <svg id="logo-ue"
-         class="absolute mt-2 ml-2 left-1/2 -translate-x-1/2 transition-all w-[60px] h-[60px] flex-shrink-0 -translate-x-[55%] group-hover:-translate-x-[75%]"
+         class="absolute mt-2 ml-2 left-1/2 -translate-x-1/2 transition-all w-[60px] h-[60px] flex-shrink-0 group-hover:-translate-x-[75%]"
+         :class="$store.navigation.open ? '-translate-x-[75%] ' : '-translate-x-[55%] '"
          width="12.607mm"
          height="13.295mm"
          version="1.1"
@@ -46,7 +49,8 @@
         </g>
     </svg>
     <svg id="logo-c"
-         class="absolute mt-2 ml-2 left-1/2 -translate-x-1/2 group-hover:visible group-hover:opacity-100 group-hover:w-[34px] group-hover:h-[48px] group-hover:translate-x-0 group-hover:translate-y-[40%] transition-all invisible opacity-0 w-[70%] h-[70%] flex-shrink-0 translate-y-[20px]"
+         class="absolute mt-2 ml-2 left-1/2 group-hover:visible group-hover:opacity-100 group-hover:w-[34px] group-hover:h-[48px] group-hover:translate-x-0 group-hover:translate-y-[40%] transition-all flex-shrink-0"
+         :class="$store.navigation.open ? 'visible opacity-100 w-[34px] h-[48px] translate-x-0 translate-y-[40%]' : 'invisible opacity-0 w-[70%] h-[70%] -translate-x-1/2 translate-y-[20px]'"
          width="7.684mm"
          height="10.985mm"
          version="1.1"
@@ -59,7 +63,8 @@
         </g>
     </svg>
     <svg id="logo-k"
-         class="absolute mt-2 ml-2 left-1/2 -translate-x-1/2 group-hover:visible group-hover:opacity-100 group-hover:w-[34px] group-hover:h-[48px] group-hover:translate-x-[90%] group-hover:translate-y-[30%] transition-all invisible opacity-0 w-[70%] h-[70%] flex-shrink-0 translate-y-[20px]"
+         class="absolute mt-2 ml-2 left-1/2 group-hover:visible group-hover:opacity-100 group-hover:w-[34px] group-hover:h-[48px] group-hover:translate-x-[90%] group-hover:translate-y-[30%] transition-all flex-shrink-0"
+         :class="$store.navigation.open ? 'visible opacity-100 w-[34px] h-[48px] translate-x-[90%] translate-y-[30%]' : 'invisible opacity-0 w-[70%] h-[70%] -translate-x-1/2 translate-y-[20px]'"
          width="7.7444mm"
          height="10.657mm"
          version="1.1"
@@ -72,7 +77,8 @@
         </g>
     </svg>
     <svg id="logo-e"
-         class="absolute mt-2 ml-2 left-1/2 -translate-x-1/2 group-hover:visible group-hover:opacity-100 group-hover:w-[34px] group-hover:h-[48px] group-hover:translate-x-[170%] group-hover:translate-y-[40%] transition-all invisible opacity-0 w-[70%] h-[70%] flex-shrink-0 translate-y-[20px]"
+         class="absolute mt-2 ml-2 left-1/2 group-hover:visible group-hover:opacity-100 group-hover:w-[34px] group-hover:h-[48px] group-hover:translate-x-[170%] group-hover:translate-y-[40%] transition-all flex-shrink-0"
+         :class="$store.navigation.open ? 'visible opacity-100 w-[34px] h-[48px] translate-x-[170%] translate-y-[40%]' : 'invisible opacity-0 w-[70%] h-[70%] -translate-x-1/2 translate-y-[20px]'"
          width="6.4109mm"
          height="10.652mm"
          version="1.1"
