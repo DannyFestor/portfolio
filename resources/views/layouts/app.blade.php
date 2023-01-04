@@ -15,7 +15,8 @@
         @stack('styles')
     </head>
     <body class="font-sans antialiased">
-        @include('layouts.navigation')
+        <x-layouts.partials.navigation />
+        <x-layouts.partials.hamburger />
         <div class="min-h-screen">
             <main class="min-h-screen">
                 {{ $slot }}
@@ -50,6 +51,13 @@
                     toggle() {
                         this.open = ! this.open
                     },
+                });
+
+                window.addEventListener('resize', (e) => {
+                    if (window.innerWidth < 640 || !Alpine.store('navigation').open) {
+                        return;
+                    }
+                    Alpine.store('navigation').close();
                 });
             });
         </script>
