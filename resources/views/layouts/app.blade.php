@@ -12,24 +12,47 @@
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
+        @stack('styles')
     </head>
     <body class="font-sans antialiased">
-        <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
-            @include('layouts.navigation')
-
-            <!-- Page Heading -->
-            @if (isset($header))
-                <header class="bg-white dark:bg-gray-800 shadow">
-                    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                        {{ $header }}
-                    </div>
-                </header>
-            @endif
-
-            <!-- Page Content -->
-            <main>
+        @include('layouts.navigation')
+        <div class="min-h-screen">
+            <main class="min-h-screen">
                 {{ $slot }}
+
+                super duper gut
             </main>
         </div>
+
+        <button x-data @click="$store.navigation.toggle()" class="relative z-50">toggle</button>
+
+        <script>
+            document.addEventListener('alpine:init', () => {
+                Alpine.store('darkMode', {
+                    on: false,
+
+                    toggle() {
+                        this.on = ! this.on
+                    }
+                });
+
+                Alpine.store('navigation', {
+                    open: false,
+
+                    show() {
+                        this.open = true;
+                    },
+
+                    close() {
+                        this.open = false;
+                    },
+
+                    toggle() {
+                        this.open = ! this.open
+                    },
+                });
+            })
+        </script>
+        @stack('scripts')
     </body>
 </html>
