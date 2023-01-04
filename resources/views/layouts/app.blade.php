@@ -18,10 +18,8 @@
         <x-layouts.partials.navigation />
         <x-layouts.partials.hamburger />
 
-        <main class="relative flex-1 p-4 ml-12 sm:ml-52">
+        <main class="relative flex-1 p-4 ml-12 sm:ml-52 {{ $main_classes }}">
             {{ $slot }}
-
-            super duper gut
         </main>
 
         <footer class="flex flex-col items-center relative p-4 ml-12 sm:ml-52">
