@@ -30,4 +30,14 @@ Route::get('/blog/{post:slug}', [\App\Http\Controllers\PostController::class, 's
 //    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 //});
 
+Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'is_admin']], function () {
+    Route::get('/', function () {
+        return redirect()->route('admin.dashboard');
+    });
+
+    Route::get('/dashboard', function () {
+        return 'Admin';
+    })->name('dashboard');
+});
+
 require __DIR__.'/auth.php';
