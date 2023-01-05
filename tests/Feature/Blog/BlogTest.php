@@ -40,3 +40,25 @@ it('shows blog posts that are released an in the past', function () {
         ->assertDontSee($unReleasedPostPast->title)
         ->assertDontSee($unReleasedPostFuture->title);
 });
+
+it('can search blog posts by title', function () {
+    $user = \App\Models\User::factory()->create();
+    $firstPost = \App\Models\Post::factory()->create([
+        'user_id' => $user->id,
+        'title' => 'First Post',
+        'is_released' => true,
+        'released_at' => now()->subHour(),
+    ]);
+    $secondPost = \App\Models\Post::factory()->create([
+        'user_id' => $user->id,
+        'title' => 'Second Post',
+        'is_released' => true,
+        'released_at' => now()->subHour(),
+    ]);
+
+
+    $this
+        ->get(route('blog.index', ['s' => 'first']))
+        ->assertSee($firstPost->title)
+        ->assertDontSee($secondPost->title);
+});
