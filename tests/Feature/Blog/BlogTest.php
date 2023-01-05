@@ -62,3 +62,21 @@ it('can search blog posts by title', function () {
         ->assertSee($firstPost->title)
         ->assertDontSee($secondPost->title);
 });
+
+it('can show blog posts by slug', function () {
+    $user = \App\Models\User::factory()->create();
+    $post = \App\Models\Post::factory()->create([
+        'user_id' => $user->id,
+        'is_released' => true,
+        'released_at' => now()->subHour(),
+    ]);
+
+    $this->get(route('blog.show', $post->slug))
+        ->assertStatus(\Illuminate\Http\Response::HTTP_OK)
+        ->assertViewIs('blog.show')
+        ->assertViewHas(['post'])
+        ->assertSee($post->title)
+        ->assertSee($post->description)
+        ->assertSee($post->released_at->diffForHumans())
+        ->assertSee($post->user->name);
+});
