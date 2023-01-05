@@ -16,14 +16,13 @@
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
         @stack('styles')
+        @livewireStyles
     </head>
-    <body class="min-h-screen font-sans antialiased flex flex-col bg-gradient-to-r from-white to-slate-200">
+    <body class="min-h-screen font-sans antialiased flex flex-col bg-gradient-to-br from-white to-slate-200">
         <x-layouts.partials.navigation />
         <x-layouts.partials.hamburger />
 
-        <main class="relative flex-1 p-4 ml-12 sm:ml-52 {{ $main_classes }}">
-            {{ $slot }}
-        </main>
+        {{ $slot }}
 
         <footer class="flex flex-col items-center relative px-4 pt-4 pb-12 ml-12 sm:ml-52">
             <section>
@@ -74,5 +73,6 @@
             });
         </script>
         @stack('scripts')
+        @livewireScripts
     </body>
 </html>

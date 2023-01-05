@@ -17,6 +17,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', \App\Http\Controllers\Homepage\HomepageController::class)->name('home.ger');
 Route::get('/en', \App\Http\Controllers\Homepage\HomepageController::class)->name('home.en');
 
+Route::get('/blog', [\App\Http\Controllers\PostController::class, 'index'])->name('blog.index');
+Route::get('/blog/{post:slug}', [\App\Http\Controllers\PostController::class, 'show'])->name('blog.show');
+
 //Route::get('/dashboard', function () {
 //    return view('dashboard');
 //})->middleware(['auth', 'verified'])->name('dashboard');
