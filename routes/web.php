@@ -35,9 +35,9 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'i
         return redirect()->route('admin.dashboard');
     });
 
-    Route::get('/dashboard', function () {
-        return 'Admin';
-    })->name('dashboard');
+    Route::get('/dashboard', \App\Http\Controllers\Admin\DashboardController::class)->name('dashboard');
+
+    Route::get('/post/{post}/edit', \App\Http\Controllers\Admin\PostController::class)->name('post.edit');
 });
 
 require __DIR__.'/auth.php';

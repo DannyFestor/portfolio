@@ -18,6 +18,9 @@
     <x-layouts.partials.navigation.logo />
 
     <section id="nav-links">
+        @if(Route::is('admin.*'))
+            ADMIN
+        @endif
         <x-layouts.partials.navigation.link href="{{ route('home.ger') }}" label="Homepage" aria-label="Homepage">
             <x-slot:icon>
                 <path stroke-linecap="round"

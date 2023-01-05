@@ -6,6 +6,9 @@
             <h1 class="text-4xl font-bold font-serif">
                 {{ $post->title }}
             </h1>
+            @if(auth()->user()?->can('update', $post))
+                <a href="{{ route('admin.post.edit', $post) }}">Edit</a>
+            @endif
 
             <section class="flex justify-end">
                 {{ $post->user->name }} - {{ $post->released_at->diffForHumans() }}
