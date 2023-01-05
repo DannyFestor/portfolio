@@ -4,7 +4,7 @@
 
     <div class="bg-white rounded flex flex-col sm:flex-row justify-center items-center h-full">
         <div id="img-container"
-             class="h-[200px] sm:h-[500px] w-full max-w-[360px] overflow-hidden rounded-l shadow-lg"
+             class="h-[200px] sm:h-[500px] w-full max-w-[360px] overflow-hidden rounded-t sm:rounded-l shadow-lg"
         >
             <img src="{{ asset('img/danny.jpg') }}"
                  alt="This is me"
@@ -13,7 +13,7 @@
             >
         </div>
         <article
-            class="font-serif relative flex flex-1 flex-col items-center justify-center gap-4 max-w-[360px] sm:max-h-[500px] p-4 rounded-r shadow-lg">
+            class="font-serif relative flex flex-1 flex-col items-center justify-center gap-4 max-w-[360px] sm:h-[500px] sm:max-h-[500px] p-4 rounded-r shadow-lg">
             <p class="text-lg text-center w-full">{{ __('Hi, ich bin Danny!') }}</p>
             <h2 class="text-xl text-left w-full">
                 {!! __('Ich bin <em>Freelancer</em>.') !!}

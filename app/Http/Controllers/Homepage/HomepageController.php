@@ -9,6 +9,10 @@ class HomepageController extends Controller
 {
     public function __invoke()
     {
+        if (request()->segment(1) === 'en') {
+            app()->setLocale('en');
+        }
+
         return view('homepage.index');
     }
 }

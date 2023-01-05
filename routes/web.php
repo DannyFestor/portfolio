@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', \App\Http\Controllers\Homepage\HomepageController::class)->name('home.ger');
+Route::get('/en', \App\Http\Controllers\Homepage\HomepageController::class)->name('home.en');
 
 //Route::get('/dashboard', function () {
 //    return view('dashboard');
