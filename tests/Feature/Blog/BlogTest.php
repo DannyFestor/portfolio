@@ -76,7 +76,7 @@ it('can show blog posts by slug', function () {
         ->assertViewIs('blog.show')
         ->assertViewHas(['post'])
         ->assertSee($post->title)
-        ->assertSee($post->description)
+        ->assertSee(app(Spatie\LaravelMarkdown\MarkdownRenderer::class)->toHtml($post->description), escape: false)
         ->assertSee($post->released_at->diffForHumans())
         ->assertSee($post->user->name);
 });

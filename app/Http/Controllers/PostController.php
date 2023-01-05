@@ -18,10 +18,6 @@ class PostController
             abort(404);
         }
 
-        $converter = new CommonMarkConverter();
-
-        $post->description = $converter->convert($post->description);
-
         return view('blog.show', ['post' => $post]);
     }
 }

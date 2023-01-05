@@ -1,3 +1,27 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.shiki {
+    @apply border rounded;
+}
+
+.table-of-contents {
+    @apply border rounded;
+}
+
+.table-of-contents a {
+    @apply no-underline;
+}
+
+.table-of-contents a:hover {
+    @apply underline;
+}
+
+.heading-permalink {
+    @apply no-underline opacity-20;
+}
+
+.heading-permalink:hover {
+    @apply opacity-40;
+}

@@ -14,11 +14,17 @@ class PostSeeder extends Seeder
         $markdown = <<<Markdown
 This is a sample post intended to test the followings:
 
+---
+
 - A different post author.
 - Table of contents.
 - Markdown content rendering.
 - Math rendering.
 - Emoji rendering.
+
+---
+
+[TOC]
 
 ---
 # Markdown Syntax Rendering
@@ -116,6 +122,32 @@ html
 </html>
 {{< /highlight >}}
 
+#### Code Block with Backticks
+
+```php
+namespace App\Http\Controllers;
+
+use App\Models\Post;
+use League\CommonMark\CommonMarkConverter;
+
+class PostController
+{
+    public function index()
+    {
+        return view('blog.index');
+    }
+
+    public function show(Post \$post)
+    {
+        if (!\$post->is_released || \$post->released_at->gt(now())) {
+            abort(404);
+        }
+
+        return view('blog.show', ['post' => \$post]);
+    }
+}
+```
+
 ## List Types
 
 #### Ordered List
@@ -139,6 +171,12 @@ html
 * Dairy
   * Milk
   * Cheese
+
+#### Task List
+
+* [ ] Buy Milk
+* [X] Learn PHP
+  * [ ] Create a Blog
 
 ## Other Elements — abbr, sub, sup, kbd, mark
 
