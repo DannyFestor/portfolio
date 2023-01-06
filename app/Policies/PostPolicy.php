@@ -11,6 +11,7 @@ class PostPolicy
     use HandlesAuthorization;
     public function create(User $user): bool
     {
+        return $user->is_admin;
     }
 
     public function update(User $user, Post $post): bool

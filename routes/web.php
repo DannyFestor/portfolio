@@ -30,14 +30,14 @@ Route::get('/blog/{post:slug}', [\App\Http\Controllers\PostController::class, 's
 //    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 //});
 
-Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'is_admin']], function () {
-    Route::get('/', function () {
-        return redirect()->route('admin.dashboard');
-    });
-
-    Route::get('/dashboard', \App\Http\Controllers\Admin\DashboardController::class)->name('dashboard');
-
-    Route::get('/post/{post}/edit', \App\Http\Controllers\Admin\PostController::class)->name('post.edit');
-});
+//Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'is_admin']], function () {
+//    Route::get('/', function () {
+//        return redirect()->route('admin.dashboard');
+//    });
+//
+//    Route::get('/dashboard', \App\Http\Controllers\Admin\DashboardController::class)->name('dashboard');
+//
+//    Route::get('/post/{post}/edit', \App\Http\Controllers\Admin\PostController::class)->name('post.edit');
+//});
 
 require __DIR__.'/auth.php';
