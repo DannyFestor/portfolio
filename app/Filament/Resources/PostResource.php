@@ -43,7 +43,7 @@ class PostResource extends Resource
                         ->required()
                         ->maxLength(255)
                         ->lazy()
-                        ->columnSpan(3)
+                        ->columnSpan(['sm' => 3])
                         ->afterStateUpdated(function (callable $set, callable $get, ?string $state) {
                             $set('slug', self::buildSlug(title: $state, date: $get('released_at')));
                         }),
@@ -51,8 +51,11 @@ class PostResource extends Resource
                         ->required()
                         ->maxLength(100)
                         ->lazy()
-                        ->columnSpan(3),
-                ])->columns(['sm' => 3]),
+                        ->columnSpan(['default' => 1, 'sm' => 2]),
+                    Forms\Components\Select::make('tags')
+                        ->relationship('tags', 'title')
+                        ->multiple(),
+                ])->columns(['default' => 1, 'sm' => 3]),
                 Forms\Components\Card::make([
                     Forms\Components\MarkdownEditor::make('description')
                         ->required()
