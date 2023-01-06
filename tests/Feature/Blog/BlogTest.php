@@ -63,6 +63,35 @@ it('can search blog posts by title', function () {
         ->assertDontSee($secondPost->title);
 });
 
+it('can filter blog posts by tag', function () {
+    $user = \App\Models\User::factory()->create();
+    $firstPost = \App\Models\Post::factory()->create([
+        'user_id' => $user->id,
+        'title' => 'First Post',
+        'is_released' => true,
+        'released_at' => now()->subHour(),
+    ]);
+    $secondPost = \App\Models\Post::factory()->create([
+        'user_id' => $user->id,
+        'title' => 'Second Post',
+        'is_released' => true,
+        'released_at' => now()->subHour(),
+    ]);
+    $firstTag = \App\Models\Tag::create(['title' => 'first']);
+    $secondTag = \App\Models\Tag::create(['title' => 'second']);
+    $firstPost->tags()->attach($firstTag);
+    $secondPost->tags()->attach($secondTag);
+
+    $this
+        ->get(route('blog.index', ['t[0]' => $firstTag->title]))
+        ->assertSee($firstPost->title)
+        ->assertDontSee($secondPost->title);
+    $this
+        ->get(route('blog.index', ['t[0]' => $secondTag->title]))
+        ->assertDontSee($firstPost->title)
+        ->assertSee($secondPost->title);
+});
+
 it('can show blog posts by slug', function () {
     $user = \App\Models\User::factory()->create();
     $post = \App\Models\Post::factory()->create([
