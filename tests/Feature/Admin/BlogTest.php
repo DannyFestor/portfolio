@@ -92,14 +92,4 @@ it('can edit a post', function () {
         'description' => $newDescription,
         'released_at' => $newDate,
     ]);
-    // TODO: TEST LIVEWIRE
-    /**
-     *         Livewire::test(CreatePost::class, ['initialTitle' => 'foo'])
-                    ->assertSet('title', 'foo');
-     *
-     *         Livewire::test(CreatePost::class)
-                ->set('title', '')
-                ->call('create')
-                ->assertHasErrors(['title' => 'required']);
-     */
 });

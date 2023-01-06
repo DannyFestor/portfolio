@@ -3,6 +3,8 @@
 namespace App\Http\Livewire\Admin\Post;
 
 use App\Models\Post;
+use Carbon\Exceptions\InvalidFormatException;
+use Illuminate\Support\Carbon;
 use Illuminate\Validation\Rule;
 use Livewire\Component;
 
@@ -30,7 +32,7 @@ class Edit extends Component
     public function mount()
     {
         $this->title = $this->post->title;
-        $this->released_at = $this->post->released_at;
+        $this->released_at = $this->post->released_at ? Carbon::parse($this->post->released_at)->format('Y-m-d H:i') : '';
         $this->slug = $this->post->slug;
         $this->description = $this->post->description;
         $this->is_released = $this->post->is_released;
@@ -41,6 +43,31 @@ class Edit extends Component
         return view('livewire.admin.post.edit');
     }
 
+    public function updatedTitle(string $value)
+    {
+        try {
+            $date = Carbon::parse($this->released_at)->format('Ymd');
+        } catch (InvalidFormatException $e) {
+            $date = '';
+        }
+        $this->setSlug($value, $date);
+    }
+
+    public function updatedReleasedAt(string $value)
+    {
+        try {
+            $date = Carbon::parse($value)->format('Ymd');
+        } catch (InvalidFormatException $e) {
+            $date = '';
+        }
+        $this->setSlug($this->title, $date);
+    }
+
+    private function setSlug(string $title, string $date)
+    {
+        $this->slug = \Str::limit($date . (strlen($date) ? '-' : '') . \Str::slug($title), 100, '');
+    }
+
     public function onSubmit()
     {
         $validated = $this->validate();
@@ -48,5 +75,12 @@ class Edit extends Component
         Post::query()
             ->where('id', '=', $this->post->id)
             ->update($validated);
+
+        return redirect()->route('blog.show', $this->slug)->with('success', 'Post updated!');
+    }
+
+    public function onCancel()
+    {
+        return redirect()->route('blog.show', $this->post);
     }
 }

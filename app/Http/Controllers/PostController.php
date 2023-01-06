@@ -14,7 +14,9 @@ class PostController
 
     public function show(Post $post)
     {
-        if (!$post->is_released || $post->released_at->gt(now())) {
+        $user = \Auth::user();
+
+        if ((!$user || !$user->is_admin) && (!$post->is_released || ($post->released_at && $post->released_at->gt(now())))) {
             abort(404);
         }
 
