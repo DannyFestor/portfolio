@@ -109,3 +109,50 @@ it('can show blog posts by slug', function () {
         ->assertSee($post->released_at->diffForHumans())
         ->assertSee($post->user->name);
 });
+
+it('generates an rss feed', function () {
+
+    $user = \App\Models\User::factory()->create();
+    $posts = \App\Models\Post::factory(31)->for($user)->create(['is_released' => true]);
+    $tag = \App\Models\Tag::create(['title' => 'test']);
+
+    $latestPost = \App\Models\Post::latest('released_at')->first();
+    $firstPost = \App\Models\Post::orderBy('released_at')->first();
+    $randomPost = $posts->filter(
+        fn (\App\Models\Post $post) => !in_array($post->id, [$latestPost->id, $firstPost->id]))
+        ->random();
+    $randomPost->tags()->attach($tag->id);
+
+    // Pagination First Page
+    $this->get(route('blog.feed'))
+        ->assertStatus(\Illuminate\Http\Response::HTTP_OK)
+        ->assertHeader('Content-Type', 'application/xml')
+        ->assertViewIs('blog.feed')
+        ->assertSee($latestPost->title)
+        ->assertDontSee($firstPost->title);
+
+    // Pagination Second Page
+    $this->get(route('blog.feed', ['page' => 2]))
+        ->assertStatus(\Illuminate\Http\Response::HTTP_OK)
+        ->assertHeader('Content-Type', 'application/xml')
+        ->assertViewIs('blog.feed')
+        ->assertSee($firstPost->title)
+        ->assertDontSee($latestPost->title);
+
+    // Show post with specified tag
+    $this->get(route('blog.feed', ['tag' => 'test']))
+        ->assertStatus(\Illuminate\Http\Response::HTTP_OK)
+        ->assertHeader('Content-Type', 'application/xml')
+        ->assertViewIs('blog.feed')
+        ->assertSee($randomPost->title)
+        ->assertDontSee($firstPost->title)
+        ->assertDontSee($latestPost->title);
+    // Specified Tag as Array
+    $this->get(route('blog.feed', ['tag' => ['test']]))
+        ->assertStatus(\Illuminate\Http\Response::HTTP_OK)
+        ->assertHeader('Content-Type', 'application/xml')
+        ->assertViewIs('blog.feed')
+        ->assertSee($randomPost->title)
+        ->assertDontSee($firstPost->title)
+        ->assertDontSee($latestPost->title);
+});
