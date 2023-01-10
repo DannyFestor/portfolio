@@ -24,49 +24,49 @@
                 </h1>
                 <h3 class="text-right w-full">{!! __('Ich lebe in <em>Nagasaki, Japan</em>.') !!}</h3>
 
-                <p class="icons flex gap-2 justify-between mt-12">
+                <p class="icons flex gap-2 justify-between mt-12 w-full h-16">
                     <a href="https://go.dev/" class="w-1/5 flex justify-center items-center">
-                        <img class="w-[100%] max-w-12" src="{{ asset('icons/go.svg') }}" alt="GO" aria-label="GO"
+                        <img class="w-[100%] w-full max-w-12" src="{{ asset('icons/go.svg') }}" alt="GO" aria-label="GO"
                              title="GO">
                     </a>
                     <a href="https://www.php.net/" class="w-1/5 flex justify-center items-center">
-                        <img class="w-[100%] max-w-12" src="{{ asset('icons/php.svg') }}" alt="PHP" aria-label="PHP"
+                        <img class="w-[100%] w-full max-w-12" src="{{ asset('icons/php.svg') }}" alt="PHP" aria-label="PHP"
                              title="PHP">
                     </a>
                     <a href="https://laravel.com/" class="w-1/5 flex justify-center items-center">
-                        <img class="w-[100%] max-w-12" src="{{ asset('icons/laravel.svg') }}" alt="Laravel"
+                        <img class="w-[100%] w-full max-w-12" src="{{ asset('icons/laravel.svg') }}" alt="Laravel"
                              aria-label="Laravel" title="Laravel">
                     </a>
                     <a href="https://laravel-livewire.com/" class="w-1/5 flex justify-center items-center">
-                        <img class="w-[100%] max-w-12" src="{{ asset('icons/livewire.svg') }}" alt="Livewire"
+                        <img class="w-[100%] w-full max-w-12" src="{{ asset('icons/livewire.svg') }}" alt="Livewire"
                              aria-label="Livewire" title="Livewire">
                     </a>
                     <a href="https://inertiajs.com/" class="w-1/5 flex justify-center items-center">
-                        <img class="w-[100%] max-w-12" src="{{ asset('icons/inertia.svg') }}" alt="Inertia.js"
+                        <img class="w-[100%] w-full max-w-12" src="{{ asset('icons/inertia.svg') }}" alt="Inertia.js"
                              aria-label="Inertia.js" title="Inertia.js">
                     </a>
                 </p>
 
-                <p class="icons flex gap-2 justify-between">
+                <p class="icons flex gap-2 justify-between w-full h-16">
                     <a href="#" class="w-1/5 flex justify-center items-center">
-                        <img class="w-[100%] max-w-12" src="{{ asset('icons/javascript.svg') }}" alt="JavaScript"
+                        <img class="w-[100%] w-full max-w-12" src="{{ asset('icons/javascript.svg') }}" alt="JavaScript"
                              aria-label="JavaScript" title="JavaScript">
                     </a>
                     <a href="https://www.typescriptlang.org/" class="w-1/5 flex justify-center items-center">
-                        <img class="w-[100%] max-w-12" src="{{ asset('icons/typescript.svg') }}" alt="TypeScript"
+                        <img class="w-[100%] w-full max-w-12" src="{{ asset('icons/typescript.svg') }}" alt="TypeScript"
                              aria-label="TypeScript" title="TypeScript">
                     </a>
                     <a href="https://vuejs.org/" class="w-1/5 flex justify-center items-center">
-                        <img class="w-[100%] max-w-12" src="{{ asset('icons/vuejs.svg') }}" alt="Vue.js"
+                        <img class="w-[100%] w-full max-w-12" src="{{ asset('icons/vuejs.svg') }}" alt="Vue.js"
                              aria-label="Vue.js"
                              title="Vue.js">
                     </a>
                     <a href="https://alpinejs.dev/" class="w-1/5 flex justify-center items-center">
-                        <img class="w-[100%] max-w-12" src="{{ asset('icons/alpinejs.svg') }}" alt="Alpine.js"
+                        <img class="w-[100%] w-full max-w-12" src="{{ asset('icons/alpinejs.svg') }}" alt="Alpine.js"
                              aria-label="Alpine.js" title="Alpine.js">
                     </a>
                     <a href="https://flutter.dev/" class="w-1/5 flex justify-center items-center">
-                        <img class="w-[100%] max-w-12" src="{{ asset('icons/flutter.svg') }}" alt="Flutter"
+                        <img class="w-[100%] w-full max-w-12" src="{{ asset('icons/flutter.svg') }}" alt="Flutter"
                              aria-label="Flutter" title="Flutter">
                     </a>
                 </p>
