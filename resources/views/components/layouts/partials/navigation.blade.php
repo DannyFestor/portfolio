@@ -53,19 +53,6 @@
             </x-slot:icon>
             Projects
         </x-layouts.partials.navigation.link>
-{{--        <x-layouts.partials.navigation.link href="/cv"--}}
-{{--                                            label="My CV for your Database"--}}
-{{--                                            aria-label="My CV for your Database"--}}
-{{--        >--}}
-{{--            <x-slot:icon>--}}
-{{--                <path--}}
-{{--                    d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"--}}
-{{--                    stroke-linecap="round"--}}
-{{--                    stroke-linejoin="round"--}}
-{{--                    stroke-width="2" />--}}
-{{--            </x-slot:icon>--}}
-{{--            CV--}}
-{{--        </x-layouts.partials.navigation.link>--}}
         <x-layouts.partials.navigation.link href="/contact"
                                             label="Don't hesitate to contact me"
                                             aria-label="Don't hesitate to contact me"
@@ -79,17 +66,8 @@
             </x-slot:icon>
             Contact
         </x-layouts.partials.navigation.link>
-        {{--        <!-- <a class="nav-link" href="/ja" hash="#about" label="日本語版に変更">--}}
-        {{--              <svg--}}
-        {{--                xmlns="http://www.w3.org/2000/svg"--}}
-        {{--                viewBox="0 0 900 600"--}}
-        {{--              >--}}
-        {{--                <rect fill="#fff" height="600" width="900" />--}}
-        {{--                <circle fill="#bc002d" cx="450" cy="300" r="180" />--}}
-        {{--              </svg>--}}
 
-        {{--              <div>日本語</div>--}}
-        {{--            </a> -->--}}
+        <x-layouts.partials.navigation.language-select />
     </section>
 
     <section class="flex flex-wrap justify-center items-center group-hover:gap-4 p-2 h-18 w-full"

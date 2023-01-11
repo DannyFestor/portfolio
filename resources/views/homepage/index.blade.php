@@ -15,14 +15,14 @@
             </div>
             <article
                 class="font-serif relative flex flex-1 flex-col items-center justify-center gap-4 max-w-[360px] sm:h-[500px] sm:max-h-[500px] p-4 rounded-r shadow-lg">
-                <p class="text-lg text-center w-full">{{ __('Hi, ich bin Danny!') }}</p>
+                <p class="text-lg text-center w-full">{{ __('Hi! I am Danny.') }}</p>
                 <h2 class="text-xl text-left w-full">
-                    {!! __('Ich bin <em>Freelancer</em>.') !!}
+                    {!! __('I am a <em>Freelancer</em>.') !!}
                 </h2>
                 <h1 class="text-2xl text-center w-full">
-                    {!! __('Ich erstelle <strong>moderne Webseiten</strong>.') !!}
+                    {!! __('I create <strong>modern websites</strong>.') !!}
                 </h1>
-                <h3 class="text-right w-full">{!! __('Ich lebe in <em>Nagasaki, Japan</em>.') !!}</h3>
+                <h3 class="text-right w-full">{!! __('I live in <em>Nagasaki, Japan</em>.') !!}</h3>
 
                 <p class="icons flex gap-2 justify-between mt-12 w-full h-16">
                     <a href="https://go.dev/" class="w-1/5 flex justify-center items-center">

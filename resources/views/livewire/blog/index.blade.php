@@ -94,7 +94,10 @@
                 </section>
             </section>
             <section class="mt-2 prose font-serif">
-                {!! nl2br(Str::limit(explode('---', $post->description)[0], 200)) !!} <a href="{{ route('blog.show', $post) }}" class="text-xs text-blue-600 font-sans no-underline hover:underline">(... Continue Reading)</a>
+                {!! nl2br(Str::limit(explode('---', $post->description)[0], 200)) !!}
+                <a href="{{ route('blog.show', $post) }}"
+                   class="text-xs text-blue-600 font-sans no-underline hover:underline">
+                    ({{__('... Continue Reading')}})</a>
             </section>
         </article>
     @endforeach
