@@ -66,23 +66,32 @@
     <section id="posts" class="flex flex-col gap-4 mt-8 max-w-7xl mx-auto">
     @foreach($posts as $post)
         <article class="flex flex-col bg-white p-4 rounded shadow" role="article">
-            <h2 class="font-bold font-serif">
-                <a href="{{ route('blog.show', $post) }}" class="hover:underline">
-                    {{ $post->title }}
-                </a>
-            </h2>
-            <section>
-                {{ $post->user->name }}
-                -
-                {{ $post->released_at->diffForHumans() }}
-            </section>
-            <section class="flex flex-wrap justify-end gap-2">
-                @foreach($post->tags as $tag)
-                    <div class="px-2 py-1 rounded flex items-center gap-1" style="color: {{ $tag->text_color }}; background-color: {{ $tag->background_color }}; border: 1px solid {{ $tag->border_color }}">
-                        <img class="h-6 w-6" src="{{ asset('icons/' . $tag->logo ) }}" alt="">
-                        {{ $tag->title }}
-                    </div>
-                @endforeach
+            <section class="flex flex-row gap-2">
+                @if($post->hasMedia(\App\Models\Post::HERO_IMAGE))
+                    <section class="w-[100px]">
+                        <img src="{{ $post->getFirstMediaUrl(\App\Models\Post::HERO_IMAGE, 'thumb') }}" alt="" class="h-full object-cover">
+                    </section>
+                @endif
+                <section>
+                    <h2 class="font-bold font-serif">
+                        <a href="{{ route('blog.show', $post) }}" class="hover:underline">
+                            {{ $post->title }}
+                        </a>
+                    </h2>
+                    <section>
+                        {{ $post->user->name }}
+                        -
+                        {{ $post->released_at->diffForHumans() }}
+                    </section>
+                    <section class="flex flex-wrap justify-end gap-2">
+                        @foreach($post->tags as $tag)
+                            <div class="px-2 py-1 rounded flex items-center gap-1" style="color: {{ $tag->text_color }}; background-color: {{ $tag->background_color }}; border: 1px solid {{ $tag->border_color }}">
+                                <img class="h-6 w-6" src="{{ asset('icons/' . $tag->logo ) }}" alt="">
+                                {{ $tag->title }}
+                            </div>
+                        @endforeach
+                    </section>
+                </section>
             </section>
             <section class="mt-2 prose font-serif">
                 {!! nl2br(Str::limit(explode('---', $post->description)[0], 200)) !!} <a href="{{ route('blog.show', $post) }}" class="text-xs text-blue-600 font-sans no-underline hover:underline">(... Continue Reading)</a>

@@ -23,7 +23,8 @@ class PostController
             abort(404);
         }
 
-        $post->load('tags');
+        $post->load(['tags']);
+        $post->getFirstMedia(Post::HERO_IMAGE);
 
         return view('blog.show', ['post' => $post]);
     }

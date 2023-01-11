@@ -6,6 +6,7 @@ use App\Models\Post;
 use App\Models\Tag;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -35,7 +36,13 @@ class Index extends Component
         return view('livewire.blog.index', [
             'posts' => Post::query()
                 ->select(['id', 'slug', 'title', 'user_id', 'released_at', 'description'])
-                ->with(['user', 'tags'])
+                ->with([
+                    'user',
+                    'tags',
+                    'media' => function (MorphMany $query) {
+                        $query->where('collection_name', '=', Post::HERO_IMAGE);
+                    }
+                ])
                 ->whereNotNull('released_at')
                 ->where('released_at', '<', now())
                 ->where('is_released', '=', TRUE)

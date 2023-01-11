@@ -55,6 +55,11 @@ class PostResource extends Resource
                     Forms\Components\Select::make('tags')
                         ->relationship('tags', 'title')
                         ->multiple(),
+                    Forms\Components\SpatieMediaLibraryFileUpload::make('hero-image')
+                        ->collection(Post::HERO_IMAGE)
+                        ->multiple(false)
+                        ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp'])
+                        ->columnSpan(['sm' => 3]),
                 ])->columns(['default' => 1, 'sm' => 3]),
                 Forms\Components\Card::make([
                     Forms\Components\MarkdownEditor::make('description')
