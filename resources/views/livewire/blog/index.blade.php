@@ -66,10 +66,10 @@
     <section id="posts" class="flex flex-col gap-4 mt-8 max-w-7xl mx-auto">
     @foreach($posts as $post)
         <article class="flex flex-col bg-white p-4 rounded shadow" role="article">
-            <section class="flex flex-row gap-2">
+            <section class="flex flex-row items-center gap-2">
                 @if($post->hasMedia(\App\Models\Post::HERO_IMAGE))
-                    <section class="w-[100px]">
-                        <img src="{{ $post->getFirstMediaUrl(\App\Models\Post::HERO_IMAGE, 'thumb') }}" alt="" class="h-full object-cover">
+                    <section class="h-[100px] w-[100px] overflow-hidden">
+                        <img src="{{ $post->getFirstMediaUrl(\App\Models\Post::HERO_IMAGE, 'thumb') }}" alt="" class="w-full h-full object-cover">
                     </section>
                 @endif
                 <section>
