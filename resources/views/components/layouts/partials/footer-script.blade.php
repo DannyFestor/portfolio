@@ -22,6 +22,13 @@
             toggle() {
                 this.open = ! this.open
             },
+
+            init() {
+                Alpine.effect(() => {
+                    const body = document.querySelector('body');
+                    body.style.overflowY = this.open ? 'hidden' : '';
+                });
+            },
         });
 
 
