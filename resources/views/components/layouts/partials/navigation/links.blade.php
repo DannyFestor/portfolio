@@ -1,4 +1,7 @@
-<section id="nav-links">
+<section id="nav-links" class="relative ">
+    <section class="absolute -translate-y-1/2 group-hover:w-[13rem]"
+             :class="$store.navigation.open ? 'w-[13rem]' : 'w-[3rem]'"
+    >
     @if(Route::is('admin.*'))
         ADMIN
     @endif
@@ -49,4 +52,6 @@
     </x-layouts.partials.navigation.link>
 
     <x-layouts.partials.navigation.language-select />
+
+    </section>
 </section>
