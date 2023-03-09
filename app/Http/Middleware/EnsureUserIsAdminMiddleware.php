@@ -17,7 +17,7 @@ class EnsureUserIsAdminMiddleware
     public function handle(Request $request, Closure $next)
     {
         if (!$request->user() || !$request->user()->is_admin) {
-            return redirect()->route('home.ger');
+            return redirect()->route('home');
         }
         return $next($request);
     }

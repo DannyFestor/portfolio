@@ -2,7 +2,8 @@
 
 it('can show the german homepage', function () {
     $this
-        ->get(route('home.ger'))
+        ->session(['locale' => 'de'])
+        ->get(route('home'))
         ->assertSee('Hi, ich bin Danny!')
         ->assertSee('Ich bin <em>Freelancer</em>.', escape: false)
         ->assertSee('Ich erstelle <strong>moderne Webseiten</strong>.', escape: false)
@@ -12,7 +13,7 @@ it('can show the german homepage', function () {
 
 it('can show the english homepage', function () {
     $this
-        ->get(route('home.en'))
+        ->get(route('home'))
         ->assertSee('Hi! I am Danny.')
         ->assertSee('I am a <em>Freelancer</em>.', escape: false)
         ->assertSee('I create <strong>modern websites</strong>.', escape: false)
