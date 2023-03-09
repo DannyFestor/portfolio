@@ -19,7 +19,7 @@ Route::post('/set-locale', \App\Http\Controllers\LocaleController::class)->name(
 Route::get('/en', \App\Http\Controllers\Homepage\HomepageController::class)->name('home.en');
 
 Route::get('/blog', [\App\Http\Controllers\PostController::class, 'index'])->name('blog.index');
-Route::get('/blog/feed', [\App\Http\Controllers\PostController::class, 'rssFeed'])->name('blog.feed');
+Route::get('/blog/feed.xml', [\App\Http\Controllers\PostController::class, 'rssFeed'])->name('blog.feed');
 Route::get('/blog/{post:slug}', [\App\Http\Controllers\PostController::class, 'show'])->name('blog.show');
 
 //Route::get('/dashboard', function () {
