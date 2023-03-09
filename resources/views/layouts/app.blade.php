@@ -25,56 +25,9 @@
 
         {{ $slot }}
 
-        <footer class="flex flex-col items-center relative px-4 pt-4 pb-12 ml-12 sm:ml-52">
-            <section>
-                &copy; Brücke - 2020-{{ now()->year }}
-            </section>
-            <section>
-                Made with
-                <a href="https://laravel.com" class="underline">Laravel</a>,
-                <a href="https://laravel-livewire.com" class="underline">Livewire</a>
-                and
-                <a href="https://alpinejs.dev" class="underline">Alpine.js</a>
-            </section>
-        </footer>
+        <x-layouts.partials.footer />
+        <x-layouts.partials.footer-script />
 
-
-        <script>
-            document.addEventListener('alpine:init', () => {
-                Alpine.store('darkMode', {
-                    on: false,
-
-                    toggle() {
-                        this.on = ! this.on
-                    }
-                });
-
-                Alpine.store('navigation', {
-                    open: false,
-
-                    show() {
-                        this.open = true;
-                    },
-
-                    close() {
-                        this.open = false;
-                    },
-
-                    toggle() {
-                        this.open = ! this.open
-                    },
-                });
-
-
-                window.addEventListener('resize', Alpine.debounce((e) => {
-                    console.log(window.innerWidth);
-                    if (window.innerWidth < 640 || !Alpine.store('navigation').open) {
-                        return;
-                    }
-                    Alpine.store('navigation').close();
-                }, 300));
-            });
-        </script>
         @stack('scripts')
         @livewireScripts
     </body>

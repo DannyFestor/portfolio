@@ -66,19 +66,19 @@
     <section id="posts" class="flex flex-col gap-4 mt-8 max-w-7xl mx-auto">
     @foreach($posts as $post)
         <article class="flex flex-col bg-white p-4 rounded shadow" role="article">
-            <section class="flex flex-row items-center gap-2">
+            <section class="flex flex-col md:flex-row items-center gap-2">
                 @if($post->hasMedia(\App\Models\Post::HERO_IMAGE))
-                    <section class="h-[100px] w-[100px] overflow-hidden">
+                    <section class="h-[100px] w-full md:w-[100px] overflow-hidden">
                         <img src="{{ $post->getFirstMediaUrl(\App\Models\Post::HERO_IMAGE, 'thumb') }}" alt="" class="w-full h-full object-cover">
                     </section>
                 @endif
-                <section>
+                <section class="flex-1">
                     <h2 class="font-bold font-serif">
                         <a href="{{ route('blog.show', $post) }}" class="hover:underline">
                             {{ $post->title }}
                         </a>
                     </h2>
-                    <section>
+                    <section class="text-right">
                         {{ $post->user->name }}
                         -
                         {{ $post->released_at->diffForHumans() }}
@@ -93,7 +93,7 @@
                     </section>
                 </section>
             </section>
-            <section class="mt-2 prose font-serif">
+            <section class="mt-2 prose w-full max-w-full font-serif">
                 {!! nl2br(Str::limit(explode('---', $post->description)[0], 200)) !!}
                 <a href="{{ route('blog.show', $post) }}"
                    class="text-xs text-blue-600 font-sans no-underline hover:underline">
