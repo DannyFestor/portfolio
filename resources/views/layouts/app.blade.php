@@ -65,12 +65,14 @@
                     },
                 });
 
-                window.addEventListener('resize', (e) => {
+
+                window.addEventListener('resize', Alpine.debounce((e) => {
+                    console.log(window.innerWidth);
                     if (window.innerWidth < 640 || !Alpine.store('navigation').open) {
                         return;
                     }
                     Alpine.store('navigation').close();
-                });
+                }, 300));
             });
         </script>
         @stack('scripts')
