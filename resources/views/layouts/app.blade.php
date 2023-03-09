@@ -15,6 +15,7 @@
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
+        @stack('vite')
         @stack('styles')
         @livewireStyles
     </head>
