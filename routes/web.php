@@ -31,4 +31,4 @@ Route::get('/blog/{post:slug}', [\App\Http\Controllers\PostController::class, 's
 //    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 //});
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

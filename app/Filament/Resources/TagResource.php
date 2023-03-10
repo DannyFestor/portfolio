@@ -46,6 +46,7 @@ class TagResource extends Resource
                                 }),
                             function ($result, $icon) {
                                 $result[$icon] = $icon;
+
                                 return $result;
                             }
                         );
@@ -57,6 +58,7 @@ class TagResource extends Resource
                         $background_color = $get('background_color');
                         $border_color = $get('border_color');
                         $logo = asset('icons/' . $get('logo'));
+
                         return new HtmlString(<<<HTML
 <div class="flex">
     <span class="px-2 py-1 rounded flex items-center justify-center gap-2" style="color: $text_color; background-color: $background_color; border: 1px solid $border_color">
@@ -65,8 +67,7 @@ class TagResource extends Resource
     </span>
 </div>
 HTML);
-
-                    })
+                    }),
             ]);
     }
 
@@ -86,6 +87,7 @@ HTML);
                         $background_color = $record->background_color;
                         $border_color = $record->border_color;
                         $logo = asset('icons/' . $record->logo);
+
                         return new HtmlString(<<<HTML
 <div class="flex">
     <span class="px-2 py-1 rounded flex items-center justify-center gap-2" style="color: $text_color; background-color: $background_color; border: 1px solid $border_color">
@@ -94,8 +96,7 @@ HTML);
     </span>
 </div>
 HTML);
-
-                    })
+                    }),
             ])
             ->filters([
                 //

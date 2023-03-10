@@ -15,9 +15,6 @@ class Tag extends Model
         'logo',
     ];
 
-    /**
-     * @return BelongsToMany
-     */
     public function posts(): BelongsToMany
     {
         return $this->belongsToMany(Post::class, PostTag::class);

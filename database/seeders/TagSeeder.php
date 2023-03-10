@@ -12,7 +12,7 @@ class TagSeeder extends Seeder
         $tags = [
             [
                 'title' => 'Alpinejs',
-                'logo' => "alpinejs.svg",
+                'logo' => 'alpinejs.svg',
                 'text_color' => '#8BC0D0',
                 'background_color' => '',
                 'border_color' => '#8BC0D0',
@@ -21,7 +21,7 @@ class TagSeeder extends Seeder
             ],
             [
                 'title' => 'Css3',
-                'logo' => "css3.svg",
+                'logo' => 'css3.svg',
                 'text_color' => '#1572B6',
                 'background_color' => '',
                 'border_color' => '#1572B6',
@@ -30,7 +30,7 @@ class TagSeeder extends Seeder
             ],
             [
                 'title' => 'Dart',
-                'logo' => "dart.svg",
+                'logo' => 'dart.svg',
                 'text_color' => '#01579B',
                 'background_color' => '',
                 'border_color' => '#01579B',
@@ -39,7 +39,7 @@ class TagSeeder extends Seeder
             ],
             [
                 'title' => 'Electron',
-                'logo' => "electron.svg",
+                'logo' => 'electron.svg',
                 'text_color' => '#47848F',
                 'background_color' => '',
                 'border_color' => '#47848F',
@@ -48,7 +48,7 @@ class TagSeeder extends Seeder
             ],
             [
                 'title' => 'Flutter',
-                'logo' => "flutter.svg",
+                'logo' => 'flutter.svg',
                 'text_color' => '#02569B',
                 'background_color' => '',
                 'border_color' => '#02569B',
@@ -57,7 +57,7 @@ class TagSeeder extends Seeder
             ],
             [
                 'title' => 'Go',
-                'logo' => "go.svg",
+                'logo' => 'go.svg',
                 'text_color' => '#00ADD8',
                 'background_color' => '',
                 'border_color' => '#00ADD8',
@@ -66,7 +66,7 @@ class TagSeeder extends Seeder
             ],
             [
                 'title' => 'Html5',
-                'logo' => "html5.svg",
+                'logo' => 'html5.svg',
                 'text_color' => '#E34F26',
                 'background_color' => '',
                 'border_color' => '#E34F26',
@@ -75,7 +75,7 @@ class TagSeeder extends Seeder
             ],
             [
                 'title' => 'Inertia',
-                'logo' => "inertia.svg",
+                'logo' => 'inertia.svg',
                 'text_color' => '#9553E9',
                 'background_color' => '',
                 'border_color' => '#9553E9',
@@ -84,7 +84,7 @@ class TagSeeder extends Seeder
             ],
             [
                 'title' => 'Javascript',
-                'logo' => "javascript.svg",
+                'logo' => 'javascript.svg',
                 'text_color' => '#000000',
                 'background_color' => '#F7DF1E',
                 'border_color' => '#F7DF1E',
@@ -93,7 +93,7 @@ class TagSeeder extends Seeder
             ],
             [
                 'title' => 'Laravel',
-                'logo' => "laravel.svg",
+                'logo' => 'laravel.svg',
                 'text_color' => '#FF2D20',
                 'background_color' => '',
                 'border_color' => '#FF2D20',
@@ -102,7 +102,7 @@ class TagSeeder extends Seeder
             ],
             [
                 'title' => 'Livewire',
-                'logo' => "livewire.svg",
+                'logo' => 'livewire.svg',
                 'text_color' => '#4E56A6',
                 'background_color' => '',
                 'border_color' => '#4E56A6',
@@ -111,7 +111,7 @@ class TagSeeder extends Seeder
             ],
             [
                 'title' => 'Php',
-                'logo' => "php.svg",
+                'logo' => 'php.svg',
                 'text_color' => '#777BB4',
                 'background_color' => '',
                 'border_color' => '#777BB4',
@@ -120,7 +120,7 @@ class TagSeeder extends Seeder
             ],
             [
                 'title' => 'React',
-                'logo' => "react.svg",
+                'logo' => 'react.svg',
                 'text_color' => '#61DAFB',
                 'background_color' => '',
                 'border_color' => '#61DAFB',
@@ -129,7 +129,7 @@ class TagSeeder extends Seeder
             ],
             [
                 'title' => 'Rust',
-                'logo' => "rust.svg",
+                'logo' => 'rust.svg',
                 'text_color' => '#000000',
                 'background_color' => '',
                 'border_color' => '#000000',
@@ -138,7 +138,7 @@ class TagSeeder extends Seeder
             ],
             [
                 'title' => 'Svelte',
-                'logo' => "svelte.svg",
+                'logo' => 'svelte.svg',
                 'text_color' => '#FF3E00',
                 'background_color' => '',
                 'border_color' => '#FF3E00',
@@ -147,7 +147,7 @@ class TagSeeder extends Seeder
             ],
             [
                 'title' => 'Tailwindcss',
-                'logo' => "tailwindcss.svg",
+                'logo' => 'tailwindcss.svg',
                 'text_color' => '#06B6D4',
                 'background_color' => '',
                 'border_color' => '#06B6D4',
@@ -156,7 +156,7 @@ class TagSeeder extends Seeder
             ],
             [
                 'title' => 'Typescript',
-                'logo' => "typescript.svg",
+                'logo' => 'typescript.svg',
                 'text_color' => '#3178C6',
                 'background_color' => '',
                 'border_color' => '#3178C6',
@@ -165,7 +165,7 @@ class TagSeeder extends Seeder
             ],
             [
                 'title' => 'Vuejs',
-                'logo' => "vuejs.svg",
+                'logo' => 'vuejs.svg',
                 'text_color' => '#4FC08D',
                 'background_color' => '',
                 'border_color' => '#4FC08D',

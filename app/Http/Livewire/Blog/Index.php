@@ -15,7 +15,9 @@ class Index extends Component
     use WithPagination;
 
     public string $search = '';
+
     public Collection $tags;
+
     public array $selectedTags = [];
 
     protected $queryString = [
@@ -41,16 +43,16 @@ class Index extends Component
                     'tags',
                     'media' => function (MorphMany $query) {
                         $query->where('collection_name', '=', Post::HERO_IMAGE);
-                    }
+                    },
                 ])
                 ->whereNotNull('released_at')
                 ->where('released_at', '<', now())
-                ->where('is_released', '=', TRUE)
+                ->where('is_released', '=', true)
                 ->when($this->search, function (Builder $query, string $value) {
                     $query->where('title', 'like', "%$value%");
                 })
                 ->when($this->selectedTags, function (Builder $query, array $value) {
-                    foreach($value as $tag) {
+                    foreach ($value as $tag) {
                         $query->whereHas('tags', function (Builder $query) use ($tag) {
                             $query->where('tags.title', 'like', "%$tag%");
                         });

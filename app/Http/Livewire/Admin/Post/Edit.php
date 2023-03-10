@@ -13,15 +13,19 @@ class Edit extends Component
     public Post $post;
 
     public string $title = '';
+
     public string $released_at = '';
+
     public string $slug = '';
+
     public string $description = '';
+
     public bool $is_released = false;
 
     public function getRules(): array
     {
         return [
-            'title' => ['required', 'min:10', 'max:255',],
+            'title' => ['required', 'min:10', 'max:255'],
             'slug' => ['required', Rule::unique('posts', 'slug')->ignore($this->post->id), 'min:10', 'max:100'],
             'description' => ['required'],
             'released_at' => ['nullable', 'date'],

@@ -52,9 +52,6 @@ class User extends Authenticatable implements FilamentUser
         return str_ends_with($this->email, '@festor.info') && $this->hasVerifiedEmail();
     }
 
-    /**
-     * @return HasMany
-     */
     public function posts(): HasMany
     {
         return $this->hasMany(Post::class);

@@ -4,24 +4,30 @@ namespace App\Helpers;
 
 use League\CommonMark\Environment\Environment;
 use League\CommonMark\Extension\CommonMark\CommonMarkCoreExtension;
+use League\CommonMark\Extension\Footnote\FootnoteExtension;
+use League\CommonMark\Extension\HeadingPermalink\HeadingPermalinkExtension;
+use League\CommonMark\Extension\Strikethrough\StrikethroughExtension;
+use League\CommonMark\Extension\Table\TableExtension;
+use League\CommonMark\Extension\TableOfContents\TableOfContentsExtension;
 use League\CommonMark\MarkdownConverter;
 
 class Markdown
 {
-    public static function make(string $input) : string {
+    public static function make(string $input): string
+    {
         $config = [
             'html_input' => 'allow',
-//            'html_input' => 'escape',
+            // 'html_input' => 'escape',
             'table_of_contents' => [
                 'html_class' => 'table-of-contents',
-//                'position' => 'top',
+                // 'position' => 'top',
                 'position' => 'placeholder',
                 'placeholder' => '[TOC]',
                 'style' => 'bullet',
                 'min_heading_level' => 1,
                 'max_heading_level' => 6,
                 'normalize' => 'relative',
-//                'placeholder' => null,
+                // 'placeholder' => null,
             ],
             'heading_permalink' => [
                 'html_class' => 'heading-permalink',
@@ -35,17 +41,15 @@ class Markdown
                 'aria_hidden' => true,
             ],
         ];
-//
-//// Configure the Environment with all the CommonMark parsers/renderers
+
         $environment = new Environment($config);
         $environment->addExtension(new CommonMarkCoreExtension());
-        $environment->addExtension(new \League\CommonMark\Extension\Table\TableExtension());
-        $environment->addExtension(new \League\CommonMark\Extension\Strikethrough\StrikethroughExtension());
-        $environment->addExtension(new \League\CommonMark\Extension\Footnote\FootnoteExtension());
-        $environment->addExtension(new \League\CommonMark\Extension\HeadingPermalink\HeadingPermalinkExtension());
-        $environment->addExtension(new \League\CommonMark\Extension\TableOfContents\TableOfContentsExtension());
+        $environment->addExtension(new TableExtension());
+        $environment->addExtension(new StrikethroughExtension());
+        $environment->addExtension(new FootnoteExtension());
+        $environment->addExtension(new HeadingPermalinkExtension());
+        $environment->addExtension(new TableOfContentsExtension());
 
-// Instantiate the converter engine and start converting some Markdown!
         $converter = new MarkdownConverter($environment);
 
         return $converter->convert($input)->getContent();

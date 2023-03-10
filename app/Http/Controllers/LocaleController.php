@@ -13,6 +13,7 @@ class LocaleController extends Controller
             'locale' => [Rule::in(['de', 'en', 'ja'])],
         ]);
         $request->session()->put('locale', $request->get('locale'));
+
         return redirect()->back();
     }
 }

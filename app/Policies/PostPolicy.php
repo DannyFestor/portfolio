@@ -9,6 +9,7 @@ use Illuminate\Auth\Access\HandlesAuthorization;
 class PostPolicy
 {
     use HandlesAuthorization;
+
     public function create(User $user): bool
     {
         return $user->is_admin;

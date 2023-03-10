@@ -12,7 +12,7 @@ class UserSeeder extends Seeder
             'first_name' => 'Danny',
             'last_name' => 'Festor',
             'email' => 'danny@festor.info',
-            'is_admin' => TRUE,
+            'is_admin' => true,
         ]);
         \App\Models\User::factory(10)->create();
     }

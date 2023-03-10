@@ -42,20 +42,14 @@ class Post extends Model implements HasMedia
                     ->addMediaConversion('thumb')
                     ->width(100)
                     ->height(100);
-            });;
+            });
     }
 
-    /**
-     * @return BelongsTo
-     */
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }
 
-    /**
-     * @return BelongsToMany
-     */
     public function tags(): BelongsToMany
     {
         return $this->belongsToMany(Tag::class, PostTag::class);

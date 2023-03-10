@@ -18,15 +18,21 @@ class PostController
     {
         $user = \Auth::user();
 
-        if ((!$user || !$user->is_admin) && (!$post->is_released || ($post->released_at && $post->released_at->gt(
-                        now()
-                    )))) {
+        if (
+            (!$user || !$user->is_admin) &&
+            (
+                !$post->is_released ||
+                (
+                    $post->released_at &&
+                    $post->released_at->gt(now())
+                )
+            )
+        ) {
             abort(404);
         }
 
         $post->load(['tags']);
         $post->getFirstMedia(Post::HERO_IMAGE);
-
 
         $post->description = Markdown::make($post->description);
 
@@ -54,7 +60,7 @@ class PostController
             ->paginate(30);
 
         $posts->each(
-            fn(Post $post) => $post->description = Markdown::make(
+            fn (Post $post) => $post->description = Markdown::make(
                 \Str::limit($post->description, 300),
             )
         );
