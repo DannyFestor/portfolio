@@ -56,7 +56,6 @@ it('can search blog posts by title', function () {
         'released_at' => now()->subHour(),
     ]);
 
-
     $this
         ->get(route('blog.index', ['s' => 'first']))
         ->assertSee($firstPost->title)
@@ -111,7 +110,6 @@ it('can show blog posts by slug', function () {
 });
 
 it('generates an rss feed', function () {
-
     $user = \App\Models\User::factory()->create();
     $posts = \App\Models\Post::factory(31)->for($user)->create(['is_released' => true]);
     $tag = \App\Models\Tag::create(['title' => 'test']);
