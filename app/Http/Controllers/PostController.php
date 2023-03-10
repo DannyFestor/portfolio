@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Helpers\Markdown;
 use App\Models\Post;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 
@@ -16,6 +17,7 @@ class PostController
 
     public function show(Post $post)
     {
+        /** @var User|null $user */
         $user = \Auth::user();
 
         if (
