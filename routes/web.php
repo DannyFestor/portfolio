@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,6 +19,10 @@ Route::post('/set-locale', \App\Http\Controllers\LocaleController::class)->name(
 Route::get('/blog', [\App\Http\Controllers\PostController::class, 'index'])->name('blog.index');
 Route::get('/blog/feed.xml', [\App\Http\Controllers\PostController::class, 'rssFeed'])->name('blog.feed');
 Route::get('/blog/{post:slug}', [\App\Http\Controllers\PostController::class, 'show'])->name('blog.show');
+
+Route::get('contact', \App\Http\Controllers\Contact\IndexController::class)->name('contact.index');
+Route::post('contact', \App\Http\Controllers\Contact\StoreController::class)->name('contact.store');
+
 
 //Route::get('/dashboard', function () {
 //    return view('dashboard');

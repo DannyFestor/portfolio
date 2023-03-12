@@ -1,8 +1,20 @@
 {
-    "Modern, secure websites and services": "Moderne, sichere Webseiten und Services",
-    "Hi! I am Danny.":  "Hi, ich bin Danny!",
-    "I am a <em>Freelancer</em>.":  "Ich bin <em>Freelancer</em>.",
-    "I create <strong>modern websites</strong>.":  "Ich erstelle <strong>moderne Webseiten</strong>.",
-    "I live in <em>Nagasaki, Japan</em>.": "Ich lebe in <em>Nagasaki, Japan</em>.",
-    "... Continue Reading": "... Weiterlesen"
+    "blog.continue-reading": "... Weiterlesen",
+
+    "homepage.title": "Moderne, sichere Webseiten und Services",
+    "homepage.me":  "Hi, ich bin Danny!",
+    "homepage.freelancer":  "Ich bin <em>Freelancer</em>.",
+    "homepage.websites":  "Ich erstelle <strong>moderne Webseiten</strong>.",
+    "homepage.nagasaki": "Ich lebe in <em>Nagasaki, Japan</em>.",
+
+    "contact.title": "Kontakt-Aufnahme",
+    "contact.header": "Kontakt-Aufnahme",
+    "contact.paragraph": "Sie möchten Ihr Traumprojekt starten oder haben eine technische Frage? Oder möchten Sie Ihr Wissen erweitern? Zögern Sie nicht mir zu schreiben! Ich bin da, um Ihnen zu helfen.",
+    "contact.name": "Name",
+    "contact.email": "E-Mail-Adresse",
+    "contact.telephone": "Telefonnummer",
+    "contact.subject": "Betreff",
+    "contact.body": "Inhalt",
+    "contact.submit": "Abschicken",
+    "emails.sent": "Ihre E-Mail wurde verschickt. Ich melde mich so schnell es geht bei Ihnen!"
 }

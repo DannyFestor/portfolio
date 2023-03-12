@@ -1,8 +1,21 @@
 {
-    "Modern, secure websites and services": "Moderne, sichere Webseiten und Services",
-    "Hi! I am Danny.":  "こんにちは！デニです。",
-    "I am a <em>Freelancer</em>.":  "<em>フリーランサー</em>です。",
-    "I create <strong>modern websites</strong>.":  "<strong>モダーンなホームページ</strong>を作成します。",
-    "I live in <em>Nagasaki, Japan</em>.": "<em>長崎</em>に住んでいます。",
-    "... Continue Reading": "... 続きを読む"
+    "blog.continue-reading": "... 続きを読む",
+
+    "contact.body": "内容",
+    "contact.email": "メールアドレス",
+    "contact.header": "連絡する",
+    "contact.name": "名前",
+    "contact.paragraph": "夢のプロジェクトを始めたい気持ちが治らない？どうしても技術的な質問がある？それとも、もっと知識を深めたいですか？迷わず、私を連絡してください。助けるためにここにいます。",
+    "contact.subject": "件名",
+    "contact.submit": "送信",
+    "contact.telephone": "電話番号",
+    "contact.title": "連絡する",
+
+    "emails.sent": "メールが送信されました！できるだけ早く返答いたします。",
+
+    "homepage.freelancer": "<em>フリーランサー</em>です。",
+    "homepage.me": "こんにちは！デニです。",
+    "homepage.nagasaki": "<em>長崎</em>に住んでいます。",
+    "homepage.title": "Moderne, sichere Webseiten und Services",
+    "homepage.websites": "<strong>モダーンなホームページ</strong>を作成します。"
 }

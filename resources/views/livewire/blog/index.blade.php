@@ -97,7 +97,7 @@
                 {!! nl2br(Str::limit(explode('---', $post->description)[0], 200)) !!}
                 <a href="{{ route('blog.show', $post) }}"
                    class="text-xs text-blue-600 font-sans no-underline hover:underline">
-                    ({{__('... Continue Reading')}})</a>
+                    ({{__('blog.continue-reading')}})</a>
             </section>
         </article>
     @endforeach

@@ -1,5 +1,5 @@
 <x-app-layout>
-    <x-slot:title>{{ __('Moderne, sichere Webseiten und Services')  }}</x-slot:title>
+    <x-slot:title>{{ __('homepage.title')  }}</x-slot:title>
     <x-slot:main_classes></x-slot:main_classes>
 
     <x-layouts.partials.content-wrap class="flex flex-col items-center justify-center">
@@ -15,14 +15,14 @@
             </div>
             <article
                 class="font-serif relative flex flex-1 flex-col items-center justify-center gap-4 max-w-[360px] sm:h-[500px] sm:max-h-[500px] p-4 rounded-r shadow-lg">
-                <p class="text-lg text-center w-full">{{ __('Hi! I am Danny.') }}</p>
+                <p class="text-lg text-center w-full">{{ __('homepage.me') }}</p>
                 <h2 class="text-xl text-left w-full">
-                    {!! __('I am a <em>Freelancer</em>.') !!}
+                    {!! __('homepage.freelancer') !!}
                 </h2>
                 <h1 class="text-2xl text-center w-full">
-                    {!! __('I create <strong>modern websites</strong>.') !!}
+                    {!! __('homepage.websites') !!}
                 </h1>
-                <h3 class="text-right w-full">{!! __('I live in <em>Nagasaki, Japan</em>.') !!}</h3>
+                <h3 class="text-right w-full">{!! __('homepage.nagasaki') !!}</h3>
 
                 <p class="icons flex gap-2 justify-between mt-12 w-full h-16">
                     <a href="https://go.dev/" class="w-1/5 flex justify-center items-center">
