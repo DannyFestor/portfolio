@@ -23,7 +23,6 @@ Route::get('/blog/{post:slug}', [\App\Http\Controllers\PostController::class, 's
 Route::get('contact', \App\Http\Controllers\Contact\IndexController::class)->name('contact.index');
 Route::post('contact', \App\Http\Controllers\Contact\StoreController::class)->name('contact.store');
 
-
 //Route::get('/dashboard', function () {
 //    return view('dashboard');
 //})->middleware(['auth', 'verified'])->name('dashboard');

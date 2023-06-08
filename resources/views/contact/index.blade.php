@@ -11,23 +11,23 @@
 
             <form action="#" method="POST" class="mt-8 flex flex-col gap-4">
                 @csrf
-                <x-partials.contact.input name="name" >
+                <x-partials.contact.input name="name" required >
                     {{ __('contact.name') }}
                 </x-partials.contact.input>
 
-                <x-partials.contact.input name="email" type="email" >
+                <x-partials.contact.input name="email" type="email" required >
                     {{ __('contact.email') }}
                 </x-partials.contact.input>
 
-                <x-partials.contact.input name="telephone" >
+                <x-partials.contact.input name="telephone" class="hidden" >
                     {{ __('contact.telephone') }}
                 </x-partials.contact.input>
 
-                <x-partials.contact.input name="subject" >
+                <x-partials.contact.input name="subject" required >
                     {{ __('contact.subject') }}
                 </x-partials.contact.input>
 
-                <x-partials.contact.textarea name="body" >
+                <x-partials.contact.textarea name="body" required >
                     {{ __('contact.body') }}
                 </x-partials.contact.textarea>
 

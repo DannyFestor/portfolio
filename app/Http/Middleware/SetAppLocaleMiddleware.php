@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -10,7 +11,7 @@ use Illuminate\Support\Str;
 
 class SetAppLocaleMiddleware
 {
-    public function handle(Request $request, Closure $next): Response|RedirectResponse
+    public function handle(Request $request, Closure $next): Response|RedirectResponse|JsonResponse
     {
         $locale = Str::before(request()->getPreferredLanguage(), '_');
         if ($request->session()->has('locale')) {
