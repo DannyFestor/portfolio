@@ -3,7 +3,6 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\ContactResource\Pages;
-use App\Filament\Resources\ContactResource\RelationManagers;
 use App\Models\Contact;
 use Filament\Forms;
 use Filament\Resources\Form;
@@ -32,15 +31,15 @@ class ContactResource extends Resource
                     ->sortable()
                     ->searchable(isGlobal: false, isIndividual: true),
                 Tables\Columns\TextColumn::make('body')
-                    ->formatStateUsing(fn($state) => \Str::limit($state)),
+                    ->formatStateUsing(fn ($state) => \Str::limit($state)),
                 Tables\Columns\IconColumn::make('seen_at')
                     ->options([
                         'heroicon-o-badge-check',
-                        'heroicon-o-x-circle' => fn($state): bool => $state === null,
+                        'heroicon-o-x-circle' => fn ($state): bool => $state === null,
                     ])
                     ->colors([
-                        'success' => fn($state): bool => $state !== null,
-                        'danger' => fn($state): bool => $state === null,
+                        'success' => fn ($state): bool => $state !== null,
+                        'danger' => fn ($state): bool => $state === null,
                     ]),
                 Tables\Columns\TextColumn::make('created_at')
                     ->sortable()
@@ -53,8 +52,8 @@ class ContactResource extends Resource
                     ->trueLabel('Seen Only')
                     ->falseLabel('Unseen Only')
                     ->queries(
-                        true: fn(Builder $query) => $query->whereNotNull('seen_at'),
-                        false: fn(Builder $query) => $query->whereNull('seen_at'),
+                        true: fn (Builder $query) => $query->whereNotNull('seen_at'),
+                        false: fn (Builder $query) => $query->whereNull('seen_at'),
                     ),
                 Tables\Filters\Filter::make('created_at')
                     ->form([
@@ -65,11 +64,11 @@ class ContactResource extends Resource
                         return $query
                             ->when(
                                 $data['created_from'],
-                                fn(Builder $query, $date): Builder => $query->whereDate('created_at', '>=', $date),
+                                fn (Builder $query, $date): Builder => $query->whereDate('created_at', '>=', $date),
                             )
                             ->when(
                                 $data['created_until'],
-                                fn(Builder $query, $date): Builder => $query->whereDate('created_at', '<=', $date),
+                                fn (Builder $query, $date): Builder => $query->whereDate('created_at', '<=', $date),
                             );
                     }),
             ])

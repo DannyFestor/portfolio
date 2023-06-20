@@ -4,8 +4,6 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\ProjectResource\Pages;
 use App\Models\Project;
-use Filament\Forms\Components\Checkbox;
-use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Placeholder;
 use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Filament\Forms\Components\TextInput;
@@ -48,9 +46,9 @@ class ProjectResource extends Resource
 
                 Toggle::make('display'),
 
-                    //TextInput::make('sort')
-                    //->required()
-                    //->integer(),
+                //TextInput::make('sort')
+                //->required()
+                //->integer(),
 
                 SpatieMediaLibraryFileUpload::make('media')
                     ->disk('public')
@@ -66,11 +64,11 @@ class ProjectResource extends Resource
 
                 Placeholder::make('created_at')
                     ->label('Created Date')
-                    ->content(fn(?Project $record): string => $record?->created_at?->diffForHumans() ?? '-'),
+                    ->content(fn (?Project $record): string => $record?->created_at?->diffForHumans() ?? '-'),
 
                 Placeholder::make('updated_at')
                     ->label('Last Modified Date')
-                    ->content(fn(?Project $record): string => $record?->updated_at?->diffForHumans() ?? '-'),
+                    ->content(fn (?Project $record): string => $record?->updated_at?->diffForHumans() ?? '-'),
             ]);
     }
 

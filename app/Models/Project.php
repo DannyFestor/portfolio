@@ -29,7 +29,7 @@ class Project extends Model implements HasMedia
     ];
 
     protected $casts = [
-        'display' => 'boolean'
+        'display' => 'boolean',
     ];
 
     public function registerMediaConversions(Media $media = null): void

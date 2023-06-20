@@ -25,7 +25,7 @@ class ViewContact extends ViewRecord
                     $this->record->update(['seen_at' => now()]);
                     $this->fillForm();
                 })
-                ->visible(fn(): bool => $this->record->seen_at === null)
+                ->visible(fn (): bool => $this->record->seen_at === null)
                 ->modalHeading(fn (): HtmlString => new HtmlString('Mark Email as read?'))
                 ->modalContent(fn (): HtmlString => new HtmlString('Confirm to mark email as read'))
                 ->requiresConfirmation(),
@@ -34,7 +34,7 @@ class ViewContact extends ViewRecord
                     $this->record->update(['seen_at' => null]);
                     $this->fillForm();
                 })
-                ->visible(fn(): bool => $this->record->seen_at !== null)
+                ->visible(fn (): bool => $this->record->seen_at !== null)
                 ->color('danger')
                 ->requiresConfirmation(),
             Actions\Action::make('reply')
@@ -42,5 +42,4 @@ class ViewContact extends ViewRecord
                 ->color('success'),
         ];
     }
-
 }
