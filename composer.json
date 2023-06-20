@@ -7,14 +7,14 @@
     "require": {
         "php": "^8.2.0",
         "filament/filament": "^v2.17.14",
-        "filament/spatie-laravel-media-library-plugin": "^v2.17.14",
+        "filament/spatie-laravel-media-library-plugin": "^2.0",
         "guzzlehttp/guzzle": "^7.5.0",
         "laravel/framework": "^v10.3.2",
         "laravel/sanctum": "^v3.2.1",
         "laravel/tinker": "^v2.8.1",
         "league/commonmark": "^2.3",
         "livewire/livewire": "^v2.12.3",
-        "spatie/laravel-medialibrary": "^10.7.13"
+        "spatie/laravel-medialibrary": "^10.0.0"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^v3.8.1",

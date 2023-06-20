@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "fc4626f62c9080fa3e3903974f5f6112",
+    "content-hash": "97d71d4a150c754ec6479cf6ed94038c",
     "packages": [
         {
             "name": "akaunting/laravel-money",
@@ -932,16 +932,16 @@
         },
         {
             "name": "filament/spatie-laravel-media-library-plugin",
-            "version": "v2.17.14",
+            "version": "v2.17.49",
             "source": {
                 "type": "git",
                 "url": "https://github.com/filamentphp/spatie-laravel-media-library-plugin.git",
-                "reference": "068898c21469edbb276ae34d3cfb246fb7183a2e"
+                "reference": "1481693a308993548647e41103e07991ef52a2f2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/filamentphp/spatie-laravel-media-library-plugin/zipball/068898c21469edbb276ae34d3cfb246fb7183a2e",
-                "reference": "068898c21469edbb276ae34d3cfb246fb7183a2e",
+                "url": "https://api.github.com/repos/filamentphp/spatie-laravel-media-library-plugin/zipball/1481693a308993548647e41103e07991ef52a2f2",
+                "reference": "1481693a308993548647e41103e07991ef52a2f2",
                 "shasum": ""
             },
             "require": {
@@ -965,7 +965,7 @@
                 "issues": "https://github.com/filamentphp/filament/issues",
                 "source": "https://github.com/filamentphp/filament"
             },
-            "time": "2023-01-25T18:16:07+00:00"
+            "time": "2023-05-22T21:18:30+00:00"
         },
         {
             "name": "filament/support",
@@ -4356,16 +4356,16 @@
         },
         {
             "name": "spatie/laravel-medialibrary",
-            "version": "10.7.13",
+            "version": "10.9.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-medialibrary.git",
-                "reference": "a992f2505f37abc49b0914c34d01a9dc7543cae1"
+                "reference": "22581bc5578bb7984ab025a41e33baf3f154d093"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-medialibrary/zipball/a992f2505f37abc49b0914c34d01a9dc7543cae1",
-                "reference": "a992f2505f37abc49b0914c34d01a9dc7543cae1",
+                "url": "https://api.github.com/repos/spatie/laravel-medialibrary/zipball/22581bc5578bb7984ab025a41e33baf3f154d093",
+                "reference": "22581bc5578bb7984ab025a41e33baf3f154d093",
                 "shasum": ""
             },
             "require": {
@@ -4373,13 +4373,13 @@
                 "ext-fileinfo": "*",
                 "ext-json": "*",
                 "illuminate/bus": "^9.18|^10.0",
-                "illuminate/conditionable": "9.18|^10.0",
+                "illuminate/conditionable": "^9.18|^10.0",
                 "illuminate/console": "^9.18|^10.0",
                 "illuminate/database": "^9.18|^10.0",
                 "illuminate/pipeline": "^9.18|^10.0",
                 "illuminate/support": "^9.18|^10.0",
                 "intervention/image": "^2.7",
-                "maennchen/zipstream-php": "^2.0",
+                "maennchen/zipstream-php": "^2.0|^3.0",
                 "php": "^8.0",
                 "spatie/image": "^2.2.2",
                 "spatie/temporary-directory": "^2.0",
@@ -4449,7 +4449,7 @@
             ],
             "support": {
                 "issues": "https://github.com/spatie/laravel-medialibrary/issues",
-                "source": "https://github.com/spatie/laravel-medialibrary/tree/10.7.13"
+                "source": "https://github.com/spatie/laravel-medialibrary/tree/10.9.4"
             },
             "funding": [
                 {
@@ -4461,7 +4461,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2023-03-06T11:26:25+00:00"
+            "time": "2023-06-06T13:03:40+00:00"
         },
         {
             "name": "spatie/laravel-package-tools",

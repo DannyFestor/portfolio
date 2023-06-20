@@ -24,7 +24,7 @@
         </x-slot:icon>
         Blog
     </x-layouts.partials.navigation.link>
-    <x-layouts.partials.navigation.link href="/projects"
+    <x-layouts.partials.navigation.link href="{{ route('project.index') }}"
                                         label="Projects I am or have been involved with"
                                         aria-label="Projects I am or have been involved with"
     >
