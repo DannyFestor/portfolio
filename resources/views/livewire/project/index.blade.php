@@ -7,7 +7,7 @@
                 </h2>
                 @if ($project->hasMedia('project-images'))
                 <div>
-                    <img src="{{ $project->getFirstMediaUrl('project-images', 'preview') }}" alt="">
+                    <img src="{{ $project->getFirstMediaUrl('project-images', 'preview') }}" alt="" class="w-full">
                 </div>
                 @endif
                 <p class="prose">
