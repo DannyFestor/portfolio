@@ -16,7 +16,6 @@ class ContactResource extends Resource
     protected static ?string $model = Contact::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-mail-open';
-
     public static function table(Table $table): Table
     {
         return $table
@@ -123,5 +122,10 @@ class ContactResource extends Resource
     public static function canCreate(): bool
     {
         return false;
+    }
+
+    protected static function getNavigationBadge(): ?string
+    {
+        return static::getModel()::whereNull('seen_at')->count();
     }
 }

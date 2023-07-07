@@ -3,6 +3,7 @@
 namespace App\Http;
 
 use App\Http\Middleware\EnsureUserIsAdminMiddleware;
+use App\Http\Middleware\LogActivityMiddleware;
 use App\Http\Middleware\SetAppLocaleMiddleware;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
@@ -23,6 +24,7 @@ class Kernel extends HttpKernel
         \Illuminate\Foundation\Http\Middleware\ValidatePostSize::class,
         \App\Http\Middleware\TrimStrings::class,
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
+
     ];
 
     /**
@@ -40,6 +42,8 @@ class Kernel extends HttpKernel
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
 
             SetAppLocaleMiddleware::class,
+            LogActivityMiddleware::class,
+
         ],
 
         'api' => [
