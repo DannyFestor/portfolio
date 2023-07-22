@@ -35,10 +35,9 @@ class Post extends Model implements HasMedia
     public static function booted()
     {
         self::created(function (Post $post) {
-            $post->load('tags');
-
-            $tags = $post->tags->pluck('title')->join(',');
-            dd($tags);
+            // Relationships do not exist at this point I guess?
+            // Dispatch Event?
+            $tags = '';
 
             $metatags = [
                 [
