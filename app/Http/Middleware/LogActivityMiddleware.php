@@ -11,7 +11,7 @@ class LogActivityMiddleware
     public function handle(Request $request, Closure $next)
     {
         if (
-            !str_starts_with($request->getRequestUri(), '/livewire/message/app.filament.') &&
+            !str_starts_with($request->getRequestUri(), '/livewire') &&
             (
                 str_starts_with($request->header('Accept'), 'text/html') ||
                 str_starts_with($request->header('Accept'), 'application/json')

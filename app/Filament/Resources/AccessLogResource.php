@@ -95,7 +95,8 @@ class AccessLogResource extends Resource
                     ->searchable(isIndividual: true, isGlobal: false)
                     ->sortable(),
 
-            ]);
+            ])
+            ->defaultSort('created_at', 'desc');
     }
 
     public static function getPages(): array
