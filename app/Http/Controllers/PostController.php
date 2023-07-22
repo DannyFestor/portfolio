@@ -7,6 +7,7 @@ use App\Models\Post;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
+use Illuminate\Support\HtmlString;
 
 class PostController
 {
@@ -19,6 +20,29 @@ class PostController
     {
         /** @var User|null $user */
         $user = \Auth::user();
+        $post->load('metatags');
+
+        $metatags = [];
+        foreach ($post->metatags as $metatag) {
+            $properties = [];
+            foreach ($metatag->properties as $label => $value) {
+                if (empty($value)) {
+                    continue;
+                }
+
+                $properties[] = "$label=\"$value\"";
+            }
+
+            $tag = '<';
+            $tag .= $metatag->tag;
+            $tag .= ' ';
+            $tag .= implode(' ', $properties);
+            $tag .= '>';
+            if ($metatag->tag === 'script') {
+                $tag .= '</script>';
+            }
+            $metatags[] = $tag;
+        }
 
         if (
             (!$user || !$user->is_admin) &&
@@ -38,7 +62,10 @@ class PostController
 
         $post->description = Markdown::make($post->description);
 
-        return view('blog.show', ['post' => $post]);
+        return view('blog.show', [
+            'post' => $post,
+            'metatags' => implode("\n\t\t", $metatags),
+        ]);
     }
 
     public function rssFeed(Request $request)
@@ -62,7 +89,7 @@ class PostController
             ->paginate(30);
 
         $posts->each(
-            fn (Post $post) => $post->description = Markdown::make(
+            fn(Post $post) => $post->description = Markdown::make(
                 \Str::limit($post->description, 300),
             )
         );

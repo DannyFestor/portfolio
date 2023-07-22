@@ -64,4 +64,9 @@
 {{--            });--}}
 {{--        </script>--}}
     </x-layouts.partials.content-wrap>
+
+@push('metatags')
+{!! $metatags !!}
+@endpush
 </x-app-layout>
+

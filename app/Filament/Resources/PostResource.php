@@ -3,10 +3,14 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\PostResource\Pages;
+use App\Filament\Resources\PostResource\RelationManagers\MetatagsRelationManager;
+use App\Models\Metatag;
 use App\Models\Post;
 use Carbon\Exceptions\InvalidFormatException;
 use Filament\Forms;
 use Filament\Resources\Form;
+use Filament\Resources\Pages\EditRecord;
+use Filament\Resources\Pages\Page;
 use Filament\Resources\Resource;
 use Filament\Resources\Table;
 use Filament\Tables;
@@ -127,7 +131,7 @@ class PostResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            MetatagsRelationManager::class,
         ];
     }
 

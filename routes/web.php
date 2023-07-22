@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+//Route::get('/', fn () => phpinfo())->name('home');
 Route::get('/', \App\Http\Controllers\Homepage\HomepageController::class)->name('home');
 Route::post('/set-locale', \App\Http\Controllers\LocaleController::class)->name('set-locale');
 

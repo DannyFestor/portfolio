@@ -59,6 +59,10 @@ class AccessLogResource extends Resource
     {
         return $table
             ->columns([
+                TextColumn::make('created_at')
+                    ->searchable(isIndividual: true, isGlobal: false)
+                    ->sortable(),
+
                 TextColumn::make('ip')
                     ->searchable(isIndividual: true, isGlobal: false)
                     ->sortable(),
