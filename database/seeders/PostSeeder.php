@@ -11,7 +11,25 @@ class PostSeeder extends Seeder
 {
     public function run(Collection $users)
     {
-        $markdown = <<<Markdown
+        $markdown = $this->getFirstPostMarkdown();
+
+        $date = now();
+        $users->first()->posts()->create([
+            'title' => 'First Post',
+            'slug' => $date->format('Ymd') . '-first-post',
+            'description' => $markdown,
+            'is_released' => true,
+            'released_at' => $date->subMinute(),
+        ]);
+        $users->each(fn (User $user) => Post::factory(10)->for($user)->create());
+    }
+
+    /**
+     * @return string
+     */
+    public function getFirstPostMarkdown(): string
+    {
+        return <<<Markdown
 This is a sample post intended to test the followings:
 
 ---
@@ -212,15 +230,5 @@ $$
 <p><span class="nowrap"><span class="emojify">🙈</span> <code>:see_no_evil:</code></span>  <span class="nowrap"><span class="emojify">🙉</span> <code>:hear_no_evil:</code></span>  <span class="nowrap"><span class="emojify">🙊</span> <code>:speak_no_evil:</code></span></p>
 <br>
 Markdown;
-
-        $date = now();
-        $users->first()->posts()->create([
-            'title' => 'First Post',
-            'slug' => $date->format('Ymd') . '-first-post',
-            'description' => $markdown,
-            'is_released' => true,
-            'released_at' => $date->subMinute(),
-        ]);
-        $users->each(fn (User $user) => Post::factory(10)->for($user)->create());
     }
 }
