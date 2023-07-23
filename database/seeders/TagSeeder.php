@@ -12,6 +12,7 @@ class TagSeeder extends Seeder
         $tags = [
             [
                 'title' => 'Alpinejs',
+                'url' => 'https://alpinejs.dev/',
                 'logo' => 'alpinejs.svg',
                 'text_color' => '#8BC0D0',
                 'background_color' => '',
@@ -19,9 +20,9 @@ class TagSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
-
             [
                 'title' => 'Bun',
+                'url' => 'https://bun.sh/',
                 'logo' => 'bun.svg',
                 'text_color' => '#000000',
                 'background_color' => '',
@@ -31,6 +32,7 @@ class TagSeeder extends Seeder
             ],
             [
                 'title' => 'C',
+                'url' => 'https://www.open-std.org/jtc1/sc22/wg14/',
                 'logo' => 'c.svg',
                 'text_color' => '#A8B9CC',
                 'background_color' => '',
@@ -40,6 +42,7 @@ class TagSeeder extends Seeder
             ],
             [
                 'title' => 'C++',
+                'url' => 'https://isocpp.org',
                 'logo' => 'cplusplus.svg',
                 'text_color' => '#00599C',
                 'background_color' => '',
@@ -49,6 +52,7 @@ class TagSeeder extends Seeder
             ],
             [
                 'title' => 'Css3',
+                'url' => 'https://www.w3.org/TR/CSS/#css',
                 'logo' => 'css3.svg',
                 'text_color' => '#1572B6',
                 'background_color' => '',
@@ -58,6 +62,7 @@ class TagSeeder extends Seeder
             ],
             [
                 'title' => 'Dart',
+                'url' => 'https://dart.dev/',
                 'logo' => 'dart.svg',
                 'text_color' => '#01579B',
                 'background_color' => '',
@@ -67,6 +72,7 @@ class TagSeeder extends Seeder
             ],
             [
                 'title' => 'Deno',
+                'url' => 'https://deno.land/',
                 'logo' => 'deno.svg',
                 'text_color' => '#000000',
                 'background_color' => '',
@@ -76,6 +82,7 @@ class TagSeeder extends Seeder
             ],
             [
                 'title' => 'Electron',
+                'url' => 'https://www.electronjs.org/',
                 'logo' => 'electron.svg',
                 'text_color' => '#47848F',
                 'background_color' => '',
@@ -85,6 +92,7 @@ class TagSeeder extends Seeder
             ],
             [
                 'title' => 'Flutter',
+                'url' => 'https://flutter.dev/',
                 'logo' => 'flutter.svg',
                 'text_color' => '#02569B',
                 'background_color' => '',
@@ -94,6 +102,7 @@ class TagSeeder extends Seeder
             ],
             [
                 'title' => 'Go',
+                'url' => 'https://go.dev/',
                 'logo' => 'go.svg',
                 'text_color' => '#00ADD8',
                 'background_color' => '',
@@ -103,6 +112,7 @@ class TagSeeder extends Seeder
             ],
             [
                 'title' => 'Html5',
+                'url' => 'https://html5.org/',
                 'logo' => 'html5.svg',
                 'text_color' => '#E34F26',
                 'background_color' => '',
@@ -112,6 +122,7 @@ class TagSeeder extends Seeder
             ],
             [
                 'title' => 'Inertia',
+                'url' => 'https://inertiajs.com/',
                 'logo' => 'inertia.svg',
                 'text_color' => '#9553E9',
                 'background_color' => '',
@@ -121,6 +132,7 @@ class TagSeeder extends Seeder
             ],
             [
                 'title' => 'Javascript',
+                'url' => 'https://www.ecma-international.org/publications-and-standards/standards/ecma-262/',
                 'logo' => 'javascript.svg',
                 'text_color' => '#000000',
                 'background_color' => '#F7DF1E',
@@ -130,6 +142,7 @@ class TagSeeder extends Seeder
             ],
             [
                 'title' => 'Laravel',
+                'url' => 'https://laravel.com/',
                 'logo' => 'laravel.svg',
                 'text_color' => '#FF2D20',
                 'background_color' => '',
@@ -139,6 +152,7 @@ class TagSeeder extends Seeder
             ],
             [
                 'title' => 'Livewire',
+                'url' => 'https://livewire.laravel.com/',
                 'logo' => 'livewire.svg',
                 'text_color' => '#4E56A6',
                 'background_color' => '',
@@ -148,6 +162,7 @@ class TagSeeder extends Seeder
             ],
             [
                 'title' => 'Nodejs',
+                'url' => 'https://nodejs.org/',
                 'logo' => 'nodedotjs.svg',
                 'text_color' => '#339933',
                 'background_color' => '',
@@ -157,6 +172,7 @@ class TagSeeder extends Seeder
             ],
             [
                 'title' => 'OCaml',
+                'url' => 'https://ocaml.org/',
                 'logo' => 'ocaml.svg',
                 'text_color' => '#EC6813',
                 'background_color' => '',
@@ -166,6 +182,7 @@ class TagSeeder extends Seeder
             ],
             [
                 'title' => 'Php',
+                'url' => 'https://www.php.net/',
                 'logo' => 'php.svg',
                 'text_color' => '#777BB4',
                 'background_color' => '',
@@ -175,6 +192,7 @@ class TagSeeder extends Seeder
             ],
             [
                 'title' => 'React',
+                'url' => 'https://react.dev/',
                 'logo' => 'react.svg',
                 'text_color' => '#61DAFB',
                 'background_color' => '',
@@ -184,6 +202,7 @@ class TagSeeder extends Seeder
             ],
             [
                 'title' => 'Rust',
+                'url' => 'https://www.rust-lang.org/',
                 'logo' => 'rust.svg',
                 'text_color' => '#000000',
                 'background_color' => '',
@@ -193,6 +212,7 @@ class TagSeeder extends Seeder
             ],
             [
                 'title' => 'Solidjs',
+                'url' => 'https://www.solidjs.com/',
                 'logo' => 'solid.svg',
                 'text_color' => '#2C4F7C',
                 'background_color' => '',
@@ -202,6 +222,7 @@ class TagSeeder extends Seeder
             ],
             [
                 'title' => 'Svelte',
+                'url' => 'https://svelte.dev/',
                 'logo' => 'svelte.svg',
                 'text_color' => '#FF3E00',
                 'background_color' => '',
@@ -211,6 +232,7 @@ class TagSeeder extends Seeder
             ],
             [
                 'title' => 'Tailwindcss',
+                'url' => 'https://tailwindcss.com/',
                 'logo' => 'tailwindcss.svg',
                 'text_color' => '#06B6D4',
                 'background_color' => '',
@@ -220,6 +242,7 @@ class TagSeeder extends Seeder
             ],
             [
                 'title' => 'Typescript',
+                'url' => 'https://www.typescriptlang.org/',
                 'logo' => 'typescript.svg',
                 'text_color' => '#3178C6',
                 'background_color' => '',
@@ -229,6 +252,7 @@ class TagSeeder extends Seeder
             ],
             [
                 'title' => 'Vuejs',
+                'url' => 'https://vuejs.org/',
                 'logo' => 'vuejs.svg',
                 'text_color' => '#4FC08D',
                 'background_color' => '',
@@ -238,6 +262,7 @@ class TagSeeder extends Seeder
             ],
             [
                 'title' => 'Zig',
+                'url' => 'https://ziglang.org/',
                 'logo' => 'zig.svg',
                 'text_color' => '#F7A41D',
                 'background_color' => '',

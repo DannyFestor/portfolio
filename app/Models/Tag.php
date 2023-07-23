@@ -9,6 +9,7 @@ class Tag extends Model
 {
     protected $fillable = [
         'title',
+        'url',
         'text_color',
         'background_color',
         'border_color',

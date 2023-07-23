@@ -9,7 +9,7 @@ use Illuminate\Database\Seeder;
 
 class PostSeeder extends Seeder
 {
-    public function run(Collection $users)
+    public function run(Collection $users, Collection $tags)
     {
         $markdown = $this->getFirstPostMarkdown();
 
@@ -22,6 +22,8 @@ class PostSeeder extends Seeder
             'released_at' => $date->subMinute(),
         ]);
         $users->each(fn (User $user) => Post::factory(10)->for($user)->create());
+
+        Post::all()->each(fn (Post $post) => $post->tags()->attach($tags->random(5)->pluck('id')->toArray()));
     }
 
     /**
