@@ -16,5 +16,7 @@
     "contact.subject": "Betreff",
     "contact.body": "Inhalt",
     "contact.submit": "Abschicken",
-    "emails.sent": "Ihre E-Mail wurde verschickt. Ich melde mich so schnell es geht bei Ihnen!"
+    "emails.sent": "Ihre E-Mail wurde verschickt. Ich melde mich so schnell es geht bei Ihnen!",
+
+    "project.view": "... Details ansehen"
 }

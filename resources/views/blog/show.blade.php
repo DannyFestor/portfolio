@@ -1,5 +1,5 @@
 <x-app-layout>
-    <x-slot:title>{{ __('Blog')  }}</x-slot:title>
+    <x-slot:title>{{ $post->title }}</x-slot:title>
     <x-layouts.partials.content-wrap>
         <article class="bg-white rounded max-w-7xl mx-auto shadow">
             @if($post->hasMedia(\App\Models\Post::HERO_IMAGE))

@@ -21,7 +21,8 @@ Route::get('/blog', [\App\Http\Controllers\PostController::class, 'index'])->nam
 Route::get('/blog/feed.xml', [\App\Http\Controllers\PostController::class, 'rssFeed'])->name('blog.feed');
 Route::get('/blog/{post:slug}', [\App\Http\Controllers\PostController::class, 'show'])->name('blog.show');
 
-Route::get('/projects', \App\Http\Controllers\ProjectController::class)->name('project.index');
+Route::get('/projects', [\App\Http\Controllers\ProjectController::class, 'index'])->name('project.index');
+Route::get('/projects/{project:slug}', [\App\Http\Controllers\ProjectController::class, 'show'])->name('project.show');
 
 Route::get('contact', \App\Http\Controllers\Contact\IndexController::class)->name('contact.index');
 Route::post('contact', \App\Http\Controllers\Contact\StoreController::class)->name('contact.store');

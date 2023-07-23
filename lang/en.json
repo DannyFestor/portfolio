@@ -16,5 +16,7 @@
     "contact.subject": "Subject",
     "contact.body": "Body",
     "contact.submit": "Send",
-    "emails.sent": "Your email has been sent! I'll be in contact soon!"
+    "emails.sent": "Your email has been sent! I'll be in contact soon!",
+
+    "project.view": "... view details"
 }
