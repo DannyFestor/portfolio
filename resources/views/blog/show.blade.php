@@ -11,8 +11,10 @@
                 </section>
             @endif
 
-            <h1 class="text-4xl font-bold font-serif p-4 sm:p-8">
+            <h1 class="text-4xl font-bold font-serif p-4 sm:p-8 text-center">
+                <span class="bg-gradient-to-br from-indigo-800 to-rose-800 text-transparent bg-clip-text">
                 {{ $post->title }}
+                </span>
             </h1>
 
             <section class="flex justify-end p-4 sm:p-8">
