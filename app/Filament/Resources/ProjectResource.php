@@ -5,6 +5,7 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\ProjectResource\Pages;
 use App\Models\Project;
 use Filament\Forms\Components\Placeholder;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
@@ -49,6 +50,10 @@ class ProjectResource extends Resource
                     ->required(),
 
                 Toggle::make('display'),
+
+                Select::make('tags')
+                    ->relationship('tags', 'title')
+                    ->multiple(),
 
                 //TextInput::make('sort')
                 //->required()

@@ -15,10 +15,11 @@ class ProjectController extends Controller
                 'id',
                 'slug',
                 'title_' . $locale . ' as title',
-                \DB::raw('SUBSTR(body_' . $locale . ', 1, 20) as body'),
+                \DB::raw('SUBSTR(body_' . $locale . ', 1, 100) as body'),
                 'git_url',
                 'live_url',
             ])
+            ->with('tags')
             ->where('display', '=', true)
             ->orderBy('sort')
             ->get();
@@ -62,6 +63,7 @@ class ProjectController extends Controller
 
         return view('projects.show', [
             'project' => $p,
+            'tags' => $project->tags,
         ]);
     }
 }

@@ -19,4 +19,9 @@ class Tag extends Model
     {
         return $this->belongsToMany(Post::class, PostTag::class);
     }
+
+    public function projects(): BelongsToMany
+    {
+        return $this->belongsToMany(Project::class, ProjectTag::class);
+    }
 }
