@@ -15,6 +15,7 @@ class Project extends Model implements HasMedia
     use InteractsWithMedia;
 
     protected $fillable = [
+        'slug',
         'title_en',
         'title_de',
         'title_ja',
@@ -32,13 +33,28 @@ class Project extends Model implements HasMedia
         'display' => 'boolean',
     ];
 
-    public function registerMediaConversions(Media $media = null): void
+    const COLLECTION = 'project-image';
+
+    public function registerMediaCollections(): void
     {
-        $this
-            ->addMediaConversion('preview')
-            ->width(300)
-            //->fit(Manipulations::FIT_CROP, 300, 300)
-            ->nonQueued();
+        $this->addMediaCollection(self::COLLECTION)
+            ->singleFile()
+            ->registerMediaConversions(function (Media $media) {
+                $this
+                    ->addMediaConversion('thumb')
+                    ->width(100)
+                    ->height(100);
+
+                $this
+                    ->addMediaConversion('preview')
+                    ->width(300)
+                    ->height(300);
+
+                $this
+                    ->addMediaConversion('twitter')
+                    ->width(500)
+                    ->height(500);
+            });
     }
 
     protected static function boot()
