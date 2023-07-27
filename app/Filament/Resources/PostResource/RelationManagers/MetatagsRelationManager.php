@@ -37,6 +37,37 @@ class MetatagsRelationManager extends RelationManager
             ])->columns(2);
     }
 
+    private static function buildSchemaForTag(string $tag): Forms\Components\Section
+    {
+        $schema = [];
+
+        foreach (Metatag::TAGS[$tag] as $label => $value) {
+            if ($value['type'] === 'text') {
+                $schema[] = Forms\Components\TextInput::make('properties.' . $label)
+                    ->required(isset($value['required']) && $value['required']);
+            } elseif ($value['type'] === 'select') {
+                $schema[] = Forms\Components\Select::make('properties.' . $label)
+                    ->required($value['required'] === true)
+                    ->options(function () use ($value) {
+                        $options = [];
+                        foreach ($value['options'] as $option) {
+                            $options[$option] = $option;
+                        }
+
+                        return $options;
+                    });
+            } elseif ($value['type'] === 'checkmark') {
+                $schema[] = Forms\Components\Checkbox::make('properties.' . $label)
+                    ->required($value['required'] === true);
+            }
+        }
+
+        return Forms\Components\Section::make('Properties')
+            ->visible(fn (\Closure $get) => $get('tag') === $tag)
+            ->schema($schema)
+            ->columnSpan(1);
+    }
+
     public static function table(Table $table): Table
     {
         return $table
@@ -73,36 +104,5 @@ class MetatagsRelationManager extends RelationManager
                 //                Tables\Actions\DissociateBulkAction::make(),
                 Tables\Actions\DeleteBulkAction::make(),
             ]);
-    }
-
-    private static function buildSchemaForTag(string $tag): Forms\Components\Section
-    {
-        $schema = [];
-
-        foreach (Metatag::TAGS[$tag] as $label => $value) {
-            if ($value['type'] === 'text') {
-                $schema[] = Forms\Components\TextInput::make('properties.' . $label)
-                    ->required(isset($value['required']) && $value['required']);
-            } elseif ($value['type'] === 'select') {
-                $schema[] = Forms\Components\Select::make('properties.' . $label)
-                    ->required(isset($value['required']) && $value['required'])
-                    ->options(function () use ($value) {
-                        $options = [];
-                        foreach ($value['options'] as $option) {
-                            $options[$option] = $option;
-                        }
-
-                        return $options;
-                    });
-            } elseif ($value['type'] === 'checkmark') {
-                $schema[] = Forms\Components\Checkbox::make('properties.' . $label)
-                    ->required(isset($value['required']) && $value['required']);
-            }
-        }
-
-        return Forms\Components\Section::make('Properties')
-            ->visible(fn (\Closure $get) => $get('tag') === $tag)
-            ->schema($schema)
-            ->columnSpan(1);
     }
 }

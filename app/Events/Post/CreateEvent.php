@@ -9,7 +9,7 @@ class CreateEvent
 {
     use Dispatchable;
 
-    public function __construct(Post $post)
+    public function __construct(public readonly Post $post)
     {
     }
 }

@@ -7,17 +7,6 @@ use Illuminate\Database\Eloquent\Relations\MorphTo;
 
 class Metatag extends Model
 {
-    protected $fillable = [
-        'metatagable_id',
-        'metatagable_type',
-        'tag',
-        'properties',
-    ];
-
-    protected $casts = [
-        'properties' => 'json',
-    ];
-
     const TAGS = [
         'link' => [
             'href' => ['type' => 'text', 'required' => true],
@@ -119,8 +108,22 @@ class Metatag extends Model
         ],
         'script' => [
             'src' => ['type' => 'text', 'required' => false],
-            'defer' => ['type' => 'checkmark'],
+            'defer' => [
+                'type' => 'checkmark',
+                'required' => false,
+            ],
         ],
+    ];
+
+    protected $fillable = [
+        'metatagable_id',
+        'metatagable_type',
+        'tag',
+        'properties',
+    ];
+
+    protected $casts = [
+        'properties' => 'json',
     ];
 
     public function metatagable(): MorphTo
