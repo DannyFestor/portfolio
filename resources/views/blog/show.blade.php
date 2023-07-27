@@ -34,7 +34,8 @@
             @if ($post->tags->isNotEmpty())
                 <section class="mb-4 flex flex-wrap gap-2 p-4 sm:p-8">
                     @foreach ($post->tags as $tag)
-                        <div
+                        <a
+                            href="{{ $tag->url }}"
                             class="flex items-center gap-1 rounded px-2 py-1"
                             style="
                                 color: {{ $tag->text_color }};
@@ -48,7 +49,7 @@
                                 alt=""
                             />
                             {{ $tag->title }}
-                        </div>
+                        </a>
                     @endforeach
                 </section>
             @endif

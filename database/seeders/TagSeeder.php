@@ -270,6 +270,17 @@ class TagSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
+
+            [
+                'title' => 'Life',
+                'url' => '',
+                'logo' => 'life.svg',
+                'text_color' => '#006644',
+                'background_color' => '',
+                'border_color' => '#006644',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
         ];
 
         Tag::insert($tags);
