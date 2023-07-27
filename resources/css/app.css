@@ -53,3 +53,29 @@
     transform: scale(115%);
     opacity: 0.3;
 }
+
+.main-img {
+    height: 400px;
+    width: 100%;
+    object-fit: cover;
+    object-position: bottom;
+    transform: translateY(-65px);
+}
+
+@media (min-width: 390px) {
+    .main-img {
+        transform: translateY(-30px);
+    }
+}
+
+@media (min-width: 420px) {
+    .main-img {
+        transform: translateY(0);
+    }
+}
+
+@media (min-width: 1024px) {
+    .main-img {
+        height: 100%;
+    }
+}

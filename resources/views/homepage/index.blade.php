@@ -7,18 +7,48 @@
         class="flex flex-col items-center justify-center"
     >
         <div
-            class="flex h-full flex-col items-center justify-center rounded bg-white sm:flex-row"
+            class="flex h-full flex-col items-center justify-center rounded bg-white lg:flex-row"
         >
             <div
                 id="img-container"
-                class="h-[200px] w-full max-w-[360px] overflow-hidden rounded-t shadow-lg sm:h-[500px] sm:rounded-l"
+                class="h-[200px] w-full max-w-[360px] overflow-hidden rounded-t shadow-lg lg:h-[500px] lg:rounded-l"
             >
-                <img
-                    src="{{ asset('img/danny.jpg') }}"
-                    alt="This is me"
-                    aria-label="This is me"
-                    class="-translate-y-[60px] sm:h-full sm:w-auto sm:translate-y-0 sm:object-cover"
-                />
+                <picture alt="This is me" aria-label="This is me">
+                    <source
+                        media="(min-width:1024px)"
+                        srcset="{{ asset('img/danny.webp') }}"
+                        type="image/webp"
+                        class="main-img"
+                    />
+                    <source
+                        media="(min-width:1024px)"
+                        srcset="{{ asset('img/danny.jpg') }}"
+                        type="image/jpeg"
+                        class="main-img"
+                    />
+                    <source
+                        media="(min-width:640px)"
+                        srcset="{{ asset('img/danny-640.webp') }}"
+                        type="image/webp"
+                        class="main-img"
+                    />
+                    <source
+                        media="(min-width:640px)"
+                        srcset="{{ asset('img/danny-640.jpeg') }}"
+                        type="image/jpeg"
+                        class="main-img"
+                    />
+                    <source
+                        srcset="{{ asset('img/danny-320.webp') }}"
+                        type="image/webp"
+                        class="main-img"
+                    />
+                    <img
+                        src="{{ asset('img/danny-320.jpeg') }}"
+                        type="image/jpeg"
+                        class="main-img"
+                    />
+                </picture>
             </div>
             <article
                 class="relative flex max-w-[360px] flex-1 flex-col items-center justify-center gap-4 rounded-r p-4 font-serif shadow-lg sm:h-[500px] sm:max-h-[500px]"
