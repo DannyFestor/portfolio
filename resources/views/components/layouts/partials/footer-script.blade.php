@@ -41,7 +41,7 @@
                     return;
                 }
                 Alpine.store('navigation').close();
-            }, 300)
+            }, 300),
         );
     });
 </script>

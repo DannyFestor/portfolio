@@ -96,7 +96,7 @@
 
                 get displayOption() {
                     return this.options.filter(
-                        (lang) => lang.code === this.selectedOption
+                        (lang) => lang.code === this.selectedOption,
                     )[0];
                 },
 
