@@ -1,7 +1,9 @@
 <x-app-layout>
     <x-slot:title>{{ $post->title }}</x-slot>
     <x-layouts.partials.content-wrap>
-        <article class="mx-auto max-w-7xl rounded bg-white shadow">
+        <article
+            class="mx-auto max-w-7xl rounded bg-gradient-to-br from-slate-50 via-white to-slate-50 shadow"
+        >
             @if ($post->hasMedia(\App\Models\Post::HERO_IMAGE))
                 <section
                     id="hero-image"
