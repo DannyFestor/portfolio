@@ -8,6 +8,7 @@ module.exports = {
         './storage/framework/views/*.php',
         './resources/views/**/*.blade.php',
         './resources/views/**/*.js',
+        './resources/js/**/*.js',
         './resources/views/**/*.blade.php',
         './vendor/filament/**/*.blade.php',
     ],

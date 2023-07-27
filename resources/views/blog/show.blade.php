@@ -96,4 +96,8 @@
     @push('metatags')
         {!! $metatags !!}
     @endpush
+
+    @push('vite')
+        @vite(['resources/js/post-image.js'])
+    @endpush
 </x-app-layout>

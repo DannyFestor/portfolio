@@ -29,3 +29,27 @@
 .heading-permalink:hover {
     @apply opacity-40;
 }
+
+#post img {
+    object-fit: contain;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+@media (min-width: 768px) {
+    #post img {
+        max-width: 500px;
+        max-height: 500px;
+    }
+}
+
+.popup {
+    transition: all .3s ease-in-out;
+    transform: scale(100%);
+    opacity: 1;
+}
+
+.shrink {
+    transform: scale(115%);
+    opacity: 0.3;
+}

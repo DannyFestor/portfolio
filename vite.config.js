@@ -9,6 +9,7 @@ export default defineConfig({
                 'resources/js/app.js',
                 'resources/js/shiki.js',
                 'resources/css/filament.css',
+                'resources/js/post-image.js',
             ],
             refresh: true,
         }),
