@@ -19,34 +19,46 @@
                         srcset="{{ asset('img/danny.webp') }}"
                         type="image/webp"
                         class="main-img"
+                        alt="This is me"
+                        aria-label="This is me"
                     />
                     <source
                         media="(min-width:1024px)"
                         srcset="{{ asset('img/danny.jpg') }}"
                         type="image/jpeg"
                         class="main-img"
+                        alt="This is me"
+                        aria-label="This is me"
                     />
                     <source
                         media="(min-width:640px)"
                         srcset="{{ asset('img/danny-640.webp') }}"
                         type="image/webp"
                         class="main-img"
+                        alt="This is me"
+                        aria-label="This is me"
                     />
                     <source
                         media="(min-width:640px)"
                         srcset="{{ asset('img/danny-640.jpeg') }}"
                         type="image/jpeg"
                         class="main-img"
+                        alt="This is me"
+                        aria-label="This is me"
                     />
                     <source
                         srcset="{{ asset('img/danny-320.webp') }}"
                         type="image/webp"
                         class="main-img"
+                        alt="This is me"
+                        aria-label="This is me"
                     />
                     <img
                         src="{{ asset('img/danny-320.jpeg') }}"
                         type="image/jpeg"
                         class="main-img"
+                        alt="This is me"
+                        aria-label="This is me"
                     />
                 </picture>
             </div>
