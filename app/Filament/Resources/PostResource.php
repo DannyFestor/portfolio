@@ -8,6 +8,7 @@ use App\Models\Post;
 use App\Models\Tag;
 use App\Models\User;
 use Carbon\Exceptions\InvalidFormatException;
+use Exception;
 use Filament\Forms;
 use Filament\Resources\Form;
 use Filament\Resources\Pages\EditRecord;
@@ -29,6 +30,9 @@ class PostResource extends Resource
             ->schema(self::getFormSchema());
     }
 
+    /**
+     * @return array<Forms\Components\Component>
+     */
     public static function getFormSchema(): array
     {
         return [
@@ -133,6 +137,9 @@ class PostResource extends Resource
         return \Str::Limit(\Str::slug($slug), 100, '');
     }
 
+    /**
+     * @throws Exception
+     */
     public static function table(Table $table): Table
     {
         return $table
@@ -148,6 +155,9 @@ class PostResource extends Resource
             ]);
     }
 
+    /**
+     * @return array<Tables\Columns\Column>
+     */
     public static function getTableColumns(): array
     {
         return [
@@ -180,6 +190,9 @@ class PostResource extends Resource
         ];
     }
 
+    /**
+     * @return string[]
+     */
     public static function getRelations(): array
     {
         return [
@@ -187,6 +200,9 @@ class PostResource extends Resource
         ];
     }
 
+    /**
+     * @return array<string, array<string, string>>
+     */
     public static function getPages(): array
     {
         return [

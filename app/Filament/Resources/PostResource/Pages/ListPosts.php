@@ -3,6 +3,7 @@
 namespace App\Filament\Resources\PostResource\Pages;
 
 use App\Filament\Resources\PostResource;
+use Exception;
 use Filament\Pages\Actions;
 use Filament\Resources\Pages\ListRecords;
 
@@ -10,6 +11,11 @@ class ListPosts extends ListRecords
 {
     protected static string $resource = PostResource::class;
 
+    /**
+     * @return array<Actions\Action>
+     *
+     * @throws Exception
+     */
     protected function getActions(): array
     {
         return [

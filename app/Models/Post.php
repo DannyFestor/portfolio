@@ -67,16 +67,25 @@ class Post extends Model implements HasMedia
             });
     }
 
+    /**
+     * @return BelongsTo<User, Post>
+     */
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }
 
+    /**
+     * @return BelongsToMany<Tag>
+     */
     public function tags(): BelongsToMany
     {
         return $this->belongsToMany(Tag::class, PostTag::class);
     }
 
+    /**
+     * @return MorphMany<Metatag>
+     */
     public function metatags(): MorphMany
     {
         return $this->morphMany(Metatag::class, 'metatagable');

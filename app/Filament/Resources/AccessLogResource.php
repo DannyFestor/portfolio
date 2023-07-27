@@ -98,6 +98,9 @@ class AccessLogResource extends Resource
             ->defaultSort('created_at', 'desc');
     }
 
+    /**
+     * @return array<string, array<string, string>>
+     */
     public static function getPages(): array
     {
         return [
@@ -105,10 +108,5 @@ class AccessLogResource extends Resource
             'create' => Pages\CreateAccessLog::route('/create'),
             'edit' => Pages\EditAccessLog::route('/{record}/edit'),
         ];
-    }
-
-    public static function getGloballySearchableAttributes(): array
-    {
-        return [];
     }
 }

@@ -6,6 +6,7 @@ use App\Filament\Resources\UserResource\Pages;
 use App\Models\User;
 use Filament\Forms;
 use Filament\Resources\Form;
+use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Resources\Resource;
 use Filament\Resources\Table;
 use Filament\Tables;
@@ -71,6 +72,9 @@ class UserResource extends Resource
             ]);
     }
 
+    /**
+     * @return array<RelationManager>
+     */
     public static function getRelations(): array
     {
         return [
@@ -78,6 +82,9 @@ class UserResource extends Resource
         ];
     }
 
+    /**
+     * @return array<string, array<string, string>>
+     */
     public static function getPages(): array
     {
         return [

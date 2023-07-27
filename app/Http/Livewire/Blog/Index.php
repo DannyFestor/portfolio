@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Blog;
 
 use App\Models\Post;
 use App\Models\Tag;
+use Illuminate\Contracts\View\View;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
@@ -16,16 +17,25 @@ class Index extends Component
 
     public string $search = '';
 
+    /**
+     * @var Collection<int, Tag>
+     */
     public Collection $tags;
 
+    /**
+     * @var array<string>
+     */
     public array $selectedTags = [];
 
+    /**
+     * @var array<string, array<string, string|array<string>>>
+     */
     protected $queryString = [
         'search' => ['as' => 's', 'except' => ''],
         'selectedTags' => ['as' => 't', 'except' => []],
     ];
 
-    public function mount()
+    public function mount(): void
     {
         $this->tags = Tag::withCount('posts')
             ->having('posts_count', '>', 0)
@@ -33,7 +43,7 @@ class Index extends Component
             ->get();
     }
 
-    public function render()
+    public function render(): View
     {
         return view('livewire.blog.index', [
             'posts' => Post::query()

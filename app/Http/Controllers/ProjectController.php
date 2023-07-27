@@ -3,11 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Project;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\Response;
 
 class ProjectController extends Controller
 {
-    public function index()
+    public function index(): View
     {
         $locale = app()->getLocale();
         $projects = Project::query()
@@ -29,7 +30,7 @@ class ProjectController extends Controller
         ]);
     }
 
-    public function show(Project $project)
+    public function show(Project $project): View
     {
         if (!$project->display) {
             abort(Response::HTTP_NOT_FOUND);

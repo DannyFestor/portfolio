@@ -10,6 +10,11 @@ class EditTag extends EditRecord
 {
     protected static string $resource = TagResource::class;
 
+    /**
+     * @return array<Actions\Action>
+     *
+     * @throws \Exception
+     */
     protected function getActions(): array
     {
         return [

@@ -2,10 +2,14 @@
 
 namespace App\Http\Requests\Contact;
 
+use Illuminate\Contracts\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreRequest extends FormRequest
 {
+    /**
+     * @return array<string, Rule|array<string|Rule>|string>
+     */
     public function rules(): array
     {
         return [

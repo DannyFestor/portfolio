@@ -81,6 +81,9 @@ class Project extends Model implements HasMedia
             });
     }
 
+    /**
+     * @return BelongsToMany<Tag>
+     */
     public function tags(): BelongsToMany
     {
         return $this->belongsToMany(Tag::class, ProjectTag::class);

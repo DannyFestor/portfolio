@@ -18,11 +18,17 @@ class ProjectTag extends Pivot
         'tag_id',
     ];
 
+    /**
+     * @return BelongsTo<Project, ProjectTag>
+     */
     public function project(): BelongsTo
     {
         return $this->belongsTo(Project::class);
     }
 
+    /**
+     * @return BelongsTo<Tag, ProjectTag>
+     */
     public function tag(): BelongsTo
     {
         return $this->belongsTo(Tag::class);

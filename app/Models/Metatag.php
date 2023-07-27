@@ -126,6 +126,9 @@ class Metatag extends Model
         'properties' => 'json',
     ];
 
+    /**
+     * @return MorphTo<Model, Metatag>
+     */
     public function metatagable(): MorphTo
     {
         return $this->morphTo();

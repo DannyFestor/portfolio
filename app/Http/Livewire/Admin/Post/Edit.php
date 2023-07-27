@@ -4,9 +4,11 @@ namespace App\Http\Livewire\Admin\Post;
 
 use App\Models\Post;
 use Carbon\Exceptions\InvalidFormatException;
+use Illuminate\Contracts\View\View;
 use Illuminate\Support\Carbon;
 use Illuminate\Validation\Rule;
 use Livewire\Component;
+use Livewire\Redirector;
 
 class Edit extends Component
 {
@@ -22,6 +24,9 @@ class Edit extends Component
 
     public bool $is_released = false;
 
+    /**
+     * @return array<string, string|\Illuminate\Contracts\Validation\Rule|array<string|\Illuminate\Contracts\Validation\Rule>>
+     */
     public function getRules(): array
     {
         return [
@@ -33,7 +38,7 @@ class Edit extends Component
         ];
     }
 
-    public function mount()
+    public function mount(): void
     {
         $this->title = $this->post->title;
         $this->released_at = $this->post->released_at ? Carbon::parse($this->post->released_at)->format('Y-m-d H:i') : '';
@@ -42,12 +47,12 @@ class Edit extends Component
         $this->is_released = $this->post->is_released;
     }
 
-    public function render()
+    public function render(): View
     {
         return view('livewire.admin.post.edit');
     }
 
-    public function updatedTitle(string $value)
+    public function updatedTitle(string $value): void
     {
         try {
             $date = Carbon::parse($this->released_at)->format('Ymd');
@@ -57,7 +62,12 @@ class Edit extends Component
         $this->setSlug($value, $date);
     }
 
-    public function updatedReleasedAt(string $value)
+    private function setSlug(string $title, string $date): void
+    {
+        $this->slug = \Str::limit($date . (strlen($date) ? '-' : '') . \Str::slug($title), 100, '');
+    }
+
+    public function updatedReleasedAt(string $value): void
     {
         try {
             $date = Carbon::parse($value)->format('Ymd');
@@ -67,12 +77,7 @@ class Edit extends Component
         $this->setSlug($this->title, $date);
     }
 
-    private function setSlug(string $title, string $date)
-    {
-        $this->slug = \Str::limit($date . (strlen($date) ? '-' : '') . \Str::slug($title), 100, '');
-    }
-
-    public function onSubmit()
+    public function onSubmit(): \Illuminate\Http\RedirectResponse|Redirector
     {
         $validated = $this->validate();
 
@@ -83,7 +88,7 @@ class Edit extends Component
         return redirect()->route('blog.show', $this->slug)->with('success', 'Post updated!');
     }
 
-    public function onCancel()
+    public function onCancel(): \Illuminate\Http\RedirectResponse|Redirector
     {
         return redirect()->route('blog.show', $this->post);
     }

@@ -16,11 +16,17 @@ class Tag extends Model
         'logo',
     ];
 
+    /**
+     * @return BelongsToMany<Post>
+     */
     public function posts(): BelongsToMany
     {
         return $this->belongsToMany(Post::class, PostTag::class);
     }
 
+    /**
+     * @return BelongsToMany<Project>
+     */
     public function projects(): BelongsToMany
     {
         return $this->belongsToMany(Project::class, ProjectTag::class);

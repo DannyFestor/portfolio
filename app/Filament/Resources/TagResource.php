@@ -109,6 +109,9 @@ HTML);
             ]);
     }
 
+    /**
+     * @return string[]
+     */
     public static function getRelations(): array
     {
         return [
@@ -116,6 +119,9 @@ HTML);
         ];
     }
 
+    /**
+     * @return array<string, array<string, string>>
+     */
     public static function getPages(): array
     {
         return [

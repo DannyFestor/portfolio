@@ -4,6 +4,7 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\ProjectResource\Pages;
 use App\Models\Project;
+use Filament\Forms\Components\Field;
 use Filament\Forms\Components\Placeholder;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
@@ -29,6 +30,9 @@ class ProjectResource extends Resource
             ->schema(self::getFormSchema());
     }
 
+    /**
+     * @return array<Field>
+     */
     public static function getFormSchema(): array
     {
         return [
@@ -124,6 +128,9 @@ class ProjectResource extends Resource
             ])->reorderable('sort');
     }
 
+    /**
+     * @return array<string, array<string,string>>
+     */
     public static function getPages(): array
     {
         return [
@@ -133,6 +140,9 @@ class ProjectResource extends Resource
         ];
     }
 
+    /**
+     * @return array<string>
+     */
     public static function getGloballySearchableAttributes(): array
     {
         return [];

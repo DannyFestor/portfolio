@@ -5,17 +5,19 @@ namespace App\Http\Controllers;
 use App\Helpers\Markdown;
 use App\Models\Post;
 use App\Models\User;
+use Illuminate\Contracts\View\View;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class PostController
 {
-    public function index()
+    public function index(): View
     {
         return view('blog.index');
     }
 
-    public function show(Post $post)
+    public function show(Post $post): View
     {
         /** @var User|null $user */
         $user = \Auth::user();
@@ -47,6 +49,9 @@ class PostController
         ]);
     }
 
+    /**
+     * @return array<string>
+     */
     private function buildMetags(Post $post): array
     {
         $metatags = [];
@@ -74,7 +79,7 @@ class PostController
         return $metatags;
     }
 
-    public function rssFeed(Request $request)
+    public function rssFeed(Request $request): Response
     {
         $posts = Post::query()
             ->with('user')

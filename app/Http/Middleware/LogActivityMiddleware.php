@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 
 class LogActivityMiddleware
 {
-    public function handle(Request $request, Closure $next)
+    public function handle(Request $request, Closure $next): Closure
     {
         if (
             !str_starts_with($request->getRequestUri(), '/livewire') &&

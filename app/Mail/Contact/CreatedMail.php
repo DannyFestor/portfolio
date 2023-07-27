@@ -9,6 +9,7 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\File;
 
 class CreatedMail extends Mailable implements ShouldQueue
 {
@@ -32,6 +33,9 @@ class CreatedMail extends Mailable implements ShouldQueue
         );
     }
 
+    /**
+     * @return array<string|File>
+     */
     public function attachments(): array
     {
         return [];
