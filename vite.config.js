@@ -10,6 +10,7 @@ export default defineConfig({
                 'resources/js/shiki.js',
                 'resources/css/filament.css',
                 'resources/js/post-image.js',
+                'resources/js/project-image.js',
             ],
             refresh: true,
         }),

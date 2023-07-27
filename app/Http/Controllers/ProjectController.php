@@ -52,8 +52,8 @@ class ProjectController extends Controller
             $p['body'] = $project->body_en;
         }
 
-        if ($project->hasMedia(Project::COLLECTION)) {
-            $p['img_url'] = $project->getFirstMediaUrl(Project::COLLECTION);
+        if ($project->hasMedia(Project::PROJECT_IMAGE)) {
+            $p['img_url'] = $project->getFirstMediaUrl(Project::PROJECT_IMAGE);
         }
 
         //        dd($project, $p);
@@ -64,6 +64,7 @@ class ProjectController extends Controller
         return view('projects.show', [
             'project' => $p,
             'tags' => $project->tags,
+            'screenshots' => $project->getMedia(Project::PROJECT_IMAGES),
         ]);
     }
 }

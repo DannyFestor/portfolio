@@ -26,58 +26,76 @@ class ProjectResource extends Resource
     public static function form(Form $form): Form
     {
         return $form
-            ->schema([
-                TextInput::make('slug')
-                    ->unique(ignoreRecord: true)
-                    ->required(),
+            ->schema(self::getFormSchema());
+    }
 
-                TextInput::make('title_en')
-                    ->required(),
+    public static function getFormSchema(): array
+    {
+        return [
+            TextInput::make('slug')
+                ->unique(ignoreRecord: true)
+                ->required(),
 
-                TextInput::make('title_de')
-                    ->required(),
+            TextInput::make('title_en')
+                ->required(),
 
-                TextInput::make('title_ja')
-                    ->required(),
+            TextInput::make('title_de')
+                ->required(),
 
-                TextInput::make('body_en')
-                    ->required(),
+            TextInput::make('title_ja')
+                ->required(),
 
-                TextInput::make('body_de')
-                    ->required(),
+            TextInput::make('body_en')
+                ->required(),
 
-                TextInput::make('body_ja')
-                    ->required(),
+            TextInput::make('body_de')
+                ->required(),
 
-                Toggle::make('display'),
+            TextInput::make('body_ja')
+                ->required(),
 
-                Select::make('tags')
-                    ->relationship('tags', 'title')
-                    ->multiple(),
+            Toggle::make('display'),
 
-                //TextInput::make('sort')
-                //->required()
-                //->integer(),
+            Select::make('tags')
+                ->relationship('tags', 'title')
+                ->multiple(),
 
-                SpatieMediaLibraryFileUpload::make('media')
-                    ->disk('public')
-                    ->collection(Project::COLLECTION)
-                    ->image(),
+            //TextInput::make('sort')
+            //->required()
+            //->integer(),
 
-                TextInput::make('git_url')
-                    ->url(),
+            SpatieMediaLibraryFileUpload::make('media')
+                ->disk('public')
+                ->label('Main Image')
+                ->collection(Project::PROJECT_IMAGE)
+                ->visibility('public')
+                ->columnSpan(['sm' => 2])
+                ->image(),
 
-                TextInput::make('live_url')
-                    ->url(),
+            SpatieMediaLibraryFileUpload::make('screenshots')
+                ->disk('public')
+                ->label('Project Screenshots')
+                ->collection(Project::PROJECT_IMAGES)
+                ->multiple()
+                ->visibility('public')
+                ->columnSpan(['sm' => 2])
+                ->enableReordering()
+                ->image(),
 
-                Placeholder::make('created_at')
-                    ->label('Created Date')
-                    ->content(fn (?Project $record): string => $record?->created_at?->diffForHumans() ?? '-'),
+            TextInput::make('git_url')
+                ->url(),
 
-                Placeholder::make('updated_at')
-                    ->label('Last Modified Date')
-                    ->content(fn (?Project $record): string => $record?->updated_at?->diffForHumans() ?? '-'),
-            ]);
+            TextInput::make('live_url')
+                ->url(),
+
+            Placeholder::make('created_at')
+                ->label('Created Date')
+                ->content(fn (?Project $record): string => $record?->created_at?->diffForHumans() ?? '-'),
+
+            Placeholder::make('updated_at')
+                ->label('Last Modified Date')
+                ->content(fn (?Project $record): string => $record?->updated_at?->diffForHumans() ?? '-'),
+        ];
     }
 
     public static function table(Table $table): Table

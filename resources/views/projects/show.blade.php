@@ -21,6 +21,27 @@
             </div>
         @endif
 
+        @php
+            /** @var \Spatie\MediaLibrary\MediaCollections\Models\Media $screenshot */
+        @endphp
+
+        @if (count($screenshots) > 0)
+            <div
+                id="previews"
+                class="mx-auto my-8 flex flex-wrap justify-center gap-4"
+            >
+                @foreach ($screenshots as $screenshot)
+                    <div>
+                        <img
+                            src="{{ $screenshot->getUrl('preview') }}"
+                            alt="{{ $project['title'] }} Preview {{ $loop->iteration }}"
+                            data-src="{{ $screenshot->getUrl() }}"
+                        />
+                    </div>
+                @endforeach
+            </div>
+        @endif
+
         <article
             class="mx-auto mt-8 max-w-xl rounded bg-white p-2 text-justify"
         >
@@ -69,4 +90,8 @@
             @endforeach
         </section>
     </x-layouts.partials.content-wrap>
+
+    @pushonce('vite')
+        @vite('resources/js/project-image.js')
+    @endpushonce
 </x-app-layout>

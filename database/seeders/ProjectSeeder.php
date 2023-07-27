@@ -17,7 +17,7 @@ class ProjectSeeder extends Seeder
         $projects->each(
             fn (Project $project) => $project
                 ->addMedia($faker->image)
-                ->toMediaCollection(Project::COLLECTION)
+                ->toMediaCollection(Project::PROJECT_IMAGE)
         );
         $projects->each(
             fn (Project $project) => $project

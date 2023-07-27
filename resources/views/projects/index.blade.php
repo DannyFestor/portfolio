@@ -18,10 +18,10 @@
                         </a>
                     </h2>
                     <div class="h-full max-h-[300px] w-full">
-                        @if ($project->hasMedia(\App\Models\Project::COLLECTION))
+                        @if ($project->hasMedia(\App\Models\Project::PROJECT_IMAGE))
                             <a href="{{ route('project.show', $project) }}">
                                 <img
-                                    src="{{ $project->getFirstMediaUrl(\App\Models\Project::COLLECTION, 'preview') }}"
+                                    src="{{ $project->getFirstMediaUrl(\App\Models\Project::PROJECT_IMAGE, 'preview') }}"
                                     alt=""
                                     class="h-full w-full object-cover object-center"
                                 />
