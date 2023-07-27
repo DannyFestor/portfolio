@@ -47,10 +47,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
             backdrop.addEventListener('click', () => {
                 container.classList.add('shrink');
-                setTimeout(() => {
-                    backdrop.parentElement.remove();
+                // setTimeout(() => {
+                //     backdrop.parentElement.remove();
+                //     document.body.style.overflowY = null;
+                // }, 300);
+                container.addEventListener('transitionend', () => {
                     document.body.style.overflowY = null;
-                }, 300);
+                    backdrop.parentElement.remove();
+                });
             });
 
             requestAnimationFrame(() => {
