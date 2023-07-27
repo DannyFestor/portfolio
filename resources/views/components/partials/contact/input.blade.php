@@ -1,19 +1,25 @@
 @props(['name', 'type' => 'text'])
-<article {{ $attributes->merge(['class' => 'w-full flex flex-col'])->except(['required', 'hidden']) }}>
-    <label for="{{ $name }}" class="flex flex-col md:flex-row gap-2 w-full justify-between items-center">
+<article
+    {{ $attributes->merge(['class' => 'w-full flex flex-col'])->except(['required', 'hidden']) }}
+>
+    <label
+        for="{{ $name }}"
+        class="flex w-full flex-col items-center justify-between gap-2 md:flex-row"
+    >
         <span class="w-full md:w-1/4">{{ $slot }}</span>
 
-        <input type="{{ $type }}"
-               id="{{ $name }}"
-               name="{{ $name }}"
-               value="{{ old($name) }}"
-               class="w-full md:flex-1 form-input rounded"
-               {{ $attributes->has('hidden') ? 'tabindex="-1" autocomplete="off"' : '' }}
-               {{ $attributes->has('required') ? 'required' : '' }}
-        >
+        <input
+            type="{{ $type }}"
+            id="{{ $name }}"
+            name="{{ $name }}"
+            value="{{ old($name) }}"
+            class="form-input w-full rounded md:flex-1"
+            {{ $attributes->has('hidden') ? 'tabindex="-1" autocomplete="off"' : '' }}
+            {{ $attributes->has('required') ? 'required' : '' }}
+        />
     </label>
 
     @error($name)
-    <div class="text-red-600 text-sm">{{ __($message) }}</div>
+        <div class="text-sm text-red-600">{{ __($message) }}</div>
     @enderror
 </article>

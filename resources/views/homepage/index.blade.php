@@ -1,92 +1,197 @@
 <x-app-layout>
-    <x-slot:title>{{ __('homepage.title')  }}</x-slot:title>
-    <x-slot:main_classes></x-slot:main_classes>
+    <x-slot:title>
+        {{ __('homepage.title') }}
+    </x-slot>
 
-    <x-layouts.partials.content-wrap class="flex flex-col items-center justify-center">
-        <div class="bg-white rounded flex flex-col sm:flex-row justify-center items-center h-full">
-            <div id="img-container"
-                 class="h-[200px] sm:h-[500px] w-full max-w-[360px] overflow-hidden rounded-t sm:rounded-l shadow-lg"
+    <x-layouts.partials.content-wrap
+        class="flex flex-col items-center justify-center"
+    >
+        <div
+            class="flex h-full flex-col items-center justify-center rounded bg-white sm:flex-row"
+        >
+            <div
+                id="img-container"
+                class="h-[200px] w-full max-w-[360px] overflow-hidden rounded-t shadow-lg sm:h-[500px] sm:rounded-l"
             >
-                <img src="{{ asset('img/danny.jpg') }}"
-                     alt="This is me"
-                     aria-label="This is me"
-                     class="-translate-y-[60px] sm:translate-y-0 sm:object-cover sm:h-full sm:w-auto"
-                >
+                <img
+                    src="{{ asset('img/danny.jpg') }}"
+                    alt="This is me"
+                    aria-label="This is me"
+                    class="-translate-y-[60px] sm:h-full sm:w-auto sm:translate-y-0 sm:object-cover"
+                />
             </div>
             <article
-                class="font-serif relative flex flex-1 flex-col items-center justify-center gap-4 max-w-[360px] sm:h-[500px] sm:max-h-[500px] p-4 rounded-r shadow-lg">
-                <p class="text-lg text-center w-full">{{ __('homepage.me') }}</p>
-                <h2 class="text-xl text-left w-full">
+                class="relative flex max-w-[360px] flex-1 flex-col items-center justify-center gap-4 rounded-r p-4 font-serif shadow-lg sm:h-[500px] sm:max-h-[500px]"
+            >
+                <p class="w-full text-center text-lg">
+                    {{ __('homepage.me') }}
+                </p>
+                <h2 class="w-full text-left text-xl">
                     {!! __('homepage.freelancer') !!}
                 </h2>
-                <h1 class="text-2xl text-center w-full">
+                <h1 class="w-full text-center text-2xl">
                     {!! __('homepage.websites') !!}
                 </h1>
-                <h3 class="text-right w-full">{!! __('homepage.nagasaki') !!}</h3>
+                <h3 class="w-full text-right">
+                    {!! __('homepage.nagasaki') !!}
+                </h3>
 
-                <p class="icons flex gap-2 justify-between mt-12 w-full h-16">
-                    <a href="https://go.dev/" class="w-1/5 flex justify-center items-center">
-                        <img class="w-[100%] w-full max-w-12" src="{{ asset('icons/go.svg') }}" alt="GO" aria-label="GO"
-                             title="GO">
+                <p class="icons mt-12 flex h-16 w-full justify-between gap-2">
+                    <a
+                        href="https://go.dev/"
+                        class="flex w-1/5 items-center justify-center"
+                    >
+                        <img
+                            class="max-w-12 w-[100%] w-full"
+                            src="{{ asset('icons/go.svg') }}"
+                            alt="GO"
+                            aria-label="GO"
+                            title="GO"
+                        />
                     </a>
-                    <a href="https://www.php.net/" class="w-1/5 flex justify-center items-center">
-                        <img class="w-[100%] w-full max-w-12" src="{{ asset('icons/php.svg') }}" alt="PHP" aria-label="PHP"
-                             title="PHP">
+                    <a
+                        href="https://www.php.net/"
+                        class="flex w-1/5 items-center justify-center"
+                    >
+                        <img
+                            class="max-w-12 w-[100%] w-full"
+                            src="{{ asset('icons/php.svg') }}"
+                            alt="PHP"
+                            aria-label="PHP"
+                            title="PHP"
+                        />
                     </a>
-                    <a href="https://laravel.com/" class="w-1/5 flex justify-center items-center">
-                        <img class="w-[100%] w-full max-w-12" src="{{ asset('icons/laravel.svg') }}" alt="Laravel"
-                             aria-label="Laravel" title="Laravel">
+                    <a
+                        href="https://laravel.com/"
+                        class="flex w-1/5 items-center justify-center"
+                    >
+                        <img
+                            class="max-w-12 w-[100%] w-full"
+                            src="{{ asset('icons/laravel.svg') }}"
+                            alt="Laravel"
+                            aria-label="Laravel"
+                            title="Laravel"
+                        />
                     </a>
-                    <a href="https://laravel-livewire.com/" class="w-1/5 flex justify-center items-center">
-                        <img class="w-[100%] w-full max-w-12" src="{{ asset('icons/livewire.svg') }}" alt="Livewire"
-                             aria-label="Livewire" title="Livewire">
+                    <a
+                        href="https://laravel-livewire.com/"
+                        class="flex w-1/5 items-center justify-center"
+                    >
+                        <img
+                            class="max-w-12 w-[100%] w-full"
+                            src="{{ asset('icons/livewire.svg') }}"
+                            alt="Livewire"
+                            aria-label="Livewire"
+                            title="Livewire"
+                        />
                     </a>
-                    <a href="https://inertiajs.com/" class="w-1/5 flex justify-center items-center">
-                        <img class="w-[100%] w-full max-w-12" src="{{ asset('icons/inertia.svg') }}" alt="Inertia.js"
-                             aria-label="Inertia.js" title="Inertia.js">
+                    <a
+                        href="https://inertiajs.com/"
+                        class="flex w-1/5 items-center justify-center"
+                    >
+                        <img
+                            class="max-w-12 w-[100%] w-full"
+                            src="{{ asset('icons/inertia.svg') }}"
+                            alt="Inertia.js"
+                            aria-label="Inertia.js"
+                            title="Inertia.js"
+                        />
                     </a>
                 </p>
 
-                <p class="icons flex gap-2 justify-between w-full h-16">
-                    <a href="#" class="w-1/5 flex justify-center items-center">
-                        <img class="w-[100%] w-full max-w-12" src="{{ asset('icons/javascript.svg') }}" alt="JavaScript"
-                             aria-label="JavaScript" title="JavaScript">
+                <p class="icons flex h-16 w-full justify-between gap-2">
+                    <a href="#" class="flex w-1/5 items-center justify-center">
+                        <img
+                            class="max-w-12 w-[100%] w-full"
+                            src="{{ asset('icons/javascript.svg') }}"
+                            alt="JavaScript"
+                            aria-label="JavaScript"
+                            title="JavaScript"
+                        />
                     </a>
-                    <a href="https://www.typescriptlang.org/" class="w-1/5 flex justify-center items-center">
-                        <img class="w-[100%] w-full max-w-12" src="{{ asset('icons/typescript.svg') }}" alt="TypeScript"
-                             aria-label="TypeScript" title="TypeScript">
+                    <a
+                        href="https://www.typescriptlang.org/"
+                        class="flex w-1/5 items-center justify-center"
+                    >
+                        <img
+                            class="max-w-12 w-[100%] w-full"
+                            src="{{ asset('icons/typescript.svg') }}"
+                            alt="TypeScript"
+                            aria-label="TypeScript"
+                            title="TypeScript"
+                        />
                     </a>
-                    <a href="https://vuejs.org/" class="w-1/5 flex justify-center items-center">
-                        <img class="w-[100%] w-full max-w-12" src="{{ asset('icons/vuejs.svg') }}" alt="Vue.js"
-                             aria-label="Vue.js"
-                             title="Vue.js">
+                    <a
+                        href="https://vuejs.org/"
+                        class="flex w-1/5 items-center justify-center"
+                    >
+                        <img
+                            class="max-w-12 w-[100%] w-full"
+                            src="{{ asset('icons/vuejs.svg') }}"
+                            alt="Vue.js"
+                            aria-label="Vue.js"
+                            title="Vue.js"
+                        />
                     </a>
-                    <a href="https://alpinejs.dev/" class="w-1/5 flex justify-center items-center">
-                        <img class="w-[100%] w-full max-w-12" src="{{ asset('icons/alpinejs.svg') }}" alt="Alpine.js"
-                             aria-label="Alpine.js" title="Alpine.js">
+                    <a
+                        href="https://alpinejs.dev/"
+                        class="flex w-1/5 items-center justify-center"
+                    >
+                        <img
+                            class="max-w-12 w-[100%] w-full"
+                            src="{{ asset('icons/alpinejs.svg') }}"
+                            alt="Alpine.js"
+                            aria-label="Alpine.js"
+                            title="Alpine.js"
+                        />
                     </a>
-                    <a href="https://flutter.dev/" class="w-1/5 flex justify-center items-center">
-                        <img class="w-[100%] w-full max-w-12" src="{{ asset('icons/flutter.svg') }}" alt="Flutter"
-                             aria-label="Flutter" title="Flutter">
+                    <a
+                        href="https://flutter.dev/"
+                        class="flex w-1/5 items-center justify-center"
+                    >
+                        <img
+                            class="max-w-12 w-[100%] w-full"
+                            src="{{ asset('icons/flutter.svg') }}"
+                            alt="Flutter"
+                            aria-label="Flutter"
+                            title="Flutter"
+                        />
                     </a>
                 </p>
 
                 <p id="cv" class="mt-8 flex flex-wrap">
-                    <span class="flex gap-4 items-center">Download my CV 履歴書</span>
-                    <span class="flex gap-4 items-center ml-auto">
-                    <a href="{{ asset('cv/[GER]-2022-12-15.pdf') }}">
-                        <img class="h-8 w-8" src="{{ asset('flags/de.svg') }}" alt="German CV" aria-label="German CV"
-                             title="German CV">
-                    </a>
-                    <a href="{{ asset('cv/[ENG]-2022-12-15.pdf') }}">
-                        <img class="h-8 w-8" src="{{ asset('flags/us.svg') }}" alt="English CV" aria-label="English CV"
-                             title="English CV">
-                    </a>
-                    <a href="{{ asset('cv/[JAP]-2022-12-15.pdf') }}">
-                        <img class="h-8 w-8" src="{{ asset('flags/jp.svg') }}" alt="Japanese CV" aria-label="German CV"
-                             title="German CV">
-                    </a>
-                </span>
+                    <span class="flex items-center gap-4">
+                        Download my CV 履歴書
+                    </span>
+                    <span class="ml-auto flex items-center gap-4">
+                        <a href="{{ asset('cv/[GER]-2022-12-15.pdf') }}">
+                            <img
+                                class="h-8 w-8"
+                                src="{{ asset('flags/de.svg') }}"
+                                alt="German CV"
+                                aria-label="German CV"
+                                title="German CV"
+                            />
+                        </a>
+                        <a href="{{ asset('cv/[ENG]-2022-12-15.pdf') }}">
+                            <img
+                                class="h-8 w-8"
+                                src="{{ asset('flags/us.svg') }}"
+                                alt="English CV"
+                                aria-label="English CV"
+                                title="English CV"
+                            />
+                        </a>
+                        <a href="{{ asset('cv/[JAP]-2022-12-15.pdf') }}">
+                            <img
+                                class="h-8 w-8"
+                                src="{{ asset('flags/jp.svg') }}"
+                                alt="Japanese CV"
+                                aria-label="German CV"
+                                title="German CV"
+                            />
+                        </a>
+                    </span>
                 </p>
             </article>
         </div>

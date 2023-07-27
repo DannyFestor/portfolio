@@ -32,9 +32,8 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     elements.forEach((element) => {
         const language = element.className.match(/\s*language-(.*)\s*/);
-        element.innerHTML = highlighter.codeToHtml(
-            element.innerText,
-            { lang: language !== null ? language[1] ?? 'html' : 'html' },
-        );
+        element.innerHTML = highlighter.codeToHtml(element.innerText, {
+            lang: language !== null ? language[1] ?? 'html' : 'html',
+        });
     });
 });

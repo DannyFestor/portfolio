@@ -4,8 +4,8 @@
             on: false,
 
             toggle() {
-                this.on = ! this.on
-            }
+                this.on = !this.on;
+            },
         });
 
         Alpine.store('navigation', {
@@ -20,7 +20,7 @@
             },
 
             toggle() {
-                this.open = ! this.open
+                this.open = !this.open;
             },
 
             init() {
@@ -31,12 +31,17 @@
             },
         });
 
-
-        window.addEventListener('resize', Alpine.debounce((e) => {
-            if (window.innerWidth < 640 || !Alpine.store('navigation').open) {
-                return;
-            }
-            Alpine.store('navigation').close();
-        }, 300));
+        window.addEventListener(
+            'resize',
+            Alpine.debounce((e) => {
+                if (
+                    window.innerWidth < 640 ||
+                    !Alpine.store('navigation').open
+                ) {
+                    return;
+                }
+                Alpine.store('navigation').close();
+            }, 300)
+        );
     });
 </script>

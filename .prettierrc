@@ -10,5 +10,7 @@
                 "parser": "blade"
             }
         }
-    ]
+    ],
+    "singleQuote": true,
+    "trailingComma": "es5"
 }
