@@ -7,7 +7,7 @@
         class="flex flex-col items-center justify-center"
     >
         <div
-            class="flex h-full flex-col items-center justify-center rounded bg-white lg:flex-row"
+            class="mb-4 flex flex-col items-center justify-center rounded bg-white sm:mb-8 sm:mt-8 md:mb-16 md:mt-16 lg:mb-32 lg:mt-32 lg:flex-row"
         >
             <div
                 id="img-container"
@@ -237,5 +237,7 @@
                 </p>
             </article>
         </div>
+
+        {!! __('homepage.about') !!}
     </x-layouts.partials.content-wrap>
 </x-app-layout>

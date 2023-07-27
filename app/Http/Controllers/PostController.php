@@ -21,27 +21,7 @@ class PostController
         $user = \Auth::user();
         $post->load('metatags');
 
-        $metatags = [];
-        foreach ($post->metatags as $metatag) {
-            $properties = [];
-            foreach ($metatag->properties as $label => $value) {
-                if (empty($value)) {
-                    continue;
-                }
-
-                $properties[] = "$label=\"$value\"";
-            }
-
-            $tag = '<';
-            $tag .= $metatag->tag;
-            $tag .= ' ';
-            $tag .= implode(' ', $properties);
-            $tag .= '>';
-            if ($metatag->tag === 'script') {
-                $tag .= '</script>';
-            }
-            $metatags[] = $tag;
-        }
+        $metatags = $this->buildMetags($post);
 
         if (
             (!$user || !$user->is_admin) &&
@@ -65,6 +45,33 @@ class PostController
             'post' => $post,
             'metatags' => implode("\n\t\t", $metatags),
         ]);
+    }
+
+    private function buildMetags(Post $post): array
+    {
+        $metatags = [];
+        foreach ($post->metatags as $metatag) {
+            $properties = [];
+            foreach ($metatag->properties as $label => $value) {
+                if (empty($value)) {
+                    continue;
+                }
+
+                $properties[] = "$label=\"$value\"";
+            }
+
+            $tag = '<';
+            $tag .= $metatag->tag;
+            $tag .= ' ';
+            $tag .= implode(' ', $properties);
+            $tag .= '>';
+            if ($metatag->tag === 'script') {
+                $tag .= '</script>';
+            }
+            $metatags[] = $tag;
+        }
+
+        return $metatags;
     }
 
     public function rssFeed(Request $request)
