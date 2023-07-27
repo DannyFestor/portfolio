@@ -19,6 +19,7 @@ class PostFactory extends Factory
         return [
             'user_id' => User::factory(),
             'title' => $title,
+            'subtitle' => fake()->realText(random_int(30, 100)),
             'slug' => $slug,
             'description' => fake()->paragraphs(asText: true),
             'is_released' => fake()->boolean,

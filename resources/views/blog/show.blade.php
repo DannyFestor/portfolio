@@ -15,13 +15,18 @@
                 </section>
             @endif
 
-            <h1 class="p-4 text-center font-serif text-4xl font-bold sm:p-8">
-                <span
-                    class="bg-gradient-to-br from-indigo-800 to-rose-800 bg-clip-text text-transparent"
-                >
+            <div
+                class="bg-gradient-to-br from-indigo-800 to-rose-800 bg-clip-text p-4 text-center font-serif font-bold text-transparent sm:p-8"
+            >
+                <h1 class="text-4xl">
                     {{ $post->title }}
-                </span>
-            </h1>
+                </h1>
+                @if ($post->subtitle)
+                    <h2 class="text-2xl">
+                        {{ $post->subtitle }}
+                    </h2>
+                @endif
+            </div>
 
             <section class="flex justify-end p-4 sm:p-8">
                 {{ $post->user->name }}

@@ -16,9 +16,14 @@ class Post extends Model implements HasMedia
     use HasFactory;
     use InteractsWithMedia;
 
+    const HERO_IMAGE = 'hero-image';
+
+    const POST_IMAGES = 'post-images';
+
     protected $fillable = [
         'user_id',
         'title',
+        'subtitle',
         'slug',
         'description',
         'is_released',
@@ -30,13 +35,25 @@ class Post extends Model implements HasMedia
         'released_at' => 'datetime',
     ];
 
-    const HERO_IMAGE = 'hero-image';
-
     public function registerMediaCollections(): void
     {
         $this
             ->addMediaCollection(self::HERO_IMAGE)
             ->singleFile()
+            ->acceptsMimeTypes(['image/jpeg', 'image/png', 'image/jpeg'])
+            ->registerMediaConversions(function (Media $media) {
+                $this
+                    ->addMediaConversion('thumb')
+                    ->width(100)
+                    ->height(100);
+                $this
+                    ->addMediaConversion('twitter')
+                    ->width(500)
+                    ->height(500);
+            });
+
+        $this
+            ->addMediaCollection(self::POST_IMAGES)
             ->acceptsMimeTypes(['image/jpeg', 'image/png', 'image/jpeg'])
             ->registerMediaConversions(function (Media $media) {
                 $this

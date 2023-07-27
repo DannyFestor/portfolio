@@ -80,7 +80,7 @@ class CreatedListener
                 'tag' => 'meta',
                 'properties' => json_encode([
                     'name' => 'description',
-                    'content' => $post->description,
+                    'content' => implode(' - ', [$post->title, $post->subtitle]),
                 ]),
             ],
             [
@@ -116,7 +116,7 @@ class CreatedListener
                 'tag' => 'meta',
                 'properties' => json_encode([
                     'name' => 'twitter:description',
-                    'content' => $post->description,
+                    'content' => implode(' - ', [$post->title, $post->subtitle]),
                 ]),
             ],
             [
