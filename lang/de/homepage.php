@@ -2,45 +2,51 @@
 
 return [
     'about' => <<<'HTML'
-            <div class="prose mb-16">
-            <p>Deutsch</p>
+            <div class="prose" style="margin-bottom: 2rem">
                 <p>
-                    Hi, I'm [Your Name], a German Freelance Web Developer living in
-                    Nagasaki, Japan.
+                   Hallo, ich bin Danny, ein deutscher, freiberuflicher Webentwickler, der in Nagasaki, Japan,
+                   mit meiner Frau und meiner Tochter lebt.
                 </p>
                 <p>
-                    I'm passionate about creating beautiful, functional, and
-                    user-friendly websites using PHP, Laravel, and Livewire. I have
-                    a strong understanding of web development best practices, and
-                    I'm always up-to-date on the latest technologies.
+                    Ich habe viele Jahre Erfahrung mit PHP und Laravel bei der Umsetzung von die Traumprojekte
+                    meiner Kunden und helfe Ihnen, mit ihren Kunden Verbunden zu sein.
                 </p>
                 <p>
-                    I'm also a great communicator, and I'm always happy to work with
-                    clients to understand their needs and deliver a website that
-                    meets their expectations.
+                    Meine Leidenschaft ist die Erstellung schneller, funktionaler, benutzerfreundlicher und
+                    reaktiver Websites mit PHP, Laravel und Livewire. Ich habe ein ausgeprägtes Verständnis
+                    für Best Practices in der Webentwicklung und bin immer auf dem neuesten Stand der Technik.
+                    </p>
+                <p>
+                    Ich bin auch ein großartiger Kommunikator und arbeite gerne mit Kunden zusammen, um ihre
+                    Bedürfnisse zu verstehen und eine Website zu erstellen, die ihren Erwartungen entspricht.
+                    In regelmäßigen Besprechungen biete ich meinen Kunden die Möglichkeit, den aktuellen
+                    Fortschritt zu überprüfen und die nächsten Schritte anzupassen, um sicherzustellen, dass
+                    sich das Projekt genau wie erhofft entwickelt.
                 </p>
                 <p>
-                    Here are some of the services I offer: * Website design and
-                    development * E-commerce development * Content management
-                    systems (CMS) * Custom plugins and extensions * SEO optimization
-                    * Web hosting * Maintenance and support
+                    Hier sind einige der Dienstleistungen, die ich anbiete:
+                    <ul>
+                        <li>Custom Website Development - Realisieren Sie Ihre Traum-Homepage</li>
+                        <li>Beratungsdienste/Consulting - Sie wissen nicht, was Sie wollen oder brauchen? Buchen Sie ein Beratungsgespräch mit mir, um Ihre Optionen zu besprechen</li>
+                        <li>E-Commerce-Entwicklung - Sie wollen Kunden erreichen und etwas verkaufen? Lassen Sie uns eine maßgeschneiderte Lösung erstellen, die genau Ihren Bedürfnissen entspricht, oder eine fertige Lösung verwenden, die auf die Bedürfnisse Ihres Projekts abgestimmt ist.</li>
+                        <li>Content-Management-Systeme (CMS) - Ich baue ein CMS, das genau Ihren Bedürfnissen entspricht; keine unsicheren Plugin-Monster nötig</li>
+                        <li>SEO - Mit optimierten Meta-Tags und semantischem HTML an die Spitze der Google-Ergebnisse springen</li>
+                        <li>Wartung und Support - Erhalten Sie immer die neuesten Sicherheitsupdates und neuen Funktionen</li>
+                    </ul>
                 </p>
                 <p>
-                    I'm confident that I can help you create a website that meets
-                    your needs and exceeds your expectations.
+                    Ich bin zuversichtlich, dass ich Ihnen helfen kann, eine Website zu erstellen, die Ihren
+                    Anforderungen entspricht und Ihre Erwartungen übertrifft.
                 </p>
                 <p>
-                    Here are some of my recent projects: * A website for a small
-                    business that helps them sell their products online. * A CMS for
-                    a non-profit organization that allows them to manage their
-                    content easily. * A custom plugin for a WordPress website that
-                    adds new features.
-                </p>
+                    Sie können einige meiner jüngsten Projekte sehen, indem Sie zur
+                    <a href="/projects">Projekt-Seite</a>
+                    navigieren.</p>
                 <p>
-                    If you're interested in working with me, please get in touch.
-                    I'd be happy to discuss your project and see how I can help you
-                    achieve your goals. Thank you for your time. Sincerely, [Your
-                    Name]
+                    Wenn Sie an einer Zusammenarbeit mit mir interessiert sind, setzen
+                    Sie sich bitte über die <a href="/kontakt">Kontaktseite</a> mit mir in Verbindung.
+                    Ich würde mich freuen, Ihr Projekt zu besprechen und zu sehen, wie ich Ihnen helfen kann,
+                    Ihre Ziele zu erreichen.
                 </p>
             </div>
     HTML,

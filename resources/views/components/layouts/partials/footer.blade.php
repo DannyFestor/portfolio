@@ -12,4 +12,24 @@
         ,
         <a href="https://laravel-livewire.com" class="underline">Livewire</a>
     </section>
+    <section>
+        Icons by
+        <a href="https://flagicons.lipis.dev/" class="underline">
+            Lipis.dev (Flags)
+        </a>
+        ,
+        <a href="https://heroicons.com/" class="underline">
+            Heroicons (Navigation)
+        </a>
+        ,
+        <a href="https://humbleicons.com/" class="underline">
+            Humble Icons (Blog
+            <em>Life</em>
+            Tag)
+        </a>
+        and
+        <a href="https://simpleicons.com/" class="underline">
+            Simple Icons (Brand Icons)
+        </a>
+    </section>
 </footer>

@@ -2,7 +2,7 @@
 
 return [
     'about' => <<<'HTML'
-            <div class="prose mb-16">
+            <div class="prose" style="margin-bottom: 2rem">
                 <p>
                     Hi, I'm Danny, a German Freelance Web Developer living in
                     Nagasaki, Japan, with my wife and daughter.
@@ -29,6 +29,7 @@ return [
                     Here are some of the services I offer:
                     <ul>
                         <li>Custom Website Development - Realize the Homepage of your dreams</li>
+                        <li>Consulting Services - Don't know what you want or need? Book a Consulting session with me to discuss your options</li>
                         <li>E-commerce development - Want to reach customers and sell something? Let's build a custom solution that fits exactly your needs, or use a ready-made one; all catered to your project's needs.</li>
                         <li>Content management systems (CMS) - I build a CMS that fits exactly your needs; no need for insecure plugin monsters</li>
                         <li>SEO - Let's jump to the top of Google results with optimized Meta-Tags and Semantic HTML</li>
