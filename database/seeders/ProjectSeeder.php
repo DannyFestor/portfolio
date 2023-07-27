@@ -15,12 +15,12 @@ class ProjectSeeder extends Seeder
 
         $faker = Factory::create('en_US');
         $projects->each(
-            fn(Project $project) => $project
+            fn (Project $project) => $project
                 ->addMedia($faker->image)
                 ->toMediaCollection(Project::COLLECTION)
         );
         $projects->each(
-            fn(Project $project) => $project
+            fn (Project $project) => $project
                 ->tags()
                 ->attach($tags
                     ->random(5)

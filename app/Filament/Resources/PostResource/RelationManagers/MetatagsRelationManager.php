@@ -8,8 +8,6 @@ use Filament\Resources\Form;
 use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Resources\Table;
 use Filament\Tables;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Illuminate\Support\HtmlString;
 
 class MetatagsRelationManager extends RelationManager
@@ -59,7 +57,7 @@ class MetatagsRelationManager extends RelationManager
             ])
             ->headerActions([
                 Tables\Actions\CreateAction::make(),
-//                Tables\Actions\AssociateAction::make(),
+                //                Tables\Actions\AssociateAction::make(),
             ])
             ->actions([
                 Tables\Actions\EditAction::make()
@@ -68,15 +66,14 @@ class MetatagsRelationManager extends RelationManager
 
                         return $data;
                     }),
-//                Tables\Actions\DissociateAction::make(),
+                //                Tables\Actions\DissociateAction::make(),
                 Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
-//                Tables\Actions\DissociateBulkAction::make(),
+                //                Tables\Actions\DissociateBulkAction::make(),
                 Tables\Actions\DeleteBulkAction::make(),
             ]);
     }
-
 
     private static function buildSchemaForTag(string $tag): Forms\Components\Section
     {
@@ -104,7 +101,7 @@ class MetatagsRelationManager extends RelationManager
         }
 
         return Forms\Components\Section::make('Properties')
-            ->visible(fn(\Closure $get) => $get('tag') === $tag)
+            ->visible(fn (\Closure $get) => $get('tag') === $tag)
             ->schema($schema)
             ->columnSpan(1);
     }

@@ -4,7 +4,6 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\AccessLogResource\Pages;
 use App\Models\AccessLog;
-use Filament\Forms\Components\Checkbox;
 use Filament\Forms\Components\Placeholder;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
@@ -47,11 +46,11 @@ class AccessLogResource extends Resource
 
                 Placeholder::make('created_at')
                     ->label('Created Date')
-                    ->content(fn(?AccessLog $record): string => $record?->created_at?->diffForHumans() ?? '-'),
+                    ->content(fn (?AccessLog $record): string => $record?->created_at?->diffForHumans() ?? '-'),
 
                 Placeholder::make('updated_at')
                     ->label('Last Modified Date')
-                    ->content(fn(?AccessLog $record): string => $record?->updated_at?->diffForHumans() ?? '-'),
+                    ->content(fn (?AccessLog $record): string => $record?->updated_at?->diffForHumans() ?? '-'),
             ]);
     }
 

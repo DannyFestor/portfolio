@@ -56,10 +56,10 @@ class ProjectController extends Controller
             $p['img_url'] = $project->getFirstMediaUrl(Project::COLLECTION);
         }
 
-//        dd($project, $p);
-//        dd(
-//        isset($p['img_url'])
-//        );
+        //        dd($project, $p);
+        //        dd(
+        //        isset($p['img_url'])
+        //        );
 
         return view('projects.show', [
             'project' => $p,

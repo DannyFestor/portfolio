@@ -7,7 +7,6 @@ use App\Models\Post;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
-use Illuminate\Support\HtmlString;
 
 class PostController
 {
@@ -89,7 +88,7 @@ class PostController
             ->paginate(30);
 
         $posts->each(
-            fn(Post $post) => $post->description = Markdown::make(
+            fn (Post $post) => $post->description = Markdown::make(
                 \Str::limit($post->description, 300),
             )
         );

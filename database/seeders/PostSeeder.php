@@ -26,9 +26,6 @@ class PostSeeder extends Seeder
         Post::all()->each(fn (Post $post) => $post->tags()->attach($tags->random(5)->pluck('id')->toArray()));
     }
 
-    /**
-     * @return string
-     */
     public function getFirstPostMarkdown(): string
     {
         return <<<Markdown

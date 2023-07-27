@@ -4,7 +4,6 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\PostResource\Pages;
 use App\Filament\Resources\PostResource\RelationManagers\MetatagsRelationManager;
-use App\Models\Metatag;
 use App\Models\Post;
 use Carbon\Exceptions\InvalidFormatException;
 use Filament\Forms;
@@ -15,7 +14,6 @@ use Filament\Resources\Resource;
 use Filament\Resources\Table;
 use Filament\Tables;
 use Illuminate\Support\Carbon;
-use Livewire\Livewire;
 
 class PostResource extends Resource
 {
@@ -66,30 +64,30 @@ class PostResource extends Resource
                         ->columnSpan(['sm' => 3]),
                     Forms\Components\TextInput::make('normal-link')
                         ->visible(
-                            fn(Page $livewire, Post $record) => $livewire instanceof EditRecord && $record->hasMedia(
-                                    Post::HERO_IMAGE
-                                )
+                            fn (Page $livewire, Post $record) => $livewire instanceof EditRecord && $record->hasMedia(
+                                Post::HERO_IMAGE
+                            )
                         )
                         ->disabled()
-                        ->formatStateUsing(fn(Post $record) => $record->getFirstMediaUrl(Post::HERO_IMAGE))
+                        ->formatStateUsing(fn (Post $record) => $record->getFirstMediaUrl(Post::HERO_IMAGE))
                         ->columnSpan(['md' => 3]),
                     Forms\Components\TextInput::make('sns-link')
                         ->visible(
-                            fn(Page $livewire, Post $record) => $livewire instanceof EditRecord && $record->hasMedia(
-                                    Post::HERO_IMAGE
-                                )
+                            fn (Page $livewire, Post $record) => $livewire instanceof EditRecord && $record->hasMedia(
+                                Post::HERO_IMAGE
+                            )
                         )
                         ->disabled()
-                        ->formatStateUsing(fn(Post $record) => $record->getFirstMediaUrl(Post::HERO_IMAGE, 'twitter'))
+                        ->formatStateUsing(fn (Post $record) => $record->getFirstMediaUrl(Post::HERO_IMAGE, 'twitter'))
                         ->columnSpan(['md' => 3]),
                     Forms\Components\TextInput::make('thumbnail')
                         ->visible(
-                            fn(Page $livewire, Post $record) => $livewire instanceof EditRecord && $record->hasMedia(
-                                    Post::HERO_IMAGE
-                                )
+                            fn (Page $livewire, Post $record) => $livewire instanceof EditRecord && $record->hasMedia(
+                                Post::HERO_IMAGE
+                            )
                         )
                         ->disabled()
-                        ->formatStateUsing(fn(Post $record) => $record->getFirstMediaUrl(Post::HERO_IMAGE, 'thumb'))
+                        ->formatStateUsing(fn (Post $record) => $record->getFirstMediaUrl(Post::HERO_IMAGE, 'thumb'))
                         ->columnSpan(['md' => 3]),
                 ])->columns(['default' => 1, 'sm' => 3]),
                 Forms\Components\Card::make([
@@ -135,7 +133,7 @@ class PostResource extends Resource
                 Tables\Columns\TextColumn::make('description')
                     ->searchable(isIndividual: true, isGlobal: false)
                     ->wrap()
-                    ->formatStateUsing(fn(?string $state) => $state ? \Str::limit($state, 50) : '')
+                    ->formatStateUsing(fn (?string $state) => $state ? \Str::limit($state, 50) : '')
                     ->sortable(),
                 Tables\Columns\IconColumn::make('is_released')
                     ->boolean()

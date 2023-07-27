@@ -21,7 +21,7 @@ class EventServiceProvider extends ServiceProvider
 
         \App\Events\Post\CreatedEvent::class => [
             \App\Listeners\Post\CreatedListener::class,
-        ]
+        ],
     ];
 
     /**
