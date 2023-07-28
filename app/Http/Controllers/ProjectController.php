@@ -8,9 +8,8 @@ use Illuminate\Http\Response;
 
 class ProjectController extends Controller
 {
-    public function index(): View
+    public function index(string $locale): View
     {
-        $locale = app()->getLocale();
         $projects = Project::query()
             ->select([
                 'id',
@@ -26,6 +25,7 @@ class ProjectController extends Controller
             ->get();
 
         return view('projects.index', [
+            'locale' => $locale,
             'projects' => $projects,
         ]);
     }

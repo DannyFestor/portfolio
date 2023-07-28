@@ -11,7 +11,7 @@
                 >
                     <h2 class="w-full font-bold">
                         <a
-                            href="{{ route('project.show', $project) }}"
+                            href="{{ route('project.show', ['locale' => $locale, 'project' => $project]) }}"
                             class="block w-full p-2 text-center hover:bg-slate-200"
                         >
                             {{ $project->title }}
@@ -19,7 +19,9 @@
                     </h2>
                     <div class="h-full max-h-[300px] w-full">
                         @if ($project->hasMedia(\App\Models\Project::PROJECT_IMAGE))
-                            <a href="{{ route('project.show', $project) }}">
+                            <a
+                                href="{{ route('project.show', ['locale' => $locale, 'project', $project]) }}"
+                            >
                                 <img
                                     src="{{ $project->getFirstMediaUrl(\App\Models\Project::PROJECT_IMAGE, 'preview') }}"
                                     alt=""
@@ -31,7 +33,7 @@
                     <section class="p-2">
                         {{ $project->body }}
                         <a
-                            href="{{ route('project.show', $project) }}"
+                            href="{{ route('project.show', ['locale' => $locale, 'project' => $project]) }}"
                             class="hover:underline"
                         >
                             {{ __('project.view') }}

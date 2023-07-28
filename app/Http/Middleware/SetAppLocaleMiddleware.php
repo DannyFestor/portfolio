@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Enums\Locales;
 use Closure;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
@@ -13,10 +14,19 @@ class SetAppLocaleMiddleware
 {
     public function handle(Request $request, Closure $next): Response|RedirectResponse|JsonResponse
     {
-        $locale = Str::before(request()->getPreferredLanguage(), '_');
-        if ($request->session()->has('locale')) {
+        if ($request->route('locale') && in_array($request->route('locale'), Locales::toArray())) {
+            $locale = $request->route('locale');
+        } elseif ($request->session()->has('locale')) {
             $locale = $request->session()->get('locale');
+        } else {
+            $locale = Str::before(request()->getPreferredLanguage(), '_');
         }
+
+        if (!in_array($locale, Locales::toArray())) {
+            $locale = 'en';
+            session()->put('locale', $locale);
+        }
+
         app()->setLocale($locale);
 
         return $next($request);

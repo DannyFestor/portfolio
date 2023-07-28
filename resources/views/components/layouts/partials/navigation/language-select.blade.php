@@ -15,6 +15,7 @@
         name="locale"
         x-model="selectedOption"
     />
+    <input type="hidden" id="route" name="route" x-model="selectedRoute" />
     <section
         @click="toggleIsOpen"
         class="m-1 flex cursor-pointer items-center rounded border bg-white p-1"
@@ -37,7 +38,7 @@
     >
         <template x-for="option in options">
             <section
-                @click="setSelectedOption(option.code)"
+                @click="setSelectedOption(option.code, option.route)"
                 class="m-1 flex cursor-pointer items-center rounded border p-1 hover:bg-slate-200"
             >
                 <section class="h-6 w-8">
@@ -63,28 +64,34 @@
                     {
                         code: 'de',
                         name: 'German | Deutsch',
+                        route: '{{ route($routeName, ['locale' => 'de']) }}',
                         flag: '{{ asset('flags/de.svg') }}',
                     },
                     {
                         code: 'en',
                         name: 'English',
+                        route: '{{ route($routeName, ['locale' => 'en']) }}',
                         flag: '{{ asset('flags/us.svg') }}',
                     },
                     {
                         code: 'ja',
                         name: 'Japanese | 日本語',
+                        route: '{{ route($routeName, ['locale' => 'ja']) }}',
                         flag: '{{ asset('flags/jp.svg') }}',
                     },
                 ],
 
                 selectedOption: '{{ app()->getLocale() }}',
+                selectedRoute: '',
 
-                setSelectedOption(code) {
+                setSelectedOption(code, route) {
                     if (!this.codes.includes(code)) {
                         return;
                     }
 
                     this.selectedOption = code;
+                    this.selectedRoute = route;
+
                     this.$nextTick(() => {
                         this.$refs.form.submit();
                     });

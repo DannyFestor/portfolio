@@ -8,7 +8,7 @@
         @endif
 
         <x-layouts.partials.navigation.link
-            href="{{ route('home') }}"
+            href="{{ route('home', ['locale' => $locale]) }}"
             label="Homepage"
             aria-label="Homepage"
         >
@@ -37,7 +37,7 @@
             Blog
         </x-layouts.partials.navigation.link>
         <x-layouts.partials.navigation.link
-            href="{{ route('project.index') }}"
+            href="{{ route('project.index', ['locale' => $locale]) }}"
             label="Projects I am or have been involved with"
             aria-label="Projects I am or have been involved with"
         >
@@ -52,7 +52,7 @@
             Projects
         </x-layouts.partials.navigation.link>
         <x-layouts.partials.navigation.link
-            href="/contact"
+            href="{{ route('contact.index', ['locale' => $locale]) }}"
             label="Don't hesitate to contact me"
             aria-label="Don't hesitate to contact me"
         >
