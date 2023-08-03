@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Admin\Post;
+namespace App\Livewire\Admin\Post;
 
 use App\Models\Post;
 use Carbon\Exceptions\InvalidFormatException;

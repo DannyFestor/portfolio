@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Blog;
+namespace App\Livewire\Blog;
 
 use App\Models\Post;
 use App\Models\Tag;
@@ -8,6 +8,7 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
+use Livewire\Attributes\Url;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -15,6 +16,7 @@ class Index extends Component
 {
     use WithPagination;
 
+    #[Url(as: 's')]
     public string $search = '';
 
     /**
@@ -26,14 +28,6 @@ class Index extends Component
      * @var array<string>
      */
     public array $selectedTags = [];
-
-    /**
-     * @var array<string, array<string, string|array<string>>>
-     */
-    protected $queryString = [
-        'search' => ['as' => 's', 'except' => ''],
-        'selectedTags' => ['as' => 't', 'except' => []],
-    ];
 
     public function mount(): void
     {

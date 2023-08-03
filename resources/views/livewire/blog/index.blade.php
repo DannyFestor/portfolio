@@ -1,27 +1,7 @@
 <x-layouts.partials.content-wrap>
-    <section
-        x-data="{
-            search: $wire.entangle('search'),
-            selectedTags: $wire.entangle('selectedTags'),
-
-            addTag(title) {
-                if (! this.selectedTags.includes(title)) {
-                    this.selectedTags.push(title)
-                }
-            },
-
-            removeTitle(title) {
-                this.selectedTags = this.selectedTags.filter((tag) => tag !== title)
-            },
-
-            onSubmit() {
-                console.log('submit', this.search)
-            },
-        }"
-        class="mx-auto grid max-w-7xl gap-4 sm:grid-cols-4"
-    >
+    <section class="mx-auto grid max-w-7xl gap-4 sm:grid-cols-4">
         <form
-            @submit.prevent
+            wire:submit
             class="flex flex-col rounded bg-white p-4 shadow sm:col-span-3"
         >
             <section class="mb-2">
@@ -57,31 +37,31 @@
                 Search:
                 <input
                     type="text"
-                    x-model.debounce.500ms="search"
+                    wire:model.live.debounce.500ms="search"
                     class="form-input w-full rounded"
                 />
             </label>
 
-            <section class="mt-2 flex flex-wrap gap-2">
-                @foreach ($tags->filter(fn (\App\Models\Tag $tag) => in_array($tag->title, $selectedTags)) as $tag)
-                    <div
-                        @click="removeTitle('{{ $tag->title }}')"
-                        class="flex cursor-pointer items-center gap-1 rounded px-2 py-1"
-                        style="
-                            color: {{ $tag->text_color }};
-                            background-color: {{ $tag->background_color }};
-                            border: 1px solid {{ $tag->border_color }};
-                        "
-                    >
-                        <img
-                            class="h-6 w-6"
-                            src="{{ asset('icons/' . $tag->logo) }}"
-                            alt=""
-                        />
-                        {{ $tag->title }}
-                    </div>
-                @endforeach
-            </section>
+            {{--            <section class="mt-2 flex flex-wrap gap-2">--}}
+            {{--                @foreach ($tags->filter(fn (\App\Models\Tag $tag) => in_array($tag->title, $selectedTags)) as $tag)--}}
+            {{--                    <div--}}
+            {{--                        @click="removeTitle('{{ $tag->title }}')"--}}
+            {{--                        class="flex cursor-pointer items-center gap-1 rounded px-2 py-1"--}}
+            {{--                        style="--}}
+            {{--                            color: {{ $tag->text_color }};--}}
+            {{--                            background-color: {{ $tag->background_color }};--}}
+            {{--                            border: 1px solid {{ $tag->border_color }};--}}
+            {{--                        "--}}
+            {{--                    >--}}
+            {{--                        <img--}}
+            {{--                            class="h-6 w-6"--}}
+            {{--                            src="{{ asset('icons/' . $tag->logo) }}"--}}
+            {{--                            alt=""--}}
+            {{--                        />--}}
+            {{--                        {{ $tag->title }}--}}
+            {{--                    </div>--}}
+            {{--                @endforeach--}}
+            {{--            </section>--}}
         </form>
 
         <aside

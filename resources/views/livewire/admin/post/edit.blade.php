@@ -1,11 +1,11 @@
 <x-layouts.partials.content-wrap class="flex flex-col">
     <form
         x-data="{
-            title: $wire.entangle('title'),
-            slug: $wire.entangle('slug'),
-            description: $wire.entangle('description'),
-            released_at: $wire.entangle('released_at'),
-            is_released: $wire.entangle('is_released'),
+            title: $wire.$entangle('title', true),
+            slug: $wire.$entangle('slug', true),
+            description: $wire.$entangle('description', true),
+            released_at: $wire.$entangle('released_at', true),
+            is_released: $wire.$entangle('is_released', true),
 
             onCancel() {
                 $wire.onCancel()

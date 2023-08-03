@@ -1,13 +1,13 @@
 <script>
     document.addEventListener('alpine:init', () => {
-        Alpine.store('darkMode', {
-            on: false,
-
-            toggle() {
-                this.on = !this.on;
-            },
-        });
-
+        //     Alpine.store('darkMode', {
+        //         on: false,
+        //
+        //         toggle() {
+        //             this.on = !this.on;
+        //         },
+        //     });
+        //
         Alpine.store('navigation', {
             open: false,
 

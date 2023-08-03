@@ -5,18 +5,18 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\ContactResource\Pages;
 use App\Models\Contact;
 use Filament\Forms;
-use Filament\Resources\Form;
+use Filament\Forms\Form;
 use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Resources\Resource;
-use Filament\Resources\Table;
 use Filament\Tables;
+use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 
 class ContactResource extends Resource
 {
     protected static ?string $model = Contact::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-mail-open';
+    protected static ?string $navigationIcon = 'heroicon-o-envelope-open';
 
     public static function table(Table $table): Table
     {
@@ -35,7 +35,7 @@ class ContactResource extends Resource
                     ->formatStateUsing(fn ($state) => \Str::limit($state)),
                 Tables\Columns\IconColumn::make('seen_at')
                     ->options([
-                        'heroicon-o-badge-check',
+                        'heroicon-o-check-badge',
                         'heroicon-o-x-circle' => fn ($state): bool => $state === null,
                     ])
                     ->colors([
@@ -132,7 +132,7 @@ class ContactResource extends Resource
         return false;
     }
 
-    protected static function getNavigationBadge(): ?string
+    public static function getNavigationBadge(): ?string
     {
         return static::getModel()::whereNull('seen_at')->count();
     }

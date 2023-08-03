@@ -4,10 +4,10 @@ namespace App\Filament\Resources\PostResource\RelationManagers;
 
 use App\Models\Metatag;
 use Filament\Forms;
-use Filament\Resources\Form;
+use Filament\Forms\Form;
 use Filament\Resources\RelationManagers\RelationManager;
-use Filament\Resources\Table;
 use Filament\Tables;
+use Filament\Tables\Table;
 use Illuminate\Support\HtmlString;
 
 class MetatagsRelationManager extends RelationManager
@@ -16,7 +16,7 @@ class MetatagsRelationManager extends RelationManager
 
     protected static ?string $recordTitleAttribute = 'tag';
 
-    public static function form(Form $form): Form
+    public function form(Form $form): Form
     {
         return $form
             ->schema([
@@ -63,12 +63,12 @@ class MetatagsRelationManager extends RelationManager
         }
 
         return Forms\Components\Section::make('Properties')
-            ->visible(fn (\Closure $get) => $get('tag') === $tag)
+            ->visible(fn (\Filament\Forms\Get $get) => $get('tag') === $tag)
             ->schema($schema)
             ->columnSpan(1);
     }
 
-    public static function table(Table $table): Table
+    public function table(Table $table): Table
     {
         return $table
             ->columns([

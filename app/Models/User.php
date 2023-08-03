@@ -45,7 +45,7 @@ class User extends Authenticatable implements FilamentUser, MustVerifyEmail
         'is_admin' => 'boolean',
     ];
 
-    public function canAccessFilament(): bool
+    public function canAccessPanel(\Filament\Panel $panel): bool
     {
         return str_ends_with($this->email, '@festor.info') && $this->hasVerifiedEmail();
     }

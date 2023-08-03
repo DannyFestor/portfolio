@@ -31,7 +31,7 @@ it('shows blog posts that are released an in the past', function () {
     $this
         ->get(route('blog.index'))
         ->assertViewIs('blog.index')
-        ->assertSeeLivewire(\App\Http\Livewire\Blog\Index::class)
+        ->assertSeeLivewire(\App\Livewire\Blog\Index::class)
         ->assertSee($releasedPostPast->title)
         ->assertSee(route('blog.show', $releasedPostPast))
         ->assertSee($releasedPostPast->user->name)
