@@ -72,27 +72,6 @@
         @pushonce('vite')
             @vite(['resources/js/shiki.js'])
         @endpushonce
-
-        {{-- <script defer src="https://cdn.jsdelivr.net/npm/shiki"></script> --}}
-
-        {{-- <script defer> --}}
-        {{-- document.addEventListener('DOMContentLoaded', () => { --}}
-        {{-- // console.log('do it'); --}}
-        {{-- const elements = document.querySelectorAll("#post pre code"); --}}
-        {{-- elements.forEach((element) => { --}}
-        {{-- const language = element.className.match(/\s*language-(.*)\s*/) --}}
-        {{-- console.log(language, typeof language, language !== null ? language[1] : 0); --}}
-        {{-- shiki --}}
-        {{-- .getHighlighter({ --}}
-        {{-- theme: 'one-dark-pro', --}}
-        {{-- }) --}}
-        {{-- .then(highlighter => { --}}
-        {{-- const code = highlighter.codeToHtml(element.innerText, { lang: language !== null ? language[1] ?? "html" : "html" }); --}}
-        {{-- element.innerHTML = code; --}}
-        {{-- }); --}}
-        {{-- }) --}}
-        {{-- }); --}}
-        {{-- </script> --}}
     </x-layouts.partials.content-wrap>
 
     @push('metatags')

@@ -30,7 +30,7 @@ class ProjectController extends Controller
         ]);
     }
 
-    public function show(Project $project): View
+    public function show(string $locale, Project $project): View
     {
         if (!$project->display) {
             abort(Response::HTTP_NOT_FOUND);
@@ -56,11 +56,6 @@ class ProjectController extends Controller
         if ($project->hasMedia(Project::PROJECT_IMAGE)) {
             $p['img_url'] = $project->getFirstMediaUrl(Project::PROJECT_IMAGE);
         }
-
-        //        dd($project, $p);
-        //        dd(
-        //        isset($p['img_url'])
-        //        );
 
         return view('projects.show', [
             'project' => $p,

@@ -64,19 +64,19 @@
                     {
                         code: 'de',
                         name: 'German | Deutsch',
-                        route: '{{ route($routeName, ['locale' => 'de']) }}',
+                        route: '{{ route($routeName, array_merge(['locale' => 'de'], $options)) }}',
                         flag: '{{ asset('flags/de.svg') }}',
                     },
                     {
                         code: 'en',
                         name: 'English',
-                        route: '{{ route($routeName, ['locale' => 'en']) }}',
+                        route: '{{ route($routeName, array_merge(['locale' => 'en'], $options)) }}',
                         flag: '{{ asset('flags/us.svg') }}',
                     },
                     {
                         code: 'ja',
                         name: 'Japanese | 日本語',
-                        route: '{{ route($routeName, ['locale' => 'ja']) }}',
+                        route: '{{ route($routeName, array_merge(['locale' => 'ja'], $options)) }}',
                         flag: '{{ asset('flags/jp.svg') }}',
                     },
                 ],

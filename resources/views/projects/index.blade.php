@@ -20,7 +20,7 @@
                     <div class="h-full max-h-[300px] w-full">
                         @if ($project->hasMedia(\App\Models\Project::PROJECT_IMAGE))
                             <a
-                                href="{{ route('project.show', ['locale' => $locale, 'project', $project]) }}"
+                                href="{{ route('project.show', ['locale' => $locale, 'project' => $project]) }}"
                             >
                                 <img
                                     src="{{ $project->getFirstMediaUrl(\App\Models\Project::PROJECT_IMAGE, 'preview') }}"

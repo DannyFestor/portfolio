@@ -15,7 +15,19 @@ class ViewServiceProvider extends ServiceProvider
         });
 
         Facades\View::composer('components.layouts.partials.navigation.language-select', function (View $view) {
-            $view->with('routeName', request()->route()->getName());
+            $routeName = request()->route()->getName();
+            $options = [];
+
+            if ($routeName === 'blog.show') {
+                $options['post'] = request()->route('post');
+            }
+            if ($routeName === 'project.show') {
+                $options['project'] = request()->route('project');
+            }
+
+            $view->with('routeName', $routeName);
+
+            $view->with('options', $options);
         });
     }
 }
