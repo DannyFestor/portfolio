@@ -79,6 +79,15 @@ class CreatedListener
                 'metatagable_type' => Post::class,
                 'tag' => 'meta',
                 'properties' => json_encode([
+                    'name' => 'title',
+                    'content' => implode(' - ', [$post->title, $post->subtitle]),
+                ]),
+            ],
+            [
+                'metatagable_id' => $post->id,
+                'metatagable_type' => Post::class,
+                'tag' => 'meta',
+                'properties' => json_encode([
                     'name' => 'description',
                     'content' => implode(' - ', [$post->title, $post->subtitle]),
                 ]),
