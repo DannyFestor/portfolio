@@ -1,6 +1,8 @@
 <form
     x-data="language_select"
+    {{ $attributes->merge() }}
     x-ref="form"
+    x-modelable="isVisible"
     @submit.prevent
     @click.outside="close"
     @mouseleave="close"
@@ -15,18 +17,18 @@
         name="locale"
         x-model="selectedOption"
     />
-    <input type="hidden" id="route" name="route" x-model="selectedRoute" />
+    <input type="hidden" id="route" name="route" x-model="selectedRoute"/>
     <section
         @click="toggleIsOpen"
         class="m-1 flex cursor-pointer items-center rounded border bg-white p-1"
     >
         <section class="flex h-6 w-8 items-center">
-            <img :src="displayOption.flag" alt="" />
+            <img :src="displayOption.flag" alt=""/>
         </section>
         <section
             x-text="displayOption.name"
             class="flex items-center overflow-hidden transition-opacity group-hover:visible group-hover:ml-4 group-hover:h-full group-hover:w-auto group-hover:opacity-100"
-            :class="$store.navigation.open ? 'visible opacity-100 ml-4 h-full w-auto' : 'invisible opacity-0 ml-0 h-0 w-0'"
+            :class="isVisible ? 'visible opacity-100 ml-4 h-full w-auto' : 'invisible opacity-0 ml-0 h-0 w-0'"
         ></section>
     </section>
 
@@ -42,12 +44,12 @@
                 class="m-1 flex cursor-pointer items-center rounded border p-1 hover:bg-slate-200"
             >
                 <section class="h-6 w-8">
-                    <img :src="option.flag" alt="" />
+                    <img :src="option.flag" alt=""/>
                 </section>
                 <section
                     x-text="option.name"
                     class="flex items-center overflow-hidden transition-opacity group-hover:visible group-hover:ml-4 group-hover:h-full group-hover:w-auto group-hover:opacity-100"
-                    :class="$store.navigation.open ? 'visible opacity-100 ml-4 h-full w-auto' : 'invisible opacity-0 ml-0 h-0 w-0'"
+                    :class="isVisible ? 'visible opacity-100 ml-4 h-full w-auto' : 'invisible opacity-0 ml-0 h-0 w-0'"
                 ></section>
             </section>
         </template>
@@ -59,6 +61,7 @@
         document.addEventListener('alpine:init', () => {
             Alpine.data('language_select', () => ({
                 isOpen: false,
+                isVisible: false,
 
                 options: [
                     {

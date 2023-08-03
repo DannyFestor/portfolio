@@ -64,28 +64,28 @@
             {{--            </section>--}}
         </form>
 
-        <aside
-            class="flex max-h-32 flex-col gap-1 overflow-y-scroll rounded bg-white p-2 shadow"
-        >
-            @foreach ($tags->filter(fn (\App\Models\Tag $tag) => !in_array($tag->title, $selectedTags)) as $tag)
-                <div
-                    @click="addTag('{{ $tag->title }}')"
-                    class="flex cursor-pointer items-center gap-1 rounded px-2 py-1"
-                    style="
-                        color: {{ $tag->text_color }};
-                        background-color: {{ $tag->background_color }};
-                        border: 1px solid {{ $tag->border_color }};
-                    "
-                >
-                    <img
-                        class="h-6 w-6"
-                        src="{{ asset('icons/' . $tag->logo) }}"
-                        alt=""
-                    />
-                    {{ $tag->title }}
-                </div>
-            @endforeach
-        </aside>
+        {{--        <aside--}}
+        {{--            class="flex max-h-32 flex-col gap-1 overflow-y-scroll rounded bg-white p-2 shadow"--}}
+        {{--        >--}}
+        {{--            @foreach ($tags->filter(fn (\App\Models\Tag $tag) => !in_array($tag->title, $selectedTags)) as $tag)--}}
+        {{--                <div--}}
+        {{--                    @click="addTag('{{ $tag->title }}')"--}}
+        {{--                    class="flex cursor-pointer items-center gap-1 rounded px-2 py-1"--}}
+        {{--                    style="--}}
+        {{--                        color: {{ $tag->text_color }};--}}
+        {{--                        background-color: {{ $tag->background_color }};--}}
+        {{--                        border: 1px solid {{ $tag->border_color }};--}}
+        {{--                    "--}}
+        {{--                >--}}
+        {{--                    <img--}}
+        {{--                        class="h-6 w-6"--}}
+        {{--                        src="{{ asset('icons/' . $tag->logo) }}"--}}
+        {{--                        alt=""--}}
+        {{--                    />--}}
+        {{--                    {{ $tag->title }}--}}
+        {{--                </div>--}}
+        {{--            @endforeach--}}
+        {{--        </aside>--}}
     </section>
 
     <section id="posts" class="mx-auto mt-8 flex max-w-7xl flex-col gap-4">

@@ -1,13 +1,16 @@
-<section class="relative">
+<section x-data="{ isExpanded: false }"
+         {{ $attributes->merge() }}
+         x-modelable="isExpanded"
+         class="relative">
     <section
         class="h-18 absolute bottom-0 flex flex-wrap items-center justify-center p-2 transition-all group-hover:w-[13rem] group-hover:gap-4"
-        :class="$store.navigation.open ? 'w-[13rem] gap-4' : 'w-[3rem] gap-0.5'"
+        :class="isExpanded ? 'w-[13rem] gap-4' : 'w-[3rem] gap-0.5'"
     >
         <a
             href="https://github.com/DannyFestor"
             target="_blank"
             class="transition-all group-hover:h-8 group-hover:w-8"
-            :class="$store.navigation.open ? 'h-8 w-8' : 'h-2 w-2'"
+            :class="isExpanded ? 'h-8 w-8' : 'h-2 w-2'"
         >
             <svg
                 role="img"
@@ -25,7 +28,7 @@
             href="https://www.linkedin.com/in/danny-festor"
             target="_blank"
             class="transition-all group-hover:h-8 group-hover:w-8"
-            :class="$store.navigation.open ? 'h-8 w-8' : 'h-2 w-2'"
+            :class="isExpanded ? 'h-8 w-8' : 'h-2 w-2'"
         >
             <svg
                 role="img"
@@ -43,7 +46,7 @@
             href="https://twitter.com/Denakino"
             target="_blank"
             class="transition-all group-hover:h-8 group-hover:w-8"
-            :class="$store.navigation.open ? 'h-8 w-8' : 'h-2 w-2'"
+            :class="isExpanded ? 'h-8 w-8' : 'h-2 w-2'"
         >
             <svg
                 role="img"
@@ -61,7 +64,7 @@
             href="https://ruhr.social/@denakino"
             target="_blank"
             class="transition-all group-hover:h-8 group-hover:w-8"
-            :class="$store.navigation.open ? 'h-8 w-8' : 'h-2 w-2'"
+            :class="isExpanded ? 'h-8 w-8' : 'h-2 w-2'"
         >
             <svg
                 role="img"
@@ -79,7 +82,7 @@
             href="https://www.youtube.com/@denakino"
             target="_blank"
             class="transition-all group-hover:h-8 group-hover:w-8"
-            :class="$store.navigation.open ? 'h-8 w-8' : 'h-2 w-2'"
+            :class="isExpanded ? 'h-8 w-8' : 'h-2 w-2'"
         >
             <svg
                 role="img"
@@ -97,7 +100,7 @@
             href="https://www.twitch.tv/danakino"
             target="_blank"
             class="transition-all group-hover:h-8 group-hover:w-8"
-            :class="$store.navigation.open ? 'h-8 w-8' : 'h-2 w-2'"
+            :class="isExpanded ? 'h-8 w-8' : 'h-2 w-2'"
         >
             <svg
                 role="img"

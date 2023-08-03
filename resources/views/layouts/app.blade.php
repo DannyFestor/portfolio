@@ -30,8 +30,9 @@
 <body
     class="flex min-h-screen flex-col bg-gradient-to-br from-white to-slate-200 font-sans antialiased"
 >
-<x-layouts.partials.navigation/>
-<x-layouts.partials.hamburger/>
+<livewire:navigation/>
+{{--<x-layouts.partials.navigation/>--}}
+{{--<x-layouts.partials.hamburger/>--}}
 
 {{ $slot }}
 
@@ -39,6 +40,5 @@
 <x-layouts.partials.footer-script/>
 
 @stack('scripts')
-@livewireScriptConfig
 </body>
 </html>

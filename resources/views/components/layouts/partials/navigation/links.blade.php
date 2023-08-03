@@ -1,16 +1,22 @@
-<section id="nav-links" class="relative">
+<section x-data="{ isExpanded: false }"
+         x-modelable="isExpanded"
+         {{ $attributes->merge() }}
+         id="nav-links"
+         label="Navigation Links"
+         aria-label="Navigation Links"
+         class="relative">
     <section
         class="absolute -translate-y-1/2 group-hover:w-[13rem]"
-        :class="$store.navigation.open ? 'w-[13rem]' : 'w-[3rem]'"
+        :class="isExpanded ? 'w-[13rem]' : 'w-[3rem]'"
     >
         @if (Route::is('admin.*'))
             ADMIN
         @endif
 
-        <x-layouts.partials.navigation.link
-            href="{{ route('home', ['locale' => $locale]) }}"
-            label="Homepage"
-            aria-label="Homepage"
+        <x-layouts.partials.navigation.link x-model="isExpanded"
+                                            href="{{ route('home', ['locale' => $locale]) }}"
+                                            label="Homepage"
+                                            aria-label="Homepage"
         >
             <x-slot:icon>
                 <path
@@ -18,13 +24,13 @@
                     stroke-linejoin="round"
                     d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
                 />
-            </x-slot>
-            About
+                </x-slot>
+                About
         </x-layouts.partials.navigation.link>
-        <x-layouts.partials.navigation.link
-            href="{{ route('blog.index') }}"
-            label="Blog"
-            aria-label="Blog"
+        <x-layouts.partials.navigation.link x-model="isExpanded"
+                                            href="{{ route('blog.index') }}"
+                                            label="Blog"
+                                            aria-label="Blog"
         >
             <x-slot:icon>
                 <path
@@ -33,13 +39,13 @@
                     stroke-linejoin="round"
                     stroke-width="2"
                 />
-            </x-slot>
-            Blog
+                </x-slot>
+                Blog
         </x-layouts.partials.navigation.link>
-        <x-layouts.partials.navigation.link
-            href="{{ route('project.index', ['locale' => $locale]) }}"
-            label="Projects I am or have been involved with"
-            aria-label="Projects I am or have been involved with"
+        <x-layouts.partials.navigation.link x-model="isExpanded"
+                                            href="{{ route('project.index', ['locale' => $locale]) }}"
+                                            label="Projects I am or have been involved with"
+                                            aria-label="Projects I am or have been involved with"
         >
             <x-slot:icon>
                 <path
@@ -48,13 +54,13 @@
                     stroke-linejoin="round"
                     stroke-width="2"
                 />
-            </x-slot>
-            Projects
+                </x-slot>
+                Projects
         </x-layouts.partials.navigation.link>
-        <x-layouts.partials.navigation.link
-            href="{{ route('contact.index', ['locale' => $locale]) }}"
-            label="Don't hesitate to contact me"
-            aria-label="Don't hesitate to contact me"
+        <x-layouts.partials.navigation.link x-model="isExpanded"
+                                            href="{{ route('contact.index', ['locale' => $locale]) }}"
+                                            label="Don't hesitate to contact me"
+                                            aria-label="Don't hesitate to contact me"
         >
             <x-slot:icon>
                 <path
@@ -63,10 +69,10 @@
                     stroke-linejoin="round"
                     stroke-width="2"
                 />
-            </x-slot>
-            Contact
+                </x-slot>
+                Contact
         </x-layouts.partials.navigation.link>
 
-        <x-layouts.partials.navigation.language-select />
+        <x-layouts.partials.navigation.language-select x-model="isExpanded"/>
     </section>
 </section>
