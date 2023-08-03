@@ -9,11 +9,12 @@
                     id="hero-image"
                     class="max-h-[300px] w-full overflow-hidden rounded-t"
                 >
-                    <img
-                        src="{{ $post->getFirstMediaUrl(\App\Models\Post::HERO_IMAGE) }}"
-                        alt=""
-                        class="h-full w-full"
-                    />
+                    {{ $post->getFirstMedia(\App\Models\Post::HERO_IMAGE) }}
+                    {{-- <img --}}
+                    {{-- src="{{ $post->getFirstMediaUrl(\App\Models\Post::HERO_IMAGE) }}" --}}
+                    {{-- alt="" --}}
+                    {{-- class="h-full w-full" --}}
+                    {{-- /> --}}
                 </section>
             @endif
 
