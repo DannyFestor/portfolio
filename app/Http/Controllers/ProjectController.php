@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Project;
+use App\Models\User;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Response;
 
@@ -35,6 +36,10 @@ class ProjectController extends Controller
         if (!$project->display) {
             abort(Response::HTTP_NOT_FOUND);
         }
+        /** @var User|null $user */
+        $project->load('metatags');
+
+        $metatags = $this->buildMetags($project);
 
         $locale = app()->getLocale();
         $p = [
@@ -61,6 +66,37 @@ class ProjectController extends Controller
             'project' => $p,
             'tags' => $project->tags,
             'screenshots' => $project->getMedia(Project::PROJECT_IMAGES),
+            'metatags' => implode("\n\t\t", $metatags),
         ]);
+    }
+
+    /**
+     * @return array<string>
+     */
+    private function buildMetags(Project $project): array
+    {
+        $metatags = [];
+        foreach ($project->metatags as $metatag) {
+            $properties = [];
+            foreach ($metatag->properties as $label => $value) {
+                if (empty($value)) {
+                    continue;
+                }
+
+                $properties[] = "$label=\"$value\"";
+            }
+
+            $tag = '<';
+            $tag .= $metatag->tag;
+            $tag .= ' ';
+            $tag .= implode(' ', $properties);
+            $tag .= '>';
+            if ($metatag->tag === 'script') {
+                $tag .= '</script>';
+            }
+            $metatags[] = $tag;
+        }
+
+        return $metatags;
     }
 }

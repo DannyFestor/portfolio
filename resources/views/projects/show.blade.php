@@ -94,4 +94,8 @@
     @pushonce('vite')
         @vite('resources/js/project-image.js')
     @endpushonce
+
+    @pushonce('metatags')
+        {!! $metatags !!}
+    @endpushonce
 </x-app-layout>

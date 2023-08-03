@@ -40,7 +40,8 @@ class Post extends Model implements HasMedia
         $this
             ->addMediaCollection(self::HERO_IMAGE)
             ->singleFile()
-            ->acceptsMimeTypes(['image/jpeg', 'image/png', 'image/jpeg'])
+            ->acceptsMimeTypes(['image/webp', 'image/jpeg', 'image/png', 'image/jpeg'])
+            ->generateResponsiveImages(true)
             ->registerMediaConversions(function (Media $media) {
                 $this
                     ->addMediaConversion('thumb')

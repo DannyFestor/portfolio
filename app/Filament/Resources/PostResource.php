@@ -176,11 +176,11 @@ class PostResource extends Resource
                 ->searchable(isIndividual: true, isGlobal: false)
                 ->wrap()
                 ->sortable(),
-            Tables\Columns\TextColumn::make('description')
-                ->searchable(isIndividual: true, isGlobal: false)
-                ->wrap()
-                ->formatStateUsing(fn (?string $state) => $state ? \Str::limit($state, 50) : '')
-                ->sortable(),
+            //            Tables\Columns\TextColumn::make('description')
+            //                ->searchable(isIndividual: true, isGlobal: false)
+            //                ->wrap()
+            //                ->formatStateUsing(fn (?string $state) => $state ? \Str::limit($state, 50) : '')
+            //                ->sortable(),
             Tables\Columns\IconColumn::make('is_released')
                 ->boolean()
                 ->sortable(),

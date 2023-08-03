@@ -3,6 +3,7 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\ProjectResource\Pages;
+use App\Filament\Resources\ProjectResource\RelationManagers\MetatagsRelationManager;
 use App\Models\Project;
 use Filament\Forms\Components\Field;
 use Filament\Forms\Components\Placeholder;
@@ -112,19 +113,19 @@ class ProjectResource extends Resource
 
                 TextColumn::make('title_ja'),
 
-                TextColumn::make('body_en'),
-
-                TextColumn::make('body_de'),
-
-                TextColumn::make('body_ja'),
+                //                TextColumn::make('body_en'),
+                //
+                //                TextColumn::make('body_de'),
+                //
+                //                TextColumn::make('body_ja'),
 
                 IconColumn::make('display')->boolean(),
 
                 TextColumn::make('sort'),
 
-                TextColumn::make('git_url'),
-
-                TextColumn::make('live_url'),
+                //                TextColumn::make('git_url'),
+                //
+                //                TextColumn::make('live_url'),
             ])->reorderable('sort');
     }
 
@@ -140,11 +141,10 @@ class ProjectResource extends Resource
         ];
     }
 
-    /**
-     * @return array<string>
-     */
-    public static function getGloballySearchableAttributes(): array
+    public static function getRelations(): array
     {
-        return [];
+        return [
+            MetatagsRelationManager::class,
+        ];
     }
 }
