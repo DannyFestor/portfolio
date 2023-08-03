@@ -15,7 +15,7 @@ class ViewServiceProvider extends ServiceProvider
         });
 
         Facades\View::composer('components.layouts.partials.navigation.language-select', function (View $view) {
-            $routeName = request()->route()->getName();
+            $routeName = request()->route()?->getName() ?? 'home';
             $options = [];
 
             if ($routeName === 'blog.show') {
