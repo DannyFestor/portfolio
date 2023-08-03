@@ -26,6 +26,7 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     @stack('vite')
     @stack('styles')
+    @filamentStyles
 </head>
 <body
     class="flex min-h-screen flex-col bg-gradient-to-br from-white to-slate-200 font-sans antialiased"
@@ -40,5 +41,6 @@
 <x-layouts.partials.footer-script/>
 
 @stack('scripts')
+@filamentScripts
 </body>
 </html>

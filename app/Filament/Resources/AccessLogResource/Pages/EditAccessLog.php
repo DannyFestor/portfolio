@@ -4,8 +4,8 @@ namespace App\Filament\Resources\AccessLogResource\Pages;
 
 use App\Filament\Resources\AccessLogResource;
 use Exception;
-use Filament\Pages\Actions\Action;
-use Filament\Pages\Actions\DeleteAction;
+use Filament\Actions\Action;
+use Filament\Actions\DeleteAction;
 use Filament\Resources\Pages\EditRecord;
 
 class EditAccessLog extends EditRecord

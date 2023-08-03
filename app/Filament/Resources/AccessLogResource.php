@@ -19,6 +19,8 @@ class AccessLogResource extends Resource
 
     protected static ?string $slug = 'access-logs';
 
+    protected static ?string $navigationIcon = 'heroicon-o-pencil-square';
+
     protected static ?string $recordTitleAttribute = 'id';
 
     // TODO: NICE LOOKING ACCESS WIDGETS

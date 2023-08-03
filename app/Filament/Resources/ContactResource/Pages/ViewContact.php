@@ -5,7 +5,7 @@ namespace App\Filament\Resources\ContactResource\Pages;
 use App\Filament\Resources\ContactResource;
 use App\Models\Contact;
 use Exception;
-use Filament\Pages\Actions;
+use Filament\Actions;
 use Filament\Resources\Pages\ViewRecord;
 use Illuminate\Support\HtmlString;
 

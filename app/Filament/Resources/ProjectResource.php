@@ -23,6 +23,8 @@ class ProjectResource extends Resource
 
     protected static ?string $slug = 'projects';
 
+    protected static ?string $navigationIcon = 'heroicon-o-presentation-chart-bar';
+
     protected static ?string $recordTitleAttribute = 'id';
 
     public static function form(Form $form): Form
