@@ -6,7 +6,6 @@ use App\Filament\Resources\PostResource\Pages;
 use App\Filament\Resources\PostResource\RelationManagers\MetatagsRelationManager;
 use App\Models\Post;
 use App\Models\Tag;
-use App\Models\User;
 use Carbon\Exceptions\InvalidFormatException;
 use Exception;
 use Filament\Forms;
@@ -42,18 +41,20 @@ class PostResource extends Resource
                     ->relationship('user', 'email')
                     ->searchable()
                     ->lazy()
-                    ->required()
-                    ->default(User::where('email', 'danny@festor.info')->first()->pluck('email', 'id')),
+                    ->required(),
+
                 Forms\Components\DateTimePicker::make('released_at')
                     ->reactive()
                     ->afterStateUpdated(function (callable $set, callable $get, ?string $state) {
                         $set('slug', self::buildSlug(title: $get('title'), date: $state));
                     })
                     ->default(Carbon::now()),
+
                 Forms\Components\Toggle::make('is_released')
                     ->inline(false)
                     ->lazy()
                     ->required(),
+
                 Forms\Components\TextInput::make('title')
                     ->required()
                     ->maxLength(255)
@@ -62,25 +63,30 @@ class PostResource extends Resource
                     ->afterStateUpdated(function (callable $set, callable $get, ?string $state) {
                         $set('slug', self::buildSlug(title: $state, date: $get('released_at')));
                     }),
+
                 Forms\Components\TextInput::make('subtitle')
                     ->maxLength(255)
                     ->lazy()
                     ->columnSpan(['sm' => 3]),
+
                 Forms\Components\TextInput::make('slug')
                     ->required()
                     ->maxLength(100)
                     ->lazy()
                     ->columnSpan(['default' => 1, 'sm' => 2]),
+
                 Forms\Components\Select::make('tags')
                     ->relationship('tags', 'title')
                     ->options(fn () => Tag::pluck('title', 'id')->toArray())
                     ->multiple()
                     ->maxItems(5),
+
                 Forms\Components\SpatieMediaLibraryFileUpload::make(Post::HERO_IMAGE)
                     ->collection(Post::HERO_IMAGE)
                     ->multiple(false)
                     ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp'])
                     ->columnSpan(['sm' => 3]),
+
                 Forms\Components\TextInput::make('normal-link')
                     ->visible(
                         fn (Page $livewire, ?Post $record) => $livewire instanceof EditRecord && $record?->hasMedia(
@@ -90,6 +96,7 @@ class PostResource extends Resource
                     ->disabled()
                     ->formatStateUsing(fn (?Post $record) => $record?->getFirstMediaUrl(Post::HERO_IMAGE))
                     ->columnSpan(['md' => 3]),
+
                 Forms\Components\TextInput::make('sns-link')
                     ->visible(
                         fn (Page $livewire, ?Post $record) => $livewire instanceof EditRecord && $record?->hasMedia(
@@ -99,6 +106,7 @@ class PostResource extends Resource
                     ->disabled()
                     ->formatStateUsing(fn (?Post $record) => $record?->getFirstMediaUrl(Post::HERO_IMAGE, 'twitter'))
                     ->columnSpan(['md' => 3]),
+
                 Forms\Components\TextInput::make('thumbnail')
                     ->visible(
                         fn (Page $livewire, ?Post $record) => $livewire instanceof EditRecord && $record?->hasMedia(
