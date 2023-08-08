@@ -2,6 +2,102 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+    font-family: 'Rubik';
+    font-style: normal;
+    font-weight: 300;
+    font-display: swap;
+    src: local('Rubik Light'), url('../fonts/Rubik-Light.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Rubik';
+    font-style: italic;
+    font-weight: 300;
+    font-display: swap;
+    src: local('Rubik Light Italic'), url('../fonts/Rubik-LightItalic.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Rubik';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: local('Rubik Regular'), url('../fonts/Rubik-Regular.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Rubik';
+    font-style: italic;
+    font-weight: 400;
+    font-display: swap;
+    src: local('Rubik Italic'), url('../fonts/Rubik-Italic.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Rubik';
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: local('Rubik Bold'), url('../fonts/Rubik-Bold.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Rubik';
+    font-style: italic;
+    font-weight: 700;
+    font-display: swap;
+    src: local('Rubik Italic'), url('../fonts/Rubik-BoldItalic.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Bitter';
+    font-style: normal;
+    font-weight: 300;
+    font-display: swap;
+    src: local('Bitter Light'), url('../fonts/Bitter-Light.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Bitter';
+    font-style: italic;
+    font-weight: 300;
+    font-display: swap;
+    src: local('Bitter Light Italic'), url('../fonts/Bitter-LightItalic.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Bitter';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: local('Bitter Regular'), url('../fonts/Bitter-Regular.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Bitter';
+    font-style: italic;
+    font-weight: 400;
+    font-display: swap;
+    src: local('Bitter Italic'), url('../fonts/Bitter-Italic.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Bitter';
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: local('Bitter Bold'), url('../fonts/Bitter-Bold.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Bitter';
+    font-style: italic;
+    font-weight: 700;
+    font-display: swap;
+    src: local('Bitter Italic'), url('../fonts/Bitter-BoldItalic.ttf') format('truetype');
+}
+
 [x-cloak] {
     display: none !important;
 }
