@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Project;
-use App\Models\User;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Response;
 
@@ -36,7 +35,6 @@ class ProjectController extends Controller
         if (!$project->display) {
             abort(Response::HTTP_NOT_FOUND);
         }
-        /** @var User|null $user */
         $project->load('metatags');
 
         $metatags = $this->buildMetags($project);

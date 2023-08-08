@@ -7,6 +7,7 @@ use App\Filament\Resources\TagResource\RelationManagers;
 use App\Models\Tag;
 use Filament\Forms;
 use Filament\Forms\Form;
+use Filament\Resources\Pages\PageRegistration;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
@@ -38,9 +39,14 @@ class TagResource extends Resource
                 Forms\Components\Select::make('logo')
                     ->reactive()
                     ->options(function () {
+                        $icons = scandir(base_path('public/icons'));
+                        if ($icons === false) {
+                            return [];
+                        }
+
                         return array_reduce(
                             array_filter(
-                                scandir(base_path('public/icons')),
+                                $icons,
                                 function ($icon) {
                                     return str_ends_with($icon, '.svg');
                                 }),
@@ -120,7 +126,7 @@ HTML);
     }
 
     /**
-     * @return array<string, array<string, string>>
+     * @return array|PageRegistration[]
      */
     public static function getPages(): array
     {

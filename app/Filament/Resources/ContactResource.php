@@ -6,6 +6,7 @@ use App\Filament\Resources\ContactResource\Pages;
 use App\Models\Contact;
 use Filament\Forms;
 use Filament\Forms\Form;
+use Filament\Resources\Pages\PageRegistration;
 use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Resources\Resource;
 use Filament\Tables;
@@ -115,7 +116,7 @@ class ContactResource extends Resource
     }
 
     /**
-     * @return array<string, array<string, string>>
+     * @return array|PageRegistration[]
      */
     public static function getPages(): array
     {

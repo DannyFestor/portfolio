@@ -12,6 +12,7 @@ use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Pages\EditRecord;
 use Filament\Resources\Pages\Page;
+use Filament\Resources\Pages\PageRegistration;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
@@ -209,7 +210,7 @@ class PostResource extends Resource
     }
 
     /**
-     * @return array<string, array<string, string>>
+     * @return array|PageRegistration[]
      */
     public static function getPages(): array
     {

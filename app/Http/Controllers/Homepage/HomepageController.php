@@ -14,7 +14,7 @@ class HomepageController extends Controller
         return view('homepage.index', ['metatags' => $metatags]);
     }
 
-    private function getMetatagsForLocale(string $locale)
+    private function getMetatagsForLocale(string $locale): string
     {
         $imagePath = public_path('img/danny-640.jpeg');
 

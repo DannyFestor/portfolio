@@ -8,6 +8,7 @@ use Filament\Forms\Components\Placeholder;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
 use Filament\Forms\Form;
+use Filament\Resources\Pages\PageRegistration;
 use Filament\Resources\Resource;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
@@ -101,7 +102,7 @@ class AccessLogResource extends Resource
     }
 
     /**
-     * @return array<string, array<string, string>>
+     * @return array|PageRegistration[]
      */
     public static function getPages(): array
     {

@@ -5,13 +5,14 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\ProjectResource\Pages;
 use App\Filament\Resources\ProjectResource\RelationManagers\MetatagsRelationManager;
 use App\Models\Project;
-use Filament\Forms\Components\Field;
+use Filament\Forms;
 use Filament\Forms\Components\Placeholder;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
 use Filament\Forms\Form;
+use Filament\Resources\Pages\PageRegistration;
 use Filament\Resources\Resource;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
@@ -34,7 +35,7 @@ class ProjectResource extends Resource
     }
 
     /**
-     * @return array<Field>
+     * @return array<Forms\Components\Component>
      */
     public static function getFormSchema(): array
     {
@@ -132,7 +133,7 @@ class ProjectResource extends Resource
     }
 
     /**
-     * @return array<string, array<string,string>>
+     * @return array|PageRegistration[]
      */
     public static function getPages(): array
     {

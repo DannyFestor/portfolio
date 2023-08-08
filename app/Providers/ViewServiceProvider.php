@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Models\Post;
+use App\Models\Project;
 use Illuminate\Support\Facades;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\View\View;
@@ -19,10 +21,14 @@ class ViewServiceProvider extends ServiceProvider
             $options = [];
 
             if ($routeName === 'blog.show') {
-                $options['post'] = request()->route('post')->slug;
+                /** @var Post $post */
+                $post = request()->route('post');
+                $options['post'] = $post->slug;
             }
             if ($routeName === 'project.show') {
-                $options['project'] = request()->route('project')->slug;
+                /** @var Project $project */
+                $project = request()->route('project');
+                $options['project'] = $project->slug;
             }
 
             $view->with('routeName', $routeName);
