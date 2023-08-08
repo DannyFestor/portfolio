@@ -19,7 +19,8 @@ class LanguageSelect extends Component
 
     public function mount(): void
     {
-        $this->locale = \Session::get('locale') ?? app()->getLocale();
+        $locale = \Session::get('locale', app()->getLocale());
+        $this->locale = gettype($locale) === 'string' ? $locale : 'en';
 
         $this->options[] = [
             'code' => 'de',

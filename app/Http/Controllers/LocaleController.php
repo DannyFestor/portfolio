@@ -17,6 +17,11 @@ class LocaleController extends Controller
         ]);
         $request->session()->put('locale', $request->get('locale'));
 
-        return redirect()->to($request->get('route'));
+        $to = $request->get('route');
+        if (gettype($to) !== 'string') {
+            $to = '/';
+        }
+
+        return redirect()->to($to);
     }
 }

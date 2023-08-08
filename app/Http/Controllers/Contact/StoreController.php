@@ -12,12 +12,21 @@ class StoreController
 {
     public function __invoke(StoreRequest $request): RedirectResponse
     {
+        if (gettype($request->validated()) !== 'array') {
+            abort(500);
+        }
+
         if (is_null($request->get('telephone'))) {
             $contact = Contact::create($request->validated());
 
             Mail::to('contact@festor.info')->send(new CreatedMail($contact));
         }
 
-        return redirect()->route('contact.index')->with('success', __('emails.sent'));
+        $locale = $request->session()->get('locale');
+        if (gettype($locale) !== 'string') {
+            $locale = 'en';
+        }
+
+        return redirect()->route('contact.index', ['locale' => $locale])->with('success', __('emails.sent'));
     }
 }

@@ -26,6 +26,10 @@ class SetAppLocaleMiddleware
             $locale = 'en';
         }
 
+        if (gettype($locale) !== 'string') {
+            $locale = 'en';
+        }
+
         session()->put('locale', $locale);
         app()->setLocale($locale);
 

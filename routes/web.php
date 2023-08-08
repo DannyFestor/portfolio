@@ -13,8 +13,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-//Route::get('/', fn () => phpinfo())->name('home');
-//Route::get('/', \App\Http\Controllers\Homepage\HomepageController::class)->name('home');
 Route::group(['middleware' => [\App\Http\Middleware\SetAppLocaleMiddleware::class, \App\Http\Middleware\LogActivityMiddleware::class]], function () {
     Route::get('/{locale?}', \App\Http\Controllers\Homepage\HomepageController::class)->name('home')->whereIn('locale', \App\Enums\Locales::toArray());
 
@@ -30,13 +28,3 @@ Route::group(['middleware' => [\App\Http\Middleware\SetAppLocaleMiddleware::clas
 });
 
 Route::post('/set-locale', \App\Http\Controllers\LocaleController::class)->name('set-locale');
-
-//Route::get('/dashboard', function () {
-//    return view('dashboard');
-//})->middleware(['auth', 'verified'])->name('dashboard');
-//
-//Route::middleware('auth')->group(function () {
-//    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-//    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-//    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-//});

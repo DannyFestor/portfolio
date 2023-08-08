@@ -18,7 +18,7 @@ class Index extends Component
 
     public function change(Request $request): \Illuminate\Http\RedirectResponse
     {
-        $referrer = $request->server('HTTP_REFERER');
+        //        $referrer = $request->server('HTTP_REFERER');
 
         $request->validate([
             'route' => ['required', 'string'],
@@ -26,6 +26,11 @@ class Index extends Component
         ]);
         $request->session()->put('locale', $request->get('locale'));
 
-        return redirect()->to($request->get('route'));
+        $to = $request->get('route');
+        if (gettype($to) !== 'string') {
+            $to = '/';
+        }
+
+        return redirect()->to($to);
     }
 }
