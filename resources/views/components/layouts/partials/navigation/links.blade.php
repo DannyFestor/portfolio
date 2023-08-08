@@ -1,3 +1,4 @@
+@props(['options'])
 <section x-data="{ isExpanded: false }"
          x-modelable="isExpanded"
          {{ $attributes->merge() }}
@@ -73,6 +74,6 @@
                 Contact
         </x-layouts.partials.navigation.link>
 
-        <x-layouts.partials.navigation.language-select x-model="isExpanded"/>
+        <livewire:navigation.language-select x-model="isExpanded"/>
     </section>
 </section>

@@ -24,9 +24,9 @@ class SetAppLocaleMiddleware
 
         if (!in_array($locale, Locales::toArray())) {
             $locale = 'en';
-            session()->put('locale', $locale);
         }
 
+        session()->put('locale', $locale);
         app()->setLocale($locale);
 
         return $next($request);

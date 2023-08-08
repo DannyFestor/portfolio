@@ -14,20 +14,20 @@ class ViewServiceProvider extends ServiceProvider
             $view->with('locale', session()->get('locale', 'en'));
         });
 
-        Facades\View::composer('components.layouts.partials.navigation.language-select', function (View $view) {
+        Facades\View::composer('livewire.navigation.language-select', function (View $view) {
             $routeName = request()->route()?->getName() ?? 'home';
             $options = [];
 
             if ($routeName === 'blog.show') {
-                $options['post'] = request()->route('post');
+                $options['post'] = request()->route('post')->slug;
             }
             if ($routeName === 'project.show') {
-                $options['project'] = request()->route('project');
+                $options['project'] = request()->route('project')->slug;
             }
 
             $view->with('routeName', $routeName);
 
-            $view->with('options', $options);
+            $view->with('routeOptions', $options);
         });
     }
 }
