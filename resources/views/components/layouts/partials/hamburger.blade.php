@@ -1,4 +1,5 @@
 <div
+    wire:key="hamburger"
     x-data="{ open: false }"
     {{ $attributes->merge() }}
     x-modelable="open"

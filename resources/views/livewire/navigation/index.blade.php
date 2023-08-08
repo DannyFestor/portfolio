@@ -11,10 +11,10 @@
     <x-layouts.partials.navigation.social x-model="isOpen"/>
 
     @teleport('body')
-    <x-layouts.partials.backdrop x-model="isOpen"/>
-    @endteleport
+    <div>
+        <x-layouts.partials.backdrop x-model="isOpen"/>
 
-    @teleport('body')
-    <x-layouts.partials.hamburger x-model="isOpen"/>
+        <x-layouts.partials.hamburger x-model="isOpen"/>
+    </div>
     @endteleport
 </nav>
