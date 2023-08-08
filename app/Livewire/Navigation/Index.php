@@ -16,7 +16,7 @@ class Index extends Component
         return view('livewire.navigation.index');
     }
 
-    public function change(Request $request)
+    public function change(Request $request): \Illuminate\Http\RedirectResponse
     {
         $referrer = $request->server('HTTP_REFERER');
 

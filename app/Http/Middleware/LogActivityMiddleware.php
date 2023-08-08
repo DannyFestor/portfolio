@@ -14,8 +14,8 @@ class LogActivityMiddleware
     public function handle(Request $request, Closure $next): Closure|JsonResponse|Response|RedirectResponse
     {
         if (
-            str_starts_with($request->header('Accept'), 'text/html') ||
-            str_starts_with($request->header('Accept'), 'application/json')
+            ($request->header('Accept') && str_starts_with($request->header('Accept'), 'text/html')) ||
+            ($request->header('Accept') && str_starts_with($request->header('Accept'), 'application/json'))
         ) {
             $attributes = [
                 'ip' => $_SERVER['REMOTE_ADDR'] ?? null,

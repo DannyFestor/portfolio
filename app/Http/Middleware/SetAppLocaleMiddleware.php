@@ -19,7 +19,7 @@ class SetAppLocaleMiddleware
         } elseif ($request->session()->has('locale')) {
             $locale = $request->session()->get('locale');
         } else {
-            $locale = Str::before(request()->getPreferredLanguage(), '_');
+            $locale = Str::before(request()->getPreferredLanguage() ?? 'en', '_');
         }
 
         if (!in_array($locale, Locales::toArray())) {
