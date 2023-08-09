@@ -9,6 +9,7 @@
         "filament/filament": "^3.0-stable",
         "filament/spatie-laravel-media-library-plugin": "^3.0-stable",
         "guzzlehttp/guzzle": "^7.7.0",
+        "jenssegers/agent": "^2.6",
         "laravel/framework": "^v10.3.2",
         "laravel/sanctum": "^v3.2.1",
         "laravel/tinker": "^v2.8.1",

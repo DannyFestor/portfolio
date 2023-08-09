@@ -1,8 +1,7 @@
 <a x-data="{ isVisible: true }"
    x-modelable="isVisible"
    class="nav-link flex min-h-[2rem] items-center justify-start p-1 transition-all hover:bg-slate-300"
-   {{ $attributes->merge() }}
-   wire:navigate
+    {{ $attributes->merge() }}
 >
     <svg
         class="h-8 w-8 flex-shrink-0"

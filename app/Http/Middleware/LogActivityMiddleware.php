@@ -8,6 +8,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Jenssegers\Agent\Agent;
 
 class LogActivityMiddleware
 {
@@ -17,9 +18,40 @@ class LogActivityMiddleware
             ($request->header('Accept') && str_starts_with($request->header('Accept'), 'text/html')) ||
             ($request->header('Accept') && str_starts_with($request->header('Accept'), 'application/json'))
         ) {
+            // 'platform', 'platform_version', 'device', 'device_kind', 'browser', 'browser_version', 'is_robot'
+            $agent = new Agent();
+
+            /** @var ?string $platform */
+            $platform = $agent->platform();
+            $platform_version = $platform ? $agent->version(propertyName: $platform) : null;
+
+            $device = $agent->device();
+            if ($agent->isDesktop()) {
+                $device_kind = 'desktop';
+            } elseif ($agent->isTablet()) {
+                $device_kind = 'tablet';
+            } elseif ($agent->isPhone()) {
+                $device_kind = 'phone';
+            } else {
+                $device_kind = 'n/a';
+            }
+
+            /** @var ?string $browser */
+            $browser = $agent->browser();
+            $browser_version = $browser ? $agent->version(propertyName: $browser) : null;
+
+            $is_robot = $agent->isRobot();
+
             $attributes = [
                 'ip' => $_SERVER['REMOTE_ADDR'] ?? null,
                 'origin' => $_SERVER['HTTP_ORIGIN'] ?? null,
+                'platform' => $platform,
+                'platform_version' => $platform_version,
+                'device' => $device,
+                'device_kind' => $device_kind,
+                'browser' => $browser,
+                'browser_version' => $browser_version,
+                'is_robot' => $is_robot,
                 'address' => $_SERVER['REQUEST_URI'] ?? null,
                 'referrer' => $_SERVER['HTTP_REFERER'] ?? null,
                 'method' => $_SERVER['REQUEST_METHOD'] ?? null,

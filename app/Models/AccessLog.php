@@ -12,6 +12,13 @@ class AccessLog extends Model
     protected $fillable = [
         'ip',
         'origin',
+        'platform',
+        'platform_version',
+        'device',
+        'device_kind',
+        'browser',
+        'browser_version',
+        'is_robot',
         'address',
         'referrer',
         'method',

@@ -16,6 +16,11 @@ use Illuminate\Support\Facades\Route;
 Route::group(['middleware' => [\App\Http\Middleware\SetAppLocaleMiddleware::class, \App\Http\Middleware\LogActivityMiddleware::class]], function () {
     Route::get('/{locale?}', \App\Http\Controllers\Homepage\HomepageController::class)->name('home')->whereIn('locale', \App\Enums\Locales::toArray());
 
+    //    Route::get('/{locale?}', function () {
+    //        echo '<pre>';
+    //        var_dump($_REQUEST, $_SERVER);
+    //        echo '</pre>';
+    //    })->name('home');
     Route::get('/blog', [\App\Http\Controllers\PostController::class, 'index'])->name('blog.index');
     Route::get('/blog/feed.xml', [\App\Http\Controllers\PostController::class, 'rssFeed'])->name('blog.feed');
     Route::get('/blog/{post:slug}', [\App\Http\Controllers\PostController::class, 'show'])->name('blog.show');

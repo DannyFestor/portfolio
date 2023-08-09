@@ -27,6 +27,7 @@ class AccessLogResource extends Resource
     // TODO: NICE LOOKING ACCESS WIDGETS
     public static function form(Form $form): Form
     {
+        // 'platform', 'platform_version', 'device', 'device_kind', 'browser', 'browser_version', 'is_robot'
         return $form
             ->schema([
                 TextInput::make('ip'),
