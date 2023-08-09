@@ -139,8 +139,9 @@ xml;
             ->get();
 
         foreach ($posts as $post) {
-            $changeFreq = 'hourly';
-            if (now()->subWeek()->lt($post->released_at)) {
+            if (now()->subDay()->lt($post->released_at)) {
+                $changeFreq = 'hourly';
+            } elseif (now()->subWeek()->lt($post->released_at)) {
                 $changeFreq = 'daily';
             } elseif (now()->subMonth()->lt($post->released_at)) {
                 $changeFreq = 'weekly';
