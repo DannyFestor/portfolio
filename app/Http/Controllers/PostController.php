@@ -21,9 +21,6 @@ class PostController
     {
         /** @var User|null $user */
         $user = \Auth::user();
-        $post->load('metatags');
-
-        $metatags = $this->buildMetags($post);
 
         if (
             (!$user || !$user->is_admin) &&
@@ -38,8 +35,10 @@ class PostController
             abort(404);
         }
 
-        $post->load(['tags']);
+        $post->load(['tags', 'metatags']);
         $post->getFirstMedia(Post::HERO_IMAGE);
+
+        $metatags = $this->buildMetags($post);
 
         $post->description = Markdown::make($post->description);
 

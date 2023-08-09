@@ -29,6 +29,11 @@ class Index extends Component
      */
     public array $selectedTags = [];
 
+    public function updatedSearch(): void
+    {
+        $this->resetPage();
+    }
+
     public function mount(): void
     {
         $this->tags = Tag::withCount('posts')
