@@ -76,6 +76,11 @@
                                             {{ $post->title }}
                                         </a>
                                     </h2>
+                                    @if($post->subtitle)
+                                        <a href="{{ route('blog.show', $post) }}" class="italic">
+                                            {{ $post->subtitle }}
+                                        </a>
+                                    @endif
                                     <section class="text-right">
                                         {{ $post->user->name }}
                                         -

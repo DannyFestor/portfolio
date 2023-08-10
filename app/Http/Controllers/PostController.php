@@ -30,7 +30,7 @@ class PostController
         );
 
         $posts = Post::query()
-            ->select(['id', 'slug', 'title', 'user_id', 'released_at', 'synopsis', 'description'])
+            ->select(['id', 'slug', 'title', 'subtitle', 'user_id', 'released_at', 'synopsis', 'description'])
             ->with([
                 'user',
                 'tags',
@@ -50,7 +50,8 @@ class PostController
                 });
             })
             ->orderBy('released_at', 'DESC')
-            ->paginate(perPage: 15);
+            ->paginate(perPage: 15)
+            ->withQueryString();
 
         return view('blog.index', [
             'posts' => $posts,
