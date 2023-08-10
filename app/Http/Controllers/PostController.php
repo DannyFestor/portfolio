@@ -14,12 +14,20 @@ use Illuminate\Http\Response;
 
 class PostController
 {
-    public function index(): View
+    public function index(Request $request): View
     {
-        $tags = Tag::withCount('posts')
-            ->having('posts_count', '>', 0)
-            ->orderBy('title')
-            ->get();
+        $search = $request->get('search', '');
+        $tag = $request->get('tag');
+
+        $tags = cache()->remember(
+            'tags_list',
+            60 * 24 * 24,
+            fn () => Tag::withCount('posts')
+                ->select(['id', 'title', 'text_color', 'background_color', 'border_color', 'logo'])
+                ->having('posts_count', '>', 0)
+                ->orderBy('title')
+                ->get()
+        );
 
         $posts = Post::query()
             ->select(['id', 'slug', 'title', 'user_id', 'released_at', 'synopsis', 'description'])
@@ -33,21 +41,21 @@ class PostController
             ->whereNotNull('released_at')
             ->where('released_at', '<', now())
             ->where('is_released', '=', true)
-//            ->when($this->search, function (Builder $query, string $value) {
-//                $query->where('title', 'like', "%$value%");
-//            })
-//            ->when($this->selectedTags, function (Builder $query, array $value) {
-//                foreach ($value as $tag) {
-//                    $query->whereHas('tags', function (Builder $query) use ($tag) {
-//                        $query->where('tags.title', 'like', "%$tag%");
-//                    });
-//                }
-//            })
+            ->when(strlen($search) > 0, function (Builder $query) use ($search) {
+                $query->where('title', 'like', "%$search%");
+            })
+            ->when($tag, function (Builder $query, string $value) {
+                $query->whereHas('tags', function (Builder $query) use ($value) {
+                    $query->where('tags.title', 'like', "%$value%");
+                });
+            })
             ->orderBy('released_at', 'DESC')
             ->paginate(perPage: 15);
 
         return view('blog.index', [
             'posts' => $posts,
+            'search' => $search,
+            'tags' => $tags,
         ]);
     }
 
