@@ -98,6 +98,6 @@ class Post extends Model implements HasMedia
      */
     public function accessLogs(): MorphMany
     {
-        return $this->morphMany(AccessLog::class, 'accessable');
+        return $this->morphMany(AccessLog::class, 'accessible');
     }
 }

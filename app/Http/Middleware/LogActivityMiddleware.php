@@ -77,13 +77,18 @@ class LogActivityMiddleware
                 'accept' => $_SERVER['HTTP_ACCEPT'] ?? null,
             ];
 
-            if ($request->route('post') !== null) {
-                $attributes['accessable_id'] = $request->route('post')->id;
-                $attributes['accessable_type'] = Post::class;
+            /** @var ?Post $post */
+            $post = $request->route('post');
+            if ($post !== null) {
+                $attributes['accessible_id'] = $post->id;
+                $attributes['accessible_type'] = Post::class;
             }
-            if ($request->route('project') !== null) {
-                $attributes['accessable_id'] = $request->route('project')->id;
-                $attributes['accessable_type'] = Project::class;
+
+            /** @var ?Project $project */
+            $project = $request->route('project');
+            if ($project !== null) {
+                $attributes['accessible_id'] = $project->id;
+                $attributes['accessible_type'] = Project::class;
             }
 
             AccessLog::create($attributes);

@@ -33,7 +33,7 @@ class AccessLogResource extends Resource
         // 'platform', 'platform_version', 'device', 'device_kind', 'browser', 'browser_version', 'is_robot'
         return $form
             ->schema([
-                MorphToSelect::make('accessable')
+                MorphToSelect::make('accessible')
                     ->types([
                         MorphToSelect\Type::make(Post::class)
                             ->titleAttribute('title'),

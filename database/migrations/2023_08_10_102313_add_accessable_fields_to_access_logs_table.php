@@ -10,11 +10,11 @@ return new class extends Migration
     {
         Schema::table('access_logs', function (Blueprint $table) {
             $table->after('id', function (Blueprint $table) {
-                $table->unsignedBigInteger('accessable_id')->nullable();
-                $table->string('accessable_type')->nullable();
+                $table->unsignedBigInteger('accessible_id')->nullable();
+                $table->string('accessible_type')->nullable();
                 $table->date('accessed_at')->nullable();
 
-                $table->index(['accessable_id', 'accessable_type', 'accessed_at']);
+                $table->index(['accessible_id', 'accessible_type', 'accessed_at']);
             });
         });
     }
@@ -22,9 +22,9 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('access_logs', function (Blueprint $table) {
-            $table->dropIndex(['accessable_id', 'accessable_type', 'accessed_at']);
+            $table->dropIndex(['accessible_id', 'accessible_type', 'accessed_at']);
 
-            $table->dropColumn(['accessable_id', 'accessable_type', 'accessed_at']);
+            $table->dropColumn(['accessible_id', 'accessible_type', 'accessed_at']);
         });
     }
 };

@@ -21,6 +21,7 @@ class PostFactory extends Factory
             'title' => $title,
             'subtitle' => fake()->realText(random_int(30, 100)),
             'slug' => $slug,
+            'synopsis' => fake()->paragraph,
             'description' => fake()->paragraphs(asText: true),
             'is_released' => fake()->boolean,
             'released_at' => $date,

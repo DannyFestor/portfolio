@@ -11,8 +11,8 @@ class AccessLog extends Model
     use HasFactory;
 
     protected $fillable = [
-        'accessable_id',
-        'accessable_type',
+        'accessible_id',
+        'accessible_type',
         'accessed_at',
         'ip',
         'origin',
@@ -32,6 +32,9 @@ class AccessLog extends Model
         'accept',
     ];
 
+    /**
+     * @return MorphTo<Model, AccessLog>
+     */
     public function accessable(): MorphTo
     {
         return $this->morphTo();

@@ -6,6 +6,7 @@ use App\Helpers\Markdown;
 use App\Models\Post;
 use App\Models\Tag;
 use App\Models\User;
+use Cache;
 use Illuminate\Contracts\View\View;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
@@ -16,10 +17,10 @@ class PostController
 {
     public function index(Request $request): View
     {
-        $search = $request->get('search', '');
+        $search = (string) $request->get('search', '');
         $tag = $request->get('tag');
 
-        $tags = cache()->remember(
+        $tags = Cache::remember(
             'tags_list',
             60 * 24 * 24,
             fn () => Tag::withCount('posts')
@@ -42,6 +43,7 @@ class PostController
             ->where('released_at', '<', now())
             ->where('is_released', '=', true)
             ->when(strlen($search) > 0, function (Builder $query) use ($search) {
+                /** @var string $search */
                 $query->where('title', 'like', "%$search%");
             })
             ->when($tag, function (Builder $query, string $value) {
