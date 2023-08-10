@@ -119,6 +119,12 @@ class PostResource extends Resource
                     ->columnSpan(['md' => 3]),
             ])->columns(['default' => 1, 'sm' => 3]),
             Forms\Components\Card::make([
+                Forms\Components\MarkdownEditor::make('synopsis')
+                    ->fileAttachmentsDisk('public')
+                    ->fileAttachmentsDirectory('posts')
+                    ->fileAttachmentsVisibility('public')
+                    ->maxLength(1000),
+
                 Forms\Components\MarkdownEditor::make('description')
                     ->required()
                     ->fileAttachmentsDisk('public')
@@ -161,7 +167,8 @@ class PostResource extends Resource
             ])
             ->bulkActions([
                 Tables\Actions\DeleteBulkAction::make(),
-            ]);
+            ])
+            ->defaultSort('released_at', 'DESC');
     }
 
     /**
@@ -170,6 +177,10 @@ class PostResource extends Resource
     public static function getTableColumns(): array
     {
         return [
+            Tables\Columns\TextColumn::make('access_logs_count')
+                ->counts('accessLogs')
+                ->label('Views')
+                ->sortable(),
             Tables\Columns\TextColumn::make('user.email')
                 ->searchable(isIndividual: true, isGlobal: false)
                 ->sortable(),
@@ -185,11 +196,7 @@ class PostResource extends Resource
                 ->searchable(isIndividual: true, isGlobal: false)
                 ->wrap()
                 ->sortable(),
-            //            Tables\Columns\TextColumn::make('description')
-            //                ->searchable(isIndividual: true, isGlobal: false)
-            //                ->wrap()
-            //                ->formatStateUsing(fn (?string $state) => $state ? \Str::limit($state, 50) : '')
-            //                ->sortable(),
+
             Tables\Columns\IconColumn::make('is_released')
                 ->boolean()
                 ->sortable(),

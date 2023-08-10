@@ -22,7 +22,7 @@ class PostController
             ->get();
 
         $posts = Post::query()
-            ->select(['id', 'slug', 'title', 'user_id', 'released_at', 'description'])
+            ->select(['id', 'slug', 'title', 'user_id', 'released_at', 'synopsis', 'description'])
             ->with([
                 'user',
                 'tags',

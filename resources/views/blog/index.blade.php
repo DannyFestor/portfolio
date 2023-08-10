@@ -65,13 +65,19 @@
                             </section>
                         </section>
                         <section class="prose mt-2 w-full max-w-full font-serif">
-                            {!! nl2br(Str::limit(explode('---', $post->description)[0], 200)) !!}
-                            <a
-                                    href="{{ route('blog.show', $post) }}"
-                                    class="font-sans text-xs text-blue-600 no-underline hover:underline"
-                            >
-                                ({{ __('blog.continue-reading') }})
-                            </a>
+                            @if($post->synopsis)
+                                {!! nl2br($post->synopsis) !!}
+                            @else
+                                {!! nl2br(Str::limit(explode('---', $post->description)[0], 200)) !!}
+                            @endif
+                            <p>
+                                <a
+                                        href="{{ route('blog.show', $post) }}"
+                                        class="font-sans text-xs text-blue-600 no-underline hover:underline"
+                                >
+                                    ({{ __('blog.continue-reading') }})
+                                </a>
+                            </p>
                         </section>
                     </article>
                 @endforeach

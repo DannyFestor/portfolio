@@ -4,13 +4,16 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\AccessLogResource\Pages;
 use App\Models\AccessLog;
+use App\Models\Post;
+use App\Models\Project;
+use Filament\Forms\Components\DatePicker;
+use Filament\Forms\Components\MorphToSelect;
 use Filament\Forms\Components\Placeholder;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
 use Filament\Forms\Form;
 use Filament\Resources\Pages\PageRegistration;
 use Filament\Resources\Resource;
-use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
@@ -30,9 +33,33 @@ class AccessLogResource extends Resource
         // 'platform', 'platform_version', 'device', 'device_kind', 'browser', 'browser_version', 'is_robot'
         return $form
             ->schema([
+                MorphToSelect::make('accessable')
+                    ->types([
+                        MorphToSelect\Type::make(Post::class)
+                            ->titleAttribute('title'),
+                        MorphToSelect\Type::make(Project::class)
+                            ->titleAttribute('title_en'),
+                    ]),
+
+                DatePicker::make('accessed_at'),
+
                 TextInput::make('ip'),
 
                 TextInput::make('origin'),
+
+                TextInput::make('platform'),
+
+                TextInput::make('platform_version'),
+
+                TextInput::make('device'),
+
+                TextInput::make('device_kind'),
+
+                TextInput::make('browser'),
+
+                TextInput::make('browser_version'),
+
+                Toggle::make('is_robot'),
 
                 TextInput::make('address'),
 
@@ -62,15 +89,7 @@ class AccessLogResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('created_at')
-                    ->searchable(isIndividual: true, isGlobal: false)
-                    ->sortable(),
-
-                TextColumn::make('ip')
-                    ->searchable(isIndividual: true, isGlobal: false)
-                    ->sortable(),
-
-                TextColumn::make('origin')
+                TextColumn::make('accessed_at')
                     ->searchable(isIndividual: true, isGlobal: false)
                     ->sortable(),
 
@@ -78,28 +97,23 @@ class AccessLogResource extends Resource
                     ->searchable(isIndividual: true, isGlobal: false)
                     ->sortable(),
 
-                TextColumn::make('referrer')
+                TextColumn::make('ip')
                     ->searchable(isIndividual: true, isGlobal: false)
                     ->sortable(),
 
-                TextColumn::make('method')
+                TextColumn::make('browser')
                     ->searchable(isIndividual: true, isGlobal: false)
                     ->sortable(),
 
-                TextColumn::make('language')
+                TextColumn::make('platform')
                     ->searchable(isIndividual: true, isGlobal: false)
                     ->sortable(),
 
-                IconColumn::make('is_livewire')->boolean()
+                TextColumn::make('device')
                     ->searchable(isIndividual: true, isGlobal: false)
                     ->sortable(),
-
-                TextColumn::make('accept')
-                    ->searchable(isIndividual: true, isGlobal: false)
-                    ->sortable(),
-
             ])
-            ->defaultSort('created_at', 'desc');
+            ->defaultSort('accessed_at', 'desc');
     }
 
     /**
@@ -109,7 +123,7 @@ class AccessLogResource extends Resource
     {
         return [
             'index' => Pages\ListAccessLogs::route('/'),
-            'create' => Pages\CreateAccessLog::route('/create'),
+            //            'create' => Pages\CreateAccessLog::route('/create'),
             'edit' => Pages\EditAccessLog::route('/{record}/edit'),
         ];
     }

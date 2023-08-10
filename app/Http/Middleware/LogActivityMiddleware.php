@@ -16,6 +16,19 @@ class LogActivityMiddleware
 {
     public function handle(Request $request, Closure $next): Closure|JsonResponse|Response|RedirectResponse
     {
+        $accessed_at = now()->format('Y-m-d');
+        $ip = $_SERVER['REMOTE_ADDR'] ?? null;
+        $requestUri = $_SERVER['REQUEST_URI'] ?? null;
+        $accessLog = AccessLog::query()
+            ->where('accessed_at', '=', $accessed_at)
+            ->where('ip', '=', $ip)
+            ->where('address', '=', $requestUri)
+            ->where('created_at', '>', now()->subMinutes(3))
+            ->exists();
+        if ($accessLog) {
+            return $next($request);
+        }
+
         if (
             ($request->header('Accept') && str_starts_with($request->header('Accept'), 'text/html')) ||
             ($request->header('Accept') && str_starts_with($request->header('Accept'), 'application/json'))
@@ -45,8 +58,8 @@ class LogActivityMiddleware
             $is_robot = $agent->isRobot();
 
             $attributes = [
-                'accessed_at' => now()->format('Y-m-d'),
-                'ip' => $_SERVER['REMOTE_ADDR'] ?? null,
+                'accessed_at' => $accessed_at,
+                'ip' => $ip,
                 'origin' => $_SERVER['HTTP_ORIGIN'] ?? null,
                 'platform' => $platform,
                 'platform_version' => $platform_version,
@@ -55,7 +68,7 @@ class LogActivityMiddleware
                 'browser' => $browser,
                 'browser_version' => $browser_version,
                 'is_robot' => $is_robot,
-                'address' => $_SERVER['REQUEST_URI'] ?? null,
+                'address' => $requestUri,
                 'referrer' => $_SERVER['HTTP_REFERER'] ?? null,
                 'method' => $_SERVER['REQUEST_METHOD'] ?? null,
                 'language' => $_SERVER['HTTP_ACCEPT_LANGUAGE'] ?? null,
