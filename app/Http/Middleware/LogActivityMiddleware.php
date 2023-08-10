@@ -3,6 +3,8 @@
 namespace App\Http\Middleware;
 
 use App\Models\AccessLog;
+use App\Models\Post;
+use App\Models\Project;
 use Closure;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
@@ -43,6 +45,7 @@ class LogActivityMiddleware
             $is_robot = $agent->isRobot();
 
             $attributes = [
+                'accessed_at' => now()->format('Y-m-d'),
                 'ip' => $_SERVER['REMOTE_ADDR'] ?? null,
                 'origin' => $_SERVER['HTTP_ORIGIN'] ?? null,
                 'platform' => $platform,
@@ -60,6 +63,16 @@ class LogActivityMiddleware
                 'content_type' => $_SERVER['CONTENT_TYPE'] ?? null,
                 'accept' => $_SERVER['HTTP_ACCEPT'] ?? null,
             ];
+
+            if ($request->route('post') !== null) {
+                $attributes['accessable_id'] = $request->route('post')->id;
+                $attributes['accessable_type'] = Post::class;
+            }
+            if ($request->route('project') !== null) {
+                $attributes['accessable_id'] = $request->route('project')->id;
+                $attributes['accessable_type'] = Project::class;
+            }
+
             AccessLog::create($attributes);
         }
 

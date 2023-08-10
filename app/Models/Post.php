@@ -91,4 +91,12 @@ class Post extends Model implements HasMedia
     {
         return $this->morphMany(Metatag::class, 'metatagable');
     }
+
+    /**
+     * @return MorphMany<AccessLog>
+     */
+    public function accessLogs(): MorphMany
+    {
+        return $this->morphMany(AccessLog::class, 'accessable');
+    }
 }

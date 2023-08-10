@@ -4,12 +4,16 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
 
 class AccessLog extends Model
 {
     use HasFactory;
 
     protected $fillable = [
+        'accessable_id',
+        'accessable_type',
+        'accessed_at',
         'ip',
         'origin',
         'platform',
@@ -27,4 +31,9 @@ class AccessLog extends Model
         'content_type',
         'accept',
     ];
+
+    public function accessable(): MorphTo
+    {
+        return $this->morphTo();
+    }
 }
