@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Helpers\Markdown;
 use App\Models\Post;
+use App\Models\Tag;
 use App\Models\User;
 use Illuminate\Contracts\View\View;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
@@ -14,7 +16,39 @@ class PostController
 {
     public function index(): View
     {
-        return view('blog.index');
+        $tags = Tag::withCount('posts')
+            ->having('posts_count', '>', 0)
+            ->orderBy('title')
+            ->get();
+
+        $posts = Post::query()
+            ->select(['id', 'slug', 'title', 'user_id', 'released_at', 'description'])
+            ->with([
+                'user',
+                'tags',
+                'media' => function (MorphMany $query) {
+                    $query->where('collection_name', '=', Post::HERO_IMAGE);
+                },
+            ])
+            ->whereNotNull('released_at')
+            ->where('released_at', '<', now())
+            ->where('is_released', '=', true)
+//            ->when($this->search, function (Builder $query, string $value) {
+//                $query->where('title', 'like', "%$value%");
+//            })
+//            ->when($this->selectedTags, function (Builder $query, array $value) {
+//                foreach ($value as $tag) {
+//                    $query->whereHas('tags', function (Builder $query) use ($tag) {
+//                        $query->where('tags.title', 'like', "%$tag%");
+//                    });
+//                }
+//            })
+            ->orderBy('released_at', 'DESC')
+            ->paginate(perPage: 15);
+
+        return view('blog.index', [
+            'posts' => $posts,
+        ]);
     }
 
     public function show(Post $post): View
