@@ -7,9 +7,13 @@ use Illuminate\Http\RedirectResponse;
 use Livewire\Attributes\Computed;
 use Livewire\Component;
 use Livewire\Features\SupportRedirects\Redirector;
+use Livewire\WithPagination;
 
 class LanguageSelect extends Component
 {
+    // No pagination on this component, but somehow tests fail if I don't use WithPagination here?
+    use WithPagination;
+
     public string $xModel = '';
 
     public string $locale = '';

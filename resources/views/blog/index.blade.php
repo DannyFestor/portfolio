@@ -49,7 +49,7 @@
                 </aside>
 
                 <section id="posts" class="mx-auto flex flex-1 w-full max-w-7xl flex-col gap-4 order-2 lg:order-1">
-                    @foreach ($posts as $post)
+                    @forelse ($posts as $post)
                         <article
                                 class="flex flex-col rounded bg-white p-4 shadow"
                                 role="article"
@@ -125,7 +125,9 @@
                                 </p>
                             </section>
                         </article>
-                    @endforeach
+                    @empty
+                        <div>Nothing to see here...🥲</div>
+                    @endforelse
                 </section>
             </section>
 

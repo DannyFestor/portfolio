@@ -23,8 +23,9 @@ class PostController
         $tags = Cache::remember(
             'tags_list',
             60 * 24 * 24,
-            fn () => Tag::withCount('posts')
+            fn () => Tag::query()
                 ->select(['id', 'title', 'text_color', 'background_color', 'border_color', 'logo'])
+                ->withCount('posts')
                 ->having('posts_count', '>', 0)
                 ->orderBy('title')
                 ->get()
@@ -54,6 +55,9 @@ class PostController
             ->orderBy('released_at', 'DESC')
             ->paginate(perPage: 15)
             ->withQueryString();
+
+        logger($tag);
+        logger($posts->pluck('title')->toArray());
 
         return view('blog.index', [
             'posts' => $posts,

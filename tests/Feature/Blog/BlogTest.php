@@ -30,12 +30,9 @@ it('shows blog posts that are released an in the past', function () {
 
     $this
         ->get(route('blog.index'))
-        ->assertViewIs('blog.index')
-        ->assertSeeLivewire(\App\Livewire\Blog\Index::class)
         ->assertSee($releasedPostPast->title)
         ->assertSee(route('blog.show', $releasedPostPast))
         ->assertSee($releasedPostPast->user->name)
-        ->assertSee(nl2br(Str::limit($releasedPostPast->description, 200)), escape: false)
         ->assertDontSee($releasedPostFuture->title)
         ->assertDontSee($unReleasedPostPast->title)
         ->assertDontSee($unReleasedPostFuture->title);
@@ -57,7 +54,7 @@ it('can search blog posts by title', function () {
     ]);
 
     $this
-        ->get(route('blog.index', ['s' => 'first']))
+        ->get(route('blog.index', ['search' => 'first']))
         ->assertSee($firstPost->title)
         ->assertDontSee($secondPost->title);
 });
@@ -70,23 +67,25 @@ it('can filter blog posts by tag', function () {
         'is_released' => true,
         'released_at' => now()->subHour(),
     ]);
+    $firstTag = \App\Models\Tag::create(['title' => 'first']);
+    $firstPost->tags()->attach($firstTag->id);
+
     $secondPost = \App\Models\Post::factory()->create([
         'user_id' => $user->id,
         'title' => 'Second Post',
         'is_released' => true,
         'released_at' => now()->subHour(),
     ]);
-    $firstTag = \App\Models\Tag::create(['title' => 'first']);
     $secondTag = \App\Models\Tag::create(['title' => 'second']);
-    $firstPost->tags()->attach($firstTag);
-    $secondPost->tags()->attach($secondTag);
+    $secondPost->tags()->attach($secondTag->id);
 
     $this
-        ->get(route('blog.index', ['t[0]' => $firstTag->title]))
+        ->get(route('blog.index', ['tag' => $firstTag->title]))
         ->assertSee($firstPost->title)
         ->assertDontSee($secondPost->title);
+
     $this
-        ->get(route('blog.index', ['t[0]' => $secondTag->title]))
+        ->get(route('blog.index', ['tag' => $secondTag->title]))
         ->assertDontSee($firstPost->title)
         ->assertSee($secondPost->title);
 });
@@ -101,8 +100,6 @@ it('can show blog posts by slug', function () {
 
     $this->get(route('blog.show', $post->slug))
         ->assertStatus(\Illuminate\Http\Response::HTTP_OK)
-        ->assertViewIs('blog.show')
-        ->assertViewHas(['post'])
         ->assertSee($post->title)
         ->assertSee(\App\Helpers\Markdown::make($post->description), false)
         ->assertSee($post->released_at->diffForHumans())

@@ -3,7 +3,7 @@
 it('can show the german contact page', function () {
     $this
         ->session(['locale' => 'de'])
-        ->get(route('contact.index'))
+        ->get(route('contact.index', ['locale' => 'de']))
         ->assertSee('Kontakt-Aufnahme')
         ->assertStatus(\Symfony\Component\HttpFoundation\Response::HTTP_OK);
 });
@@ -11,7 +11,7 @@ it('can show the german contact page', function () {
 it('can show the english contact page', function () {
     $this
         ->session(['locale' => 'en'])
-        ->get(route('contact.index'))
+        ->get(route('contact.index', ['locale' => 'en']))
         ->assertSee('Contact me')
         ->assertStatus(\Symfony\Component\HttpFoundation\Response::HTTP_OK);
 });
@@ -19,7 +19,7 @@ it('can show the english contact page', function () {
 it('can show the japanese contact page', function () {
     $this
         ->session(['locale' => 'ja'])
-        ->get(route('contact.index'))
+        ->get(route('contact.index', ['locale' => 'ja']))
         ->assertSee('連絡する')
         ->assertStatus(\Symfony\Component\HttpFoundation\Response::HTTP_OK);
 });
@@ -37,8 +37,8 @@ it('can send an email', function () {
     ];
 
     $this
-        ->post(route('contact.store'), $data)
-        ->assertRedirect(route('contact.index'))
+        ->post(route('contact.store', ['locale' => 'en']), $data)
+        ->assertRedirect(route('contact.index', ['locale' => 'en']))
         ->assertSessionHas('success', __('emails.sent'));
 
     $this->assertDatabaseHas('contacts', $data);
@@ -48,7 +48,7 @@ it('can send an email', function () {
 
 it('requires a name', function () {
     $this
-        ->post(route('contact.store'), [
+        ->post(route('contact.store', ['locale' => 'en']), [
             'name' => null,
             'email' => 'test@test.com',
             'subject' => 'Valid Subject',
@@ -59,7 +59,7 @@ it('requires a name', function () {
 
 it('requires an email', function () {
     $this
-        ->post(route('contact.store'), [
+        ->post(route('contact.store', ['locale' => 'en']), [
             'name' => 'Test User',
             'email' => null,
             'subject' => 'Valid Subject',
@@ -70,7 +70,7 @@ it('requires an email', function () {
 
 it('requires a subject', function () {
     $this
-        ->post(route('contact.store'), [
+        ->post(route('contact.store', ['locale' => 'en']), [
             'name' => 'Test User',
             'email' => 'test@test.com',
             'subject' => null,
@@ -81,7 +81,7 @@ it('requires a subject', function () {
 
 it('requires a body', function () {
     $this
-        ->post(route('contact.store'), [
+        ->post(route('contact.store', ['locale' => 'en']), [
             'name' => 'Test User',
             'email' => 'test@test.com',
             'subject' => 'Valid Subject',
@@ -102,8 +102,8 @@ it('ignores input when telephone field is filled', function () {
     ];
 
     $this
-        ->post(route('contact.store'), $data)
-        ->assertRedirect(route('contact.index'))
+        ->post(route('contact.store', ['locale' => 'en']), $data)
+        ->assertRedirect(route('contact.index', ['locale' => 'en']))
         ->assertSessionHas('success', __('emails.sent'));
 
     unset($data['telephone']);
