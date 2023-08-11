@@ -56,9 +56,6 @@ class PostController
             ->paginate(perPage: 15)
             ->withQueryString();
 
-        logger($tag);
-        logger($posts->pluck('title')->toArray());
-
         return view('blog.index', [
             'posts' => $posts,
             'search' => $search,
