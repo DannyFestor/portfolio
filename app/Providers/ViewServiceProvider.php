@@ -21,14 +21,18 @@ class ViewServiceProvider extends ServiceProvider
             $options = [];
 
             if ($routeName === 'blog.show') {
-                /** @var Post $post */
+                /** @var Post|string $post */
                 $post = request()->route('post');
-                $options['post'] = $post->slug;
+                if (gettype($post) === 'object' && $post instanceof Post) {
+                    $options['post'] = $post->slug;
+                }
             }
             if ($routeName === 'project.show') {
-                /** @var Project $project */
+                /** @var Project|string $project */
                 $project = request()->route('project');
-                $options['project'] = $project->slug;
+                if (gettype($project) === 'object' && $project instanceof Project) {
+                    $options['project'] = $project->slug;
+                }
             }
 
             $view->with('routeName', $routeName);
