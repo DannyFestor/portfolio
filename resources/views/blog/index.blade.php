@@ -1,5 +1,4 @@
 <x-app-layout>
-    <x-slot:title>{{ __('Blog') }}</x-slot>
         <x-layouts.partials.content-wrap>
             <livewire:blog.search/>
 
