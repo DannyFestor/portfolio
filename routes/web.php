@@ -14,7 +14,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::group(['middleware' => [\App\Http\Middleware\SetAppLocaleMiddleware::class, \App\Http\Middleware\LogActivityMiddleware::class]], function () {
-    Route::get('/{locale?}', \App\Http\Controllers\Homepage\HomepageController::class)->name('home')->whereIn('locale', \App\Enums\Locales::toArray());
+//    Route::get('/{locale?}', \App\Http\Controllers\Homepage\HomepageController::class)->name('home')->whereIn('locale', \App\Enums\Locales::toArray());
+    Route::get('/{locale?}', \App\Livewire\Homepage::class)->name('home')->whereIn('locale', \App\Enums\Locales::toArray());
 
     //    Route::get('/{locale?}', function () {
     //        echo '<pre>';

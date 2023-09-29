@@ -7,7 +7,7 @@
 
     @stack('metatags')
 
-    <title>{{ $title }} - {{ config('app.name') }}</title>
+    <title>{{ $title ?? '' }} - {{ config('app.name') }}</title>
     <link
         rel="shortcut icon"
         href="{{ asset('images/favicon.ico') }}"
@@ -22,20 +22,17 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     @stack('vite')
     @stack('styles')
-    @filamentStyles
 </head>
 <body
     class="flex min-h-screen flex-col bg-gradient-to-br from-white to-slate-200 font-sans antialiased"
 >
 <livewire:navigation/>
 
-
 {{ $slot }}
 
 <x-layouts.partials.footer/>
 
 @stack('scripts')
-@filamentScripts
 <script>
     document.addEventListener('livewire:navigated', () => window.scrollTo(0, 0));
 </script>
