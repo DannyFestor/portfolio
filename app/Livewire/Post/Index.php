@@ -6,6 +6,7 @@ use App\Models\Post;
 use App\Models\Tag;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
+use Illuminate\Support\Facades\Cache;
 use Livewire\Attributes\Url;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -30,11 +31,17 @@ class Index extends Component
 
     public function mount(): void
     {
-        $this->tags = Tag::withCount('posts')
-            ->having('posts_count', '>', 0)
-            ->orderBy('title')
-            ->get()
-            ->toArray();
+        $this->tags = Cache::remember(
+            'tags_list',
+            60 * 24 * 24,
+            fn() => Tag::query()
+                ->select(['id', 'title', 'text_color', 'background_color', 'border_color', 'logo'])
+                ->withCount('posts')
+                ->having('posts_count', '>', 0)
+                ->orderBy('title')
+                ->get()
+                ->toArray()
+        )->toArray();
     }
 
     public function render()
@@ -56,7 +63,7 @@ class Index extends Component
                     $query->where('title', 'like', "%$value%");
                 })
                 ->when($this->selectedTag !== '', function (Builder $query) {
-                    $query->whereHas('tags', function (Builder $query)  {
+                    $query->whereHas('tags', function (Builder $query) {
                         $query->where('tags.title', 'like', "%{$this->selectedTag}%");
                     });
                 })
@@ -65,7 +72,9 @@ class Index extends Component
         ])->title(__('Blog'));
     }
 
-    public function onSubmit() {}
+    public function onSubmit()
+    {
+    }
 
     public function previousPage()
     {

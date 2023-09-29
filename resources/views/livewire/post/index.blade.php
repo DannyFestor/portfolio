@@ -92,7 +92,7 @@
 
                         <section class="flex-1">
                             <h2 class="font-serif font-bold">
-                                <a
+                                <a wire:navigate
                                     href="{{ route('blog.show', $post) }}"
                                     class="hover:underline"
                                 >
@@ -100,7 +100,8 @@
                                 </a>
                             </h2>
                             @if($post->subtitle)
-                                <a href="{{ route('blog.show', $post) }}" class="italic">
+                                <a wire:navigate
+                                   href="{{ route('blog.show', $post) }}" class="italic">
                                     {{ $post->subtitle }}
                                 </a>
                             @endif
@@ -157,7 +158,9 @@
     <section class="mt-8">
         {{ $posts->links() }}
     </section>
+</x-layouts.partials.content-wrap>
 
+@pushonce('scripts')
     <script>
         document.addEventListener('livewire:init', () => {
             document.addEventListener('scroll-to-top', () => {
@@ -165,5 +168,4 @@
             })
         });
     </script>
-</x-layouts.partials.content-wrap>
-
+@endpushonce

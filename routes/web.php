@@ -18,7 +18,7 @@ Route::group(['middleware' => [\App\Http\Middleware\SetAppLocaleMiddleware::clas
 
     Route::get('/blog', \App\Livewire\Post\Index::class)->name('blog.index');
     Route::get('/blog/feed.xml', [\App\Http\Controllers\PostController::class, 'rssFeed'])->name('blog.feed');
-    Route::get('/blog/{post:slug}', [\App\Http\Controllers\PostController::class, 'show'])->name('blog.show');
+    Route::get('/blog/{post:slug}', \App\Livewire\Post\Show::class)->name('blog.show');
 
     Route::get('/{locale}/projects', [\App\Http\Controllers\ProjectController::class, 'index'])->name('project.index')->whereIn('locale', \App\Enums\Locales::toArray());
     Route::get('/{locale}/projects/{project:slug}', [\App\Http\Controllers\ProjectController::class, 'show'])->name('project.show')->whereIn('locale', \App\Enums\Locales::toArray());

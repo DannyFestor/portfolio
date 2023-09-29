@@ -15,6 +15,7 @@
         @endif
 
         <x-layouts.partials.navigation.link x-model="isExpanded"
+                                            wire:navigate
                                             href="{{ route('home', ['locale' => $locale]) }}"
                                             label="Homepage"
                                             aria-label="Homepage"
@@ -29,6 +30,7 @@
                 About
         </x-layouts.partials.navigation.link>
         <x-layouts.partials.navigation.link x-model="isExpanded"
+                                            wire:navigate
                                             href="{{ route('blog.index') }}"
                                             label="Blog"
                                             aria-label="Blog"
@@ -44,6 +46,7 @@
                 Blog
         </x-layouts.partials.navigation.link>
         <x-layouts.partials.navigation.link x-model="isExpanded"
+                                            wire:navigate
                                             href="{{ route('project.index', ['locale' => $locale]) }}"
                                             label="Projects I am or have been involved with"
                                             aria-label="Projects I am or have been involved with"
@@ -59,6 +62,7 @@
                 Projects
         </x-layouts.partials.navigation.link>
         <x-layouts.partials.navigation.link x-model="isExpanded"
+                                            wire:navigate
                                             href="{{ route('contact.index', ['locale' => $locale]) }}"
                                             label="Don't hesitate to contact me"
                                             aria-label="Don't hesitate to contact me"

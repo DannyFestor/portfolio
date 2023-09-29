@@ -80,7 +80,7 @@ class LogActivityMiddleware
             /** @var ?Post $post */
             $post = $request->route('post');
             if ($post !== null) {
-                $attributes['accessible_id'] = $post->id;
+                $attributes['accessible_id'] = Post::where('slug', $post)->first()->id;
                 $attributes['accessible_type'] = Post::class;
             }
 
