@@ -3,9 +3,6 @@
 namespace App\Livewire\Project;
 
 use App\Models\Project;
-use App\Models\Tag;
-use Illuminate\Support\Facades\Cache;
-use Livewire\Attributes\Locked;
 use Livewire\Component;
 
 class Index extends Component

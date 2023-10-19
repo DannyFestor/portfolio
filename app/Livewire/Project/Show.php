@@ -2,7 +2,6 @@
 
 namespace App\Livewire\Project;
 
-use App\Models\Post;
 use App\Models\Project;
 use Illuminate\Http\Response;
 use Livewire\Component;
@@ -69,5 +68,4 @@ class Show extends Component
 
         return $metatags;
     }
-
 }

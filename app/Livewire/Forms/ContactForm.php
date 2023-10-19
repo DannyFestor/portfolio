@@ -33,7 +33,7 @@ class ContactForm extends Form
             $contact = Contact::create($validated);
 
             // TODO for the future: send a mail
-//            Mail::to('contact@festor.info')->send(new CreatedMail($contact));
+            // Mail::to('contact@festor.info')->send(new CreatedMail($contact));
         }
 
         $this->reset();

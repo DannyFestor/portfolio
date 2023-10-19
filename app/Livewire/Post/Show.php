@@ -32,7 +32,6 @@ class Show extends Component
         $post->load(['tags', 'metatags']);
         $post->getFirstMedia(Post::HERO_IMAGE);
 
-
         $post->description = Markdown::make($post->description);
 
         $this->post = $post;
@@ -41,6 +40,7 @@ class Show extends Component
     public function render(): \Illuminate\Contracts\View\View
     {
         $metatags = $this->buildMetaTags();
+
         return view(
             'livewire.post.show',
             ['metatags' => implode("\n\t\t", $metatags)]

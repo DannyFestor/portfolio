@@ -2,7 +2,6 @@
 
 namespace App\Livewire;
 
-use Livewire\Attributes\Title;
 use Livewire\Component;
 
 class Homepage extends Component
@@ -17,6 +16,7 @@ class Homepage extends Component
     public function render(): \Illuminate\Contracts\View\View
     {
         $metatags = $this->getMetatagsForLocale($this->locale ?? app()->getLocale());
+
         return view(
             'livewire.homepage',
             [

@@ -35,7 +35,7 @@ class Index extends Component
         $this->tags = Cache::remember(
             'tags_list',
             60 * 24 * 24,
-            fn() => Tag::query()
+            fn () => Tag::query()
                 ->select(['id', 'title', 'text_color', 'background_color', 'border_color', 'logo'])
                 ->withCount('posts')
                 ->having('posts_count', '>', 0)
