@@ -87,7 +87,7 @@ class LogActivityMiddleware
             /** @var ?Project $project */
             $project = $request->route('project');
             if ($project !== null) {
-                $attributes['accessible_id'] = $project->id;
+                $attributes['accessible_id'] = Project::where('slug', $project)->first()->id;
                 $attributes['accessible_type'] = Project::class;
             }
 

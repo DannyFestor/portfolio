@@ -27,7 +27,7 @@ class ProjectController extends Controller
         return view('projects.index', [
             'locale' => $locale,
             'projects' => $projects,
-        ]);
+        ])->title(__('Projects'));
     }
 
     public function show(string $locale, Project $project): View
@@ -65,7 +65,7 @@ class ProjectController extends Controller
             'tags' => $project->tags,
             'screenshots' => $project->getMedia(Project::PROJECT_IMAGES),
             'metatags' => implode("\n\t\t", $metatags),
-        ]);
+        ])->title(__('Projects'));
     }
 
     /**

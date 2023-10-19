@@ -41,7 +41,7 @@ class Index extends Component
                 ->orderBy('title')
                 ->get()
                 ->toArray()
-        )->toArray();
+        );
     }
 
     public function render()
