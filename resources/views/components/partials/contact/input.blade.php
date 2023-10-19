@@ -21,7 +21,13 @@
         />
     </label>
 
-    @error($name)
+    @if ($attributes->has('wire:model'))
+        @error($attributes->get('wire:model'))
         <div class="text-sm text-red-600">{{ __($message) }}</div>
-    @enderror
+        @enderror
+    @else
+        @error($name)
+        <div class="text-sm text-red-600">{{ $message }}</div>
+        @enderror
+    @endif
 </article>

@@ -35,5 +35,7 @@ class ContactForm extends Form
             // TODO for the future: send a mail
 //            Mail::to('contact@festor.info')->send(new CreatedMail($contact));
         }
+
+        $this->reset();
     }
 }

@@ -20,7 +20,13 @@
         ></textarea>
     </label>
 
-    @error($name)
+    @if ($attributes->has('wire:model'))
+        @error($attributes->get('wire:model'))
+        <div class="text-sm text-red-600">{{ __($message) }}</div>
+        @enderror
+    @else
+        @error($name)
         <div class="text-sm text-red-600">{{ $message }}</div>
-    @enderror
+        @enderror
+    @endif
 </article>

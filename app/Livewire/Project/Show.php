@@ -13,7 +13,7 @@ class Show extends Component
 
     public Project $project;
 
-    public function mount(string $locale, Project $project)
+    public function mount(string $locale, Project $project): void
     {
         $this->locale = $locale;
 
@@ -24,7 +24,7 @@ class Show extends Component
         $this->project = $project;
     }
 
-    public function render()
+    public function render(): \Illuminate\Contracts\View\View
     {
         $this->project->load('metatags');
 

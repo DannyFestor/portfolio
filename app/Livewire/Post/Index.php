@@ -27,6 +27,7 @@ class Index extends Component
     #[Url(as: 'tag')]
     public string $selectedTag = '';
 
+    /** @var array<int, mixed> */
     public array $tags;
 
     public function mount(): void
@@ -44,7 +45,7 @@ class Index extends Component
         );
     }
 
-    public function render()
+    public function render(): \Illuminate\Contracts\View\View
     {
         return view('livewire.post.index', [
             'posts' => Post::query()
@@ -72,29 +73,30 @@ class Index extends Component
         ])->title(__('Blog'));
     }
 
-    public function onSubmit()
+    /** Empty method because this refreshes render; can't call render from view somehow */
+    public function onSubmit(): void
     {
     }
 
-    public function previousPage()
+    public function previousPage(): void
     {
         $this->paginationPreviousPage();
         $this->dispatch('scroll-to-top');
     }
 
-    public function nextPage()
+    public function nextPage(): void
     {
         $this->paginationNextPage();
         $this->dispatch('scroll-to-top');
     }
 
-    public function gotoPage($page)
+    public function gotoPage(mixed $page): void
     {
         $this->paginationGotoPage($page);
         $this->dispatch('scroll-to-top');
     }
 
-    public function resetPage()
+    public function resetPage(): void
     {
         $this->paginationResetPage();
         $this->dispatch('scroll-to-top');

@@ -11,7 +11,7 @@ class Show extends Component
 {
     public Post $post;
 
-    public function mount(Post $post)
+    public function mount(Post $post): void
     {
         /** @var User|null $user */
         $user = \Auth::user();
@@ -38,7 +38,7 @@ class Show extends Component
         $this->post = $post;
     }
 
-    public function render()
+    public function render(): \Illuminate\Contracts\View\View
     {
         $metatags = $this->buildMetaTags();
         return view(

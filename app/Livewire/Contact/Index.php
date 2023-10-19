@@ -11,18 +11,16 @@ class Index extends Component
 
     public ?string $message = null;
 
-    public function render()
+    public function render(): \Illuminate\Contracts\View\View
     {
         return view('livewire.contact.index')->title(__('contact.title'));
     }
 
-    public function save()
+    public function save(): void
     {
         $this->message = '';
 
-        $validated = $this->form->store();
-
-        $this->form->reset();
+        $this->form->store();
 
         $this->message = __('emails.sent');
     }

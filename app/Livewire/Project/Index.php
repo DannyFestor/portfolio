@@ -17,7 +17,7 @@ class Index extends Component
         $this->locale = $locale;
     }
 
-    public function render()
+    public function render(): \Illuminate\Contracts\View\View
     {
         $projects = Project::query()
             ->select([
