@@ -3,8 +3,9 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\Pivot;
 
-class Contact extends Model
+class Contact extends Pivot
 {
     protected $fillable = [
         'name',

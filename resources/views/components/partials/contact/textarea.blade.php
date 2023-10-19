@@ -1,6 +1,6 @@
 @props(['name'])
 <article
-    {{ $attributes->merge(['class' => 'w-full flex flex-col'])->except(['required']) }}
+    {{ $attributes->merge(['class' => 'w-full flex flex-col'])->except(['required', 'wire:model']) }}
 >
     <label
         for="{{ $name }}"
@@ -14,9 +14,10 @@
             rows="8"
             class="form-input w-full rounded"
             {{ $attributes->has('required') ? 'required' : '' }}
-        >
-{{ old($name) }}</textarea
-        >
+            @if ($attributes->has('wire:model'))
+            wire:model="{{ $attributes->get('wire:model') }}"
+            @endif
+        ></textarea>
     </label>
 
     @error($name)

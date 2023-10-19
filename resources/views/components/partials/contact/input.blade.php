@@ -1,6 +1,6 @@
 @props(['name', 'type' => 'text'])
 <article
-    {{ $attributes->merge(['class' => 'w-full flex flex-col'])->except(['required', 'hidden']) }}
+    {{ $attributes->merge(['class' => 'w-full flex flex-col'])->except(['required', 'hidden', 'wire:model']) }}
 >
     <label
         for="{{ $name }}"
@@ -12,10 +12,12 @@
             type="{{ $type }}"
             id="{{ $name }}"
             name="{{ $name }}"
-            value="{{ old($name) }}"
             class="form-input w-full rounded md:flex-1"
             {{ $attributes->has('hidden') ? 'tabindex="-1" autocomplete="off"' : '' }}
             {{ $attributes->has('required') ? 'required' : '' }}
+            @if ($attributes->has('wire:model'))
+            wire:model="{{ $attributes->get('wire:model') }}"
+            @endif
         />
     </label>
 
