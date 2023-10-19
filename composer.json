@@ -22,7 +22,7 @@
         "doctrine/dbal": "^3.6.5",
         "fakerphp/faker": "^1.23.0",
         "filament/upgrade": "^3.0-stable",
-        "laravel-lang/lang": "^12.24.2",
+        "laravel-lang/lang": "^13.0.0",
         "laravel/breeze": "^v1.19.2",
         "laravel/pint": "^v1.6.0",
         "laravel/sail": "^1.23.1",
