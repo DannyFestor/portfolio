@@ -26,6 +26,7 @@
             @foreach ($project->getMedia(\App\Models\Project::PROJECT_IMAGES) as $image)
                 <div>
                     <img
+                        class="w-full max-w-[360px]"
                         src="{{ $image->getUrl() }}"
                         alt="{{ $project->title }} Preview {{ $loop->iteration }}"
                         data-src="{{ $image->getUrl() }}"
