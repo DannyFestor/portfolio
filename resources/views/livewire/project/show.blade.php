@@ -28,7 +28,7 @@
                     <img
                         src="{{ $image->getUrl('preview') }}"
                         alt="{{ $project->title }} Preview {{ $loop->iteration }}"
-                        data-src="{{ $screenshot->getUrl() }}"
+                        data-src="{{ $image->getUrl() }}"
                     />
                 </div>
             @endforeach
