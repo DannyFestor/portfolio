@@ -80,14 +80,14 @@ class LogActivityMiddleware
             /** @var ?Post $post */
             $post = $request->route('post');
             if ($post !== null) {
-                $attributes['accessible_id'] = Post::where('slug', $post)->first()->id;
+                $attributes['accessible_id'] = Post::where('slug', $post->slug)->first()->id;
                 $attributes['accessible_type'] = Post::class;
             }
 
             /** @var ?Project $project */
             $project = $request->route('project');
             if ($project !== null) {
-                $attributes['accessible_id'] = Project::where('slug', $project)->first()->id;
+                $attributes['accessible_id'] = Project::where('slug', $project->slug)->first()->id;
                 $attributes['accessible_type'] = Project::class;
             }
 
