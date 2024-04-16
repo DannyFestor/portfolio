@@ -2,11 +2,13 @@
 
 namespace App\Filament\Resources\TagResource\RelationManagers;
 
+use App\Models\Post;
 use Closure;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Tables;
+use Filament\Tables\Actions\ViewAction;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Model;
 
@@ -15,11 +17,6 @@ class PostsRelationManager extends RelationManager
     protected static string $relationship = 'posts';
 
     protected static ?string $recordTitleAttribute = 'title';
-
-    protected function getTableRecordUrlUsing(): ?Closure
-    {
-        return fn (Model $record): string => route('filament.resources.posts.edit', ['record' => $record]);
-    }
 
     public function form(Form $form): Form
     {
@@ -44,6 +41,9 @@ class PostsRelationManager extends RelationManager
                 Tables\Actions\AttachAction::make(),
             ])
             ->actions([
+                Tables\Actions\Action::make('view')
+                    ->icon('heroicon-o-eye')
+                    ->url(fn (Post $record) => route('filament.admin.resources.posts.edit', ['record' => $record])),
                 Tables\Actions\DetachAction::make(),
             ])
             ->bulkActions([

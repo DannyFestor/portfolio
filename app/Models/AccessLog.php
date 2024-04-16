@@ -35,7 +35,7 @@ class AccessLog extends Model
     /**
      * @return MorphTo<Model, AccessLog>
      */
-    public function accessable(): MorphTo
+    public function accessible(): MorphTo
     {
         return $this->morphTo();
     }
