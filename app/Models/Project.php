@@ -34,9 +34,12 @@ class Project extends Model implements HasMedia
         'live_url',
     ];
 
-    protected $casts = [
-        'display' => 'boolean',
-    ];
+    protected function casts(): array
+    {
+        return [
+            'display' => 'boolean',
+        ];
+    }
 
     protected static function boot()
     {

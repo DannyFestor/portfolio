@@ -7,7 +7,6 @@ export default defineConfig({
             input: [
                 'resources/css/app.css',
                 'resources/js/app.js',
-                'resources/js/shiki.js',
                 'resources/css/filament.css',
                 'resources/js/post-image.js',
                 'resources/js/project-image.js',
