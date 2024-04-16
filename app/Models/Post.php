@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Helpers\Markdown;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -31,10 +32,12 @@ class Post extends Model implements HasMedia
         'released_at',
     ];
 
-    protected $casts = [
-        'is_released' => 'boolean',
-        'released_at' => 'datetime',
-    ];
+    protected function casts(): array {
+        return [
+            'is_released' => 'boolean',
+            'released_at' => 'datetime',
+        ];
+    }
 
     public function registerMediaCollections(): void
     {
@@ -67,6 +70,15 @@ class Post extends Model implements HasMedia
                     ->width(500)
                     ->height(500);
             });
+    }
+
+    protected static function boot(): void
+    {
+        parent::boot();
+
+        self::saving(function (Post $post) {
+            $post->markdown = Markdown::make($post->description);
+        });
     }
 
     /**

@@ -4,12 +4,16 @@ namespace App\Helpers;
 
 use League\CommonMark\Environment\Environment;
 use League\CommonMark\Extension\CommonMark\CommonMarkCoreExtension;
+use League\CommonMark\Extension\CommonMark\Node\Block\FencedCode;
+use League\CommonMark\Extension\CommonMark\Node\Inline\Code;
 use League\CommonMark\Extension\Footnote\FootnoteExtension;
 use League\CommonMark\Extension\HeadingPermalink\HeadingPermalinkExtension;
 use League\CommonMark\Extension\Strikethrough\StrikethroughExtension;
 use League\CommonMark\Extension\Table\TableExtension;
 use League\CommonMark\Extension\TableOfContents\TableOfContentsExtension;
 use League\CommonMark\MarkdownConverter;
+use Tempest\Highlight\CommonMark\CodeBlockRenderer;
+use Tempest\Highlight\CommonMark\InlineCodeBlockRenderer;
 
 class Markdown
 {
@@ -43,7 +47,9 @@ class Markdown
         ];
 
         $environment = new Environment($config);
-        $environment->addExtension(new CommonMarkCoreExtension());
+        $environment->addExtension(new CommonMarkCoreExtension())
+            ->addRenderer(FencedCode::class, new CodeBlockRenderer())
+            ->addRenderer(Code::class, new InlineCodeBlockRenderer());
         $environment->addExtension(new TableExtension());
         $environment->addExtension(new StrikethroughExtension());
         $environment->addExtension(new FootnoteExtension());

@@ -199,3 +199,62 @@
         height: 100%;
     }
 }
+
+pre[data-lang] {
+    @apply p-4 border rounded text-slate-600;
+
+    .hl-attribute {
+        @apply text-blue-600;
+    }
+    .hl-comment {
+        @apply text-gray-400;
+    }
+    .hl-generic {
+        @apply text-gray-600;
+    }
+    .hl-injection {
+        @apply text-blue-700;
+    }
+    .hl-keyword {
+        @apply text-purple-600;
+    }
+    .hl-operator {
+        @apply text-slate-700;
+    }
+    .hl-property {
+        @apply text-blue-600;
+    }
+    .hl-type {
+        @apply text-sky-700;
+    }
+    .hl-value {
+        @apply text-slate-700;
+    }
+    .hl-variable {
+        @apply text-rose-700;
+    }
+    .hl-gutter {
+        @apply text-slate-400 opacity-50;
+    }
+    .hl-addition {
+        @apply bg-emerald-100;
+    }
+    .hl-gutter.hl-gutter-addition {
+        @apply text-emerald-900 opacity-100;
+    }
+    .hl-gutter-addition {
+        @apply bg-emerald-200;
+    }
+    .hl-deletion {
+        @apply bg-rose-100;
+    }
+    .hl-gutter.hl-gutter-deletion {
+        @apply text-rose-900 opacity-100;
+    }
+    .hl-gutter-deletion {
+        @apply bg-rose-200;
+    }
+    .hl-blur {}
+    .hl-em {}
+    .hl-strong {}
+}

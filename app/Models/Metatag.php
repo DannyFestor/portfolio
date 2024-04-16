@@ -122,9 +122,12 @@ class Metatag extends Model
         'properties',
     ];
 
-    protected $casts = [
-        'properties' => 'json',
-    ];
+    protected function casts(): array
+    {
+        return [
+            'properties' => 'json',
+        ];
+    }
 
     /**
      * @return MorphTo<Model, Metatag>

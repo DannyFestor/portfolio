@@ -64,7 +64,7 @@
             class="prose:text-base prose min-w-full p-4 font-serif prose-pre:bg-white prose-pre:text-base sm:p-8"
             id="post"
         >
-            {!! $post->description !!}
+            {!! $post->markdown !!}
         </div>
     </article>
 
@@ -77,8 +77,3 @@
 @push('vite')
     @vite(['resources/js/post-image.js'])
 @endpush
-
-@pushonce('vite')
-    @vite(['resources/js/shiki.js'])
-@endpushonce
-
