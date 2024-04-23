@@ -254,7 +254,13 @@ pre[data-lang] {
     .hl-gutter-deletion {
         @apply bg-rose-200;
     }
-    .hl-blur {}
-    .hl-em {}
-    .hl-strong {}
+    .hl-blur {
+        @apply blur-[2px];
+    }
+    .hl-em {
+        @apply italic;
+    }
+    .hl-strong {
+        @apply font-bold;
+    }
 }

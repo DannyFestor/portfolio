@@ -15,4 +15,4 @@ jobs:
           port: ${{secrets.PORT}}
           username: ${{secrets.USERNAME}}
           key: ${{secrets.PRIVATE_KEY}}
-          script: "cd www; git pull origin main"
+          script: "cd www; git pull origin main; composer install; npm install; npm run build"
