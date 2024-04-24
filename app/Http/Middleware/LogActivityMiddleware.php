@@ -48,7 +48,7 @@ class LogActivityMiddleware
             } elseif ($agent->isPhone()) {
                 $device_kind = 'phone';
             } else {
-                $device_kind = 'n/a';
+                $device_kind =     'n/a' ;
             }
 
             /** @var ?string $browser */
