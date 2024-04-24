@@ -32,7 +32,8 @@ class Post extends Model implements HasMedia
         'released_at',
     ];
 
-    protected function casts(): array {
+    protected function casts(): array
+    {
         return [
             'is_released' => 'boolean',
             'released_at' => 'datetime',

@@ -8,7 +8,7 @@ class Homepage extends Component
 {
     public ?string $locale;
 
-    public function mount(string $locale = null): void
+    public function mount(?string $locale = null): void
     {
         $this->locale = $locale;
     }
