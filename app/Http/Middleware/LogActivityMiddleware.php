@@ -57,7 +57,8 @@ class LogActivityMiddleware
 
             $is_robot = $agent->isRobot();
 
-            $attributes = ['accessed_at' => $accessed_at, 'ip' => $ip,
+            $attributes = ['accessed_at' => $accessed_at,
+                'ip' => $ip,
                 'origin' => $_SERVER['HTTP_ORIGIN'] ?? null,
                 'platform' => $platform,
                 'platform_version' => $platform_version,
