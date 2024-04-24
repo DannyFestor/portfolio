@@ -49,6 +49,8 @@ class LogActivityMiddleware
                 $device_kind = 'phone';
             } else {
                 $device_kind =     'n/a' ;
+
+
             }
 
             /** @var ?string $browser */
