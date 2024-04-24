@@ -52,10 +52,12 @@ class LogActivityMiddleware
             }
 
             /** @var ?string $browser */
-            $browser = $agent->browser();
-            $browser_version = $browser?$agent->version(propertyName: $browser):null;
+            $browser = $agent->browser(
 
-            $is_robot=$agent->isRobot();
+            );
+            $browser_version = $browser ? $agent->version(propertyName: $browser) : null;
+
+            $is_robot = $agent->isRobot();
 
             $attributes = [
                 'accessed_at' => $accessed_at,
