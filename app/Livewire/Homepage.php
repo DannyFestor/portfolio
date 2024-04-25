@@ -30,7 +30,7 @@ class Homepage extends Component
         /** @var string $path */
         $path = config('app.url');
         $imagePath = $path . '/img/danny-640.jpeg';
-
+      
         $title = __('metatags.title');
         $titleShort = __('metatags.title.short');
         $keywords = __('metatags.keywords');
