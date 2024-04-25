@@ -40,6 +40,10 @@ class Homepage extends Component
 
         return <<<HTML
 <link rel="home" href="{$path}">
+<link rel="alternate" hreflang="en" href="{$path}/en" />
+<link rel="alternate" hreflang="de" href="{$path}/de" />
+<link rel="alternate" hreflang="ja" href="{$path}/ja" />
+<link rel="alternate" hreflang="x-default" href="{$path}" />
 <link rel="canonical" href="{$path}/{$localeUrl}">
 <meta name="title" content="{$title}">
 <meta name="keywords" content="{$keywords}">

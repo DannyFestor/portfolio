@@ -118,6 +118,10 @@ class Index extends Component
 
         return <<<HTML
 <link rel="home" href="{$path}">
+<link rel="alternate" hreflang="en" href="{$path}/en/projects" />
+<link rel="alternate" hreflang="de" href="{$path}/de/projects" />
+<link rel="alternate" hreflang="ja" href="{$path}/ja/projects" />
+<link rel="alternate" hreflang="x-default" href="{$path}/en/projects" />
 <link rel="canonical" href="{$path}/blog">
 <meta name="title" content="{$title}">
 <meta name="keywords" content="{$keywords}">
