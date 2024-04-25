@@ -1,4 +1,4 @@
 User-agent: *
 Disallow:
 
-Sitemap: https://www.festor.info/sitemap.xml
+Sitemap: https://festor.info/sitemap.xml
