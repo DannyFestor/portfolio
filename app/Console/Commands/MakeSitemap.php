@@ -5,8 +5,6 @@ namespace App\Console\Commands;
 use App\Enums\Locales;
 use App\Models\Post;
 use App\Models\Project;
-use Carbon\Carbon;
-use Carbon\CarbonInterface;
 use Illuminate\Console\Command;
 use InvalidArgumentException;
 
