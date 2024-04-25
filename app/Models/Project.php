@@ -34,6 +34,9 @@ class Project extends Model implements HasMedia
         'live_url',
     ];
 
+    /**
+     * @return array<string, string>
+     */
     protected function casts(): array
     {
         return [

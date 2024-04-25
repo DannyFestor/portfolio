@@ -5,6 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 
+/**
+ * @property array<string, string> $properties
+ */
 class Metatag extends Model
 {
     const TAGS = [
@@ -122,6 +125,9 @@ class Metatag extends Model
         'properties',
     ];
 
+    /**
+     * @return array<string, string>
+     */
     protected function casts(): array
     {
         return [

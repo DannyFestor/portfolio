@@ -2,8 +2,10 @@
 
 namespace App\Livewire\Project;
 
+use App\Models\Metatag;
 use App\Models\Project;
 use Illuminate\Http\Response;
+use Illuminate\Support\Collection;
 use Livewire\Component;
 
 class Show extends Component
@@ -27,11 +29,13 @@ class Show extends Component
     {
         $this->project->load('metatags');
 
-        $metatags = $this->buildMetags($this->project);
+        $metatags = $this->buildMetags($this->project->metatags);
 
         $locale = app()->getLocale();
 
+        /** @phpstan-ignore-next-line */
         $this->project->title = $this->project->{'title_' . $this->locale};
+        /** @phpstan-ignore-next-line */
         $this->project->body = $this->project->{'body_' . $this->locale};
 
         return view('livewire.project.show', [
@@ -40,13 +44,16 @@ class Show extends Component
     }
 
     /**
+     * @param  Collection<int, Metatag>  $projectMetatags
      * @return array<string>
      */
-    private function buildMetags(Project $project): array
+    private function buildMetags(Collection $projectMetatags): array
     {
         $metatags = [];
-        foreach ($project->metatags as $metatag) {
+
+        foreach ($projectMetatags as $metatag) {
             $properties = [];
+
             foreach ($metatag->properties as $label => $value) {
                 if (empty($value)) {
                     continue;

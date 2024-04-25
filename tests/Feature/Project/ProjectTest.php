@@ -126,8 +126,6 @@ it('can show project posts by slug', function () {
         ->assertDontSee($project->title_de)
         ->assertDontSee($project->body_de);
 
-
-
     Livewire::test(\App\Livewire\Project\Show::class, ['locale' => 'en', 'project' => $project])
         ->assertStatus(\Illuminate\Http\Response::HTTP_OK)
         ->assertSee($project->title_en)

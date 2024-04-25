@@ -129,7 +129,7 @@ it('generates an rss feed', function () {
     $latestPost = \App\Models\Post::latest('released_at')->first();
     $firstPost = \App\Models\Post::orderBy('released_at')->first();
     $randomPost = $posts->filter(
-        fn(\App\Models\Post $post) => !in_array($post->id, [$latestPost->id, $firstPost->id])
+        fn (\App\Models\Post $post) => !in_array($post->id, [$latestPost->id, $firstPost->id])
     )
         ->random();
     $randomPost->tags()->attach($tag->id);

@@ -5,6 +5,8 @@ namespace App\Console\Commands;
 use App\Enums\Locales;
 use App\Models\Post;
 use App\Models\Project;
+use Carbon\Carbon;
+use Carbon\CarbonInterface;
 use Illuminate\Console\Command;
 use InvalidArgumentException;
 
@@ -139,6 +141,10 @@ xml;
             ->get();
 
         foreach ($posts as $post) {
+            if (!$post->released_at) {
+                continue;
+            }
+
             if (now()->subDay()->lt($post->released_at)) {
                 $changeFreq = 'hourly';
             } elseif (now()->subWeek()->lt($post->released_at)) {

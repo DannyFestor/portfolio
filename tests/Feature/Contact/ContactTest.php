@@ -27,7 +27,7 @@ it('can show the japanese contact page', function () {
 // TODO: test mail content
 
 it('can send an email', function () {
-//    \Illuminate\Support\Facades\Mail::fake();
+    //    \Illuminate\Support\Facades\Mail::fake();
 
     $data = [
         'name' => 'Test User',
@@ -44,7 +44,7 @@ it('can send an email', function () {
         ->call('save')
         ->assertSee(__('emails.sent'));
     $this->assertDatabaseHas('contacts', $data);
-//    \Illuminate\Support\Facades\Mail::assertQueued(\App\Mail\Contact\CreatedMail::class);
+    //    \Illuminate\Support\Facades\Mail::assertQueued(\App\Mail\Contact\CreatedMail::class);
 });
 
 it('requires a name', function () {
@@ -88,7 +88,7 @@ it('requires a body', function () {
 });
 
 it('ignores input when telephone field is filled', function () {
-//    \Illuminate\Support\Facades\Mail::fake();
+    //    \Illuminate\Support\Facades\Mail::fake();
 
     \Livewire\Livewire::test(App\Livewire\Contact\Index::class)
         ->set('form.name', 'Test User')
@@ -99,9 +99,9 @@ it('ignores input when telephone field is filled', function () {
         ->call('save')
         ->assertSee(__('emails.sent'));
 
-//    unset($data['telephone']);
+    //    unset($data['telephone']);
 
-//    \Illuminate\Support\Facades\Mail::assertNotQueued(\App\Mail\Contact\CreatedMail::class);
+    //    \Illuminate\Support\Facades\Mail::assertNotQueued(\App\Mail\Contact\CreatedMail::class);
     $this->assertDatabaseMissing('contacts', [
         'name' => 'Test User',
         'email' => 'test@test.com',
