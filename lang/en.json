@@ -1,10 +1,12 @@
 {
     "blog.continue-reading": "... Continue Reading",
+
     "homepage.title": "Modern, secure websites and services",
     "homepage.me": "Hi! I am Danny.",
     "homepage.freelancer": "I am a <em>Freelancer</em>.",
     "homepage.websites": "I create <strong>modern websites</strong>.",
     "homepage.nagasaki": "I live in <em>Nagasaki, Japan</em>.",
+
     "contact.title": "Contact me",
     "contact.header": "Contact me",
     "contact.paragraph": "You want to start your dream project or have a technical question? Or do you want to expand your knowledge? Do not hesitate to write me! I am here to help you.",
@@ -14,6 +16,15 @@
     "contact.subject": "Subject",
     "contact.body": "Body",
     "contact.submit": "Send",
+
     "emails.sent": "Your email has been sent! I'll be in contact soon!",
-    "project.view": "... view details"
+
+    "project.view": "... view details",
+
+    "metatags.title": "Modern, secure websites and services. I realize your dream project quickly and reliably. Good communication is important to me. - festor.info",
+    "metatags.title.short": "Modern, secure Websites and Services - festor.info",
+    "metatags.keywords": "Fullstack,Freelance,Webdev,Secure,Modern,Fast,PHP,Golang,Typescript,Vue,Deutsch,English,Japanese",
+    "metatags.twitter.username": "@Denakino",
+    "metatags.locale": "en_US",
+    "metatags.locale.url": "en"
 }
