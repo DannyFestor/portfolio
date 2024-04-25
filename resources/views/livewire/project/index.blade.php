@@ -61,4 +61,8 @@
             </article>
         @endforeach
     </section>
+
+    @push('metatags')
+        {!! $metatags !!}
+    @endpush
 </x-layouts.partials.content-wrap>

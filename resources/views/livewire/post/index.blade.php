@@ -160,6 +160,10 @@
     </section>
 </x-layouts.partials.content-wrap>
 
+@push('metatags')
+    {!! $metatags !!}
+@endpush
+
 @pushonce('scripts')
     <script>
         document.addEventListener('livewire:init', () => {

@@ -19,5 +19,12 @@
     "homepage.title": "モダーンと安全なホームページ",
     "homepage.websites": "<strong>モダーンなホームページ</strong>を作成します。",
 
-    "project.view": "... 詳細を見る"
+    "project.view": "... 詳細を見る",
+
+    "metatags.title": "モダンで安全なウェブサイトとサービス。あなたの夢のプロジェクトを迅速かつ確実に実現します。良いコミュニケーションは私にとって重要です。 - festor.info",
+    "metatags.title.short": "モダンで安全なウェブサイトとサービス - festor.info",
+    "metatags.keywords": "フルスタック,Web開発,多言語対策,安全,モダーン,はやい,PHP,Go言語,Typescript,Vue,日本語,英語,ドイツ語",
+    "metatags.twitter.username": "@Denakino",
+    "metatags.locale": "ja_JP",
+    "metatags.locale.url": "ja"
 }

@@ -18,5 +18,12 @@
     "contact.submit": "Abschicken",
     "emails.sent": "Ihre E-Mail wurde verschickt. Ich melde mich so schnell es geht bei Ihnen!",
 
-    "project.view": "... Details ansehen"
+    "project.view": "... Details ansehen",
+
+    "metatags.title": "Moderne, sichere Webseiten und Services. Ich realisiere Ihr Traumprojekt schnell und zuverlässig. Gute Kommunikation ist mir wichtig. festor.info",
+    "metatags.title.short": "Moderne, sichere Webseiten und Services - festor.info",
+    "metatags.keywords": "Fullstack,Freelance,Webdev,Sicher,Modern,Schnell,PHP,Golang,Typescript,Vue,Deutsch,Englisch,Japanisch",
+    "metatags.twitter.username": "@Denakino",
+    "metatags.locale": "de_DE",
+    "metatags.locale.url": "de"
 }
