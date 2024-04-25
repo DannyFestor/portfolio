@@ -41,7 +41,7 @@ class Index extends Component
     {
         /** @var string $path */
         $path = config('app.url');
-        $imagePath = $path . public_path('img/danny-640.jpeg');
+        $imagePath = $path . '/img/danny-640.jpeg';
 
         $title = __('metatags.title');
         $titleShort = __('metatags.title.short');
@@ -71,5 +71,4 @@ class Index extends Component
 <meta name="og:url" content="{$path}/{$localeUrl}/projects">
 HTML;
     }
-
 }
