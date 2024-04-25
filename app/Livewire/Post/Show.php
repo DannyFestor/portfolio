@@ -2,7 +2,6 @@
 
 namespace App\Livewire\Post;
 
-use App\Helpers\Markdown;
 use App\Models\Post;
 use App\Models\User;
 use Livewire\Component;

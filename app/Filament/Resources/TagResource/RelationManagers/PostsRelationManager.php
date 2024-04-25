@@ -3,14 +3,11 @@
 namespace App\Filament\Resources\TagResource\RelationManagers;
 
 use App\Models\Post;
-use Closure;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Tables;
-use Filament\Tables\Actions\ViewAction;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Model;
 
 class PostsRelationManager extends RelationManager
 {

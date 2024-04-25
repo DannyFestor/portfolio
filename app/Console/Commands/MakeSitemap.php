@@ -139,6 +139,10 @@ xml;
             ->get();
 
         foreach ($posts as $post) {
+            if (!$post->released_at) {
+                continue;
+            }
+
             if (now()->subDay()->lt($post->released_at)) {
                 $changeFreq = 'hourly';
             } elseif (now()->subWeek()->lt($post->released_at)) {

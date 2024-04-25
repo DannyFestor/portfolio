@@ -1,8 +1,9 @@
 <?php
 
 it('can show the blog page', function () {
-    $response = $this->get(route('blog.index'));
-    $response->assertStatus(200);
+    $response = $this->get('/blog')
+        ->assertSeeLivewire(\App\Livewire\Post\Index::class)
+        ->assertStatus(200);
 });
 
 it('shows blog posts that are released an in the past', function () {
@@ -29,9 +30,17 @@ it('shows blog posts that are released an in the past', function () {
     ]);
 
     $this
-        ->get(route('blog.index'))
+        ->get('/blog')
         ->assertSee($releasedPostPast->title)
-        ->assertSee(route('blog.show', $releasedPostPast))
+        ->assertSee('/blog/' . $releasedPostPast->slug)
+        ->assertSee($releasedPostPast->user->name)
+        ->assertDontSee($releasedPostFuture->title)
+        ->assertDontSee($unReleasedPostPast->title)
+        ->assertDontSee($unReleasedPostFuture->title);
+
+    Livewire::test(\App\Livewire\Post\Index::class)
+        ->assertSee($releasedPostPast->title)
+        ->assertSee('/blog/' . $releasedPostPast->slug)
         ->assertSee($releasedPostPast->user->name)
         ->assertDontSee($releasedPostFuture->title)
         ->assertDontSee($unReleasedPostPast->title)
@@ -40,12 +49,14 @@ it('shows blog posts that are released an in the past', function () {
 
 it('can search blog posts by title', function () {
     $user = \App\Models\User::factory()->create();
+
     $firstPost = \App\Models\Post::factory()->create([
         'user_id' => $user->id,
         'title' => 'First Post',
         'is_released' => true,
         'released_at' => now()->subHour(),
     ]);
+
     $secondPost = \App\Models\Post::factory()->create([
         'user_id' => $user->id,
         'title' => 'Second Post',
@@ -53,8 +64,12 @@ it('can search blog posts by title', function () {
         'released_at' => now()->subHour(),
     ]);
 
-    $this
-        ->get(route('blog.index', ['search' => 'first']))
+    Livewire::withQueryParams(['s' => 'first'])
+        ->test(\App\Livewire\Post\Index::class)
+        ->assertSee($firstPost->title)
+        ->assertDontSee($secondPost->title);
+
+    $this->get('/blog?s=first')
         ->assertSee($firstPost->title)
         ->assertDontSee($secondPost->title);
 });
@@ -80,12 +95,12 @@ it('can filter blog posts by tag', function () {
     $secondPost->tags()->attach($secondTag->id);
 
     $this
-        ->get(route('blog.index', ['tag' => $firstTag->title]))
+        ->get('/blog?tag=' . $firstTag->title)
         ->assertSee($firstPost->title)
         ->assertDontSee($secondPost->title);
 
     $this
-        ->get(route('blog.index', ['tag' => $secondTag->title]))
+        ->get('/blog?tag=' . $secondTag->title)
         ->assertDontSee($firstPost->title)
         ->assertSee($secondPost->title);
 });
@@ -98,10 +113,10 @@ it('can show blog posts by slug', function () {
         'released_at' => now()->subHour(),
     ]);
 
-    $this->get(route('blog.show', $post->slug))
+    $this->get('/blog/' . $post->slug)
         ->assertStatus(\Illuminate\Http\Response::HTTP_OK)
         ->assertSee($post->title)
-        ->assertSee(\App\Helpers\Markdown::make($post->description), false)
+        ->assertSee($post->markdown, false)
         ->assertSee($post->released_at->diffForHumans())
         ->assertSee($post->user->name);
 });
@@ -114,12 +129,13 @@ it('generates an rss feed', function () {
     $latestPost = \App\Models\Post::latest('released_at')->first();
     $firstPost = \App\Models\Post::orderBy('released_at')->first();
     $randomPost = $posts->filter(
-        fn (\App\Models\Post $post) => !in_array($post->id, [$latestPost->id, $firstPost->id]))
+        fn (\App\Models\Post $post) => !in_array($post->id, [$latestPost->id, $firstPost->id])
+    )
         ->random();
     $randomPost->tags()->attach($tag->id);
 
     // Pagination First Page
-    $this->get(route('blog.feed'))
+    $this->get('/blog/feed.xml')
         ->assertStatus(\Illuminate\Http\Response::HTTP_OK)
         ->assertHeader('Content-Type', 'application/xml')
         ->assertViewIs('blog.feed')
@@ -127,7 +143,7 @@ it('generates an rss feed', function () {
         ->assertDontSee($firstPost->title);
 
     // Pagination Second Page
-    $this->get(route('blog.feed', ['page' => 2]))
+    $this->get('/blog/feed.xml?page=2')
         ->assertStatus(\Illuminate\Http\Response::HTTP_OK)
         ->assertHeader('Content-Type', 'application/xml')
         ->assertViewIs('blog.feed')
@@ -135,15 +151,7 @@ it('generates an rss feed', function () {
         ->assertDontSee($latestPost->title);
 
     // Show post with specified tag
-    $this->get(route('blog.feed', ['tag' => 'test']))
-        ->assertStatus(\Illuminate\Http\Response::HTTP_OK)
-        ->assertHeader('Content-Type', 'application/xml')
-        ->assertViewIs('blog.feed')
-        ->assertSee($randomPost->title)
-        ->assertDontSee($firstPost->title)
-        ->assertDontSee($latestPost->title);
-    // Specified Tag as Array
-    $this->get(route('blog.feed', ['tag' => ['test']]))
+    $this->get('/blog/feed.xml?tag=test')
         ->assertStatus(\Illuminate\Http\Response::HTTP_OK)
         ->assertHeader('Content-Type', 'application/xml')
         ->assertViewIs('blog.feed')

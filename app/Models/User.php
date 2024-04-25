@@ -39,7 +39,7 @@ class User extends Authenticatable implements FilamentUser, MustVerifyEmail
      *
      * @return array<string, string>
      */
-    protected function casts():array
+    protected function casts(): array
     {
         return [
             'email_verified_at' => 'datetime',
