@@ -183,7 +183,7 @@ class CreatedListener
                 'tag' => 'meta',
                 'properties' => json_encode([
                     'name' => 'og:type',
-                    'content' => 'article',
+                    'content' => 'website',
                 ]),
             ],
             [
