@@ -8,11 +8,12 @@
     @stack('metatags')
 
     <title>{{ $title ?? '' }} - {{ config('app.name') }}</title>
-    <link
-        rel="shortcut icon"
-        href="{{ asset('images/favicon.ico') }}"
-        type="image/x-icon"
-    />
+    <link rel="shortcut icon" href="{{ asset('images/favicon.ico') }}" type="image/x-icon"/>
+    <link rel="icon" type="image/jpeg" sizes="16x16" href="{{ asset('images/favicon-16x16.jpg') }}" />
+    <link rel="icon" type="image/jpeg" sizes="32x32" href="{{ asset('images/favicon-32x32.jpg') }}" />
+    <link rel="icon" type="image/jpeg" sizes="48x48" href="{{ asset('images/favicon-48x48.jpg') }}" />
+    <link rel="icon" type="image/jpeg" sizes="96x96" href="{{ asset('images/favicon-96x96.jpg') }}" />
+    <link rel="icon" type="image/jpeg" sizes="600x600" href="{{ asset('images/favicon-600x600.jpg') }}" />
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com"/>
