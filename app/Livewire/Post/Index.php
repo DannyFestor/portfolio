@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Post;
 
+use App\Helpers\MetaTags;
 use App\Models\Post;
 use App\Models\Tag;
 use Illuminate\Database\Eloquent\Builder;
@@ -47,6 +48,15 @@ class Index extends Component
 
     public function render(): \Illuminate\Contracts\View\View
     {
+        $metatags = MetaTags::makeMetatags(
+            path: 'blog',
+            title: __('metatags.title'),
+            titleShort: __('metatags.title.short'),
+            keywords: __('metatags.keywords'),
+            description: __('metatags.title'),
+            type: 'website',
+        );
+
         return view('livewire.post.index', [
             'posts' => Post::query()
                 ->select(['id', 'slug', 'title', 'user_id', 'released_at', 'description'])
@@ -70,7 +80,7 @@ class Index extends Component
                 })
                 ->orderBy('released_at', 'DESC')
                 ->paginate(perPage: 15),
-            'metatags' => $this->getMetatags(),
+            'metatags' => $metatags,
         ])->title(__('Blog'));
     }
 
@@ -101,44 +111,5 @@ class Index extends Component
     {
         $this->paginationResetPage();
         $this->dispatch('scroll-to-top');
-    }
-
-    private function getMetatags(): string
-    {
-        /** @var string $path */
-        $path = config('app.url');
-        $imagePath = $path . '/img/danny-640.jpeg';
-
-        $title = __('metatags.title');
-        $titleShort = __('metatags.title.short');
-        $keywords = __('metatags.keywords');
-        $twitterHandle = __('metatags.twitter.username');
-        $locale = __('metatags.locale');
-        $localeUrl = __('metatags.locale.url');
-
-        return <<<HTML
-<link rel="home" href="{$path}">
-<link rel="alternate" hreflang="en" href="{$path}/en/projects" />
-<link rel="alternate" hreflang="de" href="{$path}/de/projects" />
-<link rel="alternate" hreflang="ja" href="{$path}/ja/projects" />
-<link rel="alternate" hreflang="x-default" href="{$path}/en/projects" />
-<link rel="canonical" href="{$path}/blog">
-<meta name="title" content="{$title}">
-<meta name="keywords" content="{$keywords}">
-<meta name="description" content="{$title}">
-<meta name="twitter:site" content="{$twitterHandle}">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:creator" content="{$twitterHandle}">
-<meta name="twitter:description" content="{$title}">
-<meta name="twitter:image" content="{$imagePath}">
-<meta name="twitter:title" content="{$titleShort}">
-<meta name="og:description" content="{$title}">
-<meta name="og:image" content="{$imagePath}">
-<meta name="og:locale" content="{$locale}">
-<meta name="og:site_name" content="festor.info">
-<meta name="og:title" content="{$titleShort}">
-<meta name="og:type" content="website">
-<meta name="og:url" content="{$path}/blog">
-HTML;
     }
 }

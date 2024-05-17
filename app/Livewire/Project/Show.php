@@ -10,14 +10,10 @@ use Livewire\Component;
 
 class Show extends Component
 {
-    public string $locale;
-
     public Project $project;
 
-    public function mount(string $locale, Project $project): void
+    public function mount(Project $project): void
     {
-        $this->locale = $locale;
-
         if (!$project->display) {
             abort(Response::HTTP_NOT_FOUND);
         }
@@ -31,16 +27,14 @@ class Show extends Component
 
         $metatags = $this->buildMetags($this->project->metatags);
 
-        $locale = app()->getLocale();
-
         /** @phpstan-ignore-next-line */
-        $this->project->title = $this->project->{'title_' . $this->locale};
+        $this->project->title = $this->project->title_en;
         /** @phpstan-ignore-next-line */
-        $this->project->body = $this->project->{'body_' . $this->locale};
+        $this->project->body = $this->project->body_en;
 
         return view('livewire.project.show', [
             'metatags' => implode("\n\t\t", $metatags),
-        ]);
+        ])->title($this->project->title);
     }
 
     /**

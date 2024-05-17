@@ -235,8 +235,8 @@
     </div>
 
     {!! __('homepage.about') !!}
-
-    @push('metatags')
-        {!! $metatags !!}
-    @endpush
 </x-layouts.partials.content-wrap>
+
+@push('metatags')
+{!! $metatags !!}
+@endpush

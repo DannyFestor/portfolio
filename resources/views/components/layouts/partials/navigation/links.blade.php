@@ -16,7 +16,7 @@
 
         <x-layouts.partials.navigation.link x-model="isExpanded"
                                             wire:navigate
-                                            href="{{ route('home', ['locale' => $locale]) }}"
+                                            href="{{ route('home') }}"
                                             label="Homepage"
                                             aria-label="Homepage"
         >
@@ -47,7 +47,7 @@
         </x-layouts.partials.navigation.link>
         <x-layouts.partials.navigation.link x-model="isExpanded"
                                             wire:navigate
-                                            href="{{ route('project.index', ['locale' => $locale]) }}"
+                                            href="{{ route('project.index') }}"
                                             label="Projects I am or have been involved with"
                                             aria-label="Projects I am or have been involved with"
         >
@@ -63,7 +63,7 @@
         </x-layouts.partials.navigation.link>
         <x-layouts.partials.navigation.link x-model="isExpanded"
                                             wire:navigate
-                                            href="{{ route('contact.index', ['locale' => $locale]) }}"
+                                            href="{{ route('contact.index') }}"
                                             label="Don't hesitate to contact me"
                                             aria-label="Don't hesitate to contact me"
         >
@@ -77,7 +77,5 @@
                 </x-slot>
                 Contact
         </x-layouts.partials.navigation.link>
-
-        <livewire:navigation.language-select x-model="isExpanded"/>
     </section>
 </section>

@@ -161,7 +161,7 @@
 </x-layouts.partials.content-wrap>
 
 @push('metatags')
-    {!! $metatags !!}
+{!! $metatags !!}
 @endpush
 
 @pushonce('scripts')

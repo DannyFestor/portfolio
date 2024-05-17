@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Contact;
 
+use App\Helpers\MetaTags;
 use App\Livewire\Forms\ContactForm;
 use Livewire\Component;
 
@@ -13,7 +14,16 @@ class Index extends Component
 
     public function render(): \Illuminate\Contracts\View\View
     {
-        return view('livewire.contact.index')->title(__('contact.title'));
+        $metatags = MetaTags::makeMetatags(
+            path: 'blog',
+            title: __('metatags.title'),
+            titleShort: __('metatags.title.short'),
+            keywords: __('metatags.keywords'),
+            description: __('metatags.title'),
+            type: 'website',
+        );
+
+        return view('livewire.contact.index', ['metatags' => $metatags])->title(__('contact.title'));
     }
 
     public function save(): void
