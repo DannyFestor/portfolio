@@ -1,4 +1,10 @@
 {
+    "name": "portfolio",
+    "author": {
+        "email": "danny@festor.info",
+        "name": "Danny Festor",
+        "url": "https://festor.info"
+    },
     "private": true,
     "type": "module",
     "scripts": {
