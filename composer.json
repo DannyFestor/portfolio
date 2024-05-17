@@ -20,7 +20,6 @@
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^v3.8.1",
-        "doctrine/dbal": "^4.0",
         "fakerphp/faker": "^1.23.0",
         "filament/upgrade": "^3.0-stable",
         "larastan/larastan": "^2.9.4",
