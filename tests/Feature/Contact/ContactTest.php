@@ -1,4 +1,5 @@
 <?php
+
 //
 //it('can show the german contact page', function () {
 //    $this
@@ -11,7 +12,8 @@
 it('can show the english contact page', function () {
     $this
         ->session(['locale' => 'en'])
-        ->get(route('contact.index'))
+        ->get(route('contact.index'
+        ))
         ->assertSee('Contact me')
         ->assertStatus(\Symfony\Component\HttpFoundation\Response::HTTP_OK);
 });

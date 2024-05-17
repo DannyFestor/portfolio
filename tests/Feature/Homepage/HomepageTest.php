@@ -1,4 +1,5 @@
 <?php
+
 //
 //it('can show the german homepage', function () {
 //    $this
