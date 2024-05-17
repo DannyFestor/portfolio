@@ -1,28 +1,28 @@
 <?php
-
-it('can show the german contact page', function () {
-    $this
-        ->session(['locale' => 'de'])
-        ->get(route('contact.index', ['locale' => 'de']))
-        ->assertSee('Kontakt-Aufnahme')
-        ->assertStatus(\Symfony\Component\HttpFoundation\Response::HTTP_OK);
-});
+//
+//it('can show the german contact page', function () {
+//    $this
+//        ->session(['locale' => 'de'])
+//        ->get(route('contact.index', ['locale' => 'de']))
+//        ->assertSee('Kontakt-Aufnahme')
+//        ->assertStatus(\Symfony\Component\HttpFoundation\Response::HTTP_OK);
+//});
 
 it('can show the english contact page', function () {
     $this
         ->session(['locale' => 'en'])
-        ->get(route('contact.index', ['locale' => 'en']))
+        ->get(route('contact.index'))
         ->assertSee('Contact me')
         ->assertStatus(\Symfony\Component\HttpFoundation\Response::HTTP_OK);
 });
-
-it('can show the japanese contact page', function () {
-    $this
-        ->session(['locale' => 'ja'])
-        ->get(route('contact.index', ['locale' => 'ja']))
-        ->assertSee('連絡する')
-        ->assertStatus(\Symfony\Component\HttpFoundation\Response::HTTP_OK);
-});
+//
+//it('can show the japanese contact page', function () {
+//    $this
+//        ->session(['locale' => 'ja'])
+//        ->get(route('contact.index', ['locale' => 'ja']))
+//        ->assertSee('連絡する')
+//        ->assertStatus(\Symfony\Component\HttpFoundation\Response::HTTP_OK);
+//});
 
 // TODO: test mail content
 

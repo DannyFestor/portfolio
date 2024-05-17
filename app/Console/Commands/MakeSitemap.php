@@ -2,7 +2,6 @@
 
 namespace App\Console\Commands;
 
-use App\Enums\Locales;
 use App\Models\Post;
 use App\Models\Project;
 use Illuminate\Console\Command;
@@ -55,17 +54,7 @@ xml;
                 'priority' => 1.0,
             ],
             [
-                'url' => route('home', ['locale' => 'en']),
-                'changeFreq' => 'yearly',
-                'priority' => 1.0,
-            ],
-            [
-                'url' => route('home', ['locale' => 'de']),
-                'changeFreq' => 'yearly',
-                'priority' => 1.0,
-            ],
-            [
-                'url' => route('home', ['locale' => 'ja']),
+                'url' => route('home'),
                 'changeFreq' => 'yearly',
                 'priority' => 1.0,
             ],
@@ -75,32 +64,12 @@ xml;
                 'priority' => 0.8,
             ],
             [
-                'url' => route('contact.index', ['locale' => 'en']),
+                'url' => route('contact.index'),
                 'changeFreq' => 'never',
                 'priority' => 0.8,
             ],
             [
-                'url' => route('contact.index', ['locale' => 'de']),
-                'changeFreq' => 'never',
-                'priority' => 0.8,
-            ],
-            [
-                'url' => route('contact.index', ['locale' => 'ja']),
-                'changeFreq' => 'never',
-                'priority' => 0.8,
-            ],
-            [
-                'url' => route('project.index', ['locale' => 'en']),
-                'changeFreq' => 'monthly',
-                'priority' => 0.9,
-            ],
-            [
-                'url' => route('project.index', ['locale' => 'de']),
-                'changeFreq' => 'monthly',
-                'priority' => 0.9,
-            ],
-            [
-                'url' => route('project.index', ['locale' => 'ja']),
+                'url' => route('project.index'),
                 'changeFreq' => 'monthly',
                 'priority' => 0.9,
             ],
@@ -170,17 +139,6 @@ xml;
             ->where('display', '=', true)
             ->orderBy('sort')
             ->get();
-
-        foreach ($projects as $project) {
-            foreach (Locales::toArray() as $locale) {
-                $this->makeUrlBlock(
-                    $file,
-                    route('project.show', ['project' => $project, 'locale' => $locale]),
-                    'never',
-                    0.6
-                );
-            }
-        }
     }
 
     /**

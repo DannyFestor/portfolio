@@ -56,3 +56,7 @@
         </form>
     </div>
 </x-layouts.partials.content-wrap>
+
+@push('metatags')
+{!! $metatags !!}
+@endpush

@@ -40,7 +40,7 @@ class Show extends Component
 
         return view(
             'livewire.post.show',
-            ['metatags' => implode("\n\t\t", $metatags)]
+            ['metatags' => implode("\n\t", $metatags)]
         )
             ->title($this->post->title);
     }
