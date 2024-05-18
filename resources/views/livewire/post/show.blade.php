@@ -17,7 +17,7 @@
         @endif
 
         <div
-            class="bg-gradient-to-br from-indigo-800 to-rose-800 bg-clip-text p-4 text-center font-serif font-bold text-transparent sm:p-8"
+            class="font-gradient p-4 m:p-8 text-center"
         >
             <h1 class="text-4xl">
                 {{ $post->title }}

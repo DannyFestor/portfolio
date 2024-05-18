@@ -51,6 +51,11 @@ class PostResource extends Resource
                     })
                     ->default(Carbon::now()),
 
+                Forms\Components\Toggle::make('is_highlighted')
+                    ->inline(false)
+                    ->lazy()
+                    ->required(),
+
                 Forms\Components\Toggle::make('is_released')
                     ->inline(false)
                     ->lazy()
@@ -196,7 +201,9 @@ class PostResource extends Resource
                 ->searchable(isIndividual: true, isGlobal: false)
                 ->wrap()
                 ->sortable(),
-
+            Tables\Columns\IconColumn::make('is_highlighted')
+                ->boolean()
+                ->sortable(),
             Tables\Columns\IconColumn::make('is_released')
                 ->boolean()
                 ->sortable(),

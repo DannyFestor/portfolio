@@ -264,3 +264,7 @@ pre[data-lang] {
         @apply font-bold;
     }
 }
+
+.font-gradient {
+    @apply bg-gradient-to-br from-indigo-800 to-rose-800 bg-clip-text font-serif font-bold text-transparent;
+}
