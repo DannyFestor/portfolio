@@ -4,7 +4,6 @@ namespace App\Livewire;
 
 use App\Helpers\MetaTags;
 use App\Models\Post;
-use Illuminate\Database\Query\Builder;
 use Livewire\Component;
 
 class Homepage extends Component
@@ -36,13 +35,12 @@ class Homepage extends Component
             ->limit(3)
             ->get();
 
-
         $randomPosts = Post::query()
             ->where('released_at', '<=', now())
             ->where('is_released', '=', true)
             ->whereNotIn('id', [
                 ...$newestPosts->pluck('id')->toArray(),
-                ...$highlightedPosts->pluck('id')->toArray()
+                ...$highlightedPosts->pluck('id')->toArray(),
             ])
             ->inRandomOrder()
             ->limit(3)

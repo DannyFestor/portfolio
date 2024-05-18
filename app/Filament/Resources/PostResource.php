@@ -201,7 +201,9 @@ class PostResource extends Resource
                 ->searchable(isIndividual: true, isGlobal: false)
                 ->wrap()
                 ->sortable(),
-
+            Tables\Columns\IconColumn::make('is_highlighted')
+                ->boolean()
+                ->sortable(),
             Tables\Columns\IconColumn::make('is_released')
                 ->boolean()
                 ->sortable(),

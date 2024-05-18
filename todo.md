@@ -1,6 +1,6 @@
 - [ ] Update Homepage
   - [ ] Add a Smallish Hero Section
-  - [ ] Show Latest Blog Post
+  - [X] Show Latest Blog Post
   - [ ] Show a Youtube Video
   - [ ] Show Blog Posts I read?
 - [ ] Add a Links page to link to technologies I use
