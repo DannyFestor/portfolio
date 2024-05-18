@@ -51,6 +51,11 @@ class PostResource extends Resource
                     })
                     ->default(Carbon::now()),
 
+                Forms\Components\Toggle::make('is_highlighted')
+                    ->inline(false)
+                    ->lazy()
+                    ->required(),
+
                 Forms\Components\Toggle::make('is_released')
                     ->inline(false)
                     ->lazy()

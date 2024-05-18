@@ -1,8 +1,62 @@
 <x-layouts.partials.content-wrap
     class="flex flex-col items-center justify-center"
 >
+    {{-- Hero Section --}}
+    {{-- TODO --}}
+    <section class="font-gradient">
+        <span class="text-2xl">I like to learn new stuff. I also like to share knowledge.</span>
+    </section>
+    {{-- Hero Section End --}}
 
-    <div
+    {{-- New Blog Posts Section --}}
+    <section class="w-full text-left">
+        <h2 class="font-gradient font-bold text-2xl">From my blog</h2>
+        @if($newestPosts->isNotEmpty())
+        <h3 class="font-gradient font-bold text-lg mt-4">New Blog Posts</h3>
+        <div class="grid sm:grid-cols-3 gap-4 mt-2">
+            @foreach($newestPosts as $post)
+                <x-homepage.post :route="route('blog.show', [$post])">
+                    {{ $post->title }}
+                </x-homepage.post>
+            @endforeach
+        </div>
+        @endif
+
+        @if($highlightedPosts->isNotEmpty())
+        <h3 class="font-gradient font-bold text-lg mt-4">Highlighted</h3>
+        <div class="grid sm:grid-cols-3 gap-4 mt-2">
+            @foreach($highlightedPosts as $post)
+                <x-homepage.post :route="route('blog.show', [$post])">
+                    {{ $post->title }}
+                </x-homepage.post>
+            @endforeach
+        </div>
+        @endif
+
+        @if($randomPosts->isNotEmpty())
+        <h3 class="font-gradient font-bold text-lg mt-4">Randomly selected Posts</h3>
+        <div class="grid sm:grid-cols-3 gap-4 mt-2">
+            @foreach($randomPosts as $post)
+                <x-homepage.post :route="route('blog.show', [$post])">
+                    {{ $post->title }}
+                </x-homepage.post>
+            @endforeach
+        </div>
+        @endif
+    </section>
+    {{-- New Blog Section End --}}
+
+    {{-- New Video Section --}}
+    @if($videos->isNotEmpty())
+        <section>
+            {{-- TODO: Newest Video --}}
+            {{-- TODO: Random Video --}}
+        </section>
+    @endif
+    {{-- New Video Section End --}}
+
+    {{-- About Me Box --}}
+    <section
         class="mb-4 flex flex-col items-center justify-center rounded bg-white sm:mb-8 sm:mt-8 md:mb-16 md:mt-16 lg:mb-32 lg:mt-32 lg:flex-row"
     >
         <div
@@ -232,11 +286,16 @@
                     </span>
             </p>
         </article>
-    </div>
+    </section>
+    {{-- About Me Box End --}}
 
-    {!! __('homepage.about') !!}
+    {{-- About Me Text Start --}}
+    <section>
+        {!! __('homepage.about') !!}
+    </section>
+    {{-- About Me Text End --}}
 </x-layouts.partials.content-wrap>
 
 @push('metatags')
-{!! $metatags !!}
+    {!! $metatags !!}
 @endpush
