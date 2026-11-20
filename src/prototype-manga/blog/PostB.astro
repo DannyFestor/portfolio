@@ -1,0 +1,158 @@
+---
+// PROTOTYPE — throwaway. Blog post variant B: volume interior.
+// The post reads like a page inside a printed tankōbon: running head across the top, a quiet
+// chapter heading, wide outer margin carrying marginalia (date, tags, reading time) in the
+// annotation voice, and a folio at the foot. Only one small panel: the frontispiece.
+import "./prose.css";
+import { chapterNumber, featuredEntry, featuredPost, formatDate, posts } from "./posts";
+
+const entry = featuredEntry;
+const Content = featuredPost.Content;
+const chapter = chapterNumber(posts.findIndex((post) => post.slug === entry?.slug));
+---
+
+<article class="manga-page volume-page">
+  {
+    entry && (
+      <>
+        <header class="running-head">
+          <span class="small-label">Danny Festor · Writing</span>
+          <span class="small-label running-title">{entry.title}</span>
+        </header>
+
+        <div class="volume-body">
+          <aside class="margin-notes" aria-label="About this chapter">
+            <div class="panel frontispiece tone-mid">
+              <span class="display frontispiece-no halo">第{Number(chapter)}話</span>
+            </div>
+            <p class="aside">{formatDate(entry.date)}</p>
+            <p class="aside">{entry.minutes} min read</p>
+            <p class="aside margin-tags">{entry.tags.join(" · ")}</p>
+          </aside>
+
+          <div class="volume-text">
+            <h1 class="display volume-title">{entry.title}</h1>
+            <p class="narration volume-lede">{entry.description}</p>
+            <div class="post-prose">
+              <Content />
+            </div>
+            <p class="volume-back">
+              <a href="/blog">Back to the shelf</a>
+            </p>
+          </div>
+        </div>
+      </>
+    )
+  }
+  <p class="folio">— 17 —</p>
+</article>
+
+<style>
+  .volume-page {
+    padding: 28px 56px 90px;
+  }
+
+  .running-head {
+    display: flex;
+    gap: 24px;
+    justify-content: space-between;
+    padding-bottom: 8px;
+    margin-bottom: 48px;
+    border-bottom: 1px solid var(--ink);
+  }
+
+  .running-title {
+    overflow: hidden;
+    max-width: 50ch;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .volume-body {
+    display: grid;
+    grid-template-columns: 170px minmax(0, 1fr);
+    gap: 56px;
+  }
+
+  .margin-notes {
+    position: sticky;
+    top: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-self: start;
+  }
+
+  .frontispiece {
+    display: grid;
+    place-items: center;
+    height: 200px;
+    margin-bottom: 10px;
+  }
+
+  .frontispiece-no {
+    font-size: 28px;
+    writing-mode: vertical-rl;
+  }
+
+  .margin-tags {
+    color: var(--accent);
+  }
+
+  .volume-text {
+    max-width: 68ch;
+  }
+
+  .volume-title {
+    margin-bottom: 22px;
+    font-size: 38px;
+    line-height: 1.2;
+  }
+
+  .volume-lede {
+    margin-bottom: 34px;
+  }
+
+  .volume-back {
+    margin-top: 48px;
+  }
+
+  @media (width <= 760px) {
+    .volume-page {
+      padding: 18px 16px 60px;
+    }
+
+    .running-title {
+      display: none;
+    }
+
+    .running-head {
+      margin-bottom: 24px;
+    }
+
+    .volume-body {
+      grid-template-columns: 1fr;
+      gap: 18px;
+    }
+
+    .margin-notes {
+      position: static;
+      flex-flow: row wrap;
+      align-items: center;
+    }
+
+    .frontispiece {
+      width: 64px;
+      height: 84px;
+      margin: 0;
+    }
+
+    .frontispiece-no {
+      font-size: 18px;
+    }
+
+    .volume-title {
+      font-size: 28px;
+    }
+  }
+</style>

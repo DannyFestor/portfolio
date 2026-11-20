@@ -1,0 +1,106 @@
+/* PROTOTYPE — throwaway. Long-form reading for blog posts: a plain prose column on paper.
+ * Manga framing stays around the text, never over it. Code blocks are re-inked from Shiki's
+ * default theme into the print palette: ink text, red keywords, indigo strings and constants,
+ * grey italic comments, on paper with an ink rule. */
+
+.post-prose {
+  max-width: 68ch;
+  font-family: var(--narration);
+  font-size: 18px;
+  line-height: 1.75;
+  color: var(--ink);
+}
+
+.post-prose.post-prose > * + * {
+  margin-top: 1.1em;
+}
+
+.post-prose h2,
+.post-prose h3,
+.post-prose h4 {
+  margin-top: 2.2em;
+  font-family: var(--display);
+  font-weight: 400;
+  line-height: 1.25;
+}
+
+.post-prose h2 {
+  padding-bottom: 6px;
+  border-bottom: 2px solid var(--ink);
+  font-size: 28px;
+}
+
+.post-prose h3 {
+  font-size: 22px;
+}
+
+.post-prose h4 {
+  font-size: 18px;
+  letter-spacing: 0.04em;
+}
+
+.post-prose ul,
+.post-prose ol {
+  padding-left: 1.4em;
+}
+
+.post-prose li + li {
+  margin-top: 0.35em;
+}
+
+.post-prose blockquote {
+  padding: 10px 16px;
+  border: 2px solid var(--ink);
+  background: var(--paper);
+}
+
+/* Inline code: a small ink-bordered tag, like a lettered label. */
+.post-prose :not(pre) > code {
+  padding: 1px 5px;
+  border: 1px solid var(--ink);
+  font-family: "Courier Prime", ui-monospace, monospace;
+  font-size: 0.86em;
+  background: var(--paper);
+}
+
+/* Code blocks: paper, ink rule on the left, no dark slab. */
+.post-prose pre.astro-code {
+  overflow-x: auto;
+  margin-top: 1.4em;
+  margin-bottom: 1.4em;
+  padding: 14px 18px;
+  border: 2px solid var(--ink);
+  border-left-width: 8px;
+  font-family: "Courier Prime", ui-monospace, monospace;
+  font-size: 15px;
+  line-height: 1.6;
+  background-color: #fbfaf7 !important;
+}
+
+.post-prose pre.astro-code,
+.post-prose pre.astro-code span {
+  color: var(--ink) !important;
+}
+
+/* Re-ink Shiki github-dark token colours into the palette. */
+.post-prose pre.astro-code span[style*="#F97583" i] {
+  color: var(--accent) !important;
+}
+
+.post-prose pre.astro-code span[style*="#9ECBFF" i],
+.post-prose pre.astro-code span[style*="#79B8FF" i] {
+  color: var(--indigo) !important;
+}
+
+.post-prose pre.astro-code span[style*="#B392F0" i] {
+  font-weight: 700;
+}
+
+.post-prose pre.astro-code span[style*="#6A737D" i] {
+  font-style: italic;
+  color: #6d6a62 !important;
+}
+
+.post-prose img {
+  max-width: 100%;
+}

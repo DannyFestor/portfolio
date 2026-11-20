@@ -1,0 +1,270 @@
+---
+// PROTOTYPE — throwaway. Contact variant B: "Next-chapter preview" (次回予告).
+// The manga next-issue teaser: your project is the next chapter. A tall vertical title strip on the left,
+// the chapter title as the impact panel, three preview frames for what happens after the first email,
+// and the email as the "on sale" call to action.
+import { identity } from "../content";
+
+const [emailLocal, emailDomain] = identity.email.split("@");
+import { contactCopy, nextSteps } from "./contact-content";
+---
+
+<section class="manga-page" aria-labelledby="contact-b-title">
+  <div class="manga-grid grid">
+    <div class="panel tone-dense strip">
+      <p class="strip-ja display" aria-hidden="true">次回予告</p>
+      <p class="halo small-label strip-en">Next chapter</p>
+    </div>
+
+    <div class="panel title-panel">
+      <span class="focus-lines" aria-hidden="true"></span>
+      <span class="sfx" aria-hidden="true">ゴゴゴ</span>
+      <p class="period chapter-no">Chapter 2</p>
+      <h1 id="contact-b-title" class="display fuchidori title">Your project.</h1>
+    </div>
+
+    {
+      nextSteps.map((step, index) => (
+        <div class={`panel preview preview-${index + 1} ${index === 1 ? "tone-light" : ""}`}>
+          <p class="preview-no display" aria-hidden="true">
+            {index + 1}
+          </p>
+          <p class="small-label halo">{step.label}</p>
+          <p class="narration">{step.text}</p>
+        </div>
+      ))
+    }
+
+    <div class="panel cta">
+      <p class="small-label">Starts the moment you write</p>
+      <a class="display email" href={`mailto:${identity.email}`}>{emailLocal}@<wbr />{emailDomain}</a>
+      <p class="aside cta-aside">{contactCopy.noForm}</p>
+    </div>
+
+    <div class="panel facts">
+      <p class="status-line"><span class="status-mark" aria-hidden="true"></span>{identity.status}</p>
+      <dl class="fact-list">
+        <div>
+          <dt class="small-label">Rates</dt>
+          <dd>{contactCopy.ratesShort}</dd>
+        </div>
+        <div>
+          <dt class="small-label">Replies</dt>
+          <dd>{identity.responseTime}.</dd>
+        </div>
+        <div>
+          <dt class="small-label">Where</dt>
+          <dd>{contactCopy.location}</dd>
+        </div>
+        <div>
+          <dt class="small-label">Languages</dt>
+          <dd>{identity.languages}</dd>
+        </div>
+      </dl>
+    </div>
+  </div>
+  <p class="folio">To be continued</p>
+</section>
+
+<style>
+  .grid {
+    grid-template-rows: 300px 220px minmax(250px, auto);
+    grid-template-areas:
+      "str str tit tit tit tit tit tit tit tit tit tit"
+      "str str p1  p1  p1  p2  p2  p2  p2  p3  p3  p3"
+      "str str cta cta cta cta cta cta fac fac fac fac";
+  }
+
+  .strip {
+    display: flex;
+    flex-direction: column;
+    grid-area: str;
+    gap: 18px;
+    align-items: center;
+    justify-content: center;
+    padding: 24px 10px;
+  }
+
+  .strip-ja {
+    padding: 14px 6px;
+    font-size: 56px;
+    line-height: 1.05;
+    letter-spacing: 0.06em;
+    background: var(--paper);
+    border: 2px solid var(--ink);
+    writing-mode: vertical-rl;
+  }
+
+  .strip-en {
+    writing-mode: vertical-rl;
+  }
+
+  .title-panel {
+    display: flex;
+    flex-direction: column;
+    grid-area: tit;
+    gap: 16px;
+    align-items: center;
+    justify-content: center;
+    padding: 28px;
+  }
+
+  .title {
+    font-size: clamp(48px, 8vw, 104px);
+    line-height: 1;
+  }
+
+  .title-panel .sfx {
+    top: 12%;
+    right: 7%;
+    font-size: 46px;
+  }
+
+  .preview {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: flex-end;
+    padding: 16px 16px 18px;
+  }
+
+  .preview-1 {
+    grid-area: p1;
+  }
+
+  .preview-2 {
+    grid-area: p2;
+  }
+
+  .preview-3 {
+    grid-area: p3;
+  }
+
+  .preview-no {
+    position: absolute;
+    top: 6px;
+    left: 14px;
+    font-size: 64px;
+    line-height: 1;
+    color: var(--paper);
+    -webkit-text-stroke: 2px var(--ink);
+  }
+
+  .preview .narration {
+    font-size: 14px;
+  }
+
+  .cta {
+    display: flex;
+    flex-direction: column;
+    grid-area: cta;
+    gap: 14px;
+    justify-content: center;
+    padding: 24px 28px;
+    border-width: 6px;
+    border-style: double;
+  }
+
+  .email {
+    font-size: clamp(28px, 3.4vw, 44px);
+    line-height: 1.05;
+    text-decoration-thickness: 3px;
+    text-underline-offset: 9px;
+  }
+
+  .email:hover {
+    text-decoration-thickness: 6px;
+  }
+
+  .cta-aside {
+    color: var(--accent);
+  }
+
+  .facts {
+    display: flex;
+    flex-direction: column;
+    grid-area: fac;
+    gap: 14px;
+    justify-content: center;
+    padding: 18px 20px;
+  }
+
+  .status-line {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    font-family: var(--display);
+    font-size: 20px;
+  }
+
+  .status-mark {
+    flex: none;
+    width: 12px;
+    height: 12px;
+    background: var(--accent);
+    transform: rotate(45deg);
+  }
+
+  .fact-list {
+    display: grid;
+    gap: 8px;
+    margin: 0;
+  }
+
+  .fact-list div {
+    display: grid;
+    grid-template-columns: 104px 1fr;
+    gap: 10px;
+    align-items: baseline;
+  }
+
+  .fact-list dt {
+    font-size: 11px;
+  }
+
+  .fact-list dd {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  @media (width <= 760px) {
+    .strip {
+      flex-direction: row;
+      min-height: 120px;
+    }
+
+    .strip-ja {
+      font-size: 30px;
+      white-space: nowrap;
+      writing-mode: horizontal-tb;
+    }
+
+    .strip-en {
+      writing-mode: horizontal-tb;
+    }
+
+    .title-panel {
+      min-height: 280px;
+    }
+
+    .preview {
+      order: 3;
+      min-height: 170px;
+      padding-top: 78px;
+    }
+
+    /* On a phone the call to action follows the chapter title instead of the three preview frames. */
+    .title-panel {
+      order: 1;
+    }
+
+    .cta {
+      order: 2;
+    }
+
+    .facts {
+      order: 4;
+    }
+  }
+</style>

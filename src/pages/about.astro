@@ -1,0 +1,19 @@
+---
+// PROTOTYPE — throwaway branch prototype/manga-home. About page variants (#7, #8): switch with ?variant=A|B|C.
+import AboutA from "../prototype-manga/about/AboutA.astro";
+import AboutB from "../prototype-manga/about/AboutB.astro";
+import AboutC from "../prototype-manga/about/AboutC.astro";
+import PrototypeLayout from "../prototype-manga/PrototypeLayout.astro";
+
+const variants = [
+  { key: "A", name: "Character profile page" },
+  { key: "B", name: "Author's afterword" },
+  { key: "C", name: "Career as chapters" },
+] as const;
+---
+
+<PrototypeLayout title="About — Danny Festor (prototype)" variants={variants} current="/about">
+  <div class="variant" data-variant-panel="A"><AboutA /></div>
+  <div class="variant" data-variant-panel="B"><AboutB /></div>
+  <div class="variant" data-variant-panel="C"><AboutC /></div>
+</PrototypeLayout>

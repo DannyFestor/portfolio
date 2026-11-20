@@ -1,0 +1,19 @@
+---
+// PROTOTYPE — throwaway branch prototype/manga-home. Three Contact page variants (#7, #19), switch with ?variant=A|B|C.
+import ContactA from "../prototype-manga/contact/ContactA.astro";
+import ContactB from "../prototype-manga/contact/ContactB.astro";
+import ContactC from "../prototype-manga/contact/ContactC.astro";
+import PrototypeLayout from "../prototype-manga/PrototypeLayout.astro";
+
+const variants = [
+  { key: "A", name: "Final page of the chapter" },
+  { key: "B", name: "Next-chapter preview" },
+  { key: "C", name: "Reader mail" },
+] as const;
+---
+
+<PrototypeLayout title="Contact — Danny Festor" variants={variants} current="/contact">
+  <div class="variant" data-variant-panel="A"><ContactA /></div>
+  <div class="variant" data-variant-panel="B"><ContactB /></div>
+  <div class="variant" data-variant-panel="C"><ContactC /></div>
+</PrototypeLayout>

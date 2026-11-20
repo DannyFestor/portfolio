@@ -1,0 +1,19 @@
+---
+// PROTOTYPE — throwaway branch prototype/manga-home. Case studies page variants (#7), switch with ?variant=A|B|C.
+import PrototypeLayout from "../prototype-manga/PrototypeLayout.astro";
+import WorkVariantA from "../prototype-manga/work/WorkVariantA.astro";
+import WorkVariantB from "../prototype-manga/work/WorkVariantB.astro";
+import WorkVariantC from "../prototype-manga/work/WorkVariantC.astro";
+
+const variants = [
+  { key: "A", name: "Tankōbon" },
+  { key: "B", name: "Panel storyboard" },
+  { key: "C", name: "Split spread" },
+] as const;
+---
+
+<PrototypeLayout title="Case studies — Danny Festor" variants={variants} current="/work">
+  <div class="variant" data-variant-panel="A"><WorkVariantA /></div>
+  <div class="variant" data-variant-panel="B"><WorkVariantB /></div>
+  <div class="variant" data-variant-panel="C"><WorkVariantC /></div>
+</PrototypeLayout>

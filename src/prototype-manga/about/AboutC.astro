@@ -1,0 +1,317 @@
+---
+// PROTOTYPE — throwaway. About variant C: "Career as chapters".
+// Each era is its own short chapter: a chapter-title panel, one small panel per job, an aside.
+// The last chapter (the AI era) carries the page's one impact panel and the photo; an epilogue
+// page closes with the bio, downloads and links.
+import { identity } from "../content";
+import photo from "../danny-screentone.png";
+import { bio, eras, identityLinks, photoAlt, resumes } from "./about-content";
+
+const pastEras = eras.slice(0, -1);
+const currentEra = eras.at(-1);
+const impactLine = "Someone still has to engineer it."; // draft
+---
+
+<section class="about-c" aria-labelledby="about-c-title">
+  <div class="manga-page">
+    <header class="volume-head">
+      <p class="small-label">Danny Festor · collected chapters</p>
+      <h1 id="about-c-title" class="display volume-title">About: four chapters so far</h1>
+    </header>
+
+    {
+      pastEras.map((era, eraIndex) => (
+        <section class:list={["chapter", eraIndex % 2 === 1 && "chapter-flipped"]} aria-label={`Chapter ${era.chapter}: ${era.title}`}>
+          <div class="panel chapter-title tone-mid">
+            <p class="chapter-number display fuchidori">{era.chapter}</p>
+            <h2 class="display chapter-name halo">{era.title}</h2>
+            <p class="period">{era.span}</p>
+          </div>
+          {era.entries.map((entry, entryIndex) => (
+            <div class:list={["panel", "job", entryIndex % 2 === 1 && "tone-light"]}>
+              <p class="small-label halo">{entry.place}</p>
+              <p class="display job-org halo">{entry.org}</p>
+              <p class="narration job-note">
+                <strong class="job-role">{entry.role}.</strong> {entry.note}
+              </p>
+            </div>
+          ))}
+          <p class="aside chapter-aside">{era.aside}</p>
+        </section>
+      ))
+    }
+    <p class="folio">1</p>
+  </div>
+
+  {
+    currentEra && (
+      <div class="manga-page">
+        <section class="manga-grid grid-now" aria-label={`Chapter ${currentEra.chapter}: ${currentEra.title}`}>
+          <div class="panel now-title">
+            <p class="chapter-number display">{currentEra.chapter}</p>
+            <h2 class="display chapter-name">{currentEra.title}</h2>
+            <p class="period now-period">{currentEra.span}</p>
+          </div>
+          {currentEra.entries.map((entry, entryIndex) => (
+            <div class="panel job now-job" style={`grid-area: job${entryIndex + 1}`}>
+              <p class="small-label">{entry.period}</p>
+              <p class="display job-org">{entry.org}</p>
+              <p class="narration job-note">
+                <strong class="job-role">{entry.role}.</strong> {entry.note}
+              </p>
+            </div>
+          ))}
+          <div class="panel now-photo">
+            <div class="photo" style={`--photo: url(${photo.src})`} role="img" aria-label={photoAlt} />
+          </div>
+          <div class="panel now-impact">
+            <span class="focus-lines" aria-hidden="true" />
+            <span class="sfx" aria-hidden="true">カチッ</span>
+            <p class="small-label halo impact-kicker">{currentEra.aside}…</p>
+            <p class="display fuchidori impact-line">{impactLine}</p>
+          </div>
+        </section>
+        <p class="folio">2</p>
+      </div>
+    )
+  }
+
+  <div class="manga-page">
+    <div class="manga-grid grid-epilogue">
+      <div class="panel epilogue">
+        <p class="small-label">Epilogue</p>
+        {bio.map((paragraph) => <p class="epilogue-text">{paragraph}</p>)}
+      </div>
+      <div class="panel takeaway tone-light">
+        <p class="small-label halo">Take it with you</p>
+        <ul class="plain-list">
+          {
+            resumes.map((resume) => (
+              <li class="narration">
+                <a href={resume.href}>{resume.label}</a> <span class="small-label">{resume.note}</span>
+              </li>
+            ))
+          }
+        </ul>
+        <ul class="plain-list link-row">
+          {
+            identityLinks.map((link) => (
+              <li class="halo">
+                <a href={link.href}>{link.label}</a>
+              </li>
+            ))
+          }
+        </ul>
+        <p class="aside confession">{identity.mangaConfession}</p>
+      </div>
+    </div>
+    <p class="folio">3</p>
+  </div>
+</section>
+
+<style>
+  .volume-head {
+    padding-bottom: 14px;
+    margin-bottom: 22px;
+    border-bottom: 2px solid var(--ink);
+  }
+
+  .volume-title {
+    margin-top: 4px;
+    font-size: 34px;
+    line-height: 1.1;
+  }
+
+  .chapter {
+    position: relative;
+    display: grid;
+    grid-template-columns: 170px repeat(2, minmax(0, 1fr));
+    gap: var(--gutter);
+    padding-bottom: 34px;
+  }
+
+  .chapter + .chapter {
+    padding-top: 6px;
+  }
+
+  .chapter-flipped {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) 170px;
+  }
+
+  .chapter-flipped .chapter-title {
+    grid-column: 3;
+    grid-row: 1;
+  }
+
+  .chapter-title {
+    display: grid;
+    gap: 8px;
+    align-content: space-between;
+    min-height: 190px;
+    padding: 14px;
+  }
+
+  .chapter-number {
+    font-size: 64px;
+    line-height: 1;
+  }
+
+  .chapter-name {
+    font-size: 20px;
+    line-height: 1.2;
+  }
+
+  .job {
+    display: grid;
+    gap: 8px;
+    align-content: start;
+    min-height: 190px;
+    padding: 14px;
+  }
+
+  .job-org {
+    font-size: 21px;
+    line-height: 1.15;
+  }
+
+  .job-note {
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  .job-role {
+    font-weight: 600;
+  }
+
+  .chapter-aside {
+    position: absolute;
+    right: 0;
+    bottom: 4px;
+    font-size: 14px;
+    color: var(--accent);
+  }
+
+  .chapter-flipped .chapter-aside {
+    right: auto;
+    left: 0;
+  }
+
+  .grid-now {
+    grid-template-rows: auto auto;
+    grid-template-areas:
+      "title title title job1 job1 job1 job1 photo photo photo photo photo"
+      "job2 job2 job2 job2 job2 job2 job2 photo photo photo photo photo"
+      "impact impact impact impact impact impact impact impact impact impact impact impact";
+  }
+
+  .now-title {
+    display: grid;
+    grid-area: title;
+    gap: 8px;
+    align-content: space-between;
+    min-height: 210px;
+    padding: 14px;
+  }
+
+  .now-period {
+    background: var(--accent);
+  }
+
+  .now-photo {
+    grid-area: photo;
+    min-height: 480px;
+  }
+
+  .photo {
+    position: absolute;
+    inset: 0;
+    background: var(--ink);
+    mask: var(--photo) 32% 30% / cover no-repeat;
+  }
+
+  .now-impact {
+    display: grid;
+    grid-area: impact;
+    place-content: center;
+    min-height: 250px;
+    padding: 24px 60px;
+    text-align: center;
+  }
+
+  .impact-kicker {
+    margin: 0 auto 10px;
+  }
+
+  .impact-line {
+    font-size: clamp(30px, 3.6vw, 44px);
+    line-height: 1.1;
+  }
+
+  .grid-epilogue {
+    grid-template-areas: "epi epi epi epi epi epi epi tk tk tk tk tk";
+  }
+
+  .epilogue {
+    display: grid;
+    grid-area: epi;
+    gap: 12px;
+    padding: 22px;
+    line-height: 1.75;
+  }
+
+  .takeaway {
+    display: grid;
+    grid-area: tk;
+    gap: 12px;
+    align-content: start;
+    padding: 20px;
+  }
+
+  .plain-list {
+    display: grid;
+    gap: 10px;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+
+  .link-row {
+    grid-auto-flow: column;
+    justify-content: start;
+    gap: 14px;
+  }
+
+  .confession {
+    margin-top: 10px;
+    color: var(--accent);
+  }
+
+  @media (width <= 760px) {
+    .chapter,
+    .chapter-flipped {
+      grid-template-columns: 1fr;
+      padding-bottom: 46px;
+    }
+
+    .chapter-flipped .chapter-title {
+      grid-column: auto;
+      grid-row: auto;
+    }
+
+    .chapter-title {
+      min-height: 0;
+    }
+
+    .job {
+      min-height: 0;
+    }
+
+    .now-photo {
+      min-height: 420px;
+    }
+
+    .now-impact {
+      padding: 24px;
+    }
+  }
+</style>

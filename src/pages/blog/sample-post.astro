@@ -1,0 +1,24 @@
+---
+// PROTOTYPE — throwaway branch prototype/manga-home. Blog post page variants (#7 page layouts), switch with ?variant=A|B|C.
+// Variant A of the post pairs with variant A of the listing, and so on.
+import PostA from "../../prototype-manga/blog/PostA.astro";
+import PostB from "../../prototype-manga/blog/PostB.astro";
+import PostC from "../../prototype-manga/blog/PostC.astro";
+import PrototypeLayout from "../../prototype-manga/PrototypeLayout.astro";
+
+const variants = [
+  { key: "A", name: "Chapter title page" },
+  { key: "B", name: "Volume interior" },
+  { key: "C", name: "Panel strip + column" },
+] as const;
+---
+
+<PrototypeLayout title="Signed URLs — Danny Festor" variants={variants} current="/blog">
+  <link
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400&display=swap"
+  />
+  <div class="variant" data-variant-panel="A"><PostA /></div>
+  <div class="variant" data-variant-panel="B"><PostB /></div>
+  <div class="variant" data-variant-panel="C"><PostC /></div>
+</PrototypeLayout>

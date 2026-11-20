@@ -1,0 +1,479 @@
+---
+// PROTOTYPE — throwaway. /work variant A: "Tankōbon". A 目次 contents page, then the full study as a
+// chapter (title page with the one impact panel, then a readable prose column), then the other
+// chapters as short chapter cards.
+import { fullStudy, studies } from "./work-content";
+
+const others = studies.filter((study) => !study.isFull);
+const fullEntry = studies.find((study) => study.isFull);
+---
+
+<section class="work-a">
+  <!-- Page 1: contents -->
+  <div class="manga-page">
+    <div class="manga-grid toc-grid">
+      <div class="panel toc-title tone-light">
+        <p class="toc-kanji display" aria-hidden="true">目次</p>
+        <div class="toc-title-text">
+          <p class="small-label halo">Case files</p>
+          <h1 class="display toc-heading fuchidori">Five projects,<br />told straight.</h1>
+        </div>
+        <p class="narration toc-narration">
+          Two kinds of work: rescue and build. Chapter 2 is told in full: situation, decisions, result.
+        </p>
+      </div>
+      <ol class="panel toc-list">
+        {
+          studies.map((study) => (
+            <li class:list={["toc-row", { "toc-row--full": study.isFull }]}>
+              <a href={`#a-ch-${study.chapter}`}>
+                <span class="toc-no display">Ch. {study.chapter}</span>
+                <span class="toc-name display">{study.title}</span>
+                <span class="toc-leader" aria-hidden="true" />
+                <span class="toc-meta">
+                  {study.period} · {study.world}
+                </span>
+              </a>
+              {study.isFull && <p class="aside toc-aside">read this one</p>}
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+    <p class="folio">1</p>
+  </div>
+
+  <!-- Page 2: chapter title page for the full study -->
+  <div class="manga-page" id={`a-ch-${fullStudy.chapter}`}>
+    <div class="manga-grid chapter-grid">
+      <div class="panel chapter-no tone-mid">
+        <p class="chapter-no-label small-label halo">Chapter</p>
+        <p class="chapter-no-digit display fuchidori">{fullStudy.chapter}</p>
+      </div>
+      <div class="panel chapter-name">
+        <p class="period">{fullStudy.period}</p>
+        <h2 class="display chapter-heading">{fullStudy.title}</h2>
+        <p class="chapter-role">{fullStudy.role}</p>
+        <p class="chapter-stack">{fullStudy.stack.join(" · ")}</p>
+      </div>
+      <div class="panel chapter-impact">
+        <span class="focus-lines" aria-hidden="true"></span>
+        <p class="sfx" aria-hidden="true">{fullStudy.sfx}</p>
+        <p class="impact display fuchidori">
+          {fullStudy.impact[0]} <span class="impact-arrow">→</span><br />
+          {fullStudy.impact[1]}
+        </p>
+      </div>
+      <div class="panel chapter-quote tone-light">
+        <span class="tone-fade tone-fade--up" aria-hidden="true"></span>
+        <p class="narration quote">{fullEntry?.situation}</p>
+      </div>
+    </div>
+    <p class="folio">2</p>
+  </div>
+
+  <!-- The study itself: a plain, readable prose column with manga framing at the section breaks -->
+  <article class="manga-page study">
+    <section class="study-section">
+      <header class="section-head">
+        <p class="small-label">Situation</p>
+        <p class="aside section-aside">{fullStudy.asides.situation}</p>
+      </header>
+      {fullStudy.situation.map((paragraph) => <p class="prose">{paragraph}</p>)}
+    </section>
+
+    <section class="study-section">
+      <header class="section-head">
+        <p class="small-label">Decisions</p>
+        <p class="aside section-aside">{fullStudy.asides.decisions}</p>
+      </header>
+      <ol class="decisions">
+        {
+          fullStudy.decisions.map((decision, index) => (
+            <li class="decision">
+              <p class="decision-no display">{index + 1}</p>
+              <div>
+                <h3 class="display decision-title">{decision.title}</h3>
+                <p class="prose">{decision.body}</p>
+              </div>
+            </li>
+          ))
+        }
+      </ol>
+    </section>
+
+    <figure class="panel figure tone-light">
+      <p class="narration figure-text">{fullStudy.pullQuote}</p>
+      <figcaption class="aside figure-caption">fig. 2 — the whole fix, more or less</figcaption>
+    </figure>
+
+    <section class="study-section">
+      <header class="section-head">
+        <p class="small-label">Result</p>
+        <p class="aside section-aside">{fullStudy.asides.result}</p>
+      </header>
+      {fullStudy.result.map((paragraph) => <p class="prose">{paragraph}</p>)}
+    </section>
+    <p class="folio">3</p>
+  </article>
+
+  <!-- Page 4: the other chapters as short chapter cards -->
+  <div class="manga-page">
+    <div class="manga-grid others-grid">
+      {
+        others.map((study, index) => (
+          <article id={`a-ch-${study.chapter}`} class:list={["panel", "other", `other-${index + 1}`]}>
+            <p class="other-no display">Ch. {study.chapter}</p>
+            <p class="period">{study.period}</p>
+            <h3 class="display other-title">{study.title}</h3>
+            <p class="other-role">{study.role}</p>
+            <p class="narration other-text">{study.situation}</p>
+            <p class="other-result accent">{study.result}</p>
+            <p class="aside other-world">{study.world.toLowerCase()}</p>
+          </article>
+        ))
+      }
+    </div>
+    <p class="folio">4</p>
+  </div>
+</section>
+
+<style>
+  .work-a {
+    padding-top: 28px;
+  }
+
+  /* ── contents page ── */
+  .toc-grid {
+    grid-template-areas: "title title title title title list list list list list list list";
+    min-height: 520px;
+  }
+
+  .toc-title {
+    display: flex;
+    flex-direction: column;
+    grid-area: title;
+    gap: 18px;
+    justify-content: space-between;
+    padding: 26px;
+  }
+
+  .toc-kanji {
+    position: absolute;
+    right: 18px;
+    bottom: 18px;
+    z-index: -1;
+    font-size: 96px;
+    line-height: 1;
+    color: var(--paper);
+    writing-mode: vertical-rl;
+    -webkit-text-stroke: 2px var(--ink);
+  }
+
+  .toc-heading {
+    margin-top: 10px;
+    font-size: 46px;
+    line-height: 1.05;
+  }
+
+  .toc-narration {
+    max-width: 30ch;
+  }
+
+  .toc-list {
+    display: flex;
+    flex-direction: column;
+    grid-area: list;
+    justify-content: center;
+    margin: 0;
+    padding: 24px 28px;
+    list-style: none;
+  }
+
+  .toc-row {
+    position: relative;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--ink);
+  }
+
+  .toc-row:last-child {
+    border-bottom: 0;
+  }
+
+  .toc-row a {
+    display: flex;
+    gap: 12px;
+    align-items: baseline;
+    text-decoration: none;
+  }
+
+  .toc-row a:hover .toc-name {
+    text-decoration: underline 3px var(--accent);
+    text-underline-offset: 4px;
+  }
+
+  .toc-no {
+    flex: none;
+    min-width: 52px;
+    white-space: nowrap;
+    font-size: 14px;
+    letter-spacing: 0.08em;
+  }
+
+  .toc-name {
+    font-size: 21px;
+  }
+
+  .toc-leader {
+    flex: 1;
+    min-width: 20px;
+    border-bottom: 2px dotted var(--ink);
+  }
+
+  .toc-meta {
+    flex: none;
+    font-size: 14px;
+  }
+
+  .toc-row--full .toc-no {
+    padding: 0 6px;
+    color: var(--paper);
+    background: var(--ink);
+  }
+
+  .toc-aside {
+    margin: 4px 0 0 64px;
+    color: var(--accent);
+  }
+
+  /* ── chapter title page ── */
+  .chapter-grid {
+    grid-template-rows: 250px 300px;
+    grid-template-areas:
+      "no no no name name name name name name name name name"
+      "imp imp imp imp imp imp imp imp quote quote quote quote";
+  }
+
+  .chapter-no {
+    display: flex;
+    flex-direction: column;
+    grid-area: no;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .chapter-no-digit {
+    font-size: 150px;
+    line-height: 0.9;
+  }
+
+  .chapter-name {
+    display: flex;
+    flex-direction: column;
+    grid-area: name;
+    gap: 10px;
+    justify-content: flex-end;
+    padding: 28px;
+  }
+
+  .chapter-heading {
+    font-size: 44px;
+    line-height: 1.05;
+  }
+
+  .chapter-role {
+    font-size: 16px;
+  }
+
+  .chapter-stack {
+    font-size: 14px;
+  }
+
+  .chapter-impact {
+    display: grid;
+    grid-area: imp;
+    place-items: center;
+    min-height: 260px;
+  }
+
+  .impact {
+    font-size: 52px;
+    line-height: 1.05;
+    text-align: center;
+  }
+
+  .impact-arrow {
+    color: var(--accent);
+  }
+
+  .chapter-quote {
+    display: grid;
+    grid-area: quote;
+    place-items: center;
+    padding: 24px;
+  }
+
+  .quote {
+    font-size: 18px;
+  }
+
+  /* ── the study prose column ── */
+  .study {
+    padding-top: 56px;
+    padding-bottom: 80px;
+  }
+
+  .study-section,
+  .figure {
+    max-width: 640px;
+    margin: 0 auto 44px;
+  }
+
+  .section-head {
+    display: flex;
+    gap: 18px;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: var(--line) solid var(--ink);
+  }
+
+  .section-aside {
+    color: var(--accent);
+  }
+
+  .prose {
+    margin-bottom: 16px;
+    font-size: 18px;
+    line-height: 1.8;
+  }
+
+  .decisions {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .decision {
+    display: grid;
+    grid-template-columns: 44px 1fr;
+    gap: 12px;
+    margin-bottom: 18px;
+  }
+
+  .decision-no {
+    font-size: 34px;
+    line-height: 1;
+  }
+
+  .decision-title {
+    margin-bottom: 4px;
+    font-size: 21px;
+  }
+
+  .figure {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-items: flex-start;
+    padding: 30px;
+  }
+
+  .figure-text {
+    font-size: 22px;
+  }
+
+  .figure-caption {
+    align-self: flex-end;
+  }
+
+  /* ── other chapters ── */
+  .others-grid {
+    grid-template-areas:
+      "o1 o1 o1 o1 o1 o1 o1 o2 o2 o2 o2 o2"
+      "o3 o3 o3 o3 o3 o4 o4 o4 o4 o4 o4 o4";
+  }
+
+  .other {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 22px;
+  }
+
+  .other-1 {
+    grid-area: o1;
+  }
+
+  .other-2 {
+    grid-area: o2;
+  }
+
+  .other-3 {
+    grid-area: o3;
+  }
+
+  .other-4 {
+    grid-area: o4;
+  }
+
+  .other-no {
+    font-size: 13px;
+    letter-spacing: 0.1em;
+  }
+
+  .other-title {
+    font-size: 25px;
+    line-height: 1.1;
+  }
+
+  .other-role {
+    font-size: 14px;
+  }
+
+  .other-result {
+    font-size: 16px;
+  }
+
+  .other-world {
+    align-self: flex-end;
+    margin-top: auto;
+  }
+
+  @media (width <= 760px) {
+    .toc-kanji {
+      display: none;
+    }
+
+    .toc-heading,
+    .chapter-heading {
+      font-size: 34px;
+    }
+
+    .toc-row a {
+      flex-wrap: wrap;
+    }
+
+    .toc-leader {
+      display: none;
+    }
+
+    .toc-meta {
+      width: 100%;
+      padding-left: 64px;
+    }
+
+    .chapter-no {
+      min-height: 200px;
+    }
+
+    .impact {
+      font-size: 40px;
+    }
+
+    .prose {
+      font-size: 17px;
+    }
+  }
+</style>

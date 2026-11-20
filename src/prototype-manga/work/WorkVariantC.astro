@@ -1,0 +1,355 @@
+---
+// PROTOTYPE — throwaway. /work variant C: "Split spread". Desktop shows a two-page spread: the left
+// page is the index (it stays in view while you read), the right page is the full study with
+// margin asides. On phones the index comes first, then the study.
+import { fullStudy, studies } from "./work-content";
+---
+
+<section class="work-c">
+  <div class="spread">
+    <!-- Left page: the index -->
+    <nav class="leaf leaf-left" aria-label="Case studies">
+      <div class="leaf-inner">
+        <h1 class="display index-heading">Case studies</h1>
+        <p class="narration index-intro">Five projects, rescue and build. Pick one; chapter 2 is open.</p>
+        <ol class="index-list">
+          {
+            studies.map((study) => (
+              <li class:list={["panel", "index-item", { "index-item--open": study.isFull }]}>
+                <a href={study.isFull ? "#c-study" : `#c-ch-${study.chapter}`} class="index-link">
+                  <span class="index-no display">{study.chapter}</span>
+                  <span class="index-body">
+                    <span class="index-title display">{study.title}</span>
+                    <span class="index-meta">
+                      {study.period} · {study.world} · {study.role}
+                    </span>
+                    <span class="index-result">{study.result}</span>
+                  </span>
+                </a>
+                {study.isFull && <span class="aside index-here">reading →</span>}
+              </li>
+            ))
+          }
+        </ol>
+      </div>
+      <p class="folio leaf-folio">12</p>
+    </nav>
+
+    <!-- Right page: the study -->
+    <article class="leaf leaf-right" id="c-study">
+      <header class="study-head">
+        <div class="panel head-impact">
+          <span class="focus-lines" aria-hidden="true"></span>
+          <p class="sfx" aria-hidden="true">{fullStudy.sfx}</p>
+          <p class="display head-impact-text fuchidori">
+            {fullStudy.impact[0]} <span class="accent">→</span><br />
+            {fullStudy.impact[1]}
+          </p>
+        </div>
+        <div class="head-title">
+          <p class="period">Chapter {fullStudy.chapter} · {fullStudy.period}</p>
+          <h2 class="display study-title">{fullStudy.title}</h2>
+          <p class="study-role">{fullStudy.role} · {fullStudy.stack.join(" · ")}</p>
+        </div>
+      </header>
+
+      <div class="study-body">
+        <h3 class="small-label body-label">Situation</h3>
+        <p class="aside margin-note">{fullStudy.asides.situation}</p>
+        {fullStudy.situation.map((paragraph) => <p class="prose">{paragraph}</p>)}
+
+        <h3 class="small-label body-label">Decisions</h3>
+        <p class="aside margin-note">{fullStudy.asides.decisions}</p>
+        {
+          fullStudy.decisions.map((decision) => (
+            <p class="prose">
+              <span class="display decision-title">{decision.title}.</span> {decision.body}
+            </p>
+          ))
+        }
+
+        <blockquote class="narration pull">{fullStudy.pullQuote}</blockquote>
+
+        <h3 class="small-label body-label">Result</h3>
+        <p class="aside margin-note">{fullStudy.asides.result}</p>
+        {fullStudy.result.map((paragraph) => <p class="prose">{paragraph}</p>)}
+      </div>
+      <p class="folio leaf-folio">13</p>
+    </article>
+  </div>
+
+  <!-- Short chapters follow the spread -->
+  <div class="manga-page shorts">
+    <div class="manga-grid shorts-grid">
+      {
+        studies
+          .filter((study) => !study.isFull)
+          .map((study, index) => (
+            <article id={`c-ch-${study.chapter}`} class:list={["panel", "short", { "tone-light": index === 1 }]}>
+              <p class="period">
+                Ch. {study.chapter} · {study.period}
+              </p>
+              <h3 class="display short-title halo">{study.title}</h3>
+              <p class="narration">{study.situation}</p>
+              <p class="accent short-result halo">{study.result}</p>
+            </article>
+          ))
+      }
+    </div>
+    <p class="folio">14</p>
+  </div>
+</section>
+
+<style>
+  .work-c {
+    padding-top: 28px;
+  }
+
+  /* ── the spread ── */
+  .spread {
+    display: grid;
+    grid-template-columns: 5fr 7fr;
+    align-items: start;
+    max-width: 1280px;
+    margin: 0 auto 40px;
+    background: var(--paper);
+  }
+
+  .leaf {
+    position: relative;
+    padding: 44px 40px 72px;
+  }
+
+  /* The spine: a double ink rule where the two pages meet. */
+  .leaf-left {
+    position: sticky;
+    top: 0;
+    min-height: 100vh;
+    border-right: 4px double var(--ink);
+  }
+
+  .leaf-folio {
+    bottom: 22px;
+  }
+
+  .index-heading {
+    font-size: 48px;
+    line-height: 1;
+  }
+
+  .index-intro {
+    margin: 18px 0 22px;
+  }
+
+  .index-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .index-item {
+    overflow: visible;
+    border-width: 2px;
+  }
+
+  .index-item--open {
+    border-width: 4px;
+  }
+
+  .index-link {
+    display: grid;
+    grid-template-columns: 46px 1fr;
+    gap: 10px;
+    padding: 12px 14px;
+    text-decoration: none;
+  }
+
+  .index-link:hover .index-title {
+    text-decoration: underline 3px var(--accent);
+    text-underline-offset: 4px;
+  }
+
+  .index-no {
+    font-size: 38px;
+    line-height: 1;
+  }
+
+  .index-body {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+
+  .index-title {
+    font-size: 19px;
+    line-height: 1.15;
+  }
+
+  .index-meta {
+    font-size: 12.5px;
+  }
+
+  .index-result {
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  .index-here {
+    position: absolute;
+    top: 50%;
+    right: -54px;
+    color: var(--accent);
+    transform: translateY(-50%) rotate(-4deg);
+  }
+
+  /* ── study page ── */
+  .study-head {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    margin-bottom: 34px;
+  }
+
+  .head-impact {
+    display: grid;
+    place-items: center;
+    min-height: 260px;
+  }
+
+  .head-impact-text {
+    padding-right: 40px;
+    font-size: 44px;
+    line-height: 1.05;
+    text-align: center;
+  }
+
+  .head-title {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .study-title {
+    font-size: 40px;
+    line-height: 1.05;
+  }
+
+  .study-role {
+    font-size: 14px;
+  }
+
+  /* Prose column with a narrow margin for the annotation voice. */
+  .study-body {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 130px;
+    column-gap: 22px;
+  }
+
+  .study-body > * {
+    grid-column: 1;
+  }
+
+  .study-body > .margin-note {
+    grid-column: 2;
+    margin-top: 4px;
+    font-size: 14px;
+    color: var(--accent);
+  }
+
+  .body-label {
+    grid-column: 1;
+    margin: 18px 0 10px;
+    padding-bottom: 6px;
+    border-bottom: var(--line) solid var(--ink);
+  }
+
+  .prose {
+    margin-bottom: 16px;
+    font-size: 17.5px;
+    line-height: 1.8;
+  }
+
+  .decision-title {
+    font-size: 18px;
+  }
+
+  .pull {
+    margin: 10px 0 18px;
+    font-size: 21px;
+  }
+
+  /* ── short chapters ── */
+  .shorts-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .short {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 18px;
+  }
+
+  .short-title {
+    font-size: 21px;
+    line-height: 1.15;
+  }
+
+  .short-result {
+    font-size: 15px;
+  }
+
+  @media (width <= 1100px) {
+    .shorts-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (width <= 760px) {
+    .spread {
+      grid-template-columns: 1fr;
+    }
+
+    .leaf {
+      padding: 22px 16px 56px;
+    }
+
+    .leaf-left {
+      position: static;
+      min-height: 0;
+      border-right: 0;
+      border-bottom: 4px double var(--ink);
+    }
+
+    .index-here {
+      position: static;
+      display: block;
+      margin: 0 0 10px 70px;
+      transform: none;
+    }
+
+    .head-impact-text {
+      font-size: 34px;
+    }
+
+    .study-title {
+      font-size: 32px;
+    }
+
+    .study-body {
+      grid-template-columns: 1fr;
+    }
+
+    .study-body > .margin-note {
+      grid-column: 1;
+      margin-bottom: 8px;
+    }
+
+    .prose {
+      font-size: 17px;
+    }
+  }
+</style>

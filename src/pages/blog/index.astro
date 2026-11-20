@@ -1,0 +1,19 @@
+---
+// PROTOTYPE — throwaway branch prototype/manga-home. Blog listing variants (#7 page layouts), switch with ?variant=A|B|C.
+import ListingA from "../../prototype-manga/blog/ListingA.astro";
+import ListingB from "../../prototype-manga/blog/ListingB.astro";
+import ListingC from "../../prototype-manga/blog/ListingC.astro";
+import PrototypeLayout from "../../prototype-manga/PrototypeLayout.astro";
+
+const variants = [
+  { key: "A", name: "Table of contents (目次)" },
+  { key: "B", name: "Tankōbon shelf" },
+  { key: "C", name: "Serial chapter list" },
+] as const;
+---
+
+<PrototypeLayout title="Writing — Danny Festor" variants={variants} current="/blog">
+  <div class="variant" data-variant-panel="A"><ListingA /></div>
+  <div class="variant" data-variant-panel="B"><ListingB /></div>
+  <div class="variant" data-variant-panel="C"><ListingC /></div>
+</PrototypeLayout>

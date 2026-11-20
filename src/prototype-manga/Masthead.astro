@@ -1,0 +1,88 @@
+---
+// PROTOTYPE — throwaway. Slim manga-magazine masthead shared by the page prototypes.
+// Placeholder until the header element session (#28/#29).
+import { identity, nav } from "./content";
+
+interface Props {
+  /** Path of the current page, e.g. "/about". */
+  current?: string;
+}
+
+const { current = "/" } = Astro.props;
+const links = nav.map((label) => ({ label, href: `/${label.toLowerCase()}` }));
+---
+
+<header class="masthead">
+  <a class="masthead-name" href="/" aria-current={current === "/" ? "page" : undefined}>{identity.name}</a>
+  <p class="masthead-issue small-label">{identity.place}</p>
+  <nav aria-label="Site">
+    <ul>
+      {
+        links.map((link) => (
+          <li>
+            <a href={link.href} aria-current={current === link.href ? "page" : undefined}>
+              {link.label}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </nav>
+</header>
+
+<style>
+  .masthead {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 18px;
+    align-items: baseline;
+    max-width: 1080px;
+    margin: 0 auto 28px;
+    padding: 22px 0 10px;
+    border-bottom: var(--line) solid var(--ink);
+  }
+
+  .masthead-name {
+    font-family: var(--display);
+    font-size: 26px;
+    text-decoration: none;
+  }
+
+  .masthead-issue {
+    color: var(--ink);
+  }
+
+  ul {
+    display: flex;
+    gap: 22px;
+    padding: 0;
+    list-style: none;
+  }
+
+  ul a {
+    font-family: var(--display);
+    font-size: 14px;
+    letter-spacing: 0.16em;
+    text-decoration: none;
+    text-transform: uppercase;
+  }
+
+  /* The current page is marked like a chapter tab: an ink block with paper lettering. */
+  ul a[aria-current="page"] {
+    padding: 2px 8px;
+    color: var(--paper);
+    background: var(--ink);
+  }
+
+  @media (width <= 760px) {
+    .masthead {
+      grid-template-columns: 1fr;
+      gap: 6px;
+    }
+
+    ul {
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+  }
+</style>

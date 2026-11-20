@@ -1,0 +1,210 @@
+---
+// PROTOTYPE — throwaway. Blog listing variant C: serial chapter list.
+// The newest real post opens as a "latest chapter" panel row; every post below is one slim
+// numbered strip (number cell, title cell, date cell), like the chapter index at the back of a
+// serialised manga volume.
+import { chapterNumber, formatDate, posts } from "./posts";
+
+const latestIndex = posts.findIndex((post) => !post.placeholder);
+const latest = posts[latestIndex];
+---
+
+<section class="manga-page serial-page">
+  <div class="serial-head">
+    <h1 class="display serial-title">Writing</h1>
+    <p class="aside serial-aside">a serial, updated irregularly</p>
+  </div>
+
+  {
+    latest && (
+      <div class="manga-grid latest-row">
+        <div class="panel latest-number tone-mid">
+          <span class="latest-kanji display fuchidori" aria-hidden="true">
+            最新話
+          </span>
+          <span class="display latest-ch halo">Ch. {chapterNumber(latestIndex)}</span>
+        </div>
+        <a class="panel latest-title-panel" href={`/blog/${latest.slug}`}>
+          <span class="period">{formatDate(latest.date)}</span>
+          <span class="display latest-title">{latest.title}</span>
+        </a>
+        <p class="panel latest-desc">
+          <span class="narration latest-narration">{latest.description}</span>
+          <span class="aside latest-minutes">{latest.minutes} min read</span>
+        </p>
+      </div>
+    )
+  }
+
+  <ol class="chapter-list" aria-label="All chapters">
+    {
+      posts.map((post, index) => (
+        <li class:list={["chapter", { placeholder: post.placeholder }]}>
+          <span class="chapter-no display">
+            <span class="halo">{chapterNumber(index)}</span>
+          </span>
+          <a class="chapter-title display" href={post.placeholder ? "#" : `/blog/${post.slug}`}>
+            {post.title}
+          </a>
+          <time class="chapter-date" datetime={post.date}>
+            {formatDate(post.date)}
+          </time>
+        </li>
+      ))
+    }
+  </ol>
+  <p class="folio">— 1 —</p>
+</section>
+
+<style>
+  .serial-head {
+    display: flex;
+    gap: 18px;
+    align-items: baseline;
+    margin-bottom: 22px;
+  }
+
+  .serial-title {
+    font-size: 48px;
+    line-height: 1;
+  }
+
+  .serial-aside {
+    color: var(--accent);
+    transform: rotate(-2deg);
+  }
+
+  .latest-row {
+    grid-template-areas: "num num num title title title title title desc desc desc desc";
+    grid-template-rows: 190px;
+    margin-bottom: 30px;
+  }
+
+  .latest-number {
+    display: grid;
+    grid-area: num;
+    place-items: center;
+    padding: 14px;
+  }
+
+  .latest-kanji {
+    font-size: 40px;
+    line-height: 1;
+    color: var(--accent);
+  }
+
+  .latest-ch {
+    font-size: 20px;
+  }
+
+  .latest-title-panel {
+    display: flex;
+    flex-direction: column;
+    grid-area: title;
+    gap: 14px;
+    justify-content: center;
+    padding: 18px 22px;
+    text-decoration: none;
+  }
+
+  .latest-title-panel:hover {
+    border-color: var(--accent);
+    text-decoration: none;
+  }
+
+  .latest-title {
+    font-size: 24px;
+    line-height: 1.25;
+  }
+
+  .latest-desc {
+    display: flex;
+    flex-direction: column;
+    grid-area: desc;
+    gap: 10px;
+    justify-content: center;
+    padding: 16px;
+  }
+
+  .latest-minutes {
+    align-self: flex-end;
+  }
+
+  .chapter-list {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 0;
+    list-style: none;
+  }
+
+  /* Each chapter: one slim strip of three cells separated by ink rules. */
+  .chapter {
+    display: grid;
+    grid-template-columns: 64px 1fr 140px;
+    overflow: hidden;
+    border: 2px solid var(--ink);
+    background: var(--paper);
+  }
+
+  .chapter > * {
+    padding: 10px 14px;
+  }
+
+  .chapter-no {
+    display: grid;
+    place-items: center;
+    border-right: 2px solid var(--ink);
+    font-size: 20px;
+    background-color: var(--paper);
+    background-image: var(--tone-light);
+    background-size: var(--tone-tile) var(--tone-tile);
+  }
+
+  .chapter-title {
+    font-size: 17px;
+    line-height: 1.35;
+    text-decoration: none;
+  }
+
+  .chapter-title:hover {
+    text-decoration: underline 3px var(--accent);
+  }
+
+  .chapter-date {
+    border-left: 2px solid var(--ink);
+    font-family: var(--display);
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    text-align: right;
+  }
+
+  .placeholder {
+    opacity: 0.45;
+  }
+
+  @media (width <= 760px) {
+    .serial-title {
+      font-size: 38px;
+    }
+
+    .latest-number {
+      min-height: 110px;
+    }
+
+    .chapter {
+      grid-template-columns: 48px 1fr;
+    }
+
+    .chapter-date {
+      grid-column: 2;
+      border-top: 1px solid var(--ink);
+      border-left: 0;
+      text-align: left;
+    }
+
+    .chapter-no {
+      grid-row: span 2;
+    }
+  }
+</style>

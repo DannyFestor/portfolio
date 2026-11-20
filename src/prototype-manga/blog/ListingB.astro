@@ -1,0 +1,212 @@
+---
+// PROTOTYPE — throwaway. Blog listing variant B: tankōbon shelf.
+// Each post is a book spine standing on a shelf: volume number at the top, the title set vertically,
+// the date at the foot. Spines are thin, so the shelf stays compact as posts accumulate.
+// On phones the books lie flat: stacked horizontal spines with horizontal titles.
+import { chapterNumber, formatDate, posts } from "./posts";
+
+const spineTone = (index: number): string => (index % 3 === 1 ? "tone-mid" : index % 3 === 2 ? "tone-light" : "");
+---
+
+<section class="manga-page shelf-page">
+  <header class="shelf-head">
+    <div>
+      <p class="small-label">Writing · collected volumes</p>
+      <h1 class="display shelf-title">The shelf</h1>
+    </div>
+    <p class="narration shelf-intro">
+      Each volume is one problem from client work, written up properly. Newest on the left.
+    </p>
+  </header>
+
+  <ol class="shelf">
+    {
+      posts.map((post, index) => (
+        <li class:list={["spine-slot", { placeholder: post.placeholder }]}>
+          <a
+            class:list={["spine", spineTone(index)]}
+            href={post.placeholder ? "#" : `/blog/${post.slug}`}
+            aria-label={`Volume ${chapterNumber(index)}: ${post.title}`}
+          >
+            <span class="spine-vol display">Vol.{chapterNumber(index)}</span>
+            <span class="spine-label">
+              <span class="spine-text display">{post.title}</span>
+            </span>
+            <time class="spine-date" datetime={post.date}>
+              {formatDate(post.date)}
+            </time>
+          </a>
+        </li>
+      ))
+    }
+  </ol>
+  <div class="shelf-board" aria-hidden="true"></div>
+  <p class="aside shelf-aside">placeholders are the faded ones</p>
+  <p class="folio">— 1 —</p>
+</section>
+
+<style>
+  .shelf-page {
+    padding-bottom: 80px;
+  }
+
+  .shelf-head {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 32px;
+    align-items: end;
+    margin-bottom: 36px;
+  }
+
+  .shelf-title {
+    font-size: 54px;
+    line-height: 1;
+  }
+
+  .shelf-intro {
+    justify-self: end;
+    max-width: 44ch;
+  }
+
+  .shelf {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: flex-end;
+    padding: 0 8px;
+    list-style: none;
+  }
+
+  .spine-slot {
+    display: flex;
+  }
+
+  /* Spines get slightly different heights, like real volumes from different printings. */
+  .spine-slot:nth-child(3n + 1) .spine {
+    height: 400px;
+  }
+
+  .spine-slot:nth-child(3n + 2) .spine {
+    height: 372px;
+  }
+
+  .spine-slot:nth-child(3n) .spine {
+    height: 388px;
+  }
+
+  .spine {
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    gap: 10px;
+    justify-items: center;
+    width: 86px;
+    padding: 12px 8px;
+    border: var(--line) solid var(--ink);
+    text-decoration: none;
+    background-color: var(--paper);
+  }
+
+  .spine:hover {
+    border-color: var(--accent);
+    text-decoration: none;
+  }
+
+  .spine-vol {
+    padding: 2px 6px;
+    font-size: 13px;
+    color: var(--paper);
+    background: var(--ink);
+  }
+
+  /* The title sits on its own paper label so it never touches the tone. */
+  .spine-label {
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+    padding: 8px 6px;
+    border: 1px solid var(--ink);
+    background: var(--paper);
+  }
+
+  .spine-text {
+    font-size: 17px;
+    line-height: 1.25;
+    writing-mode: vertical-rl;
+  }
+
+  .spine-date {
+    padding: 2px 4px;
+    font-family: var(--hand);
+    font-size: 12px;
+    text-align: center;
+    background: var(--paper);
+  }
+
+  .shelf-board {
+    height: 14px;
+    margin-top: 0;
+    border: var(--line) solid var(--ink);
+    background-color: var(--paper);
+    background-image: var(--tone-dense);
+    background-size: var(--tone-tile) var(--tone-tile);
+  }
+
+  .shelf-aside {
+    margin: 14px 8px 0 auto;
+    color: var(--accent);
+  }
+
+  .placeholder {
+    opacity: 0.4;
+  }
+
+  @media (width <= 760px) {
+    .shelf-head {
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+
+    .shelf-title {
+      font-size: 40px;
+    }
+
+    .shelf-intro {
+      justify-self: start;
+    }
+
+    /* Books lie flat: a stack of horizontal spines. */
+    .shelf {
+      flex-direction: column;
+      gap: 6px;
+      align-items: stretch;
+      padding: 0;
+    }
+
+    .spine-slot:nth-child(n) .spine {
+      grid-template-rows: none;
+      grid-template-columns: auto 1fr;
+      align-items: center;
+      justify-items: start;
+      width: 100%;
+      height: auto;
+    }
+
+    .spine-text {
+      writing-mode: horizontal-tb;
+    }
+
+    .spine-label {
+      grid-row: span 2;
+      justify-content: flex-start;
+    }
+
+    .spine-date {
+      grid-row: 2;
+      grid-column: 1;
+    }
+
+    .shelf-board {
+      display: none;
+    }
+  }
+</style>

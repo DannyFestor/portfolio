@@ -1,0 +1,180 @@
+---
+// PROTOTYPE — throwaway. Blog post variant C: one-row panel strip, then the column.
+// A single row of four panels frames the post (chapter number, title, facts, what it covers),
+// the text runs below in a plain column, and a "previous / next chapter" strip closes it.
+import "./prose.css";
+import { chapterNumber, featuredEntry, featuredPost, formatDate, posts } from "./posts";
+
+const entry = featuredEntry;
+const Content = featuredPost.Content;
+const index = posts.findIndex((post) => post.slug === entry?.slug);
+const newer = posts.slice(0, index).findLast((post) => !post.placeholder) ?? posts[index - 1];
+const older = posts.slice(index + 1).find((post) => !post.placeholder);
+---
+
+<article class="manga-page strip-page">
+  {
+    entry && (
+      <div class="manga-grid post-strip">
+        <div class="panel strip-no tone-dense">
+          <span class="display strip-no-text halo">Ch.{chapterNumber(index)}</span>
+        </div>
+        <div class="panel strip-title">
+          <h1 class="display strip-title-text">{entry.title}</h1>
+        </div>
+        <div class="panel strip-facts">
+          <span class="period">{formatDate(entry.date)}</span>
+          <span class="small-label">{entry.minutes} min read</span>
+          <span class="aside strip-tags">{entry.tags.join(" · ")}</span>
+        </div>
+        <p class="panel strip-desc tone-light">
+          <span class="narration">{entry.description}</span>
+        </p>
+      </div>
+    )
+  }
+
+  <div class="post-prose strip-prose">
+    <Content />
+  </div>
+
+  <nav class="manga-grid chapter-nav" aria-label="Other chapters">
+    {
+      older && (
+        <a class="panel nav-older" href={older.placeholder ? "#" : `/blog/${older.slug}`}>
+          <span class="small-label">← Previous chapter</span>
+          <span class="display nav-title">{older.title}</span>
+        </a>
+      )
+    }
+    <a class="panel nav-all" href="/blog">
+      <span class="small-label">All chapters</span>
+    </a>
+    {
+      newer && (
+        <a class="panel nav-newer" href={newer.placeholder ? "#" : `/blog/${newer.slug}`}>
+          <span class="small-label">Next chapter →</span>
+          <span class="display nav-title">{newer.title}</span>
+        </a>
+      )
+    }
+  </nav>
+  <p class="folio">— 1 —</p>
+</article>
+
+<style>
+  .post-strip {
+    grid-template-areas: "no title title title title title facts facts facts desc desc desc";
+    grid-template-rows: 210px;
+    margin-bottom: 56px;
+  }
+
+  .strip-no {
+    display: grid;
+    grid-area: no;
+    place-items: center;
+  }
+
+  .strip-no-text {
+    font-size: 22px;
+    writing-mode: vertical-rl;
+  }
+
+  .strip-title {
+    display: flex;
+    grid-area: title;
+    align-items: flex-end;
+    padding: 22px;
+  }
+
+  .strip-title-text {
+    font-size: 28px;
+    line-height: 1.2;
+  }
+
+  .strip-facts {
+    display: flex;
+    flex-direction: column;
+    grid-area: facts;
+    gap: 12px;
+    justify-content: center;
+    padding: 16px;
+  }
+
+  .strip-tags {
+    color: var(--accent);
+  }
+
+  .strip-desc {
+    display: flex;
+    grid-area: desc;
+    align-items: center;
+    padding: 16px;
+  }
+
+  .strip-prose {
+    margin: 0 auto;
+  }
+
+  .chapter-nav {
+    grid-template-areas: "older older older older older all all newer newer newer newer newer";
+    margin-top: 64px;
+  }
+
+  .chapter-nav .panel {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    justify-content: center;
+    min-height: 110px;
+    padding: 16px 18px;
+    text-decoration: none;
+  }
+
+  .chapter-nav .panel:hover {
+    border-color: var(--accent);
+  }
+
+  .nav-older {
+    grid-area: older;
+  }
+
+  .nav-all {
+    grid-area: all;
+    align-items: center;
+  }
+
+  .nav-newer {
+    grid-area: newer;
+    align-items: flex-end;
+    text-align: right;
+  }
+
+  .nav-title {
+    font-size: 17px;
+    line-height: 1.3;
+  }
+
+  @media (width <= 760px) {
+    .post-strip {
+      margin-bottom: 28px;
+    }
+
+    .strip-no {
+      min-height: 70px;
+    }
+
+    .strip-no-text {
+      writing-mode: horizontal-tb;
+    }
+
+    .strip-title-text {
+      font-size: 26px;
+    }
+
+    .nav-newer {
+      align-items: flex-start;
+      text-align: left;
+    }
+  }
+</style>

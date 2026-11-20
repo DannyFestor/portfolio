@@ -1,0 +1,514 @@
+---
+// PROTOTYPE — throwaway. /work variant B: "Panel storyboard". A one-row strip of chapter covers as the
+// index, then the full study told as three manga pages (situation, decisions, result). Panels carry
+// the beats; the readable prose sits under each page.
+import { fullStudy, studies } from "./work-content";
+
+const apps = ["User web app", "Admin app", "Public site"];
+---
+
+<section class="work-b">
+  <!-- Index: a strip of chapter covers -->
+  <nav class="manga-page cover-page" aria-label="Case studies">
+    <div class="cover-head">
+      <h1 class="display cover-heading">Case studies</h1>
+      <p class="aside">five chapters, one told in full below</p>
+    </div>
+    <ol class="cover-strip">
+      {
+        studies.map((study) => (
+          <li class:list={["panel", "cover", { "cover--full tone-light": study.isFull }]}>
+            <a href={study.isFull ? "#b-study" : `#b-ch-${study.chapter}`}>
+              <span class="cover-no display">{study.chapter}</span>
+              <span class="cover-title display halo">{study.title}</span>
+              <span class="cover-meta halo">
+                {study.period} · {study.world}
+              </span>
+            </a>
+            {study.isFull && <span class="cover-flag small-label">Now reading</span>}
+          </li>
+        ))
+      }
+    </ol>
+  </nav>
+
+  <!-- Page 1: situation -->
+  <div class="manga-page" id="b-study">
+    <p class="page-label small-label">Chapter {fullStudy.chapter} · {fullStudy.title} · Situation</p>
+    <div class="manga-grid sit-grid">
+      <div class="panel sit-apps">
+        <p class="narration sit-caption">Three apps. One serverless backend.</p>
+        <div class="diagram" aria-hidden="true">
+          <div class="diagram-apps">{apps.map((app) => <span class="diagram-box">{app}</span>)}</div>
+          <div class="diagram-wires"></div>
+          <span class="diagram-box diagram-backend">GraphQL · AWS · PostgreSQL</span>
+        </div>
+      </div>
+      <div class="panel sit-team tone-mid">
+        <span class="tone-fade" aria-hidden="true"></span>
+        <p class="display sit-big fuchidori">Six people.</p>
+        <p class="narration">I led the backend.</p>
+      </div>
+      <div class="panel sit-slow tone-dense">
+        <p class="display sit-slow-text fuchidori">Some queries<br />took seconds.</p>
+      </div>
+      <div class="panel sit-aside">
+        <p class="aside">{fullStudy.asides.situation}</p>
+      </div>
+    </div>
+    <p class="folio">1</p>
+  </div>
+  <div class="prose-page">
+    {fullStudy.situation.map((paragraph) => <p class="prose">{paragraph}</p>)}
+  </div>
+
+  <!-- Page 2: decisions, one panel per decision -->
+  <div class="manga-page">
+    <p class="page-label small-label">Decisions</p>
+    <ol class="manga-grid dec-grid">
+      {
+        fullStudy.decisions.map((decision, index) => (
+          <li class:list={["panel", "dec", `dec-${index + 1}`, { "tone-light": index % 2 === 1 }]}>
+            <span class="dec-no display">{index + 1}</span>
+            <p class="dec-title display halo">{decision.title}</p>
+          </li>
+        ))
+      }
+    </ol>
+    <p class="folio">2</p>
+  </div>
+  <div class="prose-page">
+    {
+      fullStudy.decisions.map((decision, index) => (
+        <p class="prose">
+          <strong class="display">
+            {index + 1}. {decision.title}.
+          </strong>{" "}
+          {decision.body}
+        </p>
+      ))
+    }
+  </div>
+
+  <!-- Page 3: result, the page's one impact moment -->
+  <div class="manga-page">
+    <p class="page-label small-label">Result</p>
+    <div class="manga-grid res-grid">
+      <div class="panel res-impact">
+        <span class="focus-lines" aria-hidden="true"></span>
+        <p class="sfx" aria-hidden="true">{fullStudy.sfx}</p>
+        <p class="display res-impact-text fuchidori">
+          {fullStudy.impact[0]} <span class="accent">→</span><br />
+          {fullStudy.impact[1]}
+        </p>
+      </div>
+      <div class="panel res-hotfix tone-light">
+        <p class="period">May 2025</p>
+        <p class="narration">Database performance hotfix, shipped.</p>
+      </div>
+      <div class="panel res-api">
+        <p class="narration">The API got smaller instead of bigger.</p>
+        <p class="aside res-aside">{fullStudy.asides.result}</p>
+      </div>
+    </div>
+    <p class="folio">3</p>
+  </div>
+  <div class="prose-page">
+    {fullStudy.result.map((paragraph) => <p class="prose">{paragraph}</p>)}
+    <p class="prose-stack">{fullStudy.stack.join(" · ")}</p>
+  </div>
+
+  <!-- The other chapters, short -->
+  <div class="manga-page">
+    <p class="page-label small-label">Other chapters</p>
+    <div class="manga-grid other-grid">
+      {
+        studies
+          .filter((study) => !study.isFull)
+          .map((study) => (
+            <article class="panel other" id={`b-ch-${study.chapter}`}>
+              <p class="period">{study.period}</p>
+              <h2 class="display other-title">{study.title}</h2>
+              <p class="other-role">{study.role}</p>
+              <p class="narration">{study.situation}</p>
+              <p class="accent other-result">{study.result}</p>
+            </article>
+          ))
+      }
+    </div>
+    <p class="folio">4</p>
+  </div>
+</section>
+
+<style>
+  .work-b {
+    padding-top: 28px;
+  }
+
+  .page-label {
+    margin-bottom: 14px;
+  }
+
+  /* ── cover strip ── */
+  .cover-page {
+    padding-bottom: 44px;
+  }
+
+  .cover-head {
+    display: flex;
+    gap: 20px;
+    align-items: baseline;
+    margin-bottom: 22px;
+  }
+
+  .cover-heading {
+    font-size: 52px;
+    line-height: 1;
+  }
+
+  .cover-strip {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: var(--gutter);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .cover {
+    min-height: 230px;
+  }
+
+  .cover a {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    height: 100%;
+    padding: 16px;
+    text-decoration: none;
+  }
+
+  .cover a:hover .cover-title {
+    text-decoration: underline 3px var(--accent);
+    text-underline-offset: 4px;
+  }
+
+  .cover-no {
+    font-size: 64px;
+    line-height: 1;
+  }
+
+  .cover-title {
+    margin-top: auto;
+    font-size: 19px;
+    line-height: 1.15;
+  }
+
+  .cover-meta {
+    font-size: 13px;
+  }
+
+  .cover--full {
+    border-width: 5px;
+  }
+
+  .cover-flag {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 3px 8px;
+    color: var(--paper);
+    background: var(--accent);
+  }
+
+  /* ── situation page ── */
+  .sit-grid {
+    grid-template-rows: 260px 200px;
+    grid-template-areas:
+      "apps apps apps apps apps apps apps apps team team team team"
+      "slow slow slow slow slow slow slow aside aside aside aside aside";
+  }
+
+  .sit-apps {
+    display: flex;
+    flex-direction: column;
+    grid-area: apps;
+    gap: 18px;
+    padding: 22px;
+  }
+
+  .sit-caption {
+    width: fit-content;
+  }
+
+  .diagram {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .diagram-apps {
+    display: flex;
+    gap: 22px;
+  }
+
+  .diagram-box {
+    padding: 8px 14px;
+    border: 2px solid var(--ink);
+    font-size: 14px;
+    background: var(--paper);
+  }
+
+  .diagram-wires {
+    width: 70%;
+    height: 34px;
+    border: 2px solid var(--ink);
+    border-top: 0;
+  }
+
+  .diagram-backend {
+    margin-top: -2px;
+    color: var(--paper);
+    background: var(--ink);
+  }
+
+  .sit-team {
+    display: flex;
+    flex-direction: column;
+    grid-area: team;
+    gap: 14px;
+    justify-content: flex-end;
+    padding: 22px;
+  }
+
+  .sit-big {
+    font-size: 42px;
+  }
+
+  .sit-slow {
+    display: grid;
+    grid-area: slow;
+    place-items: center;
+  }
+
+  .sit-slow-text {
+    font-size: 40px;
+    line-height: 1.1;
+    text-align: center;
+  }
+
+  .sit-aside {
+    display: grid;
+    grid-area: aside;
+    place-items: center;
+  }
+
+  .sit-aside .aside {
+    font-size: 20px;
+    color: var(--accent);
+  }
+
+  /* ── decisions page ── */
+  .dec-grid {
+    grid-template-rows: 190px 190px;
+    grid-template-areas:
+      "d1 d1 d1 d1 d1 d2 d2 d2 d3 d3 d3 d3"
+      "d4 d4 d4 d4 d4 d4 d4 d5 d5 d5 d5 d5";
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .dec {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 18px;
+  }
+
+  .dec-1 {
+    grid-area: d1;
+  }
+
+  .dec-2 {
+    grid-area: d2;
+  }
+
+  .dec-3 {
+    grid-area: d3;
+  }
+
+  .dec-4 {
+    grid-area: d4;
+  }
+
+  .dec-5 {
+    grid-area: d5;
+  }
+
+  .dec-no {
+    font-size: 58px;
+    line-height: 1;
+  }
+
+  .dec-title {
+    font-size: 21px;
+    line-height: 1.2;
+  }
+
+  /* ── result page ── */
+  .res-grid {
+    grid-template-rows: 200px 160px;
+    grid-template-areas:
+      "imp imp imp imp imp imp imp imp hot hot hot hot"
+      "imp imp imp imp imp imp imp imp api api api api";
+  }
+
+  .res-impact {
+    display: grid;
+    grid-area: imp;
+    place-items: center;
+    min-height: 300px;
+  }
+
+  .res-impact-text {
+    font-size: 54px;
+    line-height: 1.05;
+    text-align: center;
+  }
+
+  .res-hotfix {
+    display: flex;
+    flex-direction: column;
+    grid-area: hot;
+    gap: 12px;
+    justify-content: center;
+    padding: 20px;
+  }
+
+  .res-api {
+    display: flex;
+    flex-direction: column;
+    grid-area: api;
+    gap: 10px;
+    justify-content: center;
+    padding: 20px;
+  }
+
+  .res-aside {
+    align-self: flex-end;
+    color: var(--accent);
+  }
+
+  /* ── prose under each page ── */
+  .prose-page {
+    max-width: 1080px;
+    margin: -40px auto 40px;
+    padding: 36px 44px 44px;
+    border-top: 1px dashed var(--ink);
+    background: var(--paper);
+  }
+
+  .prose {
+    max-width: 640px;
+    margin: 0 auto 16px;
+    font-size: 18px;
+    line-height: 1.8;
+  }
+
+  .prose strong {
+    font-weight: 400;
+  }
+
+  .prose-stack {
+    max-width: 640px;
+    margin: 0 auto;
+    font-size: 14px;
+  }
+
+  /* ── other chapters ── */
+  .other-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .other {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 20px;
+  }
+
+  .other-title {
+    font-size: 24px;
+    line-height: 1.1;
+  }
+
+  .other-role {
+    font-size: 14px;
+  }
+
+  .other-result {
+    font-size: 16px;
+  }
+
+  @media (width <= 760px) {
+    .cover-head {
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .cover-heading {
+      font-size: 40px;
+    }
+
+    .cover-strip {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .cover {
+      min-height: 170px;
+    }
+
+    .cover-no {
+      font-size: 44px;
+    }
+
+    .diagram-apps {
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .diagram-wires {
+      width: 2px;
+      border-right: 0;
+      border-bottom: 0;
+    }
+
+    .sit-apps,
+    .sit-team,
+    .sit-slow,
+    .sit-aside,
+    .dec {
+      min-height: 160px;
+    }
+
+    .res-impact {
+      min-height: 240px;
+    }
+
+    .res-impact-text {
+      font-size: 38px;
+    }
+
+    .prose-page {
+      margin-top: -36px;
+      padding: 24px 16px 32px;
+    }
+
+    .prose {
+      font-size: 17px;
+    }
+  }
+</style>

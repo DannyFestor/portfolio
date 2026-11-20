@@ -1,0 +1,143 @@
+---
+// PROTOTYPE — throwaway. Blog post variant A: chapter title page, then plain prose.
+// The post opens on a composed manga page (title panel over fading tone, a date/tags panel,
+// the description as narration), followed by the text in a plain column on paper.
+import "./prose.css";
+import { chapterNumber, featuredEntry, featuredPost, formatDate, posts } from "./posts";
+
+const entry = featuredEntry;
+const Content = featuredPost.Content;
+const chapter = chapterNumber(posts.findIndex((post) => post.slug === entry?.slug));
+---
+
+<article class="post-a">
+  {
+    entry && (
+      <section class="manga-page opening-page">
+        <div class="manga-grid opening-grid">
+          <div class="panel opening-title-panel">
+            <span class="tone-fade" aria-hidden="true" />
+            <p class="small-label halo">Writing · Chapter {chapter}</p>
+            <h1 class="display opening-title fuchidori">{entry.title}</h1>
+          </div>
+          <div class="panel opening-meta tone-light">
+            <span class="period">{formatDate(entry.date)}</span>
+            <ul class="opening-tags">
+              {entry.tags.map((tag) => (
+                <li class="halo">{tag}</li>
+              ))}
+            </ul>
+            <p class="aside opening-minutes">{entry.minutes} min read</p>
+          </div>
+          <p class="panel opening-desc">
+            <span class="narration">{entry.description}</span>
+          </p>
+        </div>
+        <p class="folio">— 1 —</p>
+      </section>
+    )
+  }
+
+  <section class="manga-page prose-page">
+    <div class="post-prose">
+      <Content />
+    </div>
+    <footer class="chapter-end">
+      <p class="display chapter-end-mark">— end of chapter —</p>
+      <a href="/blog">Back to all writing</a>
+    </footer>
+    <p class="folio">— 2 —</p>
+  </section>
+</article>
+
+<style>
+  .opening-grid {
+    grid-template-areas:
+      "title title title title title title title title meta meta meta meta"
+      "title title title title title title title title desc desc desc desc";
+    grid-template-rows: 200px minmax(170px, auto);
+  }
+
+  .opening-title-panel {
+    display: flex;
+    flex-direction: column;
+    grid-area: title;
+    gap: 18px;
+    justify-content: flex-end;
+    padding: 30px 34px;
+  }
+
+  .opening-title {
+    max-width: 18ch;
+    font-size: 44px;
+    line-height: 1.15;
+  }
+
+  .opening-meta {
+    display: flex;
+    flex-direction: column;
+    grid-area: meta;
+    gap: 12px;
+    padding: 18px;
+  }
+
+  .opening-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 0;
+    font-family: var(--display);
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    list-style: none;
+  }
+
+  .opening-minutes {
+    margin-top: auto;
+    color: var(--accent);
+  }
+
+  .opening-desc {
+    display: flex;
+    grid-area: desc;
+    align-items: center;
+    padding: 16px;
+  }
+
+  .prose-page {
+    padding-top: 56px;
+    padding-bottom: 88px;
+  }
+
+  .prose-page .post-prose {
+    margin: 0 auto;
+  }
+
+  .chapter-end {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+    margin-top: 56px;
+  }
+
+  .chapter-end-mark {
+    font-size: 15px;
+    letter-spacing: 0.2em;
+  }
+
+  @media (width <= 760px) {
+    .opening-title {
+      font-size: 30px;
+    }
+
+    .opening-title-panel {
+      min-height: 240px;
+      padding: 20px;
+    }
+
+    .prose-page {
+      padding-top: 28px;
+    }
+  }
+</style>

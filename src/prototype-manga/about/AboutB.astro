@@ -1,0 +1,255 @@
+---
+// PROTOTYPE — throwaway. About variant B: "Author's afterword" (あとがき).
+// A quiet, text-led page in the voice of a mangaka's afterword at the end of a volume:
+// a small self-portrait box, the bio as afterword prose, the career as a table of contents.
+// No impact panel on purpose: this is the calm page.
+import { identity } from "../content";
+import photo from "../danny-screentone-fine.png";
+import { bio, identityLinks, photoAlt, resumes, timeline } from "./about-content";
+
+const afterwordOpening = "Thank you for reading this far. A few words about the person behind the pages."; // draft
+const afterwordClosing = "If any of this sounds like the engineer your project is missing, the contact page is one click away."; // draft
+---
+
+<section class="about-b" aria-labelledby="about-b-title">
+  <div class="manga-page afterword">
+    <p class="vertical-title display" aria-hidden="true">あとがき</p>
+
+    <div class="afterword-body">
+      <header class="afterword-head">
+        <p class="small-label">Afterword</p>
+        <h1 id="about-b-title" class="display headline">About the author</h1>
+      </header>
+
+      <div class="author-box panel">
+        <div class="portrait" style={`--photo: url(${photo.src})`} role="img" aria-label={photoAlt}></div>
+        <p class="aside portrait-caption">the author, off duty</p>
+      </div>
+
+      <div class="prose">
+        <p class="lead">{afterwordOpening}</p>
+        {bio.map((paragraph) => <p>{paragraph}</p>)}
+        <p>{afterwordClosing}</p>
+        <p class="signature display">— {identity.name}, {identity.place}</p>
+        <p class="aside confession">p.s. {identity.mangaConfession.toLowerCase()}</p>
+      </div>
+    </div>
+
+    <aside class="contents" aria-labelledby="about-b-contents">
+      <h2 id="about-b-contents" class="small-label contents-title">Contents</h2>
+      <ol class="toc">
+        {
+          timeline.map((entry, index) => (
+            <li class="toc-row">
+              <span class="toc-chapter display">{String(index + 1).padStart(2, "0")}</span>
+              <span class="toc-main">
+                <span class="toc-org display">{entry.org}</span>
+                <span class="toc-role">{entry.role}</span>
+              </span>
+              <span class="toc-leader" aria-hidden="true"></span>
+              <span class="toc-period small-label">{entry.period}</span>
+            </li>
+          ))
+        }
+      </ol>
+
+      <h2 class="small-label contents-title extras-title">Extras</h2>
+      <ul class="extras">
+        {
+          resumes.map((resume) => (
+            <li>
+              <a href={resume.href}>{resume.label}</a> <span class="small-label">{resume.note}</span>
+            </li>
+          ))
+        }
+        {
+          identityLinks.map((link) => (
+            <li>
+              <a href={link.href}>{link.label}</a>
+            </li>
+          ))
+        }
+      </ul>
+    </aside>
+    <p class="folio">187</p>
+  </div>
+</section>
+
+<style>
+  .afterword {
+    display: grid;
+    grid-template-columns: 48px minmax(0, 1.5fr) minmax(0, 1fr);
+    gap: 36px;
+    padding-top: 56px;
+  }
+
+  .vertical-title {
+    font-size: 30px;
+    letter-spacing: 0.3em;
+    writing-mode: vertical-rl;
+  }
+
+  .afterword-body {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 190px;
+    grid-template-areas:
+      "head box"
+      "prose box"
+      "prose .";
+    gap: 18px 28px;
+    align-content: start;
+  }
+
+  .afterword-head {
+    grid-area: head;
+    padding-bottom: 14px;
+    border-bottom: 2px solid var(--ink);
+  }
+
+  .headline {
+    margin-top: 6px;
+    font-size: 40px;
+    line-height: 1.1;
+  }
+
+  .author-box {
+    grid-area: box;
+    align-self: start;
+    aspect-ratio: 3 / 4;
+  }
+
+  .portrait {
+    position: absolute;
+    inset: 0;
+    background: var(--ink);
+    mask: var(--photo) 30% 25% / 170% no-repeat;
+  }
+
+  .portrait-caption {
+    position: absolute;
+    bottom: 6px;
+    left: 6px;
+    font-size: 13px;
+  }
+
+  .prose {
+    display: grid;
+    grid-area: prose;
+    gap: 14px;
+    max-width: 58ch;
+    font-size: 16px;
+    line-height: 1.85;
+  }
+
+  .lead {
+    font-size: 18px;
+  }
+
+  .signature {
+    margin-top: 6px;
+    font-size: 16px;
+    text-align: right;
+  }
+
+  .confession {
+    margin-left: auto;
+    color: var(--accent);
+  }
+
+  .contents {
+    padding-left: 28px;
+    border-left: 1px solid var(--ink);
+  }
+
+  .contents-title {
+    padding-bottom: 8px;
+    margin-bottom: 10px;
+    border-bottom: 2px solid var(--ink);
+  }
+
+  .extras-title {
+    margin-top: 28px;
+  }
+
+  .toc {
+    display: grid;
+    gap: 12px;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+
+  .toc-row {
+    display: grid;
+    grid-template-columns: 28px auto 1fr auto;
+    gap: 8px;
+    align-items: baseline;
+  }
+
+  .toc-chapter {
+    font-size: 15px;
+    color: var(--accent);
+  }
+
+  .toc-main {
+    display: grid;
+  }
+
+  .toc-org {
+    font-size: 16px;
+    line-height: 1.2;
+  }
+
+  .toc-role {
+    font-size: 13px;
+    line-height: 1.35;
+  }
+
+  .toc-leader {
+    align-self: center;
+    border-bottom: 2px dotted var(--ink);
+    opacity: 0.5;
+  }
+
+  .toc-period {
+    font-size: 11px;
+    white-space: nowrap;
+  }
+
+  .extras {
+    display: grid;
+    gap: 8px;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+
+  @media (width <= 760px) {
+    .afterword {
+      grid-template-columns: 1fr;
+      gap: 26px;
+      padding-top: 28px;
+    }
+
+    .vertical-title {
+      display: none;
+    }
+
+    .afterword-body {
+      grid-template-columns: 1fr;
+      grid-template-areas:
+        "head"
+        "box"
+        "prose";
+    }
+
+    .author-box {
+      width: 62%;
+    }
+
+    .contents {
+      padding-left: 0;
+      border-left: 0;
+    }
+  }
+</style>

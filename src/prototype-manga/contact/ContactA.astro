@@ -1,0 +1,207 @@
+---
+// PROTOTYPE — throwaway. Contact variant A: "Final page of the chapter".
+// One composed page. Small panels at the top lead the eye down into one big panel that holds the email:
+// the page's single impact moment (focus lines + one SFX).
+import { identity } from "../content";
+
+const [emailLocal, emailDomain] = identity.email.split("@");
+import photo from "../danny-screentone.png";
+import { contactCopy } from "./contact-content";
+---
+
+<section class="manga-page" aria-labelledby="contact-a-title">
+  <div class="manga-grid grid">
+    <div class="panel tone-light open">
+      <p class="narration open-line">{contactCopy.chapterEnd}</p>
+    </div>
+
+    <div class="panel portrait">
+      <div class="photo" style={`--photo: url(${photo.src})`} role="img" aria-label={`Photo of ${identity.name}`}></div>
+      <p class="aside portrait-aside">yes, I read all of it</p>
+    </div>
+
+    <div class="panel status">
+      <p class="status-line"><span class="status-mark" aria-hidden="true"></span>{identity.status}</p>
+      <p class="aside">{contactCopy.yourMove}</p>
+    </div>
+
+    <div class="panel impact">
+      <span class="focus-lines" aria-hidden="true"></span>
+      <span class="sfx" aria-hidden="true">トン</span>
+      <h1 id="contact-a-title" class="display fuchidori write">{contactCopy.writeToMe}</h1>
+      <a class="display fuchidori email" href={`mailto:${identity.email}`}>{emailLocal}@<wbr />{emailDomain}</a>
+      <p class="aside impact-aside">{contactCopy.noForm}</p>
+    </div>
+
+    <div class="panel rates">
+      <p class="small-label">Rates</p>
+      <p class="narration">{contactCopy.rates}</p>
+    </div>
+
+    <div class="panel tone-mid reply">
+      <p class="narration">{identity.responseTime}.</p>
+      <p class="halo place">{contactCopy.location}</p>
+    </div>
+
+    <div class="panel languages">
+      <p class="display languages-line">{identity.languages}</p>
+    </div>
+  </div>
+  <p class="folio">END</p>
+</section>
+
+<style>
+  .grid {
+    grid-template-rows: 200px 420px minmax(150px, auto);
+    grid-template-areas:
+      "open open open open open por por por sta sta sta sta"
+      "imp imp imp imp imp imp imp imp imp imp imp imp"
+      "rat rat rat rat rat rep rep rep rep lan lan lan";
+  }
+
+  .open {
+    display: flex;
+    grid-area: open;
+    align-items: flex-end;
+    padding: 18px;
+  }
+
+  .open-line {
+    font-size: 17px;
+  }
+
+  .portrait {
+    grid-area: por;
+    min-height: 200px;
+  }
+
+  .photo {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: var(--ink);
+    mask: var(--photo) 34% 26% / 150% auto no-repeat;
+  }
+
+  .portrait-aside {
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    font-size: 13px;
+  }
+
+  .status {
+    display: flex;
+    flex-direction: column;
+    grid-area: sta;
+    gap: 14px;
+    justify-content: center;
+    padding: 20px 22px;
+  }
+
+  .status-line {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    font-family: var(--display);
+    font-size: 26px;
+    line-height: 1.15;
+  }
+
+  .status-mark {
+    flex: none;
+    width: 14px;
+    height: 14px;
+    background: var(--accent);
+    transform: rotate(45deg);
+  }
+
+  .impact {
+    display: flex;
+    flex-direction: column;
+    grid-area: imp;
+    gap: 18px;
+    align-items: center;
+    justify-content: center;
+    min-height: 420px;
+    padding: 40px 24px;
+    text-align: center;
+  }
+
+  .write {
+    font-size: clamp(34px, 5vw, 58px);
+    line-height: 1;
+  }
+
+  .email {
+    font-size: clamp(30px, 6.4vw, 76px);
+    line-height: 1.05;
+    text-decoration-thickness: 3px;
+    text-underline-offset: 10px;
+  }
+
+  .email:hover {
+    text-decoration-thickness: 6px;
+  }
+
+  .impact .sfx {
+    top: 10%;
+    right: 9%;
+  }
+
+  .impact-aside {
+    font-size: 16px;
+    color: var(--accent);
+  }
+
+  .rates {
+    display: flex;
+    flex-direction: column;
+    grid-area: rat;
+    gap: 10px;
+    justify-content: center;
+    padding: 18px 20px;
+  }
+
+  .reply {
+    display: flex;
+    flex-direction: column;
+    grid-area: rep;
+    gap: 12px;
+    justify-content: center;
+    padding: 18px 20px;
+  }
+
+  .place {
+    font-family: var(--display);
+    font-size: 14px;
+    letter-spacing: 0.06em;
+  }
+
+  .languages {
+    display: flex;
+    grid-area: lan;
+    align-items: center;
+    padding: 18px 20px;
+  }
+
+  .languages-line {
+    font-size: 24px;
+    line-height: 1.3;
+  }
+
+  @media (width <= 760px) {
+    .impact {
+      min-height: 340px;
+    }
+
+    /* On a phone the email must arrive early: drop the opening panel, keep the portrait short. */
+    .open {
+      display: none;
+    }
+
+    .portrait {
+      min-height: 170px;
+    }
+  }
+</style>

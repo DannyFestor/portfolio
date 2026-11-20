@@ -1,0 +1,267 @@
+---
+// PROTOTYPE — throwaway. About variant A: "Character profile page".
+// Like the character introduction page of a manga volume: a big photo plate, profile data in
+// narration boxes, the name as the one impact panel, and the career as a strip of small panels.
+import { identity } from "../content";
+import photo from "../danny-screentone.png";
+import { bio, identityLinks, photoAlt, profileFacts, resumes, timeline } from "./about-content";
+---
+
+<section class="about-a" aria-labelledby="about-a-title">
+  <div class="manga-page">
+    <div class="manga-grid grid-intro">
+      <div class="panel plate">
+        <div class="photo" style={`--photo: url(${photo.src})`} role="img" aria-label={photoAlt}></div>
+        <p class="aside plate-aside">my favourite photo of me. the camera is real</p>
+      </div>
+
+      <div class="panel name-panel">
+        <span class="focus-lines" aria-hidden="true"></span>
+        <span class="sfx" aria-hidden="true">ドン</span>
+        <p class="small-label halo name-kicker">Character file · No. 1</p>
+        <h1 id="about-a-title" class="display fuchidori name">{identity.name}</h1>
+        <p class="narration name-role">{identity.role}</p>
+      </div>
+
+      <dl class="panel facts tone-light">
+        {
+          profileFacts.map((fact) => (
+            <div class="fact narration">
+              <dt class="small-label">{fact.label}</dt>
+              <dd>{fact.value}</dd>
+            </div>
+          ))
+        }
+      </dl>
+    </div>
+    <p class="folio">1</p>
+  </div>
+
+  <div class="manga-page">
+    <div class="manga-grid grid-story">
+      <div class="panel story">
+        <p class="small-label">Background</p>
+        {bio.map((paragraph) => <p class="narration story-text">{paragraph}</p>)}
+      </div>
+
+      <div class="panel downloads tone-mid">
+        <p class="small-label halo">Take it with you</p>
+        <ul class="download-list">
+          {
+            resumes.map((resume) => (
+              <li class="narration">
+                <a href={resume.href}>{resume.label}</a> <span class="file-note">{resume.note}</span>
+              </li>
+            ))
+          }
+        </ul>
+        <ul class="link-list">
+          {
+            identityLinks.map((link) => (
+              <li class="halo">
+                <a href={link.href}>{link.label}</a>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </div>
+
+    <h2 class="strip-title small-label">Career so far, read left to right</h2>
+    <ol class="timeline-strip">
+      {
+        timeline.map((entry, index) => (
+          <li class:list={["panel", "beat", index === timeline.length - 1 && "beat-now", index % 3 === 1 && "tone-light"]}>
+            <p class="period">{entry.period}</p>
+            <p class="display beat-org halo">{entry.org}</p>
+            <p class="beat-role halo">{entry.role}</p>
+            <p class="beat-place small-label halo">{entry.place}</p>
+          </li>
+        ))
+      }
+    </ol>
+
+    <p class="aside confession">{identity.mangaConfession}</p>
+    <p class="folio">2</p>
+  </div>
+</section>
+
+<style>
+  .grid-intro {
+    grid-template-rows: 300px 230px;
+    grid-template-areas:
+      "plate plate plate plate plate name name name name name name name"
+      "plate plate plate plate plate facts facts facts facts facts facts facts";
+  }
+
+  .plate {
+    grid-area: plate;
+    min-height: 420px;
+  }
+
+  .photo {
+    position: absolute;
+    inset: 0;
+    background: var(--ink);
+    mask: var(--photo) 30% 30% / cover no-repeat;
+  }
+
+  .plate-aside {
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    max-width: 60%;
+  }
+
+  .name-panel {
+    display: grid;
+    grid-area: name;
+    place-content: center;
+    min-height: 260px;
+    padding: 24px;
+    text-align: center;
+  }
+
+  .name-kicker {
+    margin: 0 auto 10px;
+  }
+
+  .name {
+    font-size: clamp(48px, 7vw, 86px);
+    line-height: 1;
+  }
+
+  .name-role {
+    width: fit-content;
+    margin: 14px auto 0;
+  }
+
+  .facts {
+    display: grid;
+    grid-area: facts;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    align-content: center;
+    min-height: 200px;
+    padding: 18px;
+    margin: 0;
+  }
+
+  .fact:last-child {
+    grid-column: 1 / -1;
+  }
+
+  .fact dd {
+    margin: 2px 0 0;
+  }
+
+  .grid-story {
+    grid-template-areas: "story story story story story story story story dl dl dl dl";
+  }
+
+  .story {
+    display: grid;
+    grid-area: story;
+    gap: 12px;
+    padding: 22px;
+  }
+
+  .story-text {
+    border: 0;
+    padding: 0;
+  }
+
+  .downloads {
+    display: grid;
+    grid-area: dl;
+    gap: 12px;
+    align-content: start;
+    min-height: 220px;
+    padding: 20px;
+  }
+
+  .download-list,
+  .link-list {
+    display: grid;
+    gap: 10px;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+
+  .link-list {
+    grid-auto-flow: column;
+    justify-content: start;
+    gap: 14px;
+  }
+
+  .file-note {
+    font-family: var(--display);
+    font-size: 12px;
+    letter-spacing: 0.16em;
+  }
+
+  .strip-title {
+    margin: 34px 0 12px;
+  }
+
+  .timeline-strip {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--gutter);
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+
+  .beat {
+    display: grid;
+    gap: 6px;
+    align-content: start;
+    min-height: 150px;
+    padding: 12px;
+  }
+
+  .beat-now {
+    border-width: 5px;
+  }
+
+  .beat-now .period {
+    background: var(--accent);
+  }
+
+  .beat-org {
+    font-size: 19px;
+    line-height: 1.15;
+  }
+
+  .beat-role {
+    font-size: 14px;
+    line-height: 1.4;
+  }
+
+  .beat-place {
+    font-size: 10px;
+  }
+
+  .confession {
+    margin: 26px 0 0 auto;
+    font-size: 17px;
+    color: var(--accent);
+    transform: rotate(-2deg);
+  }
+
+  @media (width <= 760px) {
+    .plate {
+      min-height: 460px;
+    }
+
+    .facts {
+      grid-template-columns: 1fr;
+    }
+
+    .timeline-strip {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+</style>

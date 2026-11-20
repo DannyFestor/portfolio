@@ -1,0 +1,298 @@
+/* PROTOTYPE — throwaway. Shared manga design system for the page prototypes (#7), lifted from variant A.
+ *
+ * Locked decisions: palette 1 (near-white paper, ink, indigo screentone, red accents) and
+ * font pairing 2 (Zen Antique display, Shippori Mincho narration, Yomogi asides).
+ *
+ * Building blocks (all under the .manga root):
+ *   .manga-page     a composed manga page on paper; put a .manga-grid and a .folio inside
+ *   .manga-grid     12-column panel grid with --gutter gaps; set grid-template-areas in the page's own
+ *                   scoped styles. Below 760px the system collapses it to one column in DOM order
+ *                   (it outranks scoped areas), so write panels in reading order and give them min-heights
+ *   .panel          ink-bordered panel (overflow clipped, own stacking context)
+ *   .angled + .angled-frame  angled panel: .angled-frame wraps a .panel.angled and draws the ink outline
+ *                   around the clip-path; set --cut on .angled (e.g. polygon(...)) for the shape
+ *   .narration      engineering voice: rectangular box, ink border, paper fill
+ *   .aside          annotation voice in Yomogi, on its own paper patch
+ *   .sfx            red katakana sound effect, vertical, paper outline; decorative, aria-hidden
+ *   .fuchidori      paper outline for display lettering over tone or focus lines
+ *   .halo           knocked-out paper patch for small text that sits on tone
+ *   .period         ink tag with paper text for dates ("2024 — 25")
+ *   .small-label    tracked display capitals for labels
+ *   .folio          page number at the bottom centre of a .manga-page
+ *   .tone-light / .tone-mid / .tone-dense   flat screentone on a panel (background image)
+ *   .tone-fade      child element (aria-hidden) that fills its panel with a fading tone;
+ *                   modifiers .tone-fade--down / --up / --corner
+ *   .focus-lines    child element (aria-hidden) with radiating ink lines: the ONE impact panel
+ *   .display / .accent   display face / red accent colour helpers
+ *   a               instant ink-style hover: underline thickens and turns red, no transition
+ *
+ * Rules:
+ *   - No text on raw tone: text goes in a .narration box, gets .halo, or (display lettering) .fuchidori.
+ *   - One impact moment per page: at most one .focus-lines panel and one or two .sfx.
+ *   - Red (--accent) only for SFX and small accents (impact lines, status marks, aside colour). Tones are indigo.
+ *   - No animations, no transitions, no shadows except the halo's paper glow, no rounded corners.
+ *   - Screentone is SVG tiles as background images; nothing is rotated or oversized to draw tones.
+ */
+
+.manga {
+  --paper: #f3f2ee;
+  --page-bg: #dcdcd9;
+  --ink: #1b1a17;
+  --indigo: #2d4a7a;
+  --accent: #d1352b;
+  --sfx: #d1352b;
+  --line: 3px;
+  --gutter: 14px;
+  --display: "Zen Antique", "Hiragino Mincho ProN", serif;
+  --narration: "Shippori Mincho", "Hiragino Mincho ProN", serif;
+  --hand: "Yomogi", "Hiragino Maru Gothic ProN", serif;
+  --tone-light: url("data:image/svg+xml,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20width%3D'8.485'%20height%3D'8.485'%20viewBox%3D'0%200%208.485%208.485'%3E%3Cg%20fill%3D'%232d4a7a'%20fill-opacity%3D'0.85'%3E%3Ccircle%20cx%3D'0'%20cy%3D'0'%20r%3D'0.65'%2F%3E%3Ccircle%20cx%3D'8.485'%20cy%3D'0'%20r%3D'0.65'%2F%3E%3Ccircle%20cx%3D'0'%20cy%3D'8.485'%20r%3D'0.65'%2F%3E%3Ccircle%20cx%3D'8.485'%20cy%3D'8.485'%20r%3D'0.65'%2F%3E%3Ccircle%20cx%3D'4.243'%20cy%3D'4.243'%20r%3D'0.65'%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E");
+  --tone-mid: url("data:image/svg+xml,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20width%3D'8.485'%20height%3D'8.485'%20viewBox%3D'0%200%208.485%208.485'%3E%3Cg%20fill%3D'%232d4a7a'%20fill-opacity%3D'0.85'%3E%3Ccircle%20cx%3D'0'%20cy%3D'0'%20r%3D'0.85'%2F%3E%3Ccircle%20cx%3D'8.485'%20cy%3D'0'%20r%3D'0.85'%2F%3E%3Ccircle%20cx%3D'0'%20cy%3D'8.485'%20r%3D'0.85'%2F%3E%3Ccircle%20cx%3D'8.485'%20cy%3D'8.485'%20r%3D'0.85'%2F%3E%3Ccircle%20cx%3D'4.243'%20cy%3D'4.243'%20r%3D'0.85'%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E");
+  --tone-dense: url("data:image/svg+xml,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20width%3D'8.485'%20height%3D'8.485'%20viewBox%3D'0%200%208.485%208.485'%3E%3Cg%20fill%3D'%232d4a7a'%20fill-opacity%3D'0.85'%3E%3Ccircle%20cx%3D'0'%20cy%3D'0'%20r%3D'1.05'%2F%3E%3Ccircle%20cx%3D'8.485'%20cy%3D'0'%20r%3D'1.05'%2F%3E%3Ccircle%20cx%3D'0'%20cy%3D'8.485'%20r%3D'1.05'%2F%3E%3Ccircle%20cx%3D'8.485'%20cy%3D'8.485'%20r%3D'1.05'%2F%3E%3Ccircle%20cx%3D'4.243'%20cy%3D'4.243'%20r%3D'1.05'%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E");
+  --tone-deep: url("data:image/svg+xml,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20width%3D'8.485'%20height%3D'8.485'%20viewBox%3D'0%200%208.485%208.485'%3E%3Cg%20fill%3D'%232d4a7a'%20fill-opacity%3D'0.85'%3E%3Ccircle%20cx%3D'0'%20cy%3D'0'%20r%3D'1.3'%2F%3E%3Ccircle%20cx%3D'8.485'%20cy%3D'0'%20r%3D'1.3'%2F%3E%3Ccircle%20cx%3D'0'%20cy%3D'8.485'%20r%3D'1.3'%2F%3E%3Ccircle%20cx%3D'8.485'%20cy%3D'8.485'%20r%3D'1.3'%2F%3E%3Ccircle%20cx%3D'4.243'%20cy%3D'4.243'%20r%3D'1.3'%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E");
+  --tone-tile: 8.485px;
+
+  min-height: 100vh;
+  padding: 0 20px 96px;
+  font-family: var(--narration);
+  color: var(--ink);
+  background: var(--page-bg);
+}
+
+.manga,
+.manga *,
+.manga *::before,
+.manga *::after {
+  box-sizing: border-box;
+}
+
+.manga :where(p, h1, h2, h3, h4, ul, ol, figure, blockquote) {
+  margin: 0;
+}
+
+.manga a {
+  color: inherit;
+  text-decoration: underline 1px;
+  text-underline-offset: 3px;
+}
+
+/* Instant ink hover: no transition, the line just gets heavier and red. */
+.manga a:hover {
+  text-decoration: underline 3px var(--accent);
+}
+
+/* ── pages and grid ───────────────────────────────────── */
+
+.manga-page {
+  position: relative;
+  max-width: 1080px;
+  margin: 0 auto 40px;
+  padding: 44px 44px 64px;
+  background: var(--paper);
+}
+
+.manga-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: var(--gutter);
+}
+
+.folio {
+  position: absolute;
+  bottom: 18px;
+  left: 0;
+  width: 100%;
+  font-family: var(--display);
+  font-size: 13px;
+  letter-spacing: 0.2em;
+  text-align: center;
+}
+
+/* ── panels ───────────────────────────────────────────── */
+
+.panel {
+  position: relative;
+  isolation: isolate;
+  display: block;
+  overflow: hidden;
+  border: var(--line) solid var(--ink);
+  background: var(--paper);
+}
+
+/* Angled panel: the frame draws an ink outline around the clip-path of its .angled child. */
+.angled-frame {
+  display: grid;
+  filter: drop-shadow(var(--line) 0 0 var(--ink)) drop-shadow(calc(var(--line) * -1) 0 0 var(--ink))
+    drop-shadow(0 var(--line) 0 var(--ink)) drop-shadow(0 calc(var(--line) * -1) 0 var(--ink));
+}
+
+.angled-frame > .panel {
+  border: 0;
+}
+
+.angled {
+  clip-path: var(--cut, polygon(0 0, 100% 0, 100% 100%, 8% 100%));
+}
+
+/* ── lettering: the two voices ────────────────────────── */
+
+.narration {
+  padding: 10px 14px;
+  border: 2px solid var(--ink);
+  font-family: var(--narration);
+  font-size: 15px;
+  line-height: 1.65;
+  background: var(--paper);
+}
+
+.aside {
+  width: fit-content;
+  padding: 2px 6px;
+  font-family: var(--hand);
+  font-size: 15px;
+  line-height: 1.35;
+  background: var(--paper);
+}
+
+.small-label {
+  font-family: var(--display);
+  font-size: 12px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+}
+
+.display {
+  font-family: var(--display);
+  font-weight: 400;
+}
+
+.accent {
+  color: var(--accent);
+}
+
+.period {
+  width: fit-content;
+  padding: 1px 8px;
+  font-family: var(--display);
+  font-size: 13px;
+  letter-spacing: 0.12em;
+  color: var(--paper);
+  background: var(--ink);
+}
+
+.sfx {
+  position: absolute;
+  top: 8%;
+  right: 6%;
+  z-index: 2;
+  font-family: var(--display);
+  font-size: 58px;
+  line-height: 1;
+  color: var(--sfx);
+  writing-mode: vertical-rl;
+  transform: rotate(8deg);
+  -webkit-text-stroke: 2px var(--paper);
+  paint-order: stroke fill;
+}
+
+/* Display lettering over tone or focus lines gets a paper outline (縁取り, fuchidori). */
+.fuchidori {
+  -webkit-text-stroke: 7px var(--paper);
+  paint-order: stroke fill;
+}
+
+/* Small text on tone: knocked-out paper patch with a soft edge. */
+.halo {
+  width: fit-content;
+  padding: 2px 6px;
+  background: var(--paper);
+  box-shadow: 0 0 0 3px var(--paper), 0 0 10px 5px var(--paper);
+}
+
+/* ── screentone ───────────────────────────────────────── */
+
+.tone-light,
+.tone-mid,
+.tone-dense {
+  background-color: var(--paper);
+  background-size: var(--tone-tile) var(--tone-tile);
+}
+
+.tone-light {
+  background-image: var(--tone-light);
+}
+
+.tone-mid {
+  background-image: var(--tone-mid);
+}
+
+.tone-dense {
+  background-image: var(--tone-dense);
+}
+
+.tone-fade {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background-image: var(--tone-deep);
+  background-size: var(--tone-tile) var(--tone-tile);
+  mask-image: linear-gradient(225deg, black 10%, transparent 75%);
+}
+
+.tone-fade--up {
+  mask-image: linear-gradient(45deg, black 5%, transparent 70%);
+}
+
+.tone-fade--corner {
+  mask-image: radial-gradient(circle at 85% 20%, black 20%, transparent 65%);
+}
+
+/* The one impact panel per page: radiating ink lines with a clear centre for the lettering. */
+.focus-lines {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: repeating-conic-gradient(from 3deg at 50% 50%, var(--ink) 0 0.55deg, transparent 0.55deg 5deg);
+  mask: radial-gradient(ellipse 46% 40% at 50% 50%, transparent 92%, black 100%);
+}
+
+/* ── mobile: panel grids collapse into one column in reading order ── */
+
+@media (width <= 760px) {
+  .manga {
+    padding: 0 10px 80px;
+  }
+
+  .manga-page {
+    padding: 18px 16px 44px;
+  }
+
+  /* Doubled class: outranks a page's scoped grid-template-areas (Astro scoping adds one attribute). */
+  .manga .manga-grid.manga-grid {
+    grid-template-rows: none;
+    grid-template-columns: 1fr;
+    grid-template-areas: none;
+  }
+
+  .manga .manga-grid.manga-grid > * {
+    grid-area: auto;
+    grid-row: auto;
+    grid-column: auto;
+  }
+
+  .angled {
+    clip-path: none;
+  }
+
+  .angled-frame {
+    filter: none;
+  }
+
+  .angled-frame > .panel {
+    border: var(--line) solid var(--ink);
+  }
+
+  .sfx {
+    font-size: 46px;
+  }
+}
