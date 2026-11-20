@@ -1,0 +1,850 @@
+---
+import { fontPairingCss, fontStylesheetHref } from "./fonts";
+// PROTOTYPE — throwaway. Variant A: "Seinen page grid" (#7).
+// The home page as three composed manga pages: panel grids of varied sizes, white gutters,
+// angled borders, screentone, one impact beat. Reads left to right, top to bottom.
+import { identity, latestWriting, nav, positioning, work, worlds } from "./content";
+import photo from "./danny-screentone.png";
+import PaletteSwitcher from "./PaletteSwitcher.astro";
+import FontSwitcher from "./FontSwitcher.astro";
+import { paletteCss } from "./screentone";
+
+const [rescue, build] = worlds;
+const [current, marketplace, wafer] = work;
+const impactSfx = current.sfx;
+const paletteStyle = `<style>${paletteCss()}</style>`;
+---
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  rel="stylesheet"
+  href={fontStylesheetHref}
+/>
+
+<Fragment set:html={paletteStyle} />
+<Fragment set:html={fontPairingCss()} />
+
+<div class="variant-a">
+  <!-- PAGE 1 — establishing shot, portrait, the beat -->
+  <section class="page" aria-label="Introduction">
+    <div class="grid grid-1">
+      <div class="panel est">
+        <span class="tone tone-fade-down" aria-hidden="true"></span>
+        <div class="narration est-box">
+          <p class="small-label">{identity.place}</p>
+          <p>{identity.name}. {identity.role}.</p>
+        </div>
+        <p class="aside est-aside">{identity.since.toLowerCase()} — still here</p>
+      </div>
+
+      <div class="panel portrait">
+        <div class="photo" style={`--photo: url(${photo.src})`} role="img" aria-label={`Photo of ${identity.name}, smiling, holding a camera`}></div>
+        <p class="aside portrait-aside">that's me ↓ holding a camera, not a keyboard, for once</p>
+      </div>
+
+      <h1 class="beat">
+        <span class="panel beat-quiet tone-light">
+          <span class="quiet-text">{positioning.headline[0]}</span>
+        </span>
+        <span class="frame-wrap beat-loud-wrap">
+          <span class="panel beat-loud">
+            <span class="focus-lines" aria-hidden="true"></span>
+            <span class="loud-text">{positioning.headline[1]}</span>
+            <span class="sfx" aria-hidden="true">{impactSfx}</span>
+          </span>
+        </span>
+      </h1>
+
+      <div class="panel sub tone-mid">
+        <div class="narration sub-box">
+          <p>{positioning.subline}</p>
+        </div>
+      </div>
+    </div>
+    <p class="folio">1</p>
+  </section>
+
+  <!-- PAGE 2 — two doors, three cases -->
+  <section class="page" aria-label="How I work and selected work">
+    <div class="grid grid-2">
+      <div class="doors">
+        <div class="frame-wrap door-wrap door-left-wrap">
+          <article class="panel door door-left tone-light">
+            <h2 class="door-title">{rescue.title}</h2>
+            <div class="narration"><p>{rescue.body}</p></div>
+            <p class="aside door-aside">{rescue.aside}</p>
+          </article>
+        </div>
+        <div class="frame-wrap door-wrap door-right-wrap">
+          <article class="panel door door-right">
+            <h2 class="door-title">{build.title}</h2>
+            <div class="narration"><p>{build.body}</p></div>
+            <p class="aside door-aside">{build.aside}</p>
+          </article>
+        </div>
+      </div>
+
+      <article class="panel case case-1 tone-dense">
+        <p class="period">{current.period}</p>
+        <h2 class="case-title">{current.title}</h2>
+        <p class="client">{current.client}</p>
+        <div class="narration"><p>{current.beat}</p></div>
+        <p class="impact">{current.impact}</p>
+        <p class="aside stack">{current.stack.join(" · ")}</p>
+      </article>
+
+      <article class="panel case case-2">
+        <div class="case-2-tone" aria-hidden="true"></div>
+        <p class="period">{marketplace.period}</p>
+        <h2 class="case-title">{marketplace.title}</h2>
+        <p class="client">{marketplace.client}</p>
+        <div class="narration"><p>{marketplace.beat}</p></div>
+        <p class="impact impact-big">{marketplace.impact}</p>
+        <p class="aside stack">{marketplace.stack.join(" · ")}</p>
+      </article>
+
+      <article class="panel case case-3 tone-light">
+        <p class="period">{wafer.period}</p>
+        <h2 class="case-title">{wafer.title}</h2>
+        <p class="client">{wafer.client}</p>
+        <div class="narration"><p>{wafer.beat}</p></div>
+        <p class="impact">{wafer.impact}</p>
+        <p class="aside stack">{wafer.stack.join(" · ")}</p>
+      </article>
+    </div>
+    <p class="folio">2</p>
+  </section>
+
+  <!-- PAGE 3 — the ask -->
+  <section class="page" aria-label="Contact">
+    <div class="grid grid-3">
+      <div class="panel contact">
+        <p class="status"><span class="status-mark" aria-hidden="true"></span>{identity.status}</p>
+        <h2 class="contact-title">Write to me.</h2>
+        <a class="email" href={`mailto:${identity.email}`}>{identity.email}</a>
+        <div class="narration contact-box"><p>{identity.responseTime}.</p></div>
+        <p class="aside contact-aside">{identity.languages}</p>
+      </div>
+
+      <div class="panel writing tone-light">
+        <p class="small-label halo">Latest writing</p>
+        <a class="writing-link" href="/blog">{latestWriting.title}</a>
+        <p class="writing-date halo">{latestWriting.date}</p>
+      </div>
+
+      <div class="panel quiet-end" aria-hidden="true">
+        <span class="tone tone-fade-up"></span>
+      </div>
+    </div>
+    <p class="folio">3</p>
+  </section>
+
+  <footer class="colophon">
+    <p class="confession">{identity.mangaConfession}</p>
+    <nav aria-label="Site">
+      <ul>
+        {nav.map((item) => <li><a href={`/${item.toLowerCase()}`}>{item}</a></li>)}
+      </ul>
+    </nav>
+    <p class="colophon-name">{identity.name} · {identity.place}</p>
+  </footer>
+
+  <PaletteSwitcher />
+  <FontSwitcher />
+</div>
+
+<style>
+  .variant-a {
+    /* Palette-dependent values (--accent, --sfx, --tone-*) come from screentone.ts. */
+    --paper: #f3f2ee;
+    --page-bg: #dcdcd9;
+    --ink: #1b1a17;
+    --line: 3px;
+    --gutter: 14px;
+    --display: "Zen Antique", "Hiragino Mincho ProN", serif;
+    --narration: "Zen Kaku Gothic New", "Hiragino Sans", sans-serif;
+    --hand: "Klee One", "Hiragino Maru Gothic ProN", cursive;
+
+    min-height: 100vh;
+    padding: 48px 20px 96px;
+    font-family: var(--narration);
+    color: var(--ink);
+    background: var(--page-bg);
+  }
+
+  .variant-a,
+  .variant-a *,
+  .variant-a *::before,
+  .variant-a *::after {
+    box-sizing: border-box;
+  }
+
+  .variant-a p,
+  .variant-a h1,
+  .variant-a h2 {
+    margin: 0;
+  }
+
+  .variant-a a {
+    color: inherit;
+  }
+
+  /* ── page ─────────────────────────────────────────── */
+
+  .page {
+    position: relative;
+    max-width: 1080px;
+    margin: 0 auto 40px;
+    padding: 44px 44px 64px;
+    background: var(--paper);
+  }
+
+  .folio {
+    position: absolute;
+    bottom: 18px;
+    left: 50%;
+    font-family: var(--display);
+    font-size: 13px;
+    letter-spacing: 0.2em;
+    transform: translateX(-50%);
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: var(--gutter);
+  }
+
+  /* ── panels ───────────────────────────────────────── */
+
+  .panel {
+    position: relative;
+    isolation: isolate;
+    display: block;
+    overflow: hidden;
+    border: var(--line) solid var(--ink);
+    background: var(--paper);
+  }
+
+  /* Wrapper that draws an ink outline around an angled (clip-path) child. */
+  .frame-wrap {
+    display: grid;
+    filter: drop-shadow(var(--line) 0 0 var(--ink)) drop-shadow(calc(var(--line) * -1) 0 0 var(--ink))
+      drop-shadow(0 var(--line) 0 var(--ink)) drop-shadow(0 calc(var(--line) * -1) 0 var(--ink));
+  }
+
+  .frame-wrap > .panel {
+    border: 0;
+  }
+
+  .narration {
+    padding: 10px 14px;
+    border: 2px solid var(--ink);
+    font-size: 15px;
+    line-height: 1.6;
+    background: var(--paper);
+  }
+
+  /* Lettering sits on a white-out patch so it never fights the screentone. */
+  .aside {
+    width: fit-content;
+    padding: 2px 6px;
+    font-family: var(--hand);
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.35;
+    background: var(--paper);
+  }
+
+  .small-label {
+    margin-bottom: 4px;
+    font-family: var(--display);
+    font-size: 12px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+  }
+
+  /* ── screentone ─────────────────────────────────────
+     SVG dot tiles (screentone.ts) used as plain background images: the tile itself encodes
+     the 45° screen, so nothing is rotated or oversized. Fades use a child that fills the panel. */
+
+  .tone-light,
+  .tone-mid,
+  .tone-dense {
+    background-color: var(--paper);
+    background-size: var(--tone-tile) var(--tone-tile);
+  }
+
+  .tone-light {
+    background-image: var(--tone-light);
+  }
+
+  .tone-mid {
+    background-image: var(--tone-mid);
+  }
+
+  .tone-dense {
+    background-image: var(--tone-dense);
+  }
+
+  .tone {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background-size: var(--tone-tile) var(--tone-tile);
+  }
+
+  /* Gradation tone: dots that fall off across the panel, like a cut sheet of screentone. */
+  .tone-fade-down {
+    background-image: var(--tone-deep);
+    mask-image: linear-gradient(225deg, black 10%, transparent 75%);
+  }
+
+  .tone-fade-up {
+    background-image: var(--tone-deep);
+    mask-image: linear-gradient(45deg, black 5%, transparent 70%);
+  }
+
+  /* Text on tone: small lettering gets a knocked-out paper patch with a soft halo edge. */
+  .halo {
+    width: fit-content;
+    padding: 2px 6px;
+    background: var(--paper);
+    box-shadow: 0 0 0 4px var(--paper), 0 0 10px 6px var(--paper);
+  }
+
+  /* Display lettering over tone or focus lines gets a paper outline (縁取り, fuchidori). */
+  .fuchidori {
+    -webkit-text-stroke: 7px var(--paper);
+    paint-order: stroke fill;
+  }
+
+  /* ── page 1 ───────────────────────────────────────── */
+
+  .grid-1 {
+    grid-template-rows: 220px 280px minmax(170px, auto);
+    grid-template-areas:
+      "est est est est est est est est pho pho pho pho"
+      "aiq aiq aiq eng eng eng eng eng pho pho pho pho"
+      "sub sub sub eng eng eng eng eng pho pho pho pho";
+  }
+
+  .beat {
+    display: contents;
+    font-weight: 400;
+  }
+
+  .est {
+    grid-area: est;
+  }
+
+  .est-box {
+    position: absolute;
+    top: 0;
+    left: 0;
+    max-width: 360px;
+    border-top: 0;
+    border-left: 0;
+  }
+
+  .est-aside {
+    position: absolute;
+    right: 22px;
+    bottom: 16px;
+    max-width: 180px;
+    text-align: right;
+  }
+
+  .portrait {
+    grid-area: pho;
+    background: var(--paper);
+  }
+
+  .photo {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: var(--ink);
+    mask: var(--photo) 32% 30% / cover no-repeat;
+  }
+
+  .portrait-aside {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    max-width: 150px;
+    padding: 6px 8px;
+    background: var(--paper);
+  }
+
+  .beat-quiet {
+    display: flex;
+    grid-area: aiq;
+    align-items: flex-end;
+    padding: 20px;
+  }
+
+  .quiet-text {
+    padding: 8px 10px;
+    border: 2px solid var(--ink);
+    font-family: var(--narration);
+    font-size: 19px;
+    font-weight: 500;
+    line-height: 1.3;
+    background: var(--paper);
+  }
+
+  .beat-loud-wrap {
+    grid-area: eng;
+  }
+
+  .beat-loud {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 28px 56px 28px 64px;
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 9% 100%);
+  }
+
+  .focus-lines {
+    position: absolute;
+    z-index: -1;
+    inset: 0;
+    background: repeating-conic-gradient(from 3deg at 52% 50%, var(--ink) 0 0.55deg, transparent 0.55deg 5deg);
+    mask: radial-gradient(ellipse 46% 40% at 52% 50%, transparent 92%, black 100%);
+  }
+
+  .loud-text {
+    position: relative;
+    z-index: 1;
+    padding: 6px 14px;
+    font-family: var(--display);
+    font-size: clamp(34px, 4vw, 52px);
+    line-height: 1.05;
+    text-align: center;
+    -webkit-text-stroke: 9px var(--paper);
+    paint-order: stroke fill;
+  }
+
+  .sfx {
+    position: absolute;
+    top: 8%;
+    right: 6%;
+    z-index: 2;
+    font-family: var(--display);
+    font-size: 58px;
+    line-height: 1;
+    color: var(--sfx);
+    writing-mode: vertical-rl;
+    transform: rotate(8deg);
+    -webkit-text-stroke: 2px var(--paper);
+    paint-order: stroke fill;
+  }
+
+  .sub {
+    z-index: 2;
+    grid-area: sub;
+    margin-right: -64px;
+    margin-top: 26px;
+    padding: 18px 20px;
+  }
+
+  .sub-box {
+    position: relative;
+    max-width: 420px;
+    font-size: 16px;
+  }
+
+  /* ── page 2 ───────────────────────────────────────── */
+
+  .grid-2 {
+    grid-template-rows: auto minmax(250px, auto) minmax(200px, auto);
+    grid-template-areas:
+      "doors doors doors doors doors doors doors doors doors doors doors doors"
+      "c1 c1 c1 c1 c2 c2 c2 c2 c2 c2 c2 c2"
+      "c1 c1 c1 c1 c3 c3 c3 c3 c3 c3 c3 c3";
+  }
+
+  .doors {
+    display: grid;
+    grid-area: doors;
+    grid-template-columns: 1fr 1fr;
+    min-height: 250px;
+  }
+
+  .door {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    padding: 28px 32px;
+  }
+
+  .door-left-wrap {
+    margin-right: -32px;
+  }
+
+  .door-right-wrap {
+    margin-left: -32px;
+  }
+
+  .door-left {
+    padding-right: 80px;
+    clip-path: polygon(0 0, 100% 0, calc(100% - 64px) 100%, 0 100%);
+  }
+
+  .door-right {
+    padding-left: 80px;
+    clip-path: polygon(calc(64px + var(--gutter)) 0, 100% 0, 100% 100%, var(--gutter) 100%);
+  }
+
+  .door-title {
+    font-family: var(--display);
+    font-size: 30px;
+    font-weight: 400;
+    -webkit-text-stroke: 7px var(--paper);
+    paint-order: stroke fill;
+  }
+
+  .door-left .narration,
+  .door-right .narration {
+    max-width: 380px;
+  }
+
+  .door-aside {
+    align-self: flex-end;
+    color: var(--accent);
+  }
+
+  .case {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 20px 22px;
+  }
+
+  .case-1 {
+    grid-area: c1;
+    justify-content: flex-end;
+  }
+
+  .case-title,
+  .client,
+  .impact,
+  .case .stack {
+    width: fit-content;
+    padding: 2px 6px;
+    background: var(--paper);
+    box-shadow: 0 0 0 3px var(--paper), 0 0 10px 5px var(--paper);
+  }
+
+  .case-2 {
+    grid-area: c2;
+  }
+
+  .case-3 {
+    grid-area: c3;
+  }
+
+  /* A cut patch of tone in the panel's corner, fading out; stays inside the panel. */
+  .case-2-tone {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: -1;
+    width: 300px;
+    height: 100%;
+    background-image: var(--tone-deep);
+    background-size: var(--tone-tile) var(--tone-tile);
+    mask-image: radial-gradient(circle at 85% 20%, black 25%, transparent 70%);
+  }
+
+  .period {
+    align-self: flex-start;
+    padding: 1px 8px;
+    font-family: var(--display);
+    font-size: 13px;
+    letter-spacing: 0.12em;
+    color: var(--paper);
+    background: var(--ink);
+  }
+
+  .case-title {
+    font-family: var(--display);
+    font-size: 26px;
+    font-weight: 400;
+    line-height: 1.15;
+  }
+
+  .client {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+  }
+
+  .case .narration {
+    max-width: 440px;
+    font-size: 14px;
+  }
+
+  .impact {
+    font-family: var(--display);
+    font-size: 18px;
+    color: var(--accent);
+  }
+
+  .impact-big {
+    font-size: 34px;
+  }
+
+  .stack {
+    font-size: 13px;
+  }
+
+  /* ── page 3 ───────────────────────────────────────── */
+
+  .grid-3 {
+    grid-template-rows: minmax(170px, auto) minmax(170px, auto);
+    grid-template-areas:
+      "con con con con con con con con wr wr wr wr"
+      "con con con con con con con con qe qe qe qe";
+  }
+
+  .contact {
+    display: flex;
+    flex-direction: column;
+    grid-area: con;
+    gap: 12px;
+    justify-content: center;
+    padding: 28px 36px;
+  }
+
+  .status {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    font-family: var(--hand);
+    font-size: 16px;
+    font-weight: 600;
+  }
+
+  .status-mark {
+    width: 12px;
+    height: 12px;
+    background: var(--accent);
+    transform: rotate(45deg);
+  }
+
+  .contact-title {
+    font-family: var(--display);
+    font-size: 44px;
+    font-weight: 400;
+    line-height: 1;
+  }
+
+  .email {
+    align-self: flex-start;
+    font-family: var(--display);
+    font-size: 30px;
+    text-decoration: none;
+    border-bottom: var(--line) solid var(--ink);
+  }
+
+  .email:hover {
+    border-bottom-width: 7px;
+    border-bottom-color: var(--accent);
+  }
+
+  .contact-box {
+    align-self: flex-start;
+    font-size: 14px;
+  }
+
+  .contact-aside {
+    position: absolute;
+    right: 26px;
+    bottom: 22px;
+    font-size: 17px;
+    transform: rotate(-3deg);
+  }
+
+  .writing {
+    display: flex;
+    flex-direction: column;
+    grid-area: wr;
+    gap: 6px;
+    justify-content: center;
+    padding: 18px 22px;
+  }
+
+  .writing-link {
+    padding: 4px 6px;
+    font-family: var(--display);
+    font-size: 18px;
+    line-height: 1.3;
+    text-decoration: none;
+    background: var(--paper);
+  }
+
+  .writing-link:hover {
+    text-decoration: underline 2px;
+  }
+
+  .writing-date {
+    font-family: var(--hand);
+    font-size: 13px;
+  }
+
+  .quiet-end {
+    grid-area: qe;
+  }
+
+  /* ── colophon ─────────────────────────────────────── */
+
+  .colophon {
+    display: grid;
+    gap: 14px;
+    justify-items: center;
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 28px 0 0;
+    border-top: var(--line) solid var(--ink);
+    text-align: center;
+  }
+
+  .confession {
+    font-family: var(--hand);
+    font-size: 17px;
+    font-weight: 600;
+  }
+
+  .colophon ul {
+    display: flex;
+    gap: 28px;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+
+  .colophon a {
+    font-family: var(--display);
+    font-size: 15px;
+    letter-spacing: 0.16em;
+    text-decoration: none;
+    text-transform: uppercase;
+  }
+
+  .colophon a:hover {
+    text-decoration: underline 2px;
+  }
+
+  .colophon-name {
+    font-size: 12px;
+    letter-spacing: 0.08em;
+  }
+
+  /* ── mobile: the page grid collapses into one column of panels in reading order ── */
+
+  @media (width <= 760px) {
+    .variant-a {
+      padding: 20px 10px 80px;
+    }
+
+    .page {
+      padding: 18px 16px 44px;
+    }
+
+    .grid,
+    .grid-1,
+    .grid-2,
+    .grid-3 {
+      grid-template-rows: none;
+      grid-template-columns: 1fr;
+      grid-template-areas: none;
+    }
+
+    .grid > *,
+    .beat > *,
+    .doors > * {
+      grid-area: auto;
+      grid-row: auto;
+      grid-column: auto;
+    }
+
+    .est {
+      min-height: 200px;
+    }
+
+    .portrait {
+      height: 440px;
+    }
+
+    .beat-quiet {
+      min-height: 120px;
+    }
+
+    .beat-loud {
+      min-height: 280px;
+      clip-path: polygon(0 0, 100% 0, 100% 100%, 0 88%);
+    }
+
+    .sfx {
+      font-size: 48px;
+    }
+
+    .sub {
+      margin: 0;
+    }
+
+    .case-1 {
+      justify-content: flex-start;
+    }
+
+    .doors {
+      grid-template-columns: 1fr;
+      gap: var(--gutter);
+    }
+
+    .door-left-wrap,
+    .door-right-wrap {
+      margin: 0;
+    }
+
+    .door-left,
+    .door-right {
+      padding: 24px 22px;
+      clip-path: none;
+    }
+
+    .door-left-wrap .panel,
+    .door-right-wrap .panel {
+      border: var(--line) solid var(--ink);
+    }
+
+    .door-wrap {
+      filter: none;
+    }
+
+    .contact {
+      min-height: 320px;
+    }
+
+    .contact-aside {
+      position: static;
+      transform: none;
+    }
+
+    .email {
+      font-size: 22px;
+    }
+
+    .quiet-end {
+      display: none;
+    }
+
+    .colophon ul {
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+  }
+</style>

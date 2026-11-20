@@ -1,0 +1,78 @@
+---
+// PROTOTYPE — throwaway. Floating palette switcher for variant A; renders only in `astro dev`.
+import { palettes } from "./screentone";
+
+const showSwitcher = import.meta.env.DEV;
+const names = palettes.map((palette) => ({ id: palette.id, name: palette.name }));
+---
+
+{
+  showSwitcher && (
+    <nav class="palette-switcher" aria-label="Prototype palette switcher" data-palettes={JSON.stringify(names)}>
+      <button type="button" data-step="-1" aria-label="Previous palette">←</button>
+      <span data-label>…</span>
+      <button type="button" data-step="1" aria-label="Next palette">→</button>
+    </nav>
+  )
+}
+
+<script>
+  const bar = document.querySelector<HTMLElement>(".palette-switcher");
+  if (bar) {
+    const palettes = JSON.parse(bar.dataset.palettes ?? "[]") as { id: number; name: string }[];
+    const label = bar.querySelector<HTMLElement>("[data-label]");
+    const currentIndex = (): number => {
+      const id = Number(document.documentElement.dataset.palette ?? "1");
+      return Math.max(0, palettes.findIndex((p) => p.id === id));
+    };
+    const show = (index: number): void => {
+      const palette = palettes[(index + palettes.length) % palettes.length];
+      if (!palette) return;
+      document.documentElement.dataset.palette = String(palette.id);
+      const url = new URL(location.href);
+      url.searchParams.set("palette", String(palette.id));
+      history.replaceState(null, "", url);
+      if (label) label.textContent = `Palette ${palette.id}/${palettes.length} — ${palette.name}`;
+    };
+    bar.addEventListener("click", (event) => {
+      const step = (event.target as HTMLElement).closest<HTMLElement>("[data-step]")?.dataset.step;
+      if (step) show(currentIndex() + Number(step));
+    });
+    document.addEventListener("keydown", (event) => {
+      const target = event.target as HTMLElement;
+      if (target.closest("input, textarea, [contenteditable]")) return;
+      if (event.key === ",") show(currentIndex() - 1);
+      if (event.key === ".") show(currentIndex() + 1);
+    });
+    show(currentIndex());
+  }
+</script>
+
+<style>
+  .palette-switcher {
+    position: fixed;
+    z-index: 9999;
+    bottom: 64px;
+    left: 50%;
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    padding: 8px 14px;
+    border-radius: 999px;
+    font: 600 13px/1 system-ui, sans-serif;
+    color: #fff;
+    background: #7a1fd6;
+    box-shadow: 0 6px 24px rgb(0 0 0 / 35%);
+    transform: translateX(-50%);
+  }
+
+  .palette-switcher button {
+    padding: 4px 10px;
+    border: 0;
+    border-radius: 999px;
+    font: inherit;
+    color: inherit;
+    cursor: pointer;
+    background: rgb(255 255 255 / 18%);
+  }
+</style>

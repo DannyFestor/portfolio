@@ -1,22 +1,56 @@
 ---
+// PROTOTYPE — throwaway branch prototype/manga-home. Three manga home-page variants (#7), switch with ?variant=A|B|C.
 import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
+import PrototypeSwitcher from "../prototype-manga/PrototypeSwitcher.astro";
+import VariantA from "../prototype-manga/VariantA.astro";
+import VariantB from "../prototype-manga/VariantB.astro";
+import VariantC from "../prototype-manga/VariantC.astro";
+
+const variants = [
+  { key: "A", name: "Seinen page grid" },
+  { key: "B", name: "Vertical strip" },
+  { key: "C", name: "Yonkoma" },
+] as const;
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="en" data-variant="A">
   <head>
     <meta charset="utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width"
-    />
+    <meta name="viewport" content="width=device-width" />
     <title>{SITE_TITLE}</title>
-    <meta
-      name="description"
-      content={SITE_DESCRIPTION}
-    />
+    <meta name="description" content={SITE_DESCRIPTION} />
+    <script is:inline>
+      // Pick the variant before first paint so there is no flash of variant A.
+      const requested = new URLSearchParams(location.search).get("variant");
+      if (requested && ["A", "B", "C"].includes(requested)) document.documentElement.dataset.variant = requested;
+      const palette = new URLSearchParams(location.search).get("palette");
+      document.documentElement.dataset.palette = palette && ["1", "2", "3", "4"].includes(palette) ? palette : "1";
+      const fonts = new URLSearchParams(location.search).get("fonts");
+      document.documentElement.dataset.fonts = fonts && ["1", "2", "3", "4"].includes(fonts) ? fonts : "1";
+    </script>
   </head>
   <body>
-    <main></main>
+    <div class="variant" data-variant-panel="A"><VariantA /></div>
+    <div class="variant" data-variant-panel="B"><VariantB /></div>
+    <div class="variant" data-variant-panel="C"><VariantC /></div>
+    <PrototypeSwitcher variants={variants} />
   </body>
 </html>
+
+<style is:global>
+  html,
+  body {
+    margin: 0;
+  }
+
+  .variant {
+    display: none;
+  }
+
+  html[data-variant="A"] [data-variant-panel="A"],
+  html[data-variant="B"] [data-variant-panel="B"],
+  html[data-variant="C"] [data-variant-panel="C"] {
+    display: block;
+  }
+</style>

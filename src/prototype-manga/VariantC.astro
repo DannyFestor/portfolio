@@ -1,0 +1,637 @@
+---
+// PROTOTYPE — throwaway. Variant C: "Yonkoma". The home page is a magazine page of four-panel strips
+// (起承転結: setup, development, twist, punchline), read left to right, column by column.
+import { identity, latestWriting, nav, positioning, work, worlds } from "./content";
+import photo from "./danny-screentone.png";
+
+const [rescue, build] = worlds;
+const photoStyle = `--photo: url("${photo.src}")`;
+
+// Draft copy (structural placeholder, final wording is copywriting-time).
+const draft = {
+  doorsSetup: "Two kinds of project come through the door.",
+  doorsPunchline: "Either way, it gets engineered.",
+  stackLabel: "Tools on the desk",
+  contactSetup: "Reading this far counts as a first meeting.",
+};
+
+const strips = work.map((item, index) => ({ ...item, number: index + 3 }));
+---
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  rel="stylesheet"
+  href="https://fonts.googleapis.com/css2?family=Kaisei+Tokumin:wght@400;700;800&family=M+PLUS+Rounded+1c:wght@400;700;800&family=Yusei+Magic&display=swap"
+/>
+
+<div class="variant-c">
+  <header class="masthead">
+    <p class="masthead-kicker">festor.info · four-panel edition</p>
+    <h1 class="masthead-title">{identity.name}</h1>
+    <p class="masthead-meta">{identity.role} · {identity.place} · {identity.since}</p>
+    <nav class="masthead-nav" aria-label="Main">
+      {nav.map((item) => <a href={`#${item.toLowerCase()}`}>{item}</a>)}
+    </nav>
+  </header>
+
+  <main class="page">
+    <!-- Strip 1: the job -->
+    <article class="strip" aria-labelledby="strip-1">
+      <h2 class="strip-title" id="strip-1"><span class="strip-no">No. 1</span>The job</h2>
+      <div class="panel tone">
+        <p class="narration narration-big">{positioning.headline[0]}</p>
+        <p class="aside aside-br">everyone has a tool for that now</p>
+      </div>
+      <div class="panel photo-panel">
+        <div class="photo" style={photoStyle} role="img" aria-label={`Halftone portrait of ${identity.name}`}></div>
+        <p class="narration narration-low">{identity.name}. {identity.role}, {identity.place}.</p>
+      </div>
+      <div class="panel hatch">
+        <p class="narration">{positioning.subline}</p>
+      </div>
+      <div class="panel focus">
+        <p class="impact">{positioning.headline[1]}</p>
+        <span class="sfx sfx-don" aria-hidden="true">ドン</span>
+      </div>
+    </article>
+
+    <!-- Strip 2: two doors -->
+    <article class="strip" id="work" aria-labelledby="strip-2">
+      <h2 class="strip-title" id="strip-2"><span class="strip-no">No. 2</span>Two doors</h2>
+      <div class="panel plain">
+        <p class="narration narration-big">{draft.doorsSetup}</p>
+      </div>
+      <div class="panel tone-light">
+        <p class="panel-heading">{rescue.title}</p>
+        <p class="narration">{rescue.body}</p>
+        <p class="aside aside-tr">{rescue.aside}</p>
+      </div>
+      <div class="panel hatch-light">
+        <p class="panel-heading">{build.title}</p>
+        <p class="narration">{build.body}</p>
+        <p class="aside aside-tr">{build.aside}</p>
+      </div>
+      <div class="panel plain">
+        <p class="punchline">{draft.doorsPunchline}</p>
+        <span class="tick" aria-hidden="true"></span>
+      </div>
+    </article>
+
+    <!-- Strips 3–5: one per piece of work -->
+    {
+      strips.map((item) => (
+        <article class="strip" aria-labelledby={`strip-${item.number}`}>
+          <h2 class="strip-title" id={`strip-${item.number}`}>
+            <span class="strip-no">No. {item.number}</span>
+            {item.title}
+          </h2>
+          <div class="panel tone">
+            <p class="period">{item.period}</p>
+            <p class="narration narration-low">{item.title}</p>
+          </div>
+          <div class="panel plain">
+            <p class="panel-heading">{item.client}</p>
+            <p class="narration">{item.beat}</p>
+          </div>
+          <div class="panel hatch-light">
+            <p class="aside aside-tl">{draft.stackLabel}</p>
+            <ul class="stack">
+              {item.stack.map((tool) => (
+                <li>{tool}</li>
+              ))}
+            </ul>
+          </div>
+          <div class={item.number === 4 ? "panel focus-orange" : "panel plain"}>
+            <p class="punchline">{item.impact}</p>
+            {item.number === 4 && (
+              <span class="sfx sfx-shu" aria-hidden="true">
+                {item.sfx}
+              </span>
+            )}
+            {item.number !== 4 && <span class="tick" aria-hidden="true" />}
+          </div>
+        </article>
+      ))
+    }
+
+    <!-- Strip 6: get in touch -->
+    <article class="strip" id="contact" aria-labelledby="strip-6">
+      <h2 class="strip-title" id="strip-6"><span class="strip-no">No. 6</span>Get in touch</h2>
+      <div class="panel tone-orange">
+        <p class="status"><span class="status-mark" aria-hidden="true"></span>{identity.status}</p>
+        <p class="aside aside-br">{draft.contactSetup}</p>
+      </div>
+      <div class="panel plain">
+        <p class="aside aside-tl">write to</p>
+        <a class="email" href={`mailto:${identity.email}`}>{identity.email}</a>
+      </div>
+      <div class="panel hatch-light">
+        <p class="narration narration-big">{identity.languages}</p>
+      </div>
+      <div class="panel plain">
+        <p class="punchline punchline-small">{identity.responseTime}</p>
+        <span class="tick" aria-hidden="true"></span>
+      </div>
+    </article>
+  </main>
+
+  <footer class="colophon" id="blog">
+    <p class="latest">
+      <span class="latest-label">Latest writing</span>
+      <a href="#blog">{latestWriting.title}</a>
+      <time datetime={latestWriting.date}>{latestWriting.date}</time>
+    </p>
+    <div class="colophon-row" id="about">
+      <p class="confession">{identity.mangaConfession}</p>
+      <nav class="colophon-nav" aria-label="Footer">
+        {nav.map((item) => <a href={`#${item.toLowerCase()}`}>{item}</a>)}
+      </nav>
+    </div>
+  </footer>
+</div>
+
+<style>
+  .variant-c {
+    --paper: #efeadf;
+    --ink: #1b1a17;
+    --spot: #d24e1c;
+    --font-title: "Kaisei Tokumin", serif;
+    --font-letter: "M PLUS Rounded 1c", sans-serif;
+    --font-aside: "Yusei Magic", sans-serif;
+    --rule: 2.5px;
+    --gutter: 9px;
+    --strip-width: 336px;
+    --panel-height: 236px;
+
+    min-height: 100vh;
+    padding: 40px 32px 96px;
+    font-family: var(--font-letter);
+    color: var(--ink);
+    background: var(--paper);
+  }
+
+  .variant-c a {
+    color: inherit;
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+  }
+
+  .variant-c a:hover {
+    text-decoration-color: var(--spot);
+    text-decoration-thickness: 3px;
+  }
+
+  /* Masthead: a magazine page header, not a hero */
+  .masthead {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 4px 24px;
+    align-items: end;
+    max-width: calc(var(--strip-width) * 3 + 48px * 2);
+    margin: 0 auto 40px;
+    padding-bottom: 12px;
+    border-bottom: var(--rule) solid var(--ink);
+  }
+
+  .masthead-kicker {
+    grid-column: 1 / -1;
+    margin: 0;
+    font-family: var(--font-aside);
+    font-size: 14px;
+  }
+
+  .masthead-title {
+    margin: 0;
+    font-family: var(--font-title);
+    font-size: 56px;
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: 0.01em;
+  }
+
+  .masthead-meta {
+    grid-column: 1;
+    margin: 0;
+    font-size: 14px;
+    font-weight: 700;
+  }
+
+  .masthead-nav {
+    display: flex;
+    grid-row: 2 / 4;
+    grid-column: 2;
+    gap: 20px;
+    align-self: end;
+    font-weight: 700;
+  }
+
+  .masthead-nav a {
+    text-decoration: none;
+  }
+
+  .masthead-nav a:hover {
+    text-decoration: underline;
+    text-decoration-color: var(--spot);
+    text-decoration-thickness: 3px;
+  }
+
+  /* The page: strips side by side, read left to right */
+  .page {
+    display: grid;
+    grid-template-columns: repeat(3, var(--strip-width));
+    gap: 56px 48px;
+    justify-content: center;
+  }
+
+  .strip {
+    display: grid;
+    grid-template-rows: auto repeat(4, var(--panel-height));
+    gap: var(--gutter);
+  }
+
+  .strip-title {
+    display: flex;
+    gap: 10px;
+    align-items: baseline;
+    justify-self: start;
+    margin: 0 0 4px;
+    padding: 6px 12px 5px;
+    border: var(--rule) solid var(--ink);
+    font-family: var(--font-title);
+    font-size: 20px;
+    font-weight: 800;
+    line-height: 1.15;
+  }
+
+  .strip-no {
+    font-family: var(--font-letter);
+    font-size: 12px;
+    font-weight: 800;
+    color: var(--spot);
+    white-space: nowrap;
+  }
+
+  /* Panels: ink frames with gutters, lettering inside */
+  .panel {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    justify-content: center;
+    padding: 18px;
+    border: var(--rule) solid var(--ink);
+    background-color: var(--paper);
+    isolation: isolate;
+  }
+
+
+  /* Screentone: 45°-rotated dot field */
+  .tone::before,
+  .tone-light::before,
+  .tone-orange::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    inset: -50%;
+    background-image: radial-gradient(circle, var(--ink) 1.15px, transparent 1.45px);
+    background-size: 7px 7px;
+    transform: rotate(45deg);
+  }
+
+  .tone-light::before {
+    background-image: radial-gradient(circle, var(--ink) 0.7px, transparent 1px);
+    background-size: 6px 6px;
+  }
+
+  .tone-orange::before {
+    background-image: radial-gradient(circle, var(--spot) 1.5px, transparent 1.8px);
+    background-size: 7px 7px;
+  }
+
+  /* Hatching */
+  .hatch {
+    background-image: repeating-linear-gradient(-45deg, var(--ink) 0 1px, transparent 1px 5px);
+  }
+
+  .hatch-light {
+    background-image: repeating-linear-gradient(-45deg, var(--ink) 0 0.6px, transparent 0.6px 9px);
+  }
+
+  /* 集中線: focus lines for the one impact moment */
+  .focus,
+  .focus-orange {
+    align-items: center;
+    background-image:
+      radial-gradient(ellipse 46% 38% at 50% 50%, var(--paper) 62%, transparent 64%),
+      repeating-conic-gradient(from 0deg at 50% 50%, var(--ink) 0deg 0.9deg, transparent 0.9deg 5deg);
+  }
+
+  .focus-orange {
+    background-image:
+      radial-gradient(ellipse 48% 36% at 50% 50%, var(--paper) 62%, transparent 64%),
+      repeating-conic-gradient(from 2deg at 50% 50%, var(--spot) 0deg 0.8deg, transparent 0.8deg 6deg);
+  }
+
+  /* Photo panel: the author portrait, halftone as ink through a mask */
+  .photo-panel {
+    justify-content: flex-end;
+    padding: 0;
+  }
+
+  .photo {
+    position: absolute;
+    z-index: -1;
+    inset: 0;
+    background: var(--ink);
+    -webkit-mask: var(--photo) 50% 28% / cover no-repeat;
+    mask: var(--photo) 50% 28% / cover no-repeat;
+  }
+
+  .photo-panel .narration-low {
+    margin: 0 10px 10px;
+  }
+
+  /* Narration boxes: the engineering voice */
+  .narration {
+    align-self: flex-start;
+    margin: 0;
+    padding: 6px 9px;
+    border: 1.5px solid var(--ink);
+    font-size: 14.5px;
+    font-weight: 700;
+    line-height: 1.45;
+    background: var(--paper);
+  }
+
+  .narration-big {
+    padding: 10px 12px;
+    font-family: var(--font-title);
+    font-size: 23px;
+    font-weight: 800;
+    line-height: 1.2;
+  }
+
+  .narration-low {
+    align-self: flex-start;
+    font-size: 13px;
+  }
+
+  .panel-heading {
+    margin: 0;
+    padding: 0 4px;
+    font-family: var(--font-title);
+    font-size: 21px;
+    font-weight: 800;
+    line-height: 1.15;
+    background: var(--paper);
+    align-self: flex-start;
+  }
+
+  /* Asides: the annotation voice, lettered into panel corners */
+  .aside {
+    position: absolute;
+    max-width: 62%;
+    margin: 0;
+    font-family: var(--font-aside);
+    font-size: 13px;
+    line-height: 1.3;
+    background: var(--paper);
+    padding: 1px 4px;
+  }
+
+  .aside-br {
+    right: 10px;
+    bottom: 10px;
+    transform: rotate(-3deg);
+  }
+
+  .aside-tr {
+    top: 8px;
+    right: 10px;
+    transform: rotate(2deg);
+    text-align: right;
+  }
+
+  .aside-tl {
+    top: 10px;
+    left: 12px;
+    transform: rotate(-2deg);
+  }
+
+  /* Punchlines */
+  .impact {
+    max-width: 78%;
+    margin: 0;
+    font-family: var(--font-title);
+    font-size: 31px;
+    font-weight: 800;
+    line-height: 1.1;
+    text-align: center;
+  }
+
+  .punchline {
+    margin: 0;
+    font-family: var(--font-title);
+    font-size: 27px;
+    font-weight: 800;
+    line-height: 1.15;
+  }
+
+  .focus-orange .punchline {
+    text-align: center;
+  }
+
+  .punchline-small {
+    font-size: 22px;
+  }
+
+  .period {
+    margin: 0;
+    padding: 0 6px;
+    font-family: var(--font-title);
+    font-size: 40px;
+    font-weight: 800;
+    line-height: 1;
+    background: var(--paper);
+    align-self: flex-start;
+  }
+
+  .stack {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    align-self: flex-start;
+    margin: 18px 0 0;
+    padding: 8px 12px;
+    border: 1.5px solid var(--ink);
+    list-style: none;
+    font-size: 16px;
+    font-weight: 800;
+    background: var(--paper);
+  }
+
+  .stack li::before {
+    content: "▪ ";
+    color: var(--spot);
+  }
+
+  /* Katakana SFX: decorative second ink */
+  .sfx {
+    position: absolute;
+    z-index: 2;
+    font-family: var(--font-title);
+    font-weight: 800;
+    line-height: 1;
+    color: var(--spot);
+    -webkit-text-stroke: 1.5px var(--ink);
+    paint-order: stroke fill;
+  }
+
+  .sfx-don {
+    top: 8px;
+    right: 12px;
+    font-size: 54px;
+    transform: rotate(-9deg);
+  }
+
+  .sfx-shu {
+    bottom: 10px;
+    left: 12px;
+    font-size: 38px;
+    transform: rotate(-6deg) skewX(-12deg);
+  }
+
+  /* Small spot-ink block: the punchline's end mark, like a printer's full stop */
+  .tick {
+    position: absolute;
+    right: 14px;
+    bottom: 14px;
+    width: 10px;
+    height: 10px;
+    background: var(--spot);
+  }
+
+  /* Contact strip */
+  .status {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    align-self: flex-start;
+    margin: 0;
+    padding: 8px 12px;
+    border: var(--rule) solid var(--ink);
+    font-family: var(--font-title);
+    font-size: 22px;
+    font-weight: 800;
+    background: var(--paper);
+  }
+
+  .status-mark {
+    width: 12px;
+    height: 12px;
+    border: 2px solid var(--ink);
+    background: var(--spot);
+  }
+
+  .email {
+    font-family: var(--font-title);
+    font-size: 25px;
+    font-weight: 800;
+    word-break: break-all;
+  }
+
+  /* Colophon */
+  .colophon {
+    max-width: calc(var(--strip-width) * 3 + 48px * 2);
+    margin: 64px auto 0;
+    padding-top: 14px;
+    border-top: var(--rule) solid var(--ink);
+  }
+
+  .latest {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 14px;
+    align-items: baseline;
+    margin: 0 0 28px;
+    font-weight: 700;
+  }
+
+  .latest-label {
+    font-family: var(--font-aside);
+    font-weight: 400;
+  }
+
+  .latest time {
+    font-size: 13px;
+  }
+
+  .colophon-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px 32px;
+    justify-content: space-between;
+    align-items: baseline;
+  }
+
+  .confession {
+    margin: 0;
+    font-family: var(--font-aside);
+    font-size: 16px;
+  }
+
+  .colophon-nav {
+    display: flex;
+    gap: 20px;
+    font-size: 14px;
+    font-weight: 700;
+  }
+
+  /* Narrower desktops: two strips per row */
+  @media (max-width: 1180px) {
+    .page {
+      grid-template-columns: repeat(2, var(--strip-width));
+    }
+
+    .masthead,
+    .colophon {
+      max-width: calc(var(--strip-width) * 2 + 48px);
+    }
+  }
+
+  /* Phones: one strip after another */
+  @media (max-width: 760px) {
+    .variant-c {
+      padding: 24px 16px 96px;
+      --strip-width: min(100%, 360px);
+      --panel-height: 228px;
+    }
+
+    .page {
+      grid-template-columns: minmax(0, 360px);
+      gap: 44px;
+    }
+
+    .masthead {
+      grid-template-columns: 1fr;
+      max-width: 360px;
+    }
+
+    .masthead-title {
+      font-size: 44px;
+    }
+
+    .masthead-nav {
+      grid-row: auto;
+      grid-column: 1;
+      margin-top: 8px;
+    }
+
+    .colophon {
+      max-width: 360px;
+    }
+  }
+</style>

@@ -1,0 +1,79 @@
+---
+// PROTOTYPE — throwaway. Floating variant switcher; renders only in `astro dev`.
+interface Props {
+  variants: readonly { key: string; name: string }[];
+}
+const { variants } = Astro.props;
+const showSwitcher = import.meta.env.DEV;
+---
+
+{
+  showSwitcher && (
+    <nav class="prototype-switcher" aria-label="Prototype variant switcher" data-variants={JSON.stringify(variants)}>
+      <button type="button" data-step="-1" aria-label="Previous variant">←</button>
+      <span data-label>…</span>
+      <button type="button" data-step="1" aria-label="Next variant">→</button>
+    </nav>
+  )
+}
+
+<script>
+  const bar = document.querySelector<HTMLElement>(".prototype-switcher");
+  if (bar) {
+    const variants = JSON.parse(bar.dataset.variants ?? "[]") as { key: string; name: string }[];
+    const label = bar.querySelector<HTMLElement>("[data-label]");
+    const currentIndex = (): number => {
+      const key = document.documentElement.dataset.variant;
+      return Math.max(0, variants.findIndex((v) => v.key === key));
+    };
+    const show = (index: number): void => {
+      const variant = variants[(index + variants.length) % variants.length];
+      if (!variant) return;
+      document.documentElement.dataset.variant = variant.key;
+      const url = new URL(location.href);
+      url.searchParams.set("variant", variant.key);
+      history.replaceState(null, "", url);
+      if (label) label.textContent = `${variant.key} — ${variant.name}`;
+    };
+    bar.addEventListener("click", (event) => {
+      const step = (event.target as HTMLElement).closest<HTMLElement>("[data-step]")?.dataset.step;
+      if (step) show(currentIndex() + Number(step));
+    });
+    document.addEventListener("keydown", (event) => {
+      const target = event.target as HTMLElement;
+      if (target.closest("input, textarea, [contenteditable]")) return;
+      if (event.key === "ArrowLeft") show(currentIndex() - 1);
+      if (event.key === "ArrowRight") show(currentIndex() + 1);
+    });
+    show(currentIndex());
+  }
+</script>
+
+<style>
+  .prototype-switcher {
+    position: fixed;
+    z-index: 9999;
+    bottom: 16px;
+    left: 50%;
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    padding: 8px 14px;
+    border-radius: 999px;
+    font: 600 13px/1 system-ui, sans-serif;
+    color: #fff;
+    background: #0a58ff;
+    box-shadow: 0 6px 24px rgb(0 0 0 / 35%);
+    transform: translateX(-50%);
+  }
+
+  .prototype-switcher button {
+    padding: 4px 10px;
+    border: 0;
+    border-radius: 999px;
+    font: inherit;
+    color: inherit;
+    cursor: pointer;
+    background: rgb(255 255 255 / 18%);
+  }
+</style>
