@@ -1,0 +1,34 @@
+---
+// PROTOTYPE — throwaway. Element 4: the SFX (red vertical katakana, decorative, aria-hidden).
+// Only proofread SFX are used: カチッ, ドン, ゴゴゴ.
+import Specimen from "./Specimen.astro";
+import SpecimenRow from "./SpecimenRow.astro";
+
+const options = [
+  { number: 1, name: "Fuchidori: paper outline", variant: "sfx-fuchidori", text: "カチッ" },
+  { number: 2, name: "Hard offset shadow in ink", variant: "sfx-offset", text: "ドン" },
+  { number: 3, name: "Plain, on a white knockout", variant: "sfx-knockout", text: "ゴゴゴ" },
+] as const;
+---
+
+<SpecimenRow index={4} title="Sound effect" note="Decorative, hidden from screen readers. Shown over focus lines and over tone.">
+  {
+    options.map((option) => (
+      <Specimen number={option.number} name={option.name}>
+        <div class="sfx-pair">
+          <div class="panel sfx-ctx">
+            <span class="focus-lines" aria-hidden="true" />
+            <span class:list={["sfx-spec", option.variant]} aria-hidden="true">
+              {option.text}
+            </span>
+          </div>
+          <div class="panel tone-dense sfx-ctx">
+            <span class:list={["sfx-spec", option.variant]} aria-hidden="true">
+              {option.text}
+            </span>
+          </div>
+        </div>
+      </Specimen>
+    ))
+  }
+</SpecimenRow>

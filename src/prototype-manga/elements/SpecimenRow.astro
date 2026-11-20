@@ -1,0 +1,22 @@
+---
+// PROTOTYPE — throwaway. One element of the specimen sheet: a manga page holding three numbered options.
+interface Props {
+  index: number;
+  title: string;
+  note: string;
+}
+
+const { index, title, note } = Astro.props;
+---
+
+<section class="manga-page spec-row" aria-labelledby={`spec-row-${index}`}>
+  <header class="spec-row-head">
+    <p class="small-label">Element {index}</p>
+    <h2 class="spec-row-title display" id={`spec-row-${index}`}>{title}</h2>
+    <p class="spec-row-note">{note}</p>
+  </header>
+  <div class="spec-grid">
+    <slot />
+  </div>
+  <p class="folio">{index}</p>
+</section>

@@ -1,0 +1,728 @@
+/* PROTOTYPE — throwaway. Element specimen sheet (#31 lettering, #27 buttons and links).
+ * Everything sits under .elements-sheet inside the .manga root. Rules: palette 1, fonts 2, no
+ * animations or transitions (states change instantly), readable text never tilted more than 3°. */
+
+/* ── the decided chrome on this page: header A (slotted), footer C ── */
+
+.manga:has(.elements-sheet) > .chrome-set:not([data-chrome-panel="C"]) {
+  display: none;
+}
+
+.manga:has(.elements-sheet) > .chrome-set[data-chrome-panel="C"] {
+  display: block;
+}
+
+/* ── sheet layout ─────────────────────────────────────── */
+
+.elements-sheet .visually-hidden {
+  position: absolute;
+  overflow: hidden;
+  width: 1px;
+  height: 1px;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.elements-sheet .sheet-intro {
+  max-width: 1080px;
+  margin: 0 auto 28px;
+}
+
+.elements-sheet .sheet-title {
+  font-size: 44px;
+  line-height: 1.05;
+}
+
+.elements-sheet .sheet-lede {
+  max-width: 62ch;
+  margin-top: 10px;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.elements-sheet .spec-row-head {
+  display: grid;
+  gap: 4px;
+  margin-bottom: 22px;
+  padding-bottom: 12px;
+  border-bottom: 1.5px solid var(--ink);
+}
+
+.elements-sheet .spec-row-title {
+  font-size: 32px;
+  line-height: 1.1;
+}
+
+.elements-sheet .spec-row-note {
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+.elements-sheet .spec-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 28px;
+}
+
+.elements-sheet .spec {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.elements-sheet .spec-head {
+  display: flex;
+  gap: 12px;
+  align-items: baseline;
+}
+
+.elements-sheet .spec-number {
+  font-family: var(--display);
+  font-size: 56px;
+  line-height: 0.9;
+}
+
+.elements-sheet .spec-name {
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.elements-sheet .spec-body {
+  display: grid;
+  gap: 14px;
+}
+
+/* ── 1. narration box ─────────────────────────────────── */
+
+.elements-sheet .ctx-paper {
+  isolation: isolate;
+  padding: 4px 0;
+}
+
+.elements-sheet .ctx-tone {
+  padding: 28px 18px;
+}
+
+.elements-sheet .narr {
+  position: relative;
+  z-index: 1;
+  font-family: var(--narration);
+  font-size: 15px;
+  line-height: 1.65;
+  background: var(--paper);
+}
+
+.elements-sheet .narr-thin {
+  padding: 10px 14px;
+  border: 1px solid var(--ink);
+}
+
+.elements-sheet .narr-heavy {
+  padding: 9px 13px;
+  border: 4px solid var(--ink);
+}
+
+/* Offset double frame: a second frame drawn behind and offset, like a printed caption box. */
+.elements-sheet .narr-double {
+  z-index: auto;
+  margin: 0 7px 7px 0;
+  padding: 10px 14px;
+  border: 1.5px solid var(--ink);
+}
+
+.elements-sheet .narr-double::before {
+  position: absolute;
+  inset: 6px -7px -7px 6px;
+  z-index: -1;
+  border: 1.5px solid var(--ink);
+  content: "";
+  background: var(--paper);
+}
+
+/* ── 2. aside ─────────────────────────────────────────── */
+
+.elements-sheet .aside-ctx {
+  display: grid;
+  gap: 8px;
+  padding: 4px 0 8px;
+}
+
+.elements-sheet .aside-arrow {
+  display: flex;
+  gap: 4px;
+  align-items: flex-start;
+  justify-self: end;
+  font-family: var(--hand);
+  font-size: 17px;
+  line-height: 1.3;
+  color: var(--accent);
+}
+
+.elements-sheet .aside-arrow-mark {
+  flex: none;
+  order: -1;
+  width: 40px;
+  height: 26px;
+  margin-top: -6px;
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* A slim bracket: thin rule on the left with short ticks at both ends, ink text. */
+.elements-sheet .aside-bracket {
+  position: relative;
+  justify-self: end;
+  width: fit-content;
+  max-width: 85%;
+  padding: 2px 4px 2px 12px;
+  border-left: 1.5px solid var(--ink);
+  font-family: var(--hand);
+  font-size: 17px;
+  line-height: 1.35;
+}
+
+.elements-sheet .aside-bracket::before,
+.elements-sheet .aside-bracket::after {
+  position: absolute;
+  left: -1.5px;
+  width: 7px;
+  border-top: 1.5px solid var(--ink);
+  content: "";
+}
+
+.elements-sheet .aside-bracket::before {
+  top: 0;
+}
+
+.elements-sheet .aside-bracket::after {
+  bottom: 0;
+}
+
+.elements-sheet .aside-ctx--margin {
+  padding-top: 10px;
+}
+
+.elements-sheet .aside-margin {
+  justify-self: end;
+  width: fit-content;
+  max-width: 80%;
+  padding-bottom: 2px;
+  border-bottom: 1.5px solid var(--accent);
+  font-family: var(--hand);
+  font-size: 17px;
+  line-height: 1.3;
+  color: var(--accent);
+  transform: rotate(-2.5deg);
+}
+
+/* ── 3. text on tone ──────────────────────────────────── */
+
+.elements-sheet .halo-ctx {
+  display: grid;
+  gap: 12px;
+  align-content: start;
+  min-height: 132px;
+  padding: 20px 16px;
+}
+
+.elements-sheet .halo-text {
+  font-size: 16px;
+  line-height: 1.75;
+}
+
+/* 1: paper hugs each glyph (a thin fuchidori for small text), the tone stays visible between letters. */
+.elements-sheet .halo-glyph {
+  -webkit-text-stroke: 4px var(--paper);
+  paint-order: stroke fill;
+}
+
+/* 2: crisp white-out patch with a thin ink edge, no blur. */
+.elements-sheet .halo-patch {
+  display: inline-block;
+  padding: 3px 8px;
+  border: 1px solid var(--ink);
+  background: var(--paper);
+}
+
+/* 3: each line gets its own paper strip; tone shows between the lines. */
+.elements-sheet .halo-lines {
+  padding: 2px 6px;
+  background: var(--paper);
+  box-decoration-break: clone;
+}
+
+/* ── 4. sound effect ──────────────────────────────────── */
+
+.elements-sheet .sfx-pair {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.elements-sheet .sfx-ctx {
+  display: grid;
+  place-items: center;
+  min-height: 210px;
+}
+
+.elements-sheet .sfx-spec {
+  position: relative;
+  z-index: 2;
+  font-family: var(--display);
+  font-size: 54px;
+  line-height: 1;
+  color: var(--sfx);
+  writing-mode: vertical-rl;
+  transform: rotate(6deg);
+}
+
+.elements-sheet .sfx-fuchidori {
+  -webkit-text-stroke: 6px var(--paper);
+  paint-order: stroke fill;
+}
+
+.elements-sheet .sfx-offset {
+  text-shadow: 3px 3px 0 var(--ink);
+}
+
+.elements-sheet .sfx-knockout {
+  padding: 8px 4px;
+  background: var(--paper);
+}
+
+/* ── 5. speech balloon ────────────────────────────────── */
+
+.elements-sheet .balloon-ctx {
+  display: grid;
+  gap: 44px;
+  margin: 0;
+  padding: 8px 4px 0;
+}
+
+.elements-sheet .balloon {
+  position: relative;
+  margin: 0;
+  font-family: var(--narration);
+  font-size: 15px;
+  line-height: 1.55;
+  background: var(--paper);
+}
+
+.elements-sheet .balloon::before,
+.elements-sheet .balloon::after {
+  position: absolute;
+  content: "";
+}
+
+/* 1: classic oval, curved tail made of an ink wedge with a paper wedge inside it. */
+.elements-sheet .balloon-oval {
+  padding: 30px 34px;
+  border: 2px solid var(--ink);
+  border-radius: 50%;
+  text-align: center;
+}
+
+.elements-sheet .balloon-oval::before {
+  bottom: -24px;
+  left: 34%;
+  width: 30px;
+  height: 30px;
+  background: var(--ink);
+  clip-path: polygon(0 0, 100% 0, 8% 100%);
+}
+
+.elements-sheet .balloon-oval::after {
+  bottom: -18px;
+  left: calc(34% + 3px);
+  width: 23px;
+  height: 36px;
+  background: var(--paper);
+  clip-path: polygon(0 0, 100% 0, 6% 100%);
+}
+
+/* 2: rectangular balloon with a long, sharp tail. */
+.elements-sheet .balloon-rect {
+  padding: 18px 20px;
+  border: 2px solid var(--ink);
+  font-family: var(--display);
+  font-size: 16px;
+  line-height: 1.5;
+  text-align: center;
+}
+
+.elements-sheet .balloon-rect::before {
+  bottom: -34px;
+  left: 30%;
+  width: 20px;
+  height: 36px;
+  background: var(--ink);
+  clip-path: polygon(0 0, 100% 0, 0 100%);
+}
+
+.elements-sheet .balloon-rect::after {
+  bottom: -27px;
+  left: calc(30% + 2px);
+  width: 14px;
+  height: 29px;
+  background: var(--paper);
+  clip-path: polygon(0 0, 100% 0, 0 100%);
+}
+
+/* 3: a narration box with a small notch tail on its left edge; left-aligned narration voice. */
+.elements-sheet .balloon-narr {
+  margin-left: 14px;
+  padding: 14px 16px;
+  border: 1.5px solid var(--ink);
+}
+
+.elements-sheet .balloon-narr::before {
+  top: 18px;
+  left: -16px;
+  width: 16px;
+  height: 18px;
+  background: var(--ink);
+  clip-path: polygon(100% 0, 0 50%, 100% 100%);
+}
+
+.elements-sheet .balloon-narr::after {
+  top: 21px;
+  left: -11px;
+  width: 12px;
+  height: 12px;
+  background: var(--paper);
+  clip-path: polygon(100% 0, 0 50%, 100% 100%);
+}
+
+.elements-sheet .balloon-by {
+  justify-self: end;
+  font-size: 11px;
+}
+
+/* ── 6. links in prose ────────────────────────────────── */
+
+.elements-sheet .link-prose {
+  font-size: 16px;
+  line-height: 1.75;
+}
+
+.elements-sheet .state-list {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding: 12px 0 0;
+  border-top: 1px solid var(--ink);
+  list-style: none;
+}
+
+.elements-sheet .state-item {
+  display: grid;
+  grid-template-columns: 112px 1fr;
+  gap: 10px;
+  align-items: baseline;
+  font-size: 16px;
+}
+
+.elements-sheet .state-name {
+  font-size: 10px;
+}
+
+.elements-sheet .spec-link {
+  color: var(--ink);
+}
+
+/* 1: ink underline; hover thickens it and turns it red; visited is indigo. */
+.elements-sheet .spec-link.link-ink {
+  text-decoration: underline 1px var(--ink);
+  text-underline-offset: 3px;
+}
+
+.elements-sheet .spec-link.link-ink:hover,
+.elements-sheet .spec-link.link-ink.is-hover {
+  text-decoration: underline 3px var(--accent);
+}
+
+.elements-sheet .spec-link.link-ink:visited,
+.elements-sheet .spec-link.link-ink.is-visited {
+  text-decoration-color: var(--indigo);
+}
+
+/* 2: red dotted underline; hover goes solid red and the text turns red. */
+.elements-sheet .spec-link.link-dotted {
+  text-decoration: underline 2px dotted var(--accent);
+  text-underline-offset: 4px;
+}
+
+.elements-sheet .spec-link.link-dotted:hover,
+.elements-sheet .spec-link.link-dotted.is-hover {
+  color: var(--accent);
+  text-decoration: underline 2px solid var(--accent);
+}
+
+.elements-sheet .spec-link.link-dotted:visited,
+.elements-sheet .spec-link.link-dotted.is-visited {
+  text-decoration-color: var(--indigo);
+}
+
+/* 3: thin underline; hover inks the whole word like a marker (paper text on ink). */
+.elements-sheet .spec-link.link-marker {
+  padding: 0 2px;
+  text-decoration: underline 1px var(--ink);
+  text-underline-offset: 3px;
+  box-decoration-break: clone;
+}
+
+.elements-sheet .spec-link.link-marker:hover,
+.elements-sheet .spec-link.link-marker.is-hover {
+  color: var(--paper);
+  text-decoration: none;
+  background: var(--ink);
+}
+
+.elements-sheet .spec-link.link-marker:visited,
+.elements-sheet .spec-link.link-marker.is-visited {
+  text-decoration-color: var(--indigo);
+}
+
+/* Focus is the same strong ring for every option: keyboard users must never lose their place. */
+.elements-sheet .spec-link:focus-visible,
+.elements-sheet .spec-link.is-focus-visible {
+  outline: 3px solid var(--ink);
+  outline-offset: 3px;
+  background: var(--paper);
+}
+
+/* ── 7. calls to action ───────────────────────────────── */
+
+.elements-sheet .state-list--cta {
+  gap: 14px;
+  border-top: 0;
+}
+
+.elements-sheet .state-item--cta {
+  grid-template-columns: 1fr;
+  gap: 4px;
+}
+
+.elements-sheet .cta {
+  color: var(--ink);
+  text-decoration: none;
+}
+
+/* 1: no button at all, a big inked link. */
+.elements-sheet .cta.cta-link {
+  width: fit-content;
+  font-family: var(--display);
+  font-size: 26px;
+  line-height: 1.2;
+  text-decoration: underline 3px var(--ink);
+  text-underline-offset: 6px;
+}
+
+.elements-sheet .cta.cta-link:hover,
+.elements-sheet .cta.cta-link.is-hover {
+  text-decoration: underline 6px var(--accent);
+}
+
+.elements-sheet .cta.cta-link:active,
+.elements-sheet .cta.cta-link.is-active {
+  color: var(--accent);
+  text-decoration: underline 6px var(--accent);
+}
+
+/* 2: rectangular ink frame; hover inverts instantly; active adds a red pressed edge. */
+.elements-sheet .cta.cta-frame {
+  display: inline-block;
+  width: fit-content;
+  padding: 10px 22px 11px;
+  border: 3px solid var(--ink);
+  font-family: var(--display);
+  font-size: 17px;
+  letter-spacing: 0.04em;
+  background: var(--paper);
+}
+
+.elements-sheet .cta.cta-frame:hover,
+.elements-sheet .cta.cta-frame.is-hover {
+  color: var(--paper);
+  background: var(--ink);
+}
+
+.elements-sheet .cta.cta-frame:active,
+.elements-sheet .cta.cta-frame.is-active {
+  color: var(--paper);
+  border-bottom: 7px solid var(--accent);
+  background: var(--ink);
+}
+
+/* 3: page-turn: a panel with its top-right corner folded; the fold grows on hover. */
+.elements-sheet .cta.cta-fold {
+  --fold: 18px;
+
+  position: relative;
+  display: inline-block;
+  width: fit-content;
+  padding: 12px calc(var(--fold) + 20px) 12px 18px;
+  font-family: var(--display);
+  font-size: 17px;
+  background: var(--ink);
+  clip-path: polygon(0 0, calc(100% - var(--fold)) 0, 100% var(--fold), 100% 100%, 0 100%);
+}
+
+.elements-sheet .cta.cta-fold::before {
+  position: absolute;
+  inset: 3px;
+  z-index: 0;
+  content: "";
+  background: var(--paper);
+  clip-path: polygon(0 0, calc(100% - var(--fold) - 1px) 0, 100% calc(var(--fold) + 1px), 100% 100%, 0 100%);
+}
+
+/* The back of the turned page: a small tone triangle in the folded corner. */
+.elements-sheet .cta.cta-fold::after {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: var(--fold);
+  height: var(--fold);
+  content: "";
+  background-color: var(--paper);
+  background-image: var(--tone-dense);
+  background-size: var(--tone-tile) var(--tone-tile);
+  border-bottom: 3px solid var(--ink);
+  border-left: 3px solid var(--ink);
+  clip-path: polygon(0 0, 100% 100%, 0 100%);
+}
+
+.elements-sheet .cta.cta-fold > * {
+  position: relative;
+}
+
+.elements-sheet .cta.cta-fold:hover,
+.elements-sheet .cta.cta-fold.is-hover {
+  --fold: 30px;
+
+  color: var(--accent);
+}
+
+.elements-sheet .cta.cta-fold:active,
+.elements-sheet .cta.cta-fold.is-active {
+  --fold: 30px;
+
+  color: var(--paper);
+}
+
+.elements-sheet .cta.cta-fold:active::before,
+.elements-sheet .cta.cta-fold.is-active::before {
+  background: var(--ink);
+}
+
+/* Same strong focus ring for every call to action. */
+.elements-sheet .cta:focus-visible,
+.elements-sheet .cta.is-focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 4px;
+}
+
+/* ── combined section ─────────────────────────────────── */
+
+.elements-sheet .combo-grid {
+  display: grid;
+  grid-template-areas:
+    "impact impact tone"
+    "text balloon cta";
+  grid-template-columns: 1.1fr 1fr 1fr;
+  gap: var(--gutter);
+}
+
+.elements-sheet .combo-impact {
+  display: grid;
+  grid-area: impact;
+  place-items: center;
+  min-height: 230px;
+  padding: 24px 56px;
+  text-align: center;
+}
+
+.elements-sheet .combo-impact-text {
+  position: relative;
+  z-index: 1;
+  font-size: 40px;
+}
+
+.elements-sheet .combo-sfx {
+  position: absolute;
+  top: 18px;
+  right: 34px;
+}
+
+.elements-sheet .combo-tone {
+  display: grid;
+  grid-area: tone;
+  gap: 18px;
+  align-content: start;
+  padding: 22px 16px;
+}
+
+.elements-sheet .combo-text {
+  display: grid;
+  grid-area: text;
+  gap: 12px;
+  align-content: start;
+}
+
+.elements-sheet .combo-balloon {
+  grid-area: balloon;
+}
+
+.elements-sheet .combo-cta {
+  display: grid;
+  grid-area: cta;
+  gap: 6px;
+  align-content: end;
+  padding-bottom: 6px;
+}
+
+.elements-sheet .combo-cta .cta-link {
+  font-size: 22px;
+}
+
+/* ── mobile ───────────────────────────────────────────── */
+
+@media (width <= 760px) {
+  .elements-sheet .sheet-title {
+    font-size: 32px;
+  }
+
+  .elements-sheet .spec-grid {
+    grid-template-columns: 1fr;
+    gap: 34px;
+  }
+
+  .elements-sheet .spec + .spec {
+    padding-top: 22px;
+    border-top: 1.5px solid var(--ink);
+  }
+
+  .elements-sheet .combo-grid {
+    grid-template-areas: "impact" "tone" "text" "balloon" "cta";
+    grid-template-columns: 1fr;
+  }
+
+  .elements-sheet .combo-impact {
+    padding: 24px 52px 24px 18px;
+  }
+
+  .elements-sheet .combo-impact-text {
+    font-size: 28px;
+  }
+
+  .elements-sheet .combo-sfx {
+    top: 14px;
+    right: 12px;
+    font-size: 40px;
+  }
+}

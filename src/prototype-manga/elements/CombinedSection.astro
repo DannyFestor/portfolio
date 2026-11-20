@@ -1,0 +1,58 @@
+---
+// PROTOTYPE — throwaway. Option 1 of every element together on one small composed page,
+// so the parts can be judged as a set, not only side by side.
+import {
+  asideSample,
+  balloonAttribution,
+  balloonQuote,
+  ctaEmail,
+  haloSample,
+  linkLabel,
+  linkSentenceEnd,
+  linkSentenceStart,
+  narrationFollowUp,
+  narrationSample,
+} from "./elements-content";
+---
+
+<section class="manga-page combo" aria-labelledby="combo-title">
+  <header class="spec-row-head">
+    <p class="small-label">All option 1s together</p>
+    <h2 class="spec-row-title display" id="combo-title">The set, in context</h2>
+  </header>
+  <div class="combo-grid">
+    <div class="panel combo-impact">
+      <span class="focus-lines" aria-hidden="true"></span>
+      <p class="combo-impact-text display fuchidori">Seconds → milliseconds</p>
+      <span class="sfx-spec sfx-fuchidori combo-sfx" aria-hidden="true">カチッ</span>
+    </div>
+    <div class="panel tone-mid combo-tone">
+      <p class="narr narr-thin">{narrationSample}</p>
+      <p class="halo-text combo-halo"><span class="halo-glyph">{haloSample}</span></p>
+    </div>
+    <div class="combo-text">
+      <p class="narr narr-thin">{narrationFollowUp}</p>
+      <p class="aside-arrow">
+        <svg class="aside-arrow-mark" viewBox="0 0 46 30" aria-hidden="true">
+          <path d="M44 4 C30 4 14 8 6 24"></path>
+          <path d="M2 17 L6 25 L13 20"></path>
+        </svg>
+        <span>{asideSample}</span>
+      </p>
+      <p class="link-prose">
+        {linkSentenceStart}{" "}
+        <a class="spec-link link-ink" href="/blog/sample-post">{linkLabel}</a>{" "}
+        {linkSentenceEnd}
+      </p>
+    </div>
+    <figure class="balloon-ctx combo-balloon">
+      <blockquote class="balloon balloon-oval"><p>{balloonQuote}</p></blockquote>
+      <figcaption class="balloon-by small-label">— {balloonAttribution}</figcaption>
+    </figure>
+    <div class="combo-cta">
+      <p class="small-label">Write to me</p>
+      <a class="cta cta-link" href={`mailto:${ctaEmail}`}>{ctaEmail} →</a>
+    </div>
+  </div>
+  <p class="folio">8</p>
+</section>

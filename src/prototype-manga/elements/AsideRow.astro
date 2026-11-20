@@ -1,0 +1,33 @@
+---
+// PROTOTYPE — throwaway. Element 2: the aside (annotation voice, Yomogi). Readable text is tilted 3° at most.
+import { asideBracketSample, asideMarginSample, asideSample, narrationSample } from "./elements-content";
+import Specimen from "./Specimen.astro";
+import SpecimenRow from "./SpecimenRow.astro";
+---
+
+<SpecimenRow index={2} title="Aside" note="Annotation voice beside a panel. Never tilted more than 3°.">
+  <Specimen number={1} name="Free-floating, red, with a small arrow">
+    <div class="aside-ctx">
+      <p class="narr narr-thin">{narrationSample}</p>
+      <p class="aside-arrow">
+        <svg class="aside-arrow-mark" viewBox="0 0 46 30" aria-hidden="true">
+          <path d="M44 4 C30 4 14 8 6 24" />
+          <path d="M2 17 L6 25 L13 20" />
+        </svg>
+        <span>{asideSample}</span>
+      </p>
+    </div>
+  </Specimen>
+  <Specimen number={2} name="Inside a slim bracket, ink">
+    <div class="aside-ctx">
+      <p class="narr narr-thin">{narrationSample}</p>
+      <p class="aside-bracket">{asideBracketSample}</p>
+    </div>
+  </Specimen>
+  <Specimen number={3} name="Margin note, red, tilted 2.5°">
+    <div class="aside-ctx aside-ctx--margin">
+      <p class="narr narr-thin">{narrationSample}</p>
+      <p class="aside-margin">{asideMarginSample}</p>
+    </div>
+  </Specimen>
+</SpecimenRow>

@@ -1,0 +1,28 @@
+---
+// PROTOTYPE — throwaway. Element 5: the speech balloon, for real quotes only (a future client testimonial).
+// Rounded shapes are allowed here and nowhere else, because manga balloons are round.
+import { balloonAttribution, balloonQuote } from "./elements-content";
+import Specimen from "./Specimen.astro";
+import SpecimenRow from "./SpecimenRow.astro";
+
+const options = [
+  { number: 1, name: "Classic oval with a curved tail", variant: "balloon-oval" },
+  { number: 2, name: "Rectangular balloon, long sharp tail", variant: "balloon-rect" },
+  { number: 3, name: "Narration box with a notch tail", variant: "balloon-narr" },
+] as const;
+---
+
+<SpecimenRow index={5} title="Speech balloon" note="Real quotes only. The quote below is an obvious placeholder.">
+  {
+    options.map((option) => (
+      <Specimen number={option.number} name={option.name}>
+        <figure class="balloon-ctx">
+          <blockquote class:list={["balloon", option.variant]}>
+            <p>{balloonQuote}</p>
+          </blockquote>
+          <figcaption class="balloon-by small-label">— {balloonAttribution}</figcaption>
+        </figure>
+      </Specimen>
+    ))
+  }
+</SpecimenRow>

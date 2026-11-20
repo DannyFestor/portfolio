@@ -1,0 +1,32 @@
+---
+// PROTOTYPE — throwaway. Element 7: calls to action. Option 1 answers "do buttons exist at all?" with no.
+// States are forced statically; the first item in each list is a live element.
+import { buttonStates, ctaEmail, ctaLabel } from "./elements-content";
+import Specimen from "./Specimen.astro";
+import SpecimenRow from "./SpecimenRow.astro";
+
+const options = [
+  { number: 1, name: "No buttons: big inked links", variant: "cta-link", label: `${ctaEmail} →` },
+  { number: 2, name: "Ink-framed button, instant inverted hover", variant: "cta-frame", label: ctaLabel },
+  { number: 3, name: "Page-turn button with a folded corner", variant: "cta-fold", label: ctaLabel },
+] as const;
+---
+
+<SpecimenRow index={7} title="Calls to action" note="Default, hover, focus-visible and active shown side by side. No transitions.">
+  {
+    options.map((option) => (
+      <Specimen number={option.number} name={option.name}>
+        <ul class="state-list state-list--cta">
+          {buttonStates.map((state) => (
+            <li class="state-item state-item--cta">
+              <span class="state-name small-label">{state}</span>
+              <a class:list={["cta", option.variant, `is-${state}`]} href={`mailto:${ctaEmail}`}>
+                <span>{option.label}</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </Specimen>
+    ))
+  }
+</SpecimenRow>

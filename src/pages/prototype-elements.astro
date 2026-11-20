@@ -1,0 +1,39 @@
+---
+// PROTOTYPE — throwaway branch prototype/manga-home. Element specimen sheet for lettering (#31) and
+// buttons and links (#27): three numbered options per element. Header A and footer C are the decided chrome.
+import HeaderA from "../prototype-manga/chrome/HeaderA.astro";
+import AsideRow from "../prototype-manga/elements/AsideRow.astro";
+import BalloonRow from "../prototype-manga/elements/BalloonRow.astro";
+import ButtonRow from "../prototype-manga/elements/ButtonRow.astro";
+import CombinedSection from "../prototype-manga/elements/CombinedSection.astro";
+import "../prototype-manga/elements/elements.css";
+import HaloRow from "../prototype-manga/elements/HaloRow.astro";
+import LinkRow from "../prototype-manga/elements/LinkRow.astro";
+import NarrationRow from "../prototype-manga/elements/NarrationRow.astro";
+import SfxRow from "../prototype-manga/elements/SfxRow.astro";
+import PrototypeLayout from "../prototype-manga/PrototypeLayout.astro";
+
+const variants = [{ key: "A", name: "Element sheet" }] as const;
+---
+
+<PrototypeLayout title="Element sheet — Danny Festor" variants={variants} current="/prototype-elements">
+  <HeaderA slot="header" current="/prototype-elements" />
+  <main class="elements-sheet">
+    <header class="sheet-intro">
+      <p class="small-label">Prototype · lettering &amp; affordances</p>
+      <h1 class="sheet-title display">Element sheet</h1>
+      <p class="sheet-lede">
+        Seven elements, three options each. Answer with the element and the number, for example
+        “narration 2, aside 1”. The last page puts option 1 of everything together.
+      </p>
+    </header>
+    <NarrationRow />
+    <AsideRow />
+    <HaloRow />
+    <SfxRow />
+    <BalloonRow />
+    <LinkRow />
+    <ButtonRow />
+    <CombinedSection />
+  </main>
+</PrototypeLayout>

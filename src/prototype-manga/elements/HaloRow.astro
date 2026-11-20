@@ -1,0 +1,34 @@
+---
+// PROTOTYPE — throwaway. Element 3: small text over screentone. Replaces the soft blurred halo rectangles.
+import { haloLongSample, haloSample } from "./elements-content";
+import Specimen from "./Specimen.astro";
+import SpecimenRow from "./SpecimenRow.astro";
+
+const options = [
+  { number: 1, name: "Glyph knockout: paper hugs each letter", variant: "halo-glyph" },
+  { number: 2, name: "Crisp white-out patch, thin ink edge", variant: "halo-patch" },
+  { number: 3, name: "Per-line knockout strips", variant: "halo-lines" },
+] as const;
+---
+
+<SpecimenRow index={3} title="Text on tone" note="Small text over light, mid and dense screentone. No blurred edges.">
+  {
+    options.map((option) => (
+      <Specimen number={option.number} name={option.name}>
+        <div class="panel tone-mid halo-ctx">
+          <p class="halo-label small-label">
+            <span class={option.variant}>Chapter 2 · 2024 — 25</span>
+          </p>
+          <p class="halo-text">
+            <span class={option.variant}>{haloSample}</span>
+          </p>
+        </div>
+        <div class="panel tone-dense halo-ctx">
+          <p class="halo-text">
+            <span class={option.variant}>{haloLongSample}</span>
+          </p>
+        </div>
+      </Specimen>
+    ))
+  }
+</SpecimenRow>

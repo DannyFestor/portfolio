@@ -1,0 +1,19 @@
+---
+// PROTOTYPE — throwaway. One numbered option inside a specimen row. The big plain number is what Danny answers with.
+interface Props {
+  number: 1 | 2 | 3;
+  name: string;
+}
+
+const { number, name } = Astro.props;
+---
+
+<article class="spec">
+  <header class="spec-head">
+    <span class="spec-number" aria-hidden="true">{number}</span>
+    <p class="spec-name"><span class="visually-hidden">Option {number}: </span>{name}</p>
+  </header>
+  <div class="spec-body">
+    <slot />
+  </div>
+</article>

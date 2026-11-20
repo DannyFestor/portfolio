@@ -1,0 +1,37 @@
+---
+// PROTOTYPE — throwaway. Element 6: links in prose. Each option shows its four states forced statically,
+// plus one live link that really reacts to hover and keyboard focus.
+import { linkLabel, linkSentenceEnd, linkSentenceStart, linkStates } from "./elements-content";
+import Specimen from "./Specimen.astro";
+import SpecimenRow from "./SpecimenRow.astro";
+
+const options = [
+  { number: 1, name: "Ink underline, thickens and turns red", variant: "link-ink" },
+  { number: 2, name: "Red dotted underline", variant: "link-dotted" },
+  { number: 3, name: "Ink highlighter on hover", variant: "link-marker" },
+] as const;
+---
+
+<SpecimenRow index={6} title="Links in prose" note="States forced so all four are visible without hovering. The paragraph link is live.">
+  {
+    options.map((option) => (
+      <Specimen number={option.number} name={option.name}>
+        <p class="link-prose">
+          {linkSentenceStart}{" "}
+          <a class:list={["spec-link", option.variant]} href="/blog/sample-post">
+            {linkLabel}
+          </a>{" "}
+          {linkSentenceEnd}
+        </p>
+        <ul class="state-list">
+          {linkStates.map((state) => (
+            <li class="state-item">
+              <span class="state-name small-label">{state}</span>
+              <span class:list={["spec-link", option.variant, `is-${state}`]}>{linkLabel}</span>
+            </li>
+          ))}
+        </ul>
+      </Specimen>
+    ))
+  }
+</SpecimenRow>

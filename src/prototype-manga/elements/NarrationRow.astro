@@ -1,0 +1,27 @@
+---
+// PROTOTYPE — throwaway. Element 1: the narration box (engineering voice, Shippori Mincho).
+import { narrationFollowUp, narrationSample } from "./elements-content";
+import Specimen from "./Specimen.astro";
+import SpecimenRow from "./SpecimenRow.astro";
+
+const options = [
+  { number: 1, name: "Thin single rule", variant: "narr-thin" },
+  { number: 2, name: "Heavy ink frame", variant: "narr-heavy" },
+  { number: 3, name: "Offset double frame", variant: "narr-double" },
+] as const;
+---
+
+<SpecimenRow index={1} title="Narration box" note="Engineering voice. Shown on paper, then over a toned panel.">
+  {
+    options.map((option) => (
+      <Specimen number={option.number} name={option.name}>
+        <div class="ctx-paper">
+          <p class:list={["narr", option.variant]}>{narrationSample}</p>
+        </div>
+        <div class="panel tone-mid ctx-tone">
+          <p class:list={["narr", option.variant]}>{narrationFollowUp}</p>
+        </div>
+      </Specimen>
+    ))
+  }
+</SpecimenRow>
