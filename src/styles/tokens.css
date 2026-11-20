@@ -15,8 +15,8 @@
   --color-ink: #1b1a17;
   --color-tone: #2d4a7a;
 
-  /* Red is for SFX, impact lines, status marks and asides. Below 4.5:1 on paper: display sizes only. */
-  --color-accent: #d1352b;
+  /* Red is for SFX, impact lines, status marks and asides. #cf332a, not the prototype's #d1352b: same look, 4.5:1 on paper. */
+  --color-accent: #cf332a;
 
   /* Screentone: indigo dots on a 45° lattice; densities differ by dot radius only. Tile generation: #32. */
   --tone-opacity: 0.85;
@@ -54,4 +54,9 @@
   --line-panel: 3px;
   --line-narration: 2px;
   --line-hairline: 1px;
+
+  /* Keyboard focus: a calm ink outline with a small gap, the same on every link and control. */
+  --focus-ring-color: var(--color-ink);
+  --focus-ring-width: 2px;
+  --focus-ring-offset: 2px;
 }
