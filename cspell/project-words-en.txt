@@ -6,9 +6,15 @@ Festor
 ltrimstr
 lycheeverse
 mattpocock
+midtones
+neighbouring
+normalise
+normalised
+normalising
 oklab
 oklch
 romaji
+screentone
 unifiedjs
 vite
 voidzero
