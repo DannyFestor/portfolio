@@ -1,0 +1,6 @@
+{
+  "exitCode": 1,
+  "threshold": 0,
+  "gitignore": true,
+  "ignore": ["pnpm-lock.yaml", "tools/**"]
+}

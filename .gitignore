@@ -29,3 +29,5 @@ pnpm-debug.log*
 
 # private research notes (wayfinder findings — never publish)
 docs/research/
+# pinned release binaries (scripts/run-pinned.sh)
+/bin/
