@@ -71,7 +71,7 @@ describe.each(TONE_DENSITIES)("the %s tone tile", (density) => {
     });
   });
 
-  it("paints the dots in the tone colour and opacity", () => {
+  it("paints the dots in the tone color and opacity", () => {
     expect(svg).toContain(
       `<g fill='${TEST_SETTINGS.color}' fill-opacity='${String(TEST_SETTINGS.opacity)}'>`,
     );

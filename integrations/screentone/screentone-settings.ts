@@ -4,7 +4,7 @@ import type { ToneDensity } from "./tone-density.ts";
 
 /** Everything a tone tile is drawn from, read from the design tokens. */
 export interface ScreentoneSettings {
-  /** Dot colour, a hex colour. */
+  /** Dot color, a hex color. */
   readonly color: string;
   readonly opacity: number;
   /** Distance in CSS pixels between neighbouring dots, along the 45° screen. */

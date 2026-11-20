@@ -32,7 +32,7 @@ function screentoneTilesPlugin(rootDirectory: string): Plugin {
 
 /**
  * Generates the screentone tiles from src/styles/tokens.css and adds them to every page, so the
- * token file stays the one source of the tone colour, opacity, pitch and dot radii.
+ * token file stays the one source of the tone color, opacity, pitch and dot radii.
  */
 export function screentone(): AstroIntegration {
   return {
