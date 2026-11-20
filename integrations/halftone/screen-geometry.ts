@@ -1,8 +1,4 @@
-/** A position in pixels, in either image space or screen space. */
-export interface Point {
-  readonly horizontal: number;
-  readonly vertical: number;
-}
+import type { Point } from "../../src/geometry/point.ts";
 
 /**
  * The rotation that turns image space into screen space, where the dot lattice is axis-aligned and
@@ -44,8 +40,4 @@ export function cellCentre(screenPoint: Point, pitch: number): Point {
     horizontal: cellCentreOnAxis(screenPoint.horizontal, pitch),
     vertical: cellCentreOnAxis(screenPoint.vertical, pitch),
   };
-}
-
-export function distanceBetween(from: Point, to: Point): number {
-  return Math.hypot(to.horizontal - from.horizontal, to.vertical - from.vertical);
 }

@@ -1,5 +1,8 @@
 {
   "$schema": "https://unpkg.com/knip@6/schema-jsonc.json",
+  // The manga panel system (#32) is a component library for the pages (#15 to #19). Until a page
+  // uses its components, they are entry points; drop this line once one does.
+  "entry": ["src/components/manga/*.astro"],
   "ignoreDependencies": [
     // Loaded by the `astro check` command, which knip cannot trace to the package.
     "@astrojs/check",

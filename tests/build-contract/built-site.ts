@@ -1,4 +1,4 @@
-import { existsSync, globSync, statSync } from "node:fs";
+import { existsSync, globSync, readFileSync, statSync } from "node:fs";
 import { join, posix } from "node:path";
 
 export const BUILT_SITE_DIRECTORY = "dist";
@@ -12,6 +12,10 @@ function assertSiteIsBuilt(): void {
 export function findBuiltFiles(pattern: string): string[] {
   assertSiteIsBuilt();
   return globSync(pattern, { cwd: BUILT_SITE_DIRECTORY }).toSorted();
+}
+
+export function readBuiltFile(relativePath: string): string {
+  return readFileSync(join(BUILT_SITE_DIRECTORY, relativePath), "utf8");
 }
 
 export function builtFileSize(relativePath: string): number {

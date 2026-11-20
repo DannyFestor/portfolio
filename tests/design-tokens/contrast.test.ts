@@ -1,7 +1,9 @@
 import { describe, expect, it } from "vite-plus/test";
 
-import { tokenValue } from "./token-file.ts";
+import { readDesignTokens, tokenValue } from "../../integrations/design-tokens/design-tokens.ts";
 import { contrastRatio } from "./wcag-contrast.ts";
+
+const tokens = readDesignTokens(process.cwd());
 
 /** WCAG 2.2 AA, success criterion 1.4.3. */
 const BODY_TEXT_MINIMUM = 4.5;
@@ -54,7 +56,7 @@ describe("design-token text contrast (WCAG 2.2 AA)", () => {
   it.each(TEXT_PAIRS)(
     "$text on $background ($usage) reaches $minimum:1",
     ({ text, background, minimum }) => {
-      const ratio = contrastRatio(tokenValue(text), tokenValue(background));
+      const ratio = contrastRatio(tokenValue(tokens, text), tokenValue(tokens, background));
       expect(ratio).toBeGreaterThanOrEqual(minimum);
     },
   );
