@@ -4,7 +4,7 @@ Run `vp run check:all` and do not finish until it passes. The pre-push hook and 
 
 - Never switch a check off inline. `oxlint-disable`, `eslint-disable`, `stylelint-disable`, `@ts-ignore`, `@ts-expect-error` and `@ts-nocheck` comments are refused. Fix the code instead.
 - Keep `.astro` files thin. Logic goes into `.ts` modules, where the strict lint and type rules apply; oxlint does not read `.astro` templates.
-- Colors, font families, spacing and transition durations come from design tokens (`var(--…)`). Raw values are allowed only in `src/styles/tokens.css`. No `!important`, no ID selectors, no animations.
+- Colors, font families, spacing and transition durations come from design tokens (`var(--…)`). Raw values are allowed only in `src/styles/tokens.css`. No `!important`, no ID selectors, no animations. Declarations follow the recess property order (positioning, box model, typography, visual); Stylelint `--fix` sorts them.
 - Add new words for the spell check to `cspell/project-words-en.txt`, `-de.txt` or `-ja.txt` (romaji).
 - Commit messages are Conventional Commits, checked by `cog`. Commits on `main` and pushes to `main` are refused.
 - `cog`, `gitleaks` and `lychee` are pinned release binaries, downloaded to `bin/` and checksum-verified by `scripts/run-pinned.sh <tool>`. To upgrade one, change `tools/<tool>.version` and run `scripts/pin-tool.sh <tool>`.
