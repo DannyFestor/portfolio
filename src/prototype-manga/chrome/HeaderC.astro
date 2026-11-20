@@ -1,0 +1,170 @@
+---
+// PROTOTYPE — throwaway. Chrome C header: the obi (帯), the paper band wrapped around a manga volume,
+// running the full width of the window with the name, the positioning line and the nav (#28, #29).
+import { identity, positioning } from "../content";
+import { isCurrent, navLinks } from "./chrome-content";
+
+interface Props {
+  current: string;
+}
+
+const { current } = Astro.props;
+---
+
+<header class="obi">
+  <div class="obi-inner">
+    <a class="obi-name" href="/" aria-current={current === "/" ? "page" : undefined}>{identity.name}</a>
+    <p class="obi-line">
+      <span>{positioning.headline[0]}</span>
+      <strong>{positioning.headline[1]}</strong>
+    </p>
+    <nav class="obi-nav" aria-label="Site">
+      <ul>
+        {
+          navLinks.map((link) => (
+            <li>
+              <a
+                class:list={["obi-link", { "obi-link--contact": link.isContact }]}
+                href={link.href}
+                aria-current={isCurrent(link, current) ? "page" : undefined}
+              >
+                {link.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<style>
+  /* Full window width: cancel the .manga side padding. */
+  .obi {
+    margin: 0 -20px 36px;
+    border-top: 9px double var(--ink);
+    border-bottom: 9px double var(--ink);
+    background: var(--paper);
+  }
+
+  .obi-inner {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 28px;
+    align-items: center;
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 18px 0;
+  }
+
+  .obi-name {
+    font-family: var(--display);
+    font-size: 34px;
+    line-height: 1;
+    text-decoration: none;
+  }
+
+  .obi-line {
+    display: grid;
+    padding-left: 22px;
+    border-left: 1.5px solid var(--ink);
+    font-size: 16px;
+    line-height: 1.35;
+  }
+
+  .obi-line strong {
+    font-family: var(--display);
+    font-size: 19px;
+    font-weight: 400;
+  }
+
+  .obi-nav ul {
+    display: flex;
+    gap: 0;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .obi-link {
+    display: block;
+    padding: 8px 14px;
+    border-left: 1.5px solid var(--ink);
+    font-family: var(--display);
+    font-size: 16px;
+    text-decoration: none;
+  }
+
+  .obi-link[aria-current="page"] {
+    text-decoration: underline 3px var(--ink);
+    text-underline-offset: 6px;
+  }
+
+  .obi-link--contact {
+    margin-left: 10px;
+    border: 2px solid var(--ink);
+    color: var(--paper);
+    background: var(--ink);
+  }
+
+  .obi-link--contact:hover {
+    color: var(--ink);
+    background: var(--paper);
+  }
+
+  .obi-link--contact[aria-current="page"] {
+    text-decoration-color: var(--accent);
+  }
+
+  @media (width < 1140px) {
+    .obi-inner {
+      grid-template-columns: auto 1fr;
+      padding: 16px 20px;
+    }
+
+    .obi-nav {
+      grid-column: 1 / -1;
+    }
+  }
+
+  @media (width < 760px) {
+    .obi-inner {
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+
+    .obi-name {
+      font-size: 28px;
+    }
+
+    .obi-line {
+      padding-left: 12px;
+      font-size: 14px;
+    }
+
+    .obi-line strong {
+      font-size: 16px;
+    }
+
+    .obi-nav ul {
+      flex-wrap: wrap;
+    }
+
+    .obi-nav li {
+      flex: 1;
+    }
+
+    .obi-link {
+      padding: 8px 6px;
+      text-align: center;
+    }
+
+    .obi-nav li:first-child .obi-link {
+      border-left: 0;
+    }
+
+    .obi-link--contact {
+      margin-left: 6px;
+    }
+  }
+</style>

@@ -1,0 +1,172 @@
+---
+// PROTOTYPE — throwaway. Chrome B header: thumb-index tabs on the page edge, like a reference book (#28, #29).
+// Wide screens: the tabs stick out of the right edge of the page column (fixed, CSS only).
+// Narrow screens: they become one row of tabs under the name.
+import { identity } from "../content";
+import { isCurrent, navLinks } from "./chrome-content";
+
+interface Props {
+  current: string;
+}
+
+const { current } = Astro.props;
+---
+
+<header class="thumb">
+  <div class="thumb-bar">
+    <a class="thumb-name" href="/" aria-current={current === "/" ? "page" : undefined}>{identity.name}</a>
+    <p class="thumb-role">{identity.role} · {identity.place}</p>
+  </div>
+  <nav class="thumb-index" aria-label="Site">
+    <ul>
+      {
+        navLinks.map((link) => (
+          <li>
+            <a
+              class:list={["thumb-tab", { "thumb-tab--contact": link.isContact }]}
+              href={link.href}
+              aria-current={isCurrent(link, current) ? "page" : undefined}
+            >
+              <span class="thumb-no">{link.chapter}</span>
+              <span>{link.label}</span>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </nav>
+</header>
+
+<style>
+  .thumb {
+    max-width: 1080px;
+    margin: 0 auto 30px;
+    padding-top: 26px;
+  }
+
+  .thumb-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 18px;
+    align-items: baseline;
+  }
+
+  .thumb-name {
+    font-family: var(--display);
+    font-size: 30px;
+    text-decoration: none;
+  }
+
+  .thumb-role {
+    font-size: 15px;
+  }
+
+  .thumb-index ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .thumb-tab {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 8px;
+    align-items: baseline;
+    padding: 9px 12px;
+    border: 2px solid var(--ink);
+    font-family: var(--display);
+    font-size: 15px;
+    text-decoration: none;
+    background: var(--paper);
+  }
+
+  .thumb-no {
+    font-size: 11px;
+    letter-spacing: 0.12em;
+  }
+
+  .thumb-tab[aria-current="page"] {
+    color: var(--paper);
+    background: var(--ink);
+  }
+
+  .thumb-tab--contact {
+    border-right: 7px solid var(--accent);
+  }
+
+  .thumb-tab:hover {
+    text-decoration: none;
+    border-width: 3px;
+  }
+
+  /* Wide: tabs stick out of the page's right edge, current tab sticks out furthest. */
+  @media (width >= 1320px) {
+    .thumb-index {
+      position: fixed;
+      z-index: 20;
+      top: 140px;
+      left: calc(50% + 540px);
+    }
+
+    .thumb-index li + li {
+      margin-top: 8px;
+    }
+
+    .thumb-tab {
+      width: 118px;
+      border-left: 0;
+    }
+
+    .thumb-tab[aria-current="page"] {
+      width: 136px;
+    }
+  }
+
+  /* Narrow: one row of tabs hanging under a rule. */
+  @media (width < 1320px) {
+    .thumb-index {
+      margin-top: 12px;
+      border-top: var(--line) solid var(--ink);
+    }
+
+    .thumb-index ul {
+      display: flex;
+      gap: 6px;
+    }
+
+    .thumb-index li {
+      flex: 1;
+      max-width: 170px;
+    }
+
+    .thumb-tab {
+      border-top: 0;
+    }
+
+    .thumb-tab--contact {
+      border-right-width: 2px;
+      border-bottom: 6px solid var(--accent);
+    }
+  }
+
+  @media (width < 760px) {
+    .thumb-name {
+      font-size: 24px;
+    }
+
+    .thumb-role {
+      font-size: 13px;
+    }
+
+    .thumb-tab {
+      grid-template-columns: 1fr;
+      justify-items: center;
+      padding: 7px 2px;
+      font-size: 14px;
+    }
+
+    .thumb-no {
+      display: none;
+    }
+  }
+</style>

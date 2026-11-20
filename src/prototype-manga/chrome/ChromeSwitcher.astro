@@ -1,0 +1,77 @@
+---
+// PROTOTYPE — throwaway. Floating chrome switcher (header, nav, footer); renders only in `astro dev`.
+import { chromeSets } from "./chrome-sets";
+
+const showSwitcher = import.meta.env.DEV;
+const names = chromeSets.map((set) => ({ id: set.key, name: set.name }));
+---
+
+{
+  showSwitcher && (
+    <nav class="chrome-switcher" aria-label="Prototype chrome switcher" data-chrome-list={JSON.stringify(names)}>
+      <button type="button" data-step="-1" aria-label="Previous chrome">←</button>
+      <span data-label>…</span>
+      <button type="button" data-step="1" aria-label="Next chrome">→</button>
+    </nav>
+  )
+}
+
+<script>
+  const bar = document.querySelector<HTMLElement>(".chrome-switcher");
+  if (bar) {
+    const sets = JSON.parse(bar.dataset.chromeList ?? "[]") as { id: string; name: string }[];
+    const label = bar.querySelector<HTMLElement>("[data-label]");
+    const currentIndex = (): number =>
+      Math.max(0, sets.findIndex((set) => set.id === document.documentElement.dataset.chrome));
+    const show = (index: number): void => {
+      const set = sets[(index + sets.length) % sets.length];
+      if (!set) return;
+      document.documentElement.dataset.chrome = set.id;
+      sessionStorage.setItem("prototype-chrome", set.id);
+      const url = new URL(location.href);
+      url.searchParams.set("chrome", set.id);
+      history.replaceState(null, "", url);
+      if (label) label.textContent = `Chrome ${set.id} — ${set.name}`;
+    };
+    bar.addEventListener("click", (event) => {
+      const step = (event.target as HTMLElement).closest<HTMLElement>("[data-step]")?.dataset.step;
+      if (step) show(currentIndex() + Number(step));
+    });
+    document.addEventListener("keydown", (event) => {
+      const target = event.target as HTMLElement;
+      if (target.closest("input, textarea, [contenteditable]")) return;
+      if (event.key === ";") show(currentIndex() - 1);
+      if (event.key === "'") show(currentIndex() + 1);
+    });
+    show(currentIndex());
+  }
+</script>
+
+<style>
+  .chrome-switcher {
+    position: fixed;
+    z-index: 9999;
+    bottom: 160px;
+    left: 50%;
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    padding: 8px 14px;
+    border-radius: 999px;
+    font: 600 13px/1 system-ui, sans-serif;
+    color: #fff;
+    background: #e0700f;
+    box-shadow: 0 6px 24px rgb(0 0 0 / 35%);
+    transform: translateX(-50%);
+  }
+
+  .chrome-switcher button {
+    padding: 4px 10px;
+    border: 0;
+    border-radius: 999px;
+    font: inherit;
+    color: inherit;
+    cursor: pointer;
+    background: rgb(255 255 255 / 18%);
+  }
+</style>

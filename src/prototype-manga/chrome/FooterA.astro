@@ -1,0 +1,116 @@
+---
+// PROTOTYPE — throwaway. Chrome A footer: a Japanese book colophon (奥付) in a ruled box (#30).
+import { footer } from "./chrome-content";
+---
+
+<footer class="okuzuke">
+  <p class="okuzuke-confession">{footer.confession}</p>
+  <section class="okuzuke-box" aria-label="Colophon">
+    <p class="okuzuke-head">
+      <span class="small-label">Colophon</span>
+      <span class="okuzuke-ja" lang="ja" aria-hidden="true">奥付</span>
+    </p>
+    <dl>
+      <dt>Title</dt>
+      <dd>{footer.headline}</dd>
+      <dt>Author</dt>
+      <dd>{footer.name}</dd>
+      <dt>Edition</dt>
+      <dd>{footer.edition}</dd>
+      <dt>Printed</dt>
+      <dd>{footer.printed}</dd>
+      <dt>Write to</dt>
+      <dd><a href={`mailto:${footer.email}`}>{footer.email}</a></dd>
+      <dt>Elsewhere</dt>
+      <dd class="okuzuke-links">{footer.identityLinks.map((link) => <a href={link.href}>{link.label}</a>)}</dd>
+      <dt>Résumés</dt>
+      <dd class="okuzuke-links">{footer.resumes.map((link) => <a href={link.href}>{link.label}</a>)}</dd>
+    </dl>
+  </section>
+  <p class="okuzuke-copy">{footer.copyright}</p>
+</footer>
+
+<style>
+  .okuzuke {
+    display: grid;
+    gap: 18px;
+    justify-items: center;
+    max-width: 1080px;
+    margin: 56px auto 0;
+    padding-top: 28px;
+    border-top: var(--line) solid var(--ink);
+  }
+
+  .okuzuke-confession {
+    font-family: var(--hand);
+    font-size: 17px;
+  }
+
+  .okuzuke-box {
+    width: min(100%, 620px);
+    padding: 18px 24px 20px;
+    border: 6px double var(--ink);
+    background: var(--paper);
+  }
+
+  .okuzuke-head {
+    display: flex;
+    gap: 12px;
+    align-items: baseline;
+    justify-content: space-between;
+    padding-bottom: 8px;
+    border-bottom: 1.5px solid var(--ink);
+  }
+
+  .okuzuke-ja {
+    font-family: var(--display);
+    font-size: 20px;
+  }
+
+  .okuzuke-box dl {
+    display: grid;
+    grid-template-columns: 7.5em 1fr;
+    margin: 0;
+  }
+
+  .okuzuke-box dt,
+  .okuzuke-box dd {
+    margin: 0;
+    padding: 7px 0;
+    border-bottom: 1px solid var(--ink);
+    font-size: 15px;
+  }
+
+  .okuzuke-box dt {
+    font-family: var(--display);
+    font-size: 13px;
+    letter-spacing: 0.08em;
+  }
+
+  .okuzuke-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 16px;
+  }
+
+  .okuzuke-copy {
+    font-family: var(--display);
+    font-size: 12px;
+    letter-spacing: 0.12em;
+  }
+
+  @media (width < 760px) {
+    .okuzuke-box {
+      padding: 14px 14px 16px;
+    }
+
+    .okuzuke-box dl {
+      grid-template-columns: 1fr;
+    }
+
+    .okuzuke-box dt {
+      padding-bottom: 0;
+      border-bottom: 0;
+    }
+  }
+</style>

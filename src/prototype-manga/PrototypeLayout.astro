@@ -3,23 +3,29 @@
 // and the ?variant= switcher. Pages render each variant as
 // <div class="variant" data-variant-panel="X">…</div> (keys A to D) inside the default slot.
 import "./system.css";
-import Masthead from "./Masthead.astro";
+import ChromeBoot from "./chrome/ChromeBoot.astro";
+import { defaultChrome } from "./chrome/chrome-sets";
+import ChromeSwitcher from "./chrome/ChromeSwitcher.astro";
+import SiteFooter from "./chrome/SiteFooter.astro";
+import SiteHeader from "./chrome/SiteHeader.astro";
 import PrototypeSwitcher from "./PrototypeSwitcher.astro";
 
 interface Props {
   title: string;
   variants: readonly { key: string; name: string }[];
-  /** Path of the current page for the masthead, e.g. "/about". */
+  /** Path of the current page for the header and nav, e.g. "/about". */
   current?: string;
+  /** Variant shown when no ?variant= is given: the chosen design for this page. */
+  defaultVariant?: string;
 }
 
-const { title, variants, current } = Astro.props;
+const { title, variants, current = "/", defaultVariant } = Astro.props;
 const keys = variants.map((variant) => variant.key);
-const firstKey = keys[0] ?? "A";
+const firstKey = defaultVariant ?? keys[0] ?? "A";
 ---
 
 <!doctype html>
-<html lang="en" data-variant={firstKey}>
+<html lang="en" data-variant={firstKey} data-chrome={defaultChrome}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
@@ -35,13 +41,16 @@ const firstKey = keys[0] ?? "A";
       const requested = new URLSearchParams(location.search).get("variant");
       if (requested && keys.includes(requested)) document.documentElement.dataset.variant = requested;
     </script>
+    <ChromeBoot />
   </head>
   <body>
     <div class="manga">
-      <slot name="header"><Masthead current={current} /></slot>
+      <slot name="header"><SiteHeader current={current} /></slot>
       <slot />
+      <SiteFooter current={current} />
     </div>
     <PrototypeSwitcher variants={variants} />
+    <ChromeSwitcher />
   </body>
 </html>
 

@@ -1,0 +1,16 @@
+---
+// PROTOTYPE — throwaway. Renders every chrome footer; CSS shows the one picked by html[data-chrome].
+import FooterA from "./FooterA.astro";
+import FooterB from "./FooterB.astro";
+import FooterC from "./FooterC.astro";
+
+interface Props {
+  current: string;
+}
+
+const { current } = Astro.props;
+---
+
+<div class="chrome-set" data-chrome-panel="A"><FooterA /></div>
+<div class="chrome-set" data-chrome-panel="B"><FooterB current={current} /></div>
+<div class="chrome-set" data-chrome-panel="C"><FooterC /></div>

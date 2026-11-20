@@ -1,0 +1,101 @@
+---
+// PROTOTYPE — throwaway. Chrome B footer: a "next chapter →" panel, then a small colophon line (#30).
+import { footer, nextChapter } from "./chrome-content";
+
+interface Props {
+  current: string;
+}
+
+const { current } = Astro.props;
+const next = nextChapter(current);
+---
+
+<footer class="next-foot">
+  <a class="next-panel" href={next.href}>
+    <span class="small-label">Next chapter</span>
+    <span class="next-title">{next.label} →</span>
+    <span class="next-line">{next.line}</span>
+  </a>
+  <div class="next-colophon">
+    <p class="next-confession">{footer.confession}</p>
+    <ul>
+      <li><a href={`mailto:${footer.email}`}>{footer.email}</a></li>
+      {footer.identityLinks.map((link) => <li><a href={link.href}>{link.label}</a></li>)}
+      {footer.resumes.map((link) => <li><a href={link.href}>{link.label}</a></li>)}
+    </ul>
+    <p class="next-copy">{footer.copyright} · {footer.place}</p>
+  </div>
+</footer>
+
+<style>
+  .next-foot {
+    max-width: 1080px;
+    margin: 48px auto 0;
+  }
+
+  .next-panel {
+    display: grid;
+    gap: 6px;
+    padding: 26px 30px 28px;
+    border: var(--line) solid var(--ink);
+    text-decoration: none;
+    background: var(--paper);
+  }
+
+  .next-panel:hover {
+    text-decoration: none;
+    border-width: 5px;
+  }
+
+  .next-title {
+    font-family: var(--display);
+    font-size: 40px;
+    line-height: 1.1;
+  }
+
+  .next-panel:hover .next-title {
+    text-decoration: underline 3px var(--accent);
+    text-underline-offset: 6px;
+  }
+
+  .next-line {
+    font-size: 17px;
+  }
+
+  .next-colophon {
+    display: grid;
+    gap: 10px;
+    padding: 22px 0 0;
+  }
+
+  .next-confession {
+    font-family: var(--hand);
+    font-size: 16px;
+  }
+
+  .next-colophon ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 18px;
+    margin: 0;
+    padding: 0;
+    font-size: 15px;
+    list-style: none;
+  }
+
+  .next-copy {
+    font-family: var(--display);
+    font-size: 12px;
+    letter-spacing: 0.12em;
+  }
+
+  @media (width < 760px) {
+    .next-panel {
+      padding: 18px 18px 20px;
+    }
+
+    .next-title {
+      font-size: 30px;
+    }
+  }
+</style>

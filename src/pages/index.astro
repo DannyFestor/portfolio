@@ -1,6 +1,11 @@
 ---
 // PROTOTYPE — throwaway branch prototype/manga-home. Three manga home-page variants (#7), switch with ?variant=A|B|C.
 import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
+import ChromeBoot from "../prototype-manga/chrome/ChromeBoot.astro";
+import { defaultChrome } from "../prototype-manga/chrome/chrome-sets";
+import ChromeSwitcher from "../prototype-manga/chrome/ChromeSwitcher.astro";
+import SiteFooter from "../prototype-manga/chrome/SiteFooter.astro";
+import SiteHeader from "../prototype-manga/chrome/SiteHeader.astro";
 import PrototypeSwitcher from "../prototype-manga/PrototypeSwitcher.astro";
 import VariantA from "../prototype-manga/VariantA.astro";
 import VariantB from "../prototype-manga/VariantB.astro";
@@ -14,7 +19,7 @@ const variants = [
 ---
 
 <!doctype html>
-<html lang="en" data-variant="A">
+<html lang="en" data-variant="A" data-chrome={defaultChrome}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
@@ -27,14 +32,18 @@ const variants = [
       const palette = new URLSearchParams(location.search).get("palette");
       document.documentElement.dataset.palette = palette && ["1", "2", "3", "4"].includes(palette) ? palette : "1";
       const fonts = new URLSearchParams(location.search).get("fonts");
-      document.documentElement.dataset.fonts = fonts && ["1", "2", "3", "4"].includes(fonts) ? fonts : "1";
+      document.documentElement.dataset.fonts = fonts && ["1", "2", "3", "4"].includes(fonts) ? fonts : "2";
     </script>
+    <ChromeBoot />
   </head>
   <body>
+    <div class="chrome-wrap chrome-wrap--header"><SiteHeader current="/" /></div>
     <div class="variant" data-variant-panel="A"><VariantA /></div>
     <div class="variant" data-variant-panel="B"><VariantB /></div>
     <div class="variant" data-variant-panel="C"><VariantC /></div>
+    <div class="chrome-wrap chrome-wrap--footer"><SiteFooter current="/" /></div>
     <PrototypeSwitcher variants={variants} />
+    <ChromeSwitcher />
   </body>
 </html>
 

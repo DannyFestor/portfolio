@@ -1,0 +1,15 @@
+---
+// PROTOTYPE — throwaway. Put in <head>: picks the chrome set before first paint.
+// Persistence: ?chrome= wins and is remembered in sessionStorage, so the choice follows you across pages.
+import "./chrome.css";
+import { chromeSets, defaultChrome } from "./chrome-sets";
+
+const keys = chromeSets.map((set) => set.key);
+---
+
+<script is:inline define:vars={{ keys, defaultChrome }}>
+  const requestedChrome = new URLSearchParams(location.search).get("chrome");
+  if (requestedChrome && keys.includes(requestedChrome)) sessionStorage.setItem("prototype-chrome", requestedChrome);
+  const storedChrome = sessionStorage.getItem("prototype-chrome");
+  document.documentElement.dataset.chrome = storedChrome && keys.includes(storedChrome) ? storedChrome : defaultChrome;
+</script>

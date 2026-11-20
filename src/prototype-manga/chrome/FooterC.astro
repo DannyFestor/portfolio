@@ -1,0 +1,133 @@
+---
+// PROTOTYPE — throwaway. Chrome C footer: the back cover of the volume, with blurb, contents,
+// price line and a decorative barcode (#30).
+import { footer } from "./chrome-content";
+import { navLinks } from "./chrome-content";
+---
+
+<footer class="back-cover">
+  <div class="back-inner">
+    <section class="back-blurb" aria-label="About this site">
+      <p class="small-label">On the back cover</p>
+      <p class="back-headline">{footer.headline}</p>
+      <p class="back-sub">{footer.subline}</p>
+      <p class="back-confession">{footer.confession}</p>
+    </section>
+    <section class="back-contents" aria-label="In this volume">
+      <p class="small-label">In this volume</p>
+      <ol>
+        {navLinks.map((link) => <li><a href={link.href}>{link.label}</a></li>)}
+      </ol>
+      <p class="back-write">Write to <a href={`mailto:${footer.email}`}>{footer.email}</a></p>
+    </section>
+    <section class="back-imprint" aria-label="Imprint">
+      <div class="barcode" aria-hidden="true"></div>
+      <p class="back-price">{footer.price}</p>
+      <ul>
+        {footer.identityLinks.map((link) => <li><a href={link.href}>{link.label}</a></li>)}
+        {footer.resumes.map((link) => <li><a href={link.href}>{link.label}</a></li>)}
+      </ul>
+      <p class="back-copy">{footer.copyright} · {footer.printed}</p>
+    </section>
+  </div>
+</footer>
+
+<style>
+  .back-cover {
+    max-width: 1080px;
+    margin: 56px auto 0;
+    border: var(--line) solid var(--ink);
+    background: var(--paper);
+  }
+
+  .back-inner {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1fr;
+  }
+
+  .back-inner > section {
+    display: grid;
+    align-content: start;
+    gap: 10px;
+    padding: 24px 26px 26px;
+  }
+
+  .back-inner > section + section {
+    border-left: 1.5px solid var(--ink);
+  }
+
+  .back-headline {
+    font-family: var(--display);
+    font-size: 26px;
+    line-height: 1.2;
+  }
+
+  .back-sub {
+    font-size: 16px;
+  }
+
+  .back-confession {
+    font-family: var(--hand);
+    font-size: 16px;
+  }
+
+  .back-contents ol {
+    display: grid;
+    gap: 4px;
+    margin: 0;
+    padding-left: 1.4em;
+    font-family: var(--display);
+    font-size: 17px;
+  }
+
+  .back-write {
+    margin-top: 8px;
+    font-size: 16px;
+  }
+
+  /* Decorative barcode, like the one on a volume's back cover. */
+  .barcode {
+    height: 54px;
+    border-bottom: 1.5px solid var(--ink);
+    background: repeating-linear-gradient(
+      90deg,
+      var(--ink) 0 2px,
+      transparent 2px 4px,
+      var(--ink) 4px 5px,
+      transparent 5px 9px,
+      var(--ink) 9px 12px,
+      transparent 12px 13px
+    );
+  }
+
+  .back-price {
+    font-family: var(--display);
+    font-size: 15px;
+  }
+
+  .back-imprint ul {
+    display: grid;
+    gap: 4px;
+    margin: 0;
+    padding: 0;
+    font-size: 15px;
+    list-style: none;
+  }
+
+  .back-copy {
+    font-family: var(--display);
+    font-size: 12px;
+    letter-spacing: 0.1em;
+  }
+
+  @media (width < 900px) {
+    .back-inner {
+      grid-template-columns: 1fr;
+    }
+
+    .back-inner > section + section {
+      border-top: 1.5px solid var(--ink);
+      border-left: 0;
+    }
+  }
+</style>

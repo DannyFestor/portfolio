@@ -1,0 +1,67 @@
+/* PROTOTYPE — throwaway. Shows the active chrome set; hides home variant A's own footer while chrome is on. */
+.chrome-set {
+  display: none;
+}
+
+html[data-chrome="A"] [data-chrome-panel="A"],
+html[data-chrome="B"] [data-chrome-panel="B"],
+html[data-chrome="C"] [data-chrome-panel="C"] {
+  display: block;
+}
+
+html[data-chrome] [data-variant-panel="A"] footer.colophon {
+  display: none;
+}
+
+/* Home: variant A doesn't load system.css (its class names would clash), so the chrome wrappers
+ * there carry the locked tokens themselves. Elsewhere the chrome sits inside the .manga root. */
+.chrome-wrap {
+  --paper: #f3f2ee;
+  --page-bg: #dcdcd9;
+  --ink: #1b1a17;
+  --accent: #d1352b;
+  --line: 3px;
+  --display: "Zen Antique", "Hiragino Mincho ProN", serif;
+  --narration: "Shippori Mincho", "Hiragino Mincho ProN", serif;
+  --hand: "Yomogi", "Hiragino Maru Gothic ProN", serif;
+
+  display: flow-root;
+  padding: 0 20px;
+  font-family: var(--narration);
+  color: var(--ink);
+  background: var(--page-bg);
+}
+
+.chrome-wrap,
+.chrome-wrap * {
+  box-sizing: border-box;
+}
+
+.chrome-wrap :where(p, ul, ol, dl) {
+  margin: 0;
+}
+
+.chrome-wrap a {
+  color: inherit;
+  text-decoration: underline 1px;
+  text-underline-offset: 3px;
+}
+
+.chrome-wrap a:hover {
+  text-decoration: underline 3px var(--accent);
+}
+
+.chrome-wrap .small-label {
+  font-family: var(--display);
+  font-size: 11px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+}
+
+.chrome-wrap--header {
+  padding-top: 8px;
+}
+
+.chrome-wrap--footer {
+  padding-bottom: 220px;
+}

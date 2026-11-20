@@ -1,0 +1,16 @@
+---
+// PROTOTYPE — throwaway. Renders every chrome header; CSS shows the one picked by html[data-chrome].
+import HeaderA from "./HeaderA.astro";
+import HeaderB from "./HeaderB.astro";
+import HeaderC from "./HeaderC.astro";
+
+interface Props {
+  current: string;
+}
+
+const { current } = Astro.props;
+---
+
+<div class="chrome-set" data-chrome-panel="A"><HeaderA current={current} /></div>
+<div class="chrome-set" data-chrome-panel="B"><HeaderB current={current} /></div>
+<div class="chrome-set" data-chrome-panel="C"><HeaderC current={current} /></div>

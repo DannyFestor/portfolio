@@ -1,0 +1,143 @@
+---
+// PROTOTYPE — throwaway. Chrome A header: a manga-magazine running header with chapter tabs (#28, #29).
+import { identity } from "../content";
+import { chapterLabel, isCurrent, navLinks } from "./chrome-content";
+
+interface Props {
+  current: string;
+}
+
+const { current } = Astro.props;
+---
+
+<header class="run-head">
+  <div class="run-top">
+    <a class="run-name" href="/" aria-current={current === "/" ? "page" : undefined}>{identity.name}</a>
+    <p class="run-issue small-label">Issue 2026 · {identity.place}</p>
+    <p class="run-chapter">{chapterLabel(current)}</p>
+  </div>
+  <nav class="run-nav" aria-label="Site">
+    <ul>
+      {
+        navLinks.map((link) => (
+          <li>
+            <a
+              class:list={["run-tab", { "run-tab--contact": link.isContact }]}
+              href={link.href}
+              aria-current={isCurrent(link, current) ? "page" : undefined}
+            >
+              <span class="run-tab-no">{link.chapter}</span>
+              {link.label}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </nav>
+</header>
+
+<style>
+  .run-head {
+    max-width: 1080px;
+    margin: 0 auto 34px;
+    padding-top: 22px;
+  }
+
+  .run-top {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 18px;
+    align-items: baseline;
+    padding-bottom: 8px;
+    border-bottom: var(--line) solid var(--ink);
+  }
+
+  .run-name {
+    font-family: var(--display);
+    font-size: 24px;
+    text-decoration: none;
+  }
+
+  .run-issue {
+    font-size: 11px;
+  }
+
+  .run-chapter {
+    font-family: var(--display);
+    font-size: 14px;
+  }
+
+  /* Chapter tabs hang from the running rule like the index tabs of a magazine page. */
+  .run-nav ul {
+    display: flex;
+    gap: 6px;
+    justify-content: flex-end;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .run-tab {
+    display: flex;
+    gap: 8px;
+    align-items: baseline;
+    padding: 6px 14px 8px;
+    border: 1.5px solid var(--ink);
+    border-top: 0;
+    font-family: var(--display);
+    font-size: 15px;
+    text-decoration: none;
+    background: var(--paper);
+  }
+
+  .run-tab-no {
+    font-size: 11px;
+    letter-spacing: 0.12em;
+  }
+
+  .run-tab[aria-current="page"] {
+    color: var(--paper);
+    background: var(--ink);
+  }
+
+  .run-tab--contact {
+    border-bottom: 4px solid var(--accent);
+  }
+
+  .run-tab:hover {
+    border-bottom-width: 4px;
+    text-decoration: none;
+  }
+
+  @media (width < 760px) {
+    .run-head {
+      padding-top: 14px;
+    }
+
+    .run-top {
+      grid-template-columns: 1fr auto;
+    }
+
+    .run-issue {
+      display: none;
+    }
+
+    .run-nav ul {
+      gap: 4px;
+    }
+
+    .run-nav li {
+      flex: 1;
+    }
+
+    .run-tab {
+      justify-content: center;
+      padding: 6px 4px 8px;
+      font-size: 14px;
+    }
+
+    .run-tab-no {
+      display: none;
+    }
+  }
+</style>
