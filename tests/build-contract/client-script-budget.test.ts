@@ -1,9 +1,6 @@
-import { readFileSync } from "node:fs";
-import { join } from "node:path";
-
 import { describe, expect, it } from "vite-plus/test";
 
-import { BUILT_SITE_DIRECTORY, builtFileSize, findBuiltFiles } from "./built-site.ts";
+import { builtFileSize, findBuiltFiles, readBuiltFile } from "./built-site.ts";
 
 /**
  * Bytes of client JavaScript the whole site may ship. Danny sets the real number once the design
@@ -14,8 +11,9 @@ const CLIENT_SCRIPT_BUDGET_BYTES = 0;
 const INLINE_SCRIPT = /<script\b(?![^>]*application\/ld\+json)[^>]*>(?<body>[\s\S]*?)<\/script>/gu;
 
 function inlineScriptBytes(page: string): number {
-  const html = readFileSync(join(BUILT_SITE_DIRECTORY, page), "utf8");
-  const bodies = [...html.matchAll(INLINE_SCRIPT)].map((match) => match.groups?.["body"] ?? "");
+  const bodies = [...readBuiltFile(page).matchAll(INLINE_SCRIPT)].map(
+    (match) => match.groups?.["body"] ?? "",
+  );
   return bodies.reduce((total, body) => total + Buffer.byteLength(body), 0);
 }
 

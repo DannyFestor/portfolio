@@ -1,0 +1,18 @@
+---
+// The 12-column panel grid with white gutters. The page sets --panel-grid-template on it;
+// see src/styles/page-composition.css.
+import type { HTMLAttributes } from "astro/types";
+
+import "../../styles/page-composition.css";
+
+type Props = HTMLAttributes<"div">;
+
+const { class: className, ...attributes } = Astro.props;
+---
+
+<div
+  class:list={["panel-grid", className]}
+  {...attributes}
+>
+  <slot />
+</div>

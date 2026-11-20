@@ -1,8 +1,8 @@
 import sharp from "sharp";
 
+import type { Point } from "../../src/geometry/point.ts";
 import { screenRaster } from "./halftone-screen.ts";
 import type { GrayRaster, HalftoneScreen, RasterSize } from "./halftone-screen.ts";
-import type { Point } from "./screen-geometry.ts";
 
 /** Tone curve after normalising: a touch more contrast, with the shadows lifted a little. */
 const TONE_CONTRAST = 1.05;

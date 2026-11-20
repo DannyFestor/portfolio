@@ -1,0 +1,22 @@
+/*
+ * Screentone (#32): SVG dot tiles on a 45° lattice, painted as background images. The tiles are
+ * generated from tokens.css by integrations/screentone, which sets --tone-tile-size and one
+ * `.tone-<density>` class per density that sets --tone-tile.
+ *
+ * Nothing is rotated or oversized to draw tone: the tile carries the screen angle, and a fade is a
+ * child that fills its own panel. Text never sits on raw tone.
+ */
+
+.screentone,
+.screentone-fade {
+  background-image: var(--tone-tile);
+  background-size: var(--tone-tile-size);
+}
+
+/* Lies behind the panel's content; the mask keeps the tone where it is opaque (ink) and fades it out. */
+.screentone-fade {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  mask-image: linear-gradient(var(--screentone-fade-toward), var(--color-ink) 10%, transparent 75%);
+}

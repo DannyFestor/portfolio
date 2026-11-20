@@ -1,0 +1,24 @@
+---
+// The ink outline of an angled panel, drawn over the content. The panel clips the outer half of
+// the doubled stroke, so the visible line is one panel line weight, inside the edge.
+import type { AngledPanelShape } from "./angled-panel-shape.ts";
+import { PANEL_VIEW_BOX } from "./panel-box.ts";
+
+interface Props {
+  shape: AngledPanelShape;
+}
+
+const { shape } = Astro.props;
+---
+
+<svg
+  class="panel-outline"
+  viewBox={PANEL_VIEW_BOX}
+  preserveAspectRatio="none"
+  aria-hidden="true"
+>
+  <polygon
+    points={shape.outlinePoints}
+    vector-effect="non-scaling-stroke"
+  ></polygon>
+</svg>
