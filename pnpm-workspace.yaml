@@ -2,8 +2,8 @@ allowBuilds:
   esbuild: true
   sharp: true
 catalog:
-  vite: npm:@voidzero-dev/vite-plus-core@0.2.7
-  vite-plus: 0.2.7
+  vite: npm:@voidzero-dev/vite-plus-core@8.3.8000
+  vite-plus: 1.7.0
 overrides:
   vite: "catalog:"
 peerDependencyRules:

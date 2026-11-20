@@ -26,3 +26,6 @@ pnpm-debug.log*
 # dotenv environment variable files
 .env.*
 !.env.example
+
+# private research notes (wayfinder findings — never publish)
+docs/research/
