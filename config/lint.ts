@@ -37,6 +37,8 @@ const typeSafety = {
 const structure = {
   "import/no-cycle": "error",
   "import/no-default-export": "error",
+  // Stylesheets are imported for their side effect: Astro bundles them into the page.
+  "import/no-unassigned-import": ["error", { allow: ["**/*.css"] }],
   "unicorn/filename-case": ["error", { case: "kebabCase" }],
   "no-param-reassign": ["error", { props: true }],
   "no-nested-ternary": "error",

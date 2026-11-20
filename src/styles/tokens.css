@@ -1,0 +1,57 @@
+/*
+ * Design tokens: the only place raw colors, font families, spacing and line weights live (Stylelint
+ * enforces it). Concept: seinen manga page composition on near-white paper, locked in #7.
+ *
+ * Contrast (WCAG 2.2 AA) of every text/background pair is asserted by tests/design-tokens.
+ * Text never sits on raw screentone; it goes in a paper narration box or on a paper halo.
+ *
+ * No duration tokens: the pages are static like print, so hover and press states switch instantly.
+ */
+
+:root {
+  /* Color: near-white paper on neutral grey, ink, indigo screentone, red accent. */
+  --color-paper: #f3f2ee;
+  --color-page-background: #dcdcd9;
+  --color-ink: #1b1a17;
+  --color-tone: #2d4a7a;
+
+  /* Red is for SFX, impact lines, status marks and asides. Below 4.5:1 on paper: display sizes only. */
+  --color-accent: #d1352b;
+
+  /* Screentone: indigo dots on a 45° lattice; densities differ by dot radius only. Tile generation: #32. */
+  --tone-opacity: 0.85;
+  --tone-pitch: 6px;
+  --tone-dot-light: 0.65px;
+  --tone-dot-mid: 0.85px;
+  --tone-dot-dense: 1.05px;
+  --tone-dot-deep: 1.3px;
+
+  /* Type: the self-hosted, subset font files themselves arrive with #25 and #14. */
+  --font-display: "Zen Antique", "Hiragino Mincho ProN", serif;
+  --font-narration: "Shippori Mincho", "Hiragino Mincho ProN", serif;
+  --font-aside: "Yomogi", "Hiragino Maru Gothic ProN", serif;
+
+  /*
+   * Spacing scale: PROVISIONAL. Derived from the prototype's most frequent spacing values
+   * (prototype/manga-home), quantized to steps of roughly 1.3 to 1.5. Typography (#25) may adjust it.
+   */
+  --space-3xs: 2px;
+  --space-2xs: 4px;
+  --space-xs: 6px;
+  --space-s: 10px;
+  --space-m: 14px;
+  --space-l: 18px;
+  --space-xl: 22px;
+  --space-2xl: 28px;
+  --space-3xl: 44px;
+  --space-4xl: 64px;
+  --space-5xl: 96px;
+
+  /* White gutter between panels. */
+  --gutter: var(--space-m);
+
+  /* Ink line weights: panel borders, narration boxes, hairline rules and underlines. */
+  --line-panel: 3px;
+  --line-narration: 2px;
+  --line-hairline: 1px;
+}

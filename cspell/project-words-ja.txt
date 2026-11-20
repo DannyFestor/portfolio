@@ -1,1 +1,4 @@
 # Japanese words written in Latin script (romaji).
+Maru
+seinen
+Yomogi
