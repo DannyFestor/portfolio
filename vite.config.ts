@@ -1,13 +1,12 @@
 import { defineConfig } from "vite-plus";
 
+import { fmtConfig } from "./config/fmt.ts";
+import { lintConfig } from "./config/lint.ts";
+
 export default defineConfig({
   staged: {
     "*": "vp check --fix",
   },
-  fmt: {},
-  lint: {
-    jsPlugins: [{ name: "vite-plus", specifier: "vite-plus/oxlint-plugin" }],
-    rules: { "vite-plus/prefer-vite-plus-imports": "error" },
-    options: { typeAware: true, typeCheck: true },
-  },
+  fmt: fmtConfig,
+  lint: lintConfig,
 });
