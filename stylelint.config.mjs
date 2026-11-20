@@ -45,7 +45,8 @@ const ALLOWED_TRANSITION_PROPERTIES = [
 const TOKEN_FILE = "src/styles/tokens.css";
 
 export default {
-  extends: ["stylelint-config-standard"],
+  // Recess order groups declarations: positioning, box model, typography, visual, misc.
+  extends: ["stylelint-config-standard", "stylelint-config-recess-order"],
   plugins: ["stylelint-declaration-strict-value"],
   // Disable comments have no effect: a guardrail cannot be switched off inline.
   ignoreDisables: true,

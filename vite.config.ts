@@ -17,7 +17,7 @@ export default defineConfig({
       "check:css": { command: 'stylelint "**/*.{css,astro}"' },
       "check:unused": { command: "knip" },
       "check:duplicates": { command: "jscpd ." },
-      "check:spelling": { command: 'cspell --no-progress --dot "**"' },
+      "check:spelling": { command: "git ls-files | cspell --no-progress --dot --file-list stdin" },
       "check:disable-comments": { command: "scripts/refuse-disable-comments.sh" },
       "check:html": { command: 'html-validate "dist/**/*.html"' },
       "check:links": {
