@@ -2,6 +2,8 @@
 dist/
 # generated types
 .astro/
+# halftone masks, rendered from src/assets/photos by integrations/halftone
+/src/assets/halftone/
 
 # dependencies
 node_modules/
