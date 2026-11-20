@@ -15,6 +15,7 @@ oklab
 oklch
 romaji
 screentone
+Shippori
 unifiedjs
 vite
 voidzero

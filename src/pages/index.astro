@@ -1,22 +1,7 @@
 ---
-import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
+import BaseLayout from "../layouts/base-layout.astro";
 ---
 
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width"
-    />
-    <title>{SITE_TITLE}</title>
-    <meta
-      name="description"
-      content={SITE_DESCRIPTION}
-    />
-  </head>
-  <body>
-    <main></main>
-  </body>
-</html>
+<BaseLayout>
+  <main></main>
+</BaseLayout>
