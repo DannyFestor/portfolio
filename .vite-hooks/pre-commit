@@ -1,1 +1,3 @@
+scripts/refuse-commit-on-ref.sh refs/heads/main
 vp staged
+scripts/run-pinned.sh gitleaks git --staged --no-banner --redact --verbose

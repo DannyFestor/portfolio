@@ -1,0 +1,1 @@
+scripts/run-pinned.sh cog verify --ignore-fixup-commits --ignore-merge-commits --file "$1"

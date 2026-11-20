@@ -1,0 +1,2 @@
+scripts/refuse-push-to-ref.sh refs/heads/main
+vp run check:all
