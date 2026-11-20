@@ -14,6 +14,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      # cog verify reads the git identity to print the author and panics without one.
+      - name: Set a git identity
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
       - name: Verify the title is a Conventional Commit
         env:
           PR_TITLE: ${{ github.event.pull_request.title }}
