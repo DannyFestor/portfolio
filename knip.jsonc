@@ -1,0 +1,9 @@
+{
+  "$schema": "https://unpkg.com/knip@6/schema-jsonc.json",
+  "ignoreDependencies": [
+    // Loaded by the `astro check` command, which knip cannot trace to the package.
+    "@astrojs/check",
+    // The Vite+ catalog alias that resolves Astro's vite to @voidzero-dev/vite-plus-core.
+    "vite",
+  ],
+}

@@ -1,0 +1,20 @@
+version: "0.2"
+language: en
+useGitignore: true
+ignorePaths:
+  - pnpm-lock.yaml
+  - tools/*.sha256
+  - .vite-hooks/_/**
+dictionaryDefinitions:
+  - name: project-words-en
+    path: ./cspell/project-words-en.txt
+    addWords: true
+  - name: project-words-de
+    path: ./cspell/project-words-de.txt
+  - name: project-words-ja
+    description: Japanese words written in Latin script (romaji).
+    path: ./cspell/project-words-ja.txt
+dictionaries:
+  - project-words-en
+  - project-words-de
+  - project-words-ja
