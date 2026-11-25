@@ -1,0 +1,54 @@
+---
+// PROTOTYPE — throwaway branch prototype/manga-home. Typography sheet (#25): eight type decisions with
+// three numbered options each, then all of them together on one page. Header A and footer C are the decided chrome.
+import HeaderA from "../prototype-manga/chrome/HeaderA.astro";
+import "../prototype-manga/elements/elements.css";
+import PrototypeLayout from "../prototype-manga/PrototypeLayout.astro";
+import AsideSample from "../prototype-manga/typography/AsideSample.astro";
+import LabelSample from "../prototype-manga/typography/LabelSample.astro";
+import NarrationSample from "../prototype-manga/typography/NarrationSample.astro";
+import NumeralSample from "../prototype-manga/typography/NumeralSample.astro";
+import ReadingSample from "../prototype-manga/typography/ReadingSample.astro";
+import ScaleSample from "../prototype-manga/typography/ScaleSample.astro";
+import SfxSample from "../prototype-manga/typography/SfxSample.astro";
+import TypeCombinedSection from "../prototype-manga/typography/TypeCombinedSection.astro";
+import { defaultPick, typeDecisionList, typeDecisions } from "../prototype-manga/typography/typography-content";
+import "../prototype-manga/typography/typography.css";
+import TypeRow from "../prototype-manga/typography/TypeRow.astro";
+import WeightSample from "../prototype-manga/typography/WeightSample.astro";
+
+const variants = [{ key: "A", name: "Typography sheet" }] as const;
+const defaultAttributes = Object.fromEntries(
+  typeDecisionList.map((decision) => [`data-ty-${decision.key}`, defaultPick]),
+);
+---
+
+<PrototypeLayout title="Typography sheet — Danny Festor" variants={variants} current="/prototype-typography">
+  <HeaderA slot="header" current="/prototype-typography" />
+  <link
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;800&display=swap"
+  />
+  <main class="elements-sheet typography-sheet" {...defaultAttributes}>
+    <header class="sheet-intro">
+      <p class="small-label">Prototype · typography</p>
+      <h1 class="sheet-title display">Typography sheet</h1>
+      <p class="sheet-lede">
+        Eight decisions, three options each. Each row changes one thing; everything else stays at option 2.
+        Answer with the decision and the number, for example “scale 2, weight 1”. The last page puts any set
+        together.
+      </p>
+    </header>
+    <TypeRow index={1} decision={typeDecisions.scale}>{() => <ScaleSample />}</TypeRow>
+    <TypeRow index={2} decision={typeDecisions.narration}>{() => <NarrationSample />}</TypeRow>
+    <TypeRow index={3} decision={typeDecisions.weight}>{() => <WeightSample />}</TypeRow>
+    <TypeRow index={4} decision={typeDecisions.column} stacked>{() => <ReadingSample />}</TypeRow>
+    <TypeRow index={5} decision={typeDecisions.aside}>{() => <AsideSample />}</TypeRow>
+    <TypeRow index={6} decision={typeDecisions.label}>{() => <LabelSample />}</TypeRow>
+    <TypeRow index={7} decision={typeDecisions.numerals}>
+      {(number: 1 | 2 | 3) => <NumeralSample number={number} />}
+    </TypeRow>
+    <TypeRow index={8} decision={typeDecisions.sfx}>{() => <SfxSample />}</TypeRow>
+    <TypeCombinedSection />
+  </main>
+</PrototypeLayout>

@@ -1,0 +1,15 @@
+---
+// PROTOTYPE — throwaway. An aside (red, floating, small arrow; decided in #31) next to a narration box.
+import { asideSample, narrationShort } from "./typography-content";
+---
+
+<div class="ty-stack">
+  <p class="ty-narr">{narrationShort}</p>
+  <p class="aside-arrow ty-aside">
+    <svg class="aside-arrow-mark" viewBox="0 0 46 30" aria-hidden="true">
+      <path d="M44 4 C30 4 14 8 6 24"></path>
+      <path d="M2 17 L6 25 L13 20"></path>
+    </svg>
+    <span>{asideSample}</span>
+  </p>
+</div>

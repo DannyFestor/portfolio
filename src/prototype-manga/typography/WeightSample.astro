@@ -1,0 +1,11 @@
+---
+// PROTOTYPE — throwaway. Mincho weight in a narration box and in a reading paragraph.
+import { readingSample, weightSample } from "./typography-content";
+---
+
+<div class="ty-stack">
+  <p class="ty-narr">
+    {weightSample.before} <strong>{weightSample.strong}</strong>{" "}{weightSample.after}
+  </p>
+  <p class="ty-column ty-column--loose">{readingSample.paragraphs[0]}</p>
+</div>

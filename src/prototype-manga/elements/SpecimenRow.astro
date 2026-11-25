@@ -1,21 +1,26 @@
 ---
-// PROTOTYPE — throwaway. One element of the specimen sheet: a manga page holding three numbered options.
+// PROTOTYPE — throwaway. One row of a specimen sheet: a manga page holding three numbered options.
+// Used by the element sheet (#31, #27) and the typography sheet (#25).
 interface Props {
   index: number;
   title: string;
   note: string;
+  /** Word before the row number, e.g. "Element 3" or "Decision 3". */
+  label?: string;
+  /** Stack the options full width instead of three columns, for samples that need the page's width. */
+  stacked?: boolean;
 }
 
-const { index, title, note } = Astro.props;
+const { index, title, note, label = "Element", stacked = false } = Astro.props;
 ---
 
 <section class="manga-page spec-row" aria-labelledby={`spec-row-${index}`}>
   <header class="spec-row-head">
-    <p class="small-label">Element {index}</p>
+    <p class="small-label">{label} {index}</p>
     <h2 class="spec-row-title display" id={`spec-row-${index}`}>{title}</h2>
     <p class="spec-row-note">{note}</p>
   </header>
-  <div class="spec-grid">
+  <div class:list={["spec-grid", { "spec-grid--stacked": stacked }]}>
     <slot />
   </div>
   <p class="folio">{index}</p>

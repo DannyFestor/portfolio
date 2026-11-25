@@ -1,0 +1,74 @@
+---
+// PROTOTYPE — throwaway. All eight decisions together on one composed page. Option 2 of everything by
+// default; the form below reloads the page with ?scale=1&narration=3… and a small inline script applies
+// those picks as data-ty-* attributes, so any set can be judged as a whole.
+import AsideSample from "./AsideSample.astro";
+import LabelSample from "./LabelSample.astro";
+import NarrationSample from "./NarrationSample.astro";
+import NumeralSample from "./NumeralSample.astro";
+import ReadingSample from "./ReadingSample.astro";
+import ScaleSample from "./ScaleSample.astro";
+import SfxSample from "./SfxSample.astro";
+import { defaultPick, typeDecisionList } from "./typography-content";
+
+const decisionKeys = typeDecisionList.map((decision) => decision.key);
+const defaultAttributes = Object.fromEntries(decisionKeys.map((key) => [`data-ty-${key}`, defaultPick]));
+const numeralOptions = [1, 2, 3] as const;
+---
+
+<section class="manga-page ty-combined" id="set" aria-labelledby="ty-combined-title" {...defaultAttributes}>
+  <header class="spec-row-head">
+    <p class="small-label">The set, in context</p>
+    <h2 class="spec-row-title display" id="ty-combined-title">Your picks together</h2>
+    <p class="spec-row-note">Option 2 of everything until you pick. Choose numbers and press “Show this set”.</p>
+  </header>
+  <form class="ty-picker" method="get" action="/prototype-typography#set">
+    {
+      typeDecisionList.map((decision) => (
+        <label class="ty-picker-field">
+          <span class="ty-picker-name">{decision.title}</span>
+          <select name={decision.key}>
+            {decision.options.map((option) => (
+              <option value={option.number} selected={option.number === defaultPick}>
+                {option.number} · {option.name}
+              </option>
+            ))}
+          </select>
+        </label>
+      ))
+    }
+    <button class="ty-picker-submit" type="submit">Show this set</button>
+  </form>
+  <div class="ty-combined-grid">
+    <div class="ty-combined-main ty-stack">
+      <ScaleSample />
+      <NarrationSample />
+      <ReadingSample />
+    </div>
+    <div class="ty-combined-side ty-stack">
+      <SfxSample />
+      {
+        numeralOptions.map((number) => (
+          <div class:list={["ty-num", `ty-num-${number}`]}>
+            <NumeralSample number={number} />
+          </div>
+        ))
+      }
+      <AsideSample />
+      <LabelSample />
+    </div>
+  </div>
+  <p class="folio">9</p>
+</section>
+
+<script is:inline define:vars={{ decisionKeys }}>
+  const section = document.querySelector(".ty-combined");
+  const params = new URLSearchParams(location.search);
+  for (const key of decisionKeys) {
+    const picked = params.get(key);
+    if (!section || !["1", "2", "3"].includes(picked ?? "")) continue;
+    section.setAttribute(`data-ty-${key}`, picked);
+    const select = section.querySelector(`select[name="${key}"]`);
+    if (select) select.value = picked;
+  }
+</script>

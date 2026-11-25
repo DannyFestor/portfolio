@@ -1,0 +1,29 @@
+---
+// PROTOTYPE — throwaway. Project periods and a post date, written in one numeral option's format.
+import { work } from "../content";
+import { type OptionNumber, periodsByOption, postDateByOption } from "./typography-content";
+
+interface Props {
+  number: OptionNumber;
+}
+
+const { number } = Astro.props;
+const periods = periodsByOption[number];
+---
+
+<div class="ty-stack">
+  <ul class="ty-periods">
+    {
+      work.map((project, position) => (
+        <li class="ty-period-row">
+          <span class="ty-period">{periods[position]}</span>
+          <span class="ty-period-title">{project.title}</span>
+        </li>
+      ))
+    }
+  </ul>
+  <p class="ty-post-line">
+    <span class="ty-period">{postDateByOption[number]}</span>
+    <span class="aside ty-aside">6 min read</span>
+  </p>
+</div>

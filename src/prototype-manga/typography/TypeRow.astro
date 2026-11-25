@@ -1,0 +1,35 @@
+---
+// PROTOTYPE — throwaway. One typography decision: its three options side by side. The children are a
+// function of the option number, rendered once per option inside data-ty-<key>="<number>"; typography.css
+// turns that attribute into the custom properties the samples read.
+import Specimen from "../elements/Specimen.astro";
+import SpecimenRow from "../elements/SpecimenRow.astro";
+import type { TypeDecision } from "./typography-content";
+
+interface Props {
+  index: number;
+  decision: TypeDecision;
+  stacked?: boolean;
+}
+
+const { index, decision, stacked = false } = Astro.props;
+const options = await Promise.all(
+  decision.options.map(async (option) => ({
+    option,
+    html: await Astro.slots.render("default", [option.number]),
+  })),
+);
+---
+
+<SpecimenRow index={index} label="Decision" title={decision.title} note={decision.note} stacked={stacked}>
+  {
+    options.map(({ option, html }) => (
+      <Specimen number={option.number} name={option.name}>
+        <p class="ty-detail">{option.detail}</p>
+        <div class="ty-sample" {...{ [`data-ty-${decision.key}`]: option.number }}>
+          <Fragment set:html={html} />
+        </div>
+      </Specimen>
+    ))
+  }
+</SpecimenRow>

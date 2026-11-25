@@ -1,0 +1,9 @@
+---
+// PROTOTYPE — throwaway. A stretch of a blog post in the plain reading column.
+import { readingSample } from "./typography-content";
+---
+
+<div class="ty-column">
+  <h3 class="display ty-column-heading">{readingSample.heading}</h3>
+  {readingSample.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
+</div>

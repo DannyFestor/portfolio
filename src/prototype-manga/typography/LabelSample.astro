@@ -1,0 +1,21 @@
+---
+// PROTOTYPE — throwaway. Labels where they appear: running header, kicker, attribution, contact line.
+import { identity } from "../content";
+import { labelSamples, scaleSample } from "./typography-content";
+---
+
+<div class="ty-stack">
+  <p class="ty-running-head">
+    <span class="ty-label">{labelSamples.runningHead}</span>
+    <span class="ty-label">第3話</span>
+  </p>
+  <div>
+    <p class="ty-label">{labelSamples.kicker}</p>
+    <p class="display ty-label-title">{scaleSample.caseTitle}</p>
+  </div>
+  <p class="ty-label ty-attribution">{labelSamples.attribution}</p>
+  <div>
+    <p class="ty-label">{labelSamples.contact}</p>
+    <a class="cta cta-link" href={`mailto:${identity.email}`}>{identity.email} →</a>
+  </div>
+</div>

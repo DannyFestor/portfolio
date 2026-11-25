@@ -1,0 +1,427 @@
+/* PROTOTYPE — throwaway. Typography sheet (#25). The page's <main> carries both .elements-sheet (row,
+ * specimen and lettering styles from elements.css) and .typography-sheet.
+ *
+ * How options work: every wrapper says data-ty-<decision>="<number>". The rules in "options" below turn
+ * that into custom properties; the sample classes in "samples" only read the properties. The <main> sets
+ * option 2 of everything, so a row shows one decision changing while the rest stay at option 2. */
+
+/* ── options ──────────────────────────────────────────── */
+
+[data-ty-scale="1"] {
+  --ty-h1: 33px;
+  --ty-h2: 28px;
+  --ty-h3: 23px;
+  --ty-h4: 19px;
+}
+
+[data-ty-scale="2"] {
+  --ty-h1: 50px;
+  --ty-h2: 38px;
+  --ty-h3: 28px;
+  --ty-h4: 21px;
+}
+
+[data-ty-scale="3"] {
+  --ty-h1: 81px;
+  --ty-h2: 54px;
+  --ty-h3: 36px;
+  --ty-h4: 24px;
+}
+
+[data-ty-narration="1"] {
+  --ty-narr-size: 15px;
+  --ty-narr-leading: 1.65;
+}
+
+[data-ty-narration="2"] {
+  --ty-narr-size: 16px;
+  --ty-narr-leading: 1.7;
+}
+
+[data-ty-narration="3"] {
+  --ty-narr-size: 17px;
+  --ty-narr-leading: 1.75;
+}
+
+[data-ty-weight="1"] {
+  --ty-text-weight: 400;
+  --ty-strong-weight: 700;
+}
+
+[data-ty-weight="2"] {
+  --ty-text-weight: 500;
+  --ty-strong-weight: 700;
+}
+
+[data-ty-weight="3"] {
+  --ty-text-weight: 600;
+  --ty-strong-weight: 800;
+}
+
+[data-ty-column="1"] {
+  --ty-column-size: 17px;
+  --ty-column-leading: 1.7;
+  --ty-column-measure: 62ch;
+}
+
+[data-ty-column="2"] {
+  --ty-column-size: 18px;
+  --ty-column-leading: 1.75;
+  --ty-column-measure: 68ch;
+}
+
+[data-ty-column="3"] {
+  --ty-column-size: 19px;
+  --ty-column-leading: 1.8;
+  --ty-column-measure: 74ch;
+}
+
+[data-ty-aside="1"] {
+  --ty-aside-size: 15px;
+}
+
+[data-ty-aside="2"] {
+  --ty-aside-size: 17px;
+}
+
+[data-ty-aside="3"] {
+  --ty-aside-size: 19px;
+}
+
+[data-ty-label="1"] {
+  --ty-label-family: var(--display);
+  --ty-label-size: 12px;
+  --ty-label-weight: 400;
+  --ty-label-tracking: 0.24em;
+  --ty-label-case: uppercase;
+}
+
+[data-ty-label="2"] {
+  --ty-label-family: var(--narration);
+  --ty-label-size: 12px;
+  --ty-label-weight: 600;
+  --ty-label-tracking: 0.16em;
+  --ty-label-case: uppercase;
+}
+
+[data-ty-label="3"] {
+  --ty-label-family: var(--display);
+  --ty-label-size: 15px;
+  --ty-label-weight: 400;
+  --ty-label-tracking: 0;
+  --ty-label-case: none;
+}
+
+[data-ty-numerals="1"] {
+  --ty-num-family: var(--display);
+  --ty-num-size: 13px;
+  --ty-num-weight: 400;
+  --ty-num-tracking: 0.12em;
+  --ty-num-color: var(--paper);
+  --ty-num-background: var(--ink);
+  --ty-num-padding: 1px 8px;
+}
+
+[data-ty-numerals="2"] {
+  --ty-num-family: var(--narration);
+  --ty-num-size: 15px;
+  --ty-num-weight: 600;
+  --ty-num-tracking: 0;
+  --ty-num-color: var(--ink);
+  --ty-num-background: transparent;
+  --ty-num-padding: 0;
+}
+
+[data-ty-numerals="3"] {
+  --ty-num-family: var(--narration);
+  --ty-num-size: 15px;
+  --ty-num-weight: 600;
+  --ty-num-tracking: 0.04em;
+  --ty-num-color: var(--ink);
+  --ty-num-background: transparent;
+  --ty-num-padding: 0;
+}
+
+[data-ty-sfx="1"] {
+  --ty-sfx-size: 44px;
+}
+
+[data-ty-sfx="2"] {
+  --ty-sfx-size: 58px;
+}
+
+[data-ty-sfx="3"] {
+  --ty-sfx-size: 76px;
+}
+
+/* ── sheet ────────────────────────────────────────────── */
+
+.typography-sheet .spec-grid--stacked {
+  grid-template-columns: 1fr;
+  gap: 40px;
+}
+
+.typography-sheet .spec-grid--stacked .spec + .spec {
+  padding-top: 28px;
+  border-top: 1.5px solid var(--ink);
+}
+
+.typography-sheet .ty-detail {
+  margin-top: -8px;
+  font-family: var(--hand);
+  font-size: 15px;
+  color: var(--accent);
+}
+
+.typography-sheet .ty-stack {
+  display: grid;
+  gap: 16px;
+  align-content: start;
+}
+
+/* ── samples ──────────────────────────────────────────── */
+
+.typography-sheet .ty-scale {
+  display: grid;
+  gap: 10px;
+}
+
+.typography-sheet .ty-h1,
+.typography-sheet .ty-h2,
+.typography-sheet .ty-h3,
+.typography-sheet .ty-h4 {
+  margin: 0;
+  font-weight: 400;
+  line-height: 1.15;
+  overflow-wrap: anywhere;
+}
+
+.typography-sheet .ty-h1 {
+  font-size: var(--ty-h1);
+  line-height: 1;
+}
+
+.typography-sheet .ty-h2 {
+  font-size: var(--ty-h2);
+}
+
+.typography-sheet .ty-h3 {
+  margin-top: 6px;
+  font-size: var(--ty-h3);
+}
+
+.typography-sheet .ty-h4 {
+  margin-top: 6px;
+  font-size: var(--ty-h4);
+}
+
+.typography-sheet .ty-text {
+  font-size: 16px;
+  font-weight: var(--ty-text-weight);
+  line-height: 1.7;
+}
+
+.typography-sheet .ty-narr {
+  padding: 10px 14px;
+  border: 1px solid var(--ink);
+  font-family: var(--narration);
+  font-size: var(--ty-narr-size);
+  font-weight: var(--ty-text-weight);
+  line-height: var(--ty-narr-leading);
+  background: var(--paper);
+}
+
+.typography-sheet strong {
+  font-weight: var(--ty-strong-weight);
+}
+
+.typography-sheet .ty-tone {
+  padding: 26px 16px;
+}
+
+.typography-sheet .ty-column {
+  max-width: var(--ty-column-measure);
+  font-family: var(--narration);
+  font-size: var(--ty-column-size);
+  font-weight: var(--ty-text-weight);
+  line-height: var(--ty-column-leading);
+}
+
+.typography-sheet .ty-column > * + * {
+  margin-top: 1.1em;
+}
+
+.typography-sheet .ty-column-heading {
+  padding-bottom: 6px;
+  border-bottom: 2px solid var(--ink);
+  font-size: var(--ty-h3);
+  font-weight: 400;
+  line-height: 1.25;
+}
+
+/* Inside a narrow specimen column the weight sample uses the column size without its measure. */
+.typography-sheet .ty-column--loose {
+  max-width: none;
+}
+
+.typography-sheet .aside-arrow.ty-aside,
+.typography-sheet .aside.ty-aside {
+  font-size: var(--ty-aside-size);
+}
+
+.typography-sheet .ty-label {
+  font-family: var(--ty-label-family);
+  font-size: var(--ty-label-size);
+  font-weight: var(--ty-label-weight);
+  letter-spacing: var(--ty-label-tracking);
+  text-transform: var(--ty-label-case);
+}
+
+.typography-sheet .ty-running-head {
+  display: flex;
+  gap: 16px;
+  justify-content: space-between;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--ink);
+}
+
+.typography-sheet .ty-label-title {
+  font-size: 26px;
+  line-height: 1.2;
+}
+
+.typography-sheet .ty-attribution {
+  justify-self: end;
+}
+
+.typography-sheet .ty-periods {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.typography-sheet .ty-period-row {
+  display: grid;
+  grid-template-columns: 9.5em 1fr;
+  gap: 10px;
+  align-items: baseline;
+}
+
+.typography-sheet .ty-period {
+  width: fit-content;
+  padding: var(--ty-num-padding);
+  font-family: var(--ty-num-family);
+  font-size: var(--ty-num-size);
+  font-weight: var(--ty-num-weight);
+  letter-spacing: var(--ty-num-tracking);
+  color: var(--ty-num-color);
+  background: var(--ty-num-background);
+}
+
+.typography-sheet .ty-period-title {
+  font-size: 16px;
+  line-height: 1.4;
+}
+
+.typography-sheet .ty-post-line {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: baseline;
+  padding-top: 10px;
+  border-top: 1px solid var(--ink);
+}
+
+.typography-sheet .ty-post-line .aside {
+  padding: 0;
+  color: var(--accent);
+}
+
+.typography-sheet .ty-impact {
+  display: grid;
+  place-items: center;
+  min-height: 300px;
+  padding: 24px 72px 24px 18px;
+}
+
+.typography-sheet .ty-impact-text {
+  position: relative;
+  z-index: 1;
+  font-size: 26px;
+  line-height: 1.15;
+  text-align: center;
+}
+
+.typography-sheet .sfx-spec.ty-sfx {
+  position: absolute;
+  top: 12px;
+  right: 14px;
+  font-size: var(--ty-sfx-size);
+}
+
+/* ── combined page ────────────────────────────────────── */
+
+.ty-combined[data-ty-numerals="1"] .ty-num:not(.ty-num-1),
+.ty-combined[data-ty-numerals="2"] .ty-num:not(.ty-num-2),
+.ty-combined[data-ty-numerals="3"] .ty-num:not(.ty-num-3) {
+  display: none;
+}
+
+.typography-sheet .ty-picker {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px 16px;
+  margin-bottom: 32px;
+  padding: 14px;
+  border: 1px dashed var(--ink);
+}
+
+.typography-sheet .ty-picker-field {
+  display: grid;
+  min-width: 0;
+  gap: 4px;
+  font-size: 13px;
+}
+
+.typography-sheet .ty-picker-name {
+  font-weight: 600;
+}
+
+.typography-sheet .ty-picker select,
+.typography-sheet .ty-picker-submit {
+  min-width: 0;
+  max-width: 100%;
+  padding: 4px 6px;
+  border: 1px solid var(--ink);
+  font: inherit;
+  color: var(--ink);
+  background: var(--paper);
+}
+
+.typography-sheet .ty-picker-submit {
+  grid-column: 1 / -1;
+  justify-self: start;
+  padding: 6px 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.typography-sheet .ty-combined-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
+  gap: 36px;
+}
+
+/* ── phones ───────────────────────────────────────────── */
+
+@media (width <= 760px) {
+  .typography-sheet .ty-picker {
+    grid-template-columns: 1fr;
+  }
+
+  .typography-sheet .ty-combined-grid {
+    grid-template-columns: 1fr;
+  }
+}
