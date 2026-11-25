@@ -15,6 +15,8 @@ export default defineConfig({
     tasks: {
       "fonts:subset": { command: "vpx scripts/subset-fonts.ts" },
       "career:sync": { command: "vpx scripts/career-sync.ts", cache: false },
+      // Generates the astro:content types into .astro/, so the type-aware lint sees real collection types.
+      "sync:types": { command: "astro sync" },
       "check:astro": { command: "astro check" },
       "check:css": { command: 'stylelint "**/*.{css,astro}"' },
       "check:unused": { command: "knip" },
@@ -28,6 +30,7 @@ export default defineConfig({
       },
       "check:all": {
         command: [
+          "vp run sync:types",
           "vp check",
           "vp run check:astro",
           "vp run check:css",
