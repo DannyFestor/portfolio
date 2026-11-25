@@ -1,0 +1,84 @@
+/*
+ * Back cover (#30): the footer, a paper block ruled into three columns (blurb, contents, imprint).
+ * Mobile first: the columns stack, ruled between; from 760px on they sit side by side.
+ */
+
+.back-cover {
+  box-sizing: border-box;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  max-width: var(--page-max-width);
+  margin: 0 auto var(--space-3xl);
+  background-color: var(--color-paper);
+  border: var(--line-panel) solid var(--color-ink);
+}
+
+.back-cover-column {
+  display: grid;
+  gap: var(--space-s);
+  align-content: start;
+  padding: var(--space-xl) var(--space-xl) var(--space-2xl);
+}
+
+.back-cover-column + .back-cover-column {
+  border-top: var(--line-narration) solid var(--color-ink);
+}
+
+.back-cover-column > * {
+  margin: 0;
+}
+
+.back-cover-positioning {
+  font-family: var(--font-display);
+  font-size: var(--font-size-h3);
+  line-height: var(--line-height-call-to-action);
+}
+
+.back-cover-confession {
+  font-family: var(--font-aside);
+  font-size: var(--font-size-aside);
+  line-height: var(--line-height-aside);
+}
+
+.back-cover-contents {
+  display: grid;
+  gap: var(--space-2xs);
+  padding-left: var(--space-2xl);
+  font-family: var(--font-display);
+  font-size: var(--font-size-h4);
+  list-style-type: decimal-leading-zero;
+}
+
+.back-cover-price {
+  font-family: var(--font-display);
+}
+
+.back-cover-links {
+  display: grid;
+  gap: var(--space-2xs);
+  padding: 0;
+  list-style: none;
+}
+
+.back-cover-colophon {
+  font-size: var(--font-size-label);
+  letter-spacing: var(--letter-spacing-label);
+}
+
+.barcode {
+  display: block;
+  width: 100%;
+  height: var(--barcode-height);
+  fill: var(--color-ink);
+}
+
+@media (width > 760px) {
+  .back-cover {
+    grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr) minmax(0, 1fr);
+  }
+
+  .back-cover-column + .back-cover-column {
+    border-top: 0;
+    border-left: var(--line-narration) solid var(--color-ink);
+  }
+}

@@ -1,0 +1,12 @@
+/*
+ * Labels (#25): Shippori Mincho capitals, small and spaced, for structural labels such as the
+ * running header's issue line and the back cover's column headings.
+ */
+
+.label {
+  font-family: var(--font-narration);
+  font-size: var(--font-size-label);
+  font-weight: var(--font-weight-label);
+  text-transform: uppercase;
+  letter-spacing: var(--letter-spacing-label);
+}

@@ -1,0 +1,34 @@
+---
+// The running header (#28): one slim row on the page rule, as in a manga magazine, with the
+// chapter tabs hanging from it. Not sticky.
+import { SITE_AUTHOR } from "../../consts";
+import { COVER_HREF } from "../../site-chrome/chapters";
+import { ISSUE_LINE } from "../../site-chrome/running-header-content";
+import { ariaCurrentFor, runningChapterLabel } from "../../site-chrome/site-page";
+import type { SitePage } from "../../site-chrome/site-page";
+import ChapterTabs from "./chapter-tabs.astro";
+
+import "../../styles/label.css";
+import "../../styles/running-header.css";
+
+interface Props {
+  page: SitePage;
+}
+
+const { page } = Astro.props;
+---
+
+<header class="running-header">
+  <div class="running-header-rule">
+    <a
+      class="running-header-name"
+      href={COVER_HREF}
+      aria-current={ariaCurrentFor(page)}
+    >
+      {SITE_AUTHOR}
+    </a>
+    <p class="running-header-issue label">{ISSUE_LINE}</p>
+    <p class="running-header-chapter">{runningChapterLabel(page)}</p>
+  </div>
+  <ChapterTabs page={page} />
+</header>

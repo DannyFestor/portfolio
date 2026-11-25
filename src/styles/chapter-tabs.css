@@ -1,0 +1,56 @@
+/*
+ * Chapter tabs (#29): index tabs hanging from the running header's rule. The current page's tab is
+ * inked (paper on ink); Contact's always has a red bottom edge. On phones the tabs share the width
+ * and wrap into a second row; from 760px on they sit at the right, at their own width.
+ */
+
+.chapter-tabs-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2xs);
+  justify-content: flex-end;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.chapter-tabs-item {
+  flex: 1 1 auto;
+}
+
+.chapter-tab {
+  display: flex;
+  gap: var(--space-xs);
+  align-items: baseline;
+  justify-content: center;
+  padding: var(--space-xs) var(--space-m) var(--space-s);
+  font-family: var(--font-display);
+  text-decoration-line: none;
+  background-color: var(--color-paper);
+  border: var(--line-narration) solid var(--color-ink);
+  border-top: 0;
+}
+
+.chapter-tab:hover {
+  border-bottom-width: var(--line-tab-edge);
+}
+
+.chapter-tab[aria-current="page"] {
+  color: var(--color-paper);
+  background-color: var(--color-ink);
+}
+
+.chapter-tab-contact {
+  border-bottom: var(--line-tab-edge) solid var(--color-accent);
+}
+
+.chapter-tab-number {
+  font-size: var(--font-size-label);
+  letter-spacing: var(--letter-spacing-date);
+}
+
+@media (width > 760px) {
+  .chapter-tabs-item {
+    flex: none;
+  }
+}

@@ -36,3 +36,9 @@ export function mixHexColors(top: string, bottom: string, share: number): string
   const mix = (name: keyof Rgb): number => upper[name] * share + lower[name] * (1 - share);
   return formatHexColor({ red: mix("red"), green: mix("green"), blue: mix("blue") });
 }
+
+/** The color as a browser's getComputedStyle reports it: `rgb(27, 26, 23)`. */
+export function computedRgb(hex: string): string {
+  const { red, green, blue } = parseHexColor(hex);
+  return `rgb(${String(red)}, ${String(green)}, ${String(blue)})`;
+}

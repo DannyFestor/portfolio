@@ -1,0 +1,41 @@
+/*
+ * Running header (#28): the name, the issue line and the chapter label on one ink rule, wrapping
+ * onto a second line on phones. Nothing in it is hidden or rotated.
+ */
+
+.running-header {
+  box-sizing: border-box;
+  max-width: var(--page-max-width);
+  padding-top: var(--space-xl);
+  margin: 0 auto var(--space-3xl);
+}
+
+.running-header-rule {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2xs) var(--space-l);
+  align-items: baseline;
+  padding-bottom: var(--space-xs);
+  border-bottom: var(--line-panel) solid var(--color-ink);
+}
+
+.running-header-name {
+  font-family: var(--font-display);
+  font-size: var(--font-size-h3);
+  line-height: var(--line-height-call-to-action);
+  text-decoration-line: none;
+}
+
+.running-header-name:hover {
+  text-decoration-line: underline;
+}
+
+.running-header-issue,
+.running-header-chapter {
+  margin: 0;
+}
+
+.running-header-chapter {
+  margin-left: auto;
+  font-family: var(--font-display);
+}

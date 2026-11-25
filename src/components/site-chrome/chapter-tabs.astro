@@ -1,0 +1,35 @@
+---
+// The chapter tabs (#29): the site navigation, hanging from the running header's rule. The current
+// page's tab is inked; Contact always has a red edge. On phones the tabs wrap; no menu, no script.
+import { CHAPTERS, CONTACT_CHAPTER } from "../../site-chrome/chapters";
+import { ariaCurrentFor } from "../../site-chrome/site-page";
+import type { SitePage } from "../../site-chrome/site-page";
+
+import "../../styles/chapter-tabs.css";
+
+interface Props {
+  page: SitePage;
+}
+
+const { page } = Astro.props;
+---
+
+<nav
+  class="chapter-tabs"
+  aria-label="Chapters"
+>
+  <ul class="chapter-tabs-list">
+    {CHAPTERS.map((chapter) => (
+      <li class="chapter-tabs-item">
+        <a
+          class:list={["chapter-tab", { "chapter-tab-contact": chapter === CONTACT_CHAPTER }]}
+          href={chapter.href}
+          aria-current={ariaCurrentFor(page, chapter)}
+        >
+          <span class="chapter-tab-number">{chapter.number}</span>
+          {chapter.name}
+        </a>
+      </li>
+    ))}
+  </ul>
+</nav>
