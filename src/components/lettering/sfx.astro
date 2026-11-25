@@ -1,0 +1,23 @@
+---
+// A sound effect from the SFX catalogue, at most two per page, in its one impact moment. Always
+// decorative and hidden from assistive technology. `class` places it in the panel.
+import type { ApprovedSfx } from "../../lettering/sfx.ts";
+import { SFX_CLASS } from "../../lettering/sfx.ts";
+import Fuchidori from "./fuchidori.astro";
+
+import "../../styles/sfx.css";
+
+interface Props {
+  sound: ApprovedSfx;
+  class?: string;
+}
+
+const { sound, class: className } = Astro.props;
+---
+
+<Fuchidori
+  class:list={[SFX_CLASS, className]}
+  aria-hidden="true"
+>
+  {sound}
+</Fuchidori>

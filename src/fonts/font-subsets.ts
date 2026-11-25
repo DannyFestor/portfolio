@@ -6,6 +6,7 @@
  * Japanese copy needs its characters added here, in the family it is set in, and a rerun; the
  * build-contract tests fail on any character in the built pages that no shipped subset covers.
  */
+import { APPROVED_SFX } from "../lettering/sfx.ts";
 
 /** Google/fonts at the commit the source TTFs are taken from (2026-11-24). */
 export const GOOGLE_FONTS_COMMIT = "83c62e30d87daa70216dab6b984d00d20d96d585";
@@ -52,11 +53,8 @@ export const ZEN_ANTIQUE: FontFamilySubset = {
   slug: "zen-antique",
   googleFontsDirectory: "ofl/zenantique",
   japaneseText: [
-    // SFX of the impact panels: Home, About, Contact, Case studies
-    "カチッ",
-    "ドン",
-    "ゴゴゴ",
-    "シュッ",
+    // SFX of the impact panels, from the SFX catalogue
+    ...APPROVED_SFX,
     // Contact: the next-chapter preview strip
     "次回予告",
     // Blog listing: the table of contents title

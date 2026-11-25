@@ -1,0 +1,17 @@
+/*
+ * Narration box (#31): the engineering voice. Shippori Mincho in a rectangular paper box with a
+ * thin single ink rule. Its paper fill keeps the text off any screentone behind it.
+ */
+
+.narration-box {
+  box-sizing: border-box;
+  padding: var(--space-s) var(--space-m);
+  margin: 0;
+  font-family: var(--font-narration);
+  font-size: var(--font-size-narration);
+  font-weight: var(--font-weight-text);
+  line-height: var(--line-height-narration);
+  color: var(--color-ink);
+  background-color: var(--color-paper);
+  border: var(--line-narration) solid var(--color-ink);
+}

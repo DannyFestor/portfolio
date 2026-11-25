@@ -1,0 +1,17 @@
+---
+// Small text over screentone, on a crisp paper patch with a thin ink edge. Inline by default.
+import type { HTMLTag, Polymorphic } from "astro/types";
+
+import "../../styles/white-out.css";
+
+type Props<Tag extends HTMLTag> = Polymorphic<{ as: Tag }>;
+
+const { as: Tag = "span", class: className, ...attributes } = Astro.props;
+---
+
+<Tag
+  {...attributes}
+  class:list={["white-out", className]}
+>
+  <slot />
+</Tag>

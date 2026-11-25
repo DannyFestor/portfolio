@@ -1,0 +1,18 @@
+---
+// The engineering voice: narration in a paper box with a thin ink rule. A paragraph by default;
+// `as="div"` holds several paragraphs.
+import type { HTMLTag, Polymorphic } from "astro/types";
+
+import "../../styles/narration-box.css";
+
+type Props<Tag extends HTMLTag> = Polymorphic<{ as: Tag }>;
+
+const { as: Tag = "p", class: className, ...attributes } = Astro.props;
+---
+
+<Tag
+  {...attributes}
+  class:list={["narration-box", className]}
+>
+  <slot />
+</Tag>

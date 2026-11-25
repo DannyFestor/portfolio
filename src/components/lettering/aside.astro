@@ -1,0 +1,36 @@
+---
+// The annotation voice: a short red handwritten note beside or inside a panel, with a small arrow.
+import type { HTMLAttributes } from "astro/types";
+
+import { ASIDE_ARROW_VIEW_BOX, asideArrow, headPath, shaftPath } from "./aside-arrow.ts";
+
+import "../../styles/aside.css";
+
+type Props = HTMLAttributes<"p">;
+
+const { class: className, ...attributes } = Astro.props;
+const arrow = asideArrow();
+---
+
+<p
+  {...attributes}
+  class:list={["aside", className]}
+>
+  <svg
+    class="aside-arrow"
+    viewBox={ASIDE_ARROW_VIEW_BOX}
+    aria-hidden="true"
+  >
+    <path
+      d={shaftPath(arrow.shaft)}
+      vector-effect="non-scaling-stroke"
+    ></path>
+    <path
+      d={headPath(arrow)}
+      vector-effect="non-scaling-stroke"
+    ></path>
+  </svg>
+  <span>
+    <slot />
+  </span>
+</p>

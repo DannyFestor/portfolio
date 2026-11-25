@@ -1,0 +1,17 @@
+---
+// Display lettering over screentone or focus lines: wraps it in a paper outline (縁取り).
+import type { HTMLTag, Polymorphic } from "astro/types";
+
+import "../../styles/fuchidori.css";
+
+type Props<Tag extends HTMLTag> = Polymorphic<{ as: Tag }>;
+
+const { as: Tag = "span", class: className, ...attributes } = Astro.props;
+---
+
+<Tag
+  {...attributes}
+  class:list={["fuchidori", className]}
+>
+  <slot />
+</Tag>

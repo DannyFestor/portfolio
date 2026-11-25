@@ -1,4 +1,4 @@
-import { formatCoordinate } from "../../geometry/format-coordinate.ts";
+import { formatPathPoint } from "../../geometry/format-coordinate.ts";
 import type { Point } from "../../geometry/point.ts";
 import { PANEL_BOX_MIDDLE } from "./panel-box.ts";
 
@@ -70,16 +70,12 @@ export function focusLines(): readonly FocusLine[] {
   return Array.from({ length: LINE_COUNT }, (_, index) => focusLine(index));
 }
 
-function pathPoint(point: Point): string {
-  return `${formatCoordinate(point.horizontal)} ${formatCoordinate(point.vertical)}`;
-}
-
 /** The lines as one SVG path, one closed triangle per line. */
 export function focusLinesPath(lines: readonly FocusLine[]): string {
   return lines
     .map(
       ({ tip, base: [first, second] }) =>
-        `M${pathPoint(tip)}L${pathPoint(first)}L${pathPoint(second)}Z`,
+        `M${formatPathPoint(tip)}L${formatPathPoint(first)}L${formatPathPoint(second)}Z`,
     )
     .join("");
 }

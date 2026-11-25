@@ -1,0 +1,44 @@
+---
+import NarrationBox from "./narration-box.astro";
+// A real quote, never invented dialogue: an oval balloon with a curved tail, and who said it.
+// Put the quote's paragraphs in the slot.
+import {
+  BALLOON_TAIL,
+  BALLOON_TAIL_VIEW_BOX,
+  tailFillPath,
+  tailOutlinePath,
+} from "./speech-balloon-tail.ts";
+
+import "../../styles/speech-balloon.css";
+
+interface Props {
+  attribution: string;
+}
+
+const { attribution } = Astro.props;
+---
+
+<figure class="speech-balloon">
+  <NarrationBox
+    as="blockquote"
+    class="speech-balloon-quote"
+  >
+    <slot />
+    <svg
+      class="speech-balloon-tail"
+      viewBox={BALLOON_TAIL_VIEW_BOX}
+      aria-hidden="true"
+    >
+      <path
+        class="speech-balloon-tail-fill"
+        d={tailFillPath(BALLOON_TAIL)}
+      ></path>
+      <path
+        class="speech-balloon-tail-outline"
+        d={tailOutlinePath(BALLOON_TAIL)}
+        vector-effect="non-scaling-stroke"
+      ></path>
+    </svg>
+  </NarrationBox>
+  <figcaption class="speech-balloon-attribution">— {attribution}</figcaption>
+</figure>

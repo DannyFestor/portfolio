@@ -1,9 +1,10 @@
 {
   "$schema": "https://unpkg.com/knip@6/schema-jsonc.json",
-  // The manga panel system (#32) is a component library for the pages (#15 to #19). Until a page
-  // uses its components, they are entry points; drop that pattern once one does. Scripts run as
-  // tasks (`vp run fonts:subset`), which knip does not trace to their files.
-  "entry": ["src/components/manga/*.astro", "scripts/*.ts"],
+  // The manga panel system (#32) and the lettering system (#31) are component libraries for the
+  // pages (#15 to #19). Until a page uses their components, they are entry points; drop those
+  // patterns once one does. Scripts run as tasks (`vp run fonts:subset`), which knip does not trace
+  // to their files.
+  "entry": ["src/components/manga/*.astro", "src/components/lettering/*.astro", "scripts/*.ts"],
   "ignoreBinaries": [
     // uv runs pyftsubset for scripts/subset-fonts.ts; it is a system tool, so the project has no Python.
     "uvx",
