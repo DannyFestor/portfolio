@@ -1,0 +1,27 @@
+---
+// A numbered preview frame: one step of what happens after the first email. The numeral is
+// decoration; the label carries the order for assistive technology.
+import type { PreviewFrameContent } from "../../contact/contact-content";
+import NarrationBox from "../lettering/narration-box.astro";
+import Panel from "../manga/panel.astro";
+
+import "../../styles/label.css";
+import "../../styles/preview-frame.css";
+
+interface Props {
+  frame: PreviewFrameContent;
+}
+
+const { frame } = Astro.props;
+---
+
+<Panel class:list={["preview-frame", `preview-frame-${String(frame.number)}`]}>
+  <p
+    class="preview-frame-number"
+    aria-hidden="true"
+  >
+    {frame.number}
+  </p>
+  <h2 class="preview-frame-label label">{frame.label}</h2>
+  <NarrationBox>{frame.text}</NarrationBox>
+</Panel>

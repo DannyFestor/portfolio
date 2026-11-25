@@ -1,0 +1,24 @@
+---
+// The email panel: the address as the page's big inked call to action. No form.
+import { CONTACT_EMAIL } from "../../consts";
+import { EMAIL_PANEL } from "../../contact/contact-content";
+import Aside from "../lettering/aside.astro";
+import CallToAction from "../links/call-to-action.astro";
+import Panel from "../manga/panel.astro";
+
+import "../../styles/email-panel.css";
+import "../../styles/label.css";
+
+const [mailbox, domain] = CONTACT_EMAIL.split("@");
+---
+
+<Panel class="email-panel">
+  <h2 class="email-panel-heading label">{EMAIL_PANEL.heading}</h2>
+  <p class="email-panel-address">
+    <CallToAction href={`mailto:${CONTACT_EMAIL}`}>
+      {mailbox}@<wbr />
+      {domain}
+    </CallToAction>
+  </p>
+  <Aside>{EMAIL_PANEL.aside}</Aside>
+</Panel>

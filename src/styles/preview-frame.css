@@ -1,0 +1,25 @@
+/*
+ * Preview frames (#19): the steps after the first email. A big outlined numeral in the corner,
+ * then the label and the narration, at the bottom of the panel.
+ */
+
+.preview-frame {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-s);
+  justify-content: flex-end;
+  padding: var(--space-m);
+}
+
+.preview-frame-number {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: var(--font-size-h1);
+  line-height: 1;
+  color: var(--color-paper);
+  -webkit-text-stroke: var(--line-narration) var(--color-ink);
+}
+
+.preview-frame-label {
+  margin: 0;
+}
