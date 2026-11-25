@@ -1,0 +1,12 @@
+---
+// The tall halftone photo panel, with a note in the annotation voice.
+import { PORTRAIT_PANEL } from "../../home/home-content";
+import Aside from "../lettering/aside.astro";
+import PhotoPlate from "../manga/photo-plate.astro";
+
+import "../../styles/portrait-panel.css";
+---
+
+<PhotoPlate class="portrait-panel">
+  <Aside class="portrait-aside">{PORTRAIT_PANEL.aside}</Aside>
+</PhotoPlate>

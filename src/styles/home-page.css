@@ -1,0 +1,81 @@
+/*
+ * Home (#15): variant A, the seinen page grid, decided in #35. Page 1: the establishing panel, the
+ * tall photo, the positioning line in two panels and the subline. Page 2: the two worlds split by a
+ * diagonal gutter, then the three work panels at different sizes. Page 3: contact and the latest
+ * writing. On phones the panels stack in DOM order.
+ */
+
+.home-opening-panels {
+  --panel-grid-template: "est   est   est   est    est    est    est    est    photo photo photo photo"
+    minmax(220px, auto)
+    "quiet quiet quiet impact impact impact impact impact photo photo photo photo"
+    minmax(280px, auto)
+    "sub   sub   sub   impact impact impact impact impact photo photo photo photo"
+    minmax(170px, auto);
+}
+
+.home-work-panels {
+  --panel-grid-template: "rescue rescue rescue rescue rescue rescue build build build build build build"
+    minmax(250px, auto) "tall tall tall tall wide wide wide wide wide wide wide wide"
+    minmax(250px, auto) "tall tall tall tall low  low  low  low  low  low  low  low"
+    minmax(200px, auto);
+}
+
+.home-contact-panels {
+  --panel-grid-template: "contact contact contact contact contact contact contact contact writing writing writing writing"
+    minmax(170px, auto)
+    "contact contact contact contact contact contact contact contact end     end     end     end"
+    minmax(170px, auto);
+}
+
+.establishing-panel {
+  --panel-area: est;
+}
+
+.portrait-panel {
+  --panel-area: photo;
+}
+
+.positioning-quiet-panel {
+  --panel-area: quiet;
+}
+
+.positioning-impact-panel {
+  --panel-area: impact;
+}
+
+.subline-panel {
+  --panel-area: sub;
+}
+
+.world-rescue {
+  --panel-area: rescue;
+}
+
+.world-build {
+  --panel-area: build;
+}
+
+.work-panel-tall {
+  --panel-area: tall;
+}
+
+.work-panel-wide {
+  --panel-area: wide;
+}
+
+.work-panel-low {
+  --panel-area: low;
+}
+
+.home-contact-panel {
+  --panel-area: contact;
+}
+
+.latest-writing-panel {
+  --panel-area: writing;
+}
+
+.quiet-end-panel {
+  --panel-area: end;
+}

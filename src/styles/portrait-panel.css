@@ -1,0 +1,10 @@
+/* The tall photo panel (#15): the aside on its own paper patch in the top right corner. */
+
+.portrait-aside {
+  position: absolute;
+  top: var(--space-m);
+  right: var(--space-m);
+  max-width: 12em;
+  padding: var(--space-xs) var(--space-s);
+  background-color: var(--color-paper);
+}

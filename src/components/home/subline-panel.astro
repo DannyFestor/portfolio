@@ -1,0 +1,15 @@
+---
+// The positioning subline in a narration box on tone.
+import { POSITIONING_SUBLINE } from "../../consts";
+import NarrationBox from "../lettering/narration-box.astro";
+import Panel from "../manga/panel.astro";
+
+import "../../styles/subline-panel.css";
+---
+
+<Panel
+  class="subline-panel"
+  tone="mid"
+>
+  <NarrationBox>{POSITIONING_SUBLINE}</NarrationBox>
+</Panel>

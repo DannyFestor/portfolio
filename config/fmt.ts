@@ -8,6 +8,8 @@ export const fmtConfig: OxfmtConfig = {
     "pnpm-lock.yaml",
     "src/data/career.json",
     "src/data/career-export.schema.json",
+    // Blog posts are prose with code samples as their author wrote them; formatting would rewrite both.
+    "src/content/blog/**",
   ],
   astro: true,
   sortImports: true,

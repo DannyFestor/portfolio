@@ -1,0 +1,23 @@
+/* The contact panel (#15): the status, a heading and the email as the big inked call to action. */
+
+.home-contact-panel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-m);
+  justify-content: center;
+  padding: var(--space-2xl) var(--space-xl);
+}
+
+.home-contact-heading {
+  font-size: var(--font-size-h1);
+}
+
+.home-contact-address {
+  margin: 0;
+}
+
+@media (width > 760px) {
+  .home-contact-panel {
+    padding-inline: var(--space-3xl);
+  }
+}

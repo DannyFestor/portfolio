@@ -1,0 +1,11 @@
+/*
+ * Display headings (#25): Zen Antique, set tight, with no margin of their own. The panel sets the
+ * size.
+ */
+
+.display-heading {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: var(--font-weight-text);
+  line-height: 1.1;
+}

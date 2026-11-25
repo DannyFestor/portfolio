@@ -1,5 +1,16 @@
 ---
+// Home (#15): variant A, the seinen page grid, decided in #35. Three manga pages: the opening, the
+// two worlds and the work, then contact and the latest writing.
+import ContactPage from "../components/home/contact-page.astro";
+import OpeningPage from "../components/home/opening-page.astro";
+import WorkPage from "../components/home/work-page.astro";
 import BaseLayout from "../layouts/base-layout.astro";
+
+import "../styles/home-page.css";
 ---
 
-<BaseLayout />
+<BaseLayout>
+  <OpeningPage />
+  <WorkPage />
+  <ContactPage />
+</BaseLayout>

@@ -1,0 +1,26 @@
+---
+// The photo plate: Danny's photo printed in ink through the coarse halftone mask, which the
+// halftone integration renders from src/assets/photos before the build. The slot holds lettering
+// over the photo; `class` places the plate in the page.
+import halftoneMask from "../../assets/halftone/danny-coarse.png";
+import { PORTRAIT_ALT } from "../../consts";
+import Panel from "./panel.astro";
+
+import "../../styles/photo-plate.css";
+
+interface Props {
+  class?: string;
+}
+
+const { class: className } = Astro.props;
+---
+
+<Panel class:list={["photo-plate", className]}>
+  <div
+    class="profile-photo"
+    role="img"
+    aria-label={PORTRAIT_ALT}
+    style={{ "--halftone-mask": `url(${halftoneMask.src})` }}
+  ></div>
+  <slot />
+</Panel>

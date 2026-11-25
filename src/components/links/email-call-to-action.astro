@@ -1,0 +1,12 @@
+---
+// The site's email address as the big inked call to action. It may break after the @ on phones.
+import { CONTACT_EMAIL } from "../../consts";
+import CallToAction from "./call-to-action.astro";
+
+const [mailbox, domain] = CONTACT_EMAIL.split("@");
+---
+
+<CallToAction href={`mailto:${CONTACT_EMAIL}`}>
+  {mailbox}@<wbr />
+  {domain}
+</CallToAction>

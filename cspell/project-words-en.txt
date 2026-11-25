@@ -8,8 +8,10 @@ cmap
 cocogitto
 dbdiagram
 Deeplearning
+Dispatchable
 dotenv
 endobj
+endpush
 esbuild
 favourites
 Festor
@@ -17,8 +19,12 @@ fonttools
 glyf
 golangci
 guillemets
+hmac
 hrefs
+Intelephense
+isset
 Japanology
+Jetstream
 JLPT
 kariera
 Katalyst
@@ -55,6 +61,7 @@ Scikit
 screentone
 Shippori
 shipporimincho
+Soketi
 specialisation
 startxref
 stylesheet
@@ -64,6 +71,9 @@ TOEIC
 unicodes
 unifiedjs
 unpdf
+unsubscription
+unsubscriptions
+urlsignature
 vite
 Vogaro
 voidzero

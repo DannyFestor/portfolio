@@ -1,0 +1,51 @@
+---
+// A work panel: a featured project's period, title, client line, beat and impact line.
+import type { WorkPanelLook } from "../../home/work-panel-looks";
+import type { WorkPanelContent } from "../../home/work-panels";
+import Fuchidori from "../lettering/fuchidori.astro";
+import NarrationBox from "../lettering/narration-box.astro";
+import PeriodTag from "../lettering/period-tag.astro";
+import WhiteOut from "../lettering/white-out.astro";
+import Panel from "../manga/panel.astro";
+import ScreentoneFade from "../manga/screentone-fade.astro";
+
+import "../../styles/display-heading.css";
+import "../../styles/work-panel.css";
+
+interface Props {
+  work: WorkPanelContent;
+  look: WorkPanelLook;
+}
+
+const { work, look } = Astro.props;
+---
+
+<Panel
+  as="article"
+  class:list={["work-panel", look.placement]}
+  tone={look.tone}
+>
+  {look.fade !== undefined && (
+    <ScreentoneFade
+      density={look.fade.density}
+      toward={look.fade.toward}
+    />
+  )}
+  <PeriodTag as="p">{work.period}</PeriodTag>
+  <Fuchidori
+    as="h2"
+    class="work-title display-heading"
+  >
+    {work.title}
+  </Fuchidori>
+  <WhiteOut
+    as="p"
+    class="work-client"
+  >
+    {work.client}
+  </WhiteOut>
+  <NarrationBox class="work-beat">{work.beat}</NarrationBox>
+  <p class="work-impact">
+    <Fuchidori>{work.impact}</Fuchidori>
+  </p>
+</Panel>

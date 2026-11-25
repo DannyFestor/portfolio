@@ -1,0 +1,19 @@
+---
+// Home's first page: the establishing panel, the tall photo, the positioning line and the subline.
+import { HOME_FOLIOS } from "../../home/home-content";
+import MangaPage from "../manga/manga-page.astro";
+import PanelGrid from "../manga/panel-grid.astro";
+import EstablishingPanel from "./establishing-panel.astro";
+import PortraitPanel from "./portrait-panel.astro";
+import PositioningPanels from "./positioning-panels.astro";
+import SublinePanel from "./subline-panel.astro";
+---
+
+<MangaPage folio={HOME_FOLIOS.opening}>
+  <PanelGrid class="home-opening-panels">
+    <EstablishingPanel />
+    <PortraitPanel />
+    <PositioningPanels />
+    <SublinePanel />
+  </PanelGrid>
+</MangaPage>

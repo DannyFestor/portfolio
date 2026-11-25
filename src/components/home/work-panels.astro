@@ -1,0 +1,13 @@
+---
+// The featured projects, newest first, each in its own panel.
+import { WORK_PANELS } from "../../home/home-content";
+import { workPanelLook } from "../../home/work-panel-looks";
+import WorkPanel from "./work-panel.astro";
+---
+
+{WORK_PANELS.map((work, index) => (
+  <WorkPanel
+    work={work}
+    look={workPanelLook(index)}
+  />
+))}

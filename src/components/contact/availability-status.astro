@@ -1,0 +1,14 @@
+---
+// The availability status, locked: written on the site, with a red mark.
+import { AVAILABILITY_STATUS } from "../../consts";
+
+import "../../styles/availability-status.css";
+---
+
+<p class="availability-status">
+  <span
+    class="availability-status-mark"
+    aria-hidden="true"
+  ></span>
+  {AVAILABILITY_STATUS}
+</p>

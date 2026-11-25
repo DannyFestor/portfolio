@@ -1,0 +1,47 @@
+/*
+ * The positioning line (#15), the page's heading, lettered in two panels. The heading itself draws
+ * no box, so its two panels sit in the page grid. The quiet beat waits at the bottom of light tone;
+ * the impact beat stands in the clear centre of the focus lines, カチッ in the top right corner. On
+ * phones the panel is narrow, so it grows tall enough for the beat to stay clear of カチッ.
+ */
+
+.positioning {
+  display: contents;
+}
+
+.positioning-quiet-panel {
+  display: flex;
+  align-items: flex-end;
+  padding: var(--space-4xl) var(--space-xl) var(--space-xl);
+}
+
+.positioning-quiet-beat {
+  font-size: var(--font-size-h4);
+  font-weight: var(--font-weight-label);
+}
+
+.positioning-impact-panel {
+  display: grid;
+  place-items: center;
+  padding: calc(var(--space-5xl) + var(--space-4xl)) var(--space-xl);
+}
+
+.positioning-impact-beat {
+  font-family: var(--font-display);
+  font-size: var(--font-size-h1);
+  font-weight: var(--font-weight-text);
+  line-height: 1.1;
+  text-align: center;
+}
+
+.positioning-sfx {
+  position: absolute;
+  top: var(--space-l);
+  right: var(--space-xl);
+}
+
+@media (width > 760px) {
+  .positioning-impact-panel {
+    padding: var(--space-5xl) var(--space-3xl) var(--space-5xl) var(--space-4xl);
+  }
+}
