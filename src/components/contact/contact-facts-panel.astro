@@ -1,21 +1,15 @@
 ---
 // The facts next to the email panel: the availability status, then rates, replies and languages.
-import { AVAILABILITY_STATUS } from "../../consts";
 import { CONTACT_FACTS } from "../../contact/contact-content";
 import Panel from "../manga/panel.astro";
+import AvailabilityStatus from "./availability-status.astro";
 
 import "../../styles/contact-facts-panel.css";
 import "../../styles/label.css";
 ---
 
 <Panel class="contact-facts-panel">
-  <p class="contact-status">
-    <span
-      class="contact-status-mark"
-      aria-hidden="true"
-    ></span>
-    {AVAILABILITY_STATUS}
-  </p>
+  <AvailabilityStatus />
   <dl class="contact-facts">
     {CONTACT_FACTS.map((fact) => (
       <div class="contact-fact">

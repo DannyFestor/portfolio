@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vite-plus/test";
 
-import { PHOTO_PLATE } from "../../src/about/about-content.ts";
 import { CAREER } from "../../src/career/career-data.ts";
+import { PORTRAIT_ALT } from "../../src/consts.ts";
 import { SFX_CLASS } from "../../src/lettering/sfx.ts";
 import { PROFILE_LINKS, RESUME_LINKS } from "../../src/site-chrome/back-cover-content.ts";
 import { useBuiltSiteBrowser } from "./built-site-browser.ts";
@@ -28,7 +28,7 @@ describe("the About page (#18)", () => {
   it("draws the photo through the halftone pipeline", () => {
     const [photo] = elementsWithClass(main, "profile-photo");
     expect(photo === undefined ? undefined : attributeValue(photo, "aria-label")).toBe(
-      PHOTO_PLATE.alt,
+      PORTRAIT_ALT,
     );
     const maskPath = HALFTONE_MASK_URL.exec(photo?.attributes ?? "")?.groups?.["path"];
     expect(findBuiltFiles("_astro/danny-coarse.*.png").map((file) => `/${file}`)).toContain(

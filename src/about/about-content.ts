@@ -23,10 +23,6 @@ export const NAME_PANEL = {
   headline: CAREER.profile.headline,
 } as const;
 
-export const PHOTO_PLATE = {
-  alt: `${SITE_AUTHOR}, smiling, a camera in hand`,
-} as const;
-
 export const PROFILE_FACTS: readonly ProfileFact[] = [
   {
     term: "In Japan",
