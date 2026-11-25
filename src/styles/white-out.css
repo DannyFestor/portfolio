@@ -3,7 +3,8 @@
  * thin ink edge. No blur, no glow.
  */
 
-.white-out {
+/* At zero specificity, so a page's own class for its patch wins, whatever the bundle order. */
+:where(.white-out) {
   box-sizing: border-box;
   display: inline-block;
   padding: var(--space-2xs) var(--space-xs);
