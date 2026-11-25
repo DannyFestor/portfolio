@@ -57,6 +57,12 @@ const TEXT_PAIRS: readonly TextPair[] = [
     minimum: BODY_TEXT_MINIMUM,
   },
   {
+    text: "--color-grey",
+    background: "--color-paper",
+    usage: "comments in code blocks",
+    minimum: BODY_TEXT_MINIMUM,
+  },
+  {
     text: "--color-accent",
     background: "--color-paper",
     usage: "SFX, impact lines, status marks and asides",

@@ -19,6 +19,9 @@
   /* Red is for SFX, impact lines, status marks and asides. #cf332a, not the prototype's #d1352b: same look, 4.5:1 on paper. */
   --color-accent: #cf332a;
 
+  /* Grey for quiet text on paper: comments in code blocks. */
+  --color-grey: #6d6a62;
+
   /*
    * Screentone: indigo dots on a 45° lattice; densities differ by dot radius only. The pitch is the
    * distance between neighbouring dots. integrations/screentone generates the tone tiles from these.
@@ -34,6 +37,7 @@
   --font-display: "Zen Antique", "Hiragino Mincho ProN", serif;
   --font-narration: "Shippori Mincho", "Hiragino Mincho ProN", serif;
   --font-aside: "Yomogi", "Hiragino Maru Gothic ProN", serif;
+  --font-code: "Courier Prime", ui-monospace, monospace;
 
   /*
    * Type sizes (#25). Headings in Zen Antique step up by ×1.2 from the 16px narration, rounded to
@@ -64,6 +68,13 @@
   /* Dates and periods (2025 — now, 2024 — 25, 17 April 2024): Zen Antique, paper on an ink tag. */
   --font-size-date: 13px;
   --letter-spacing-date: 0.12em;
+
+  /* The blog contents' 目次 (#16): Zen Antique, set vertically as decoration; half the size on phones. */
+  --font-size-title-kanji: 108px;
+
+  /* Code (#16): Courier Prime, a step under the reading size. */
+  --font-size-code: 15px;
+  --line-height-code: 1.6;
 
   /* SFX lettering: Zen Antique, tilted a little. Text that must be read is never rotated. */
   --font-size-sfx: 44px;
@@ -192,5 +203,13 @@
   font-style: normal;
   font-weight: 400;
   src: url("/fonts/yomogi/400.woff2") format("woff2");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Courier Prime";
+  font-style: normal;
+  font-weight: 400;
+  src: url("/fonts/courier-prime/400.woff2") format("woff2");
   font-display: swap;
 }
