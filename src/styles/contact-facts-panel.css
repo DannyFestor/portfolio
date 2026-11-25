@@ -1,0 +1,47 @@
+/*
+ * The facts next to the email panel (#19): the status line with a red mark, then the terms and
+ * their descriptions in two aligned columns.
+ */
+
+.contact-facts-panel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-m);
+  justify-content: center;
+  padding: var(--space-l) var(--space-xl);
+}
+
+.contact-status {
+  display: flex;
+  gap: var(--space-s);
+  align-items: center;
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: var(--font-size-h4);
+}
+
+/* A red square: decoration, hidden from assistive technology. */
+.contact-status-mark {
+  flex: none;
+  width: var(--space-s);
+  height: var(--space-s);
+  background-color: var(--color-accent);
+}
+
+.contact-facts {
+  display: grid;
+  grid-template-columns: max-content minmax(0, 1fr);
+  gap: var(--space-xs) var(--space-m);
+  margin: 0;
+}
+
+.contact-fact {
+  display: grid;
+  grid-template-columns: subgrid;
+  grid-column: 1 / -1;
+  align-items: baseline;
+}
+
+.contact-fact dd {
+  margin: 0;
+}

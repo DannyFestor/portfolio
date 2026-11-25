@@ -1,0 +1,41 @@
+/*
+ * Contact (#19): variant B, the next-chapter preview. On phones the panels stack in DOM order:
+ * strip, title, email, facts, then the preview frames, so the email follows the title. From the
+ * composition breakpoint on, the preview frames sit between the title and the email panel, as
+ * decided in #38.
+ */
+
+.contact-panels {
+  --panel-grid-template: "strip strip strip strip strip strip strip strip strip strip strip strip"
+    auto "title title title title title title title title title title title title" auto
+    "one   one   one   one   two   two   two   two   three three three three" auto
+    "email email email email email email email facts facts facts facts facts" auto;
+}
+
+.next-chapter-strip {
+  --panel-area: strip;
+}
+
+.chapter-title-panel {
+  --panel-area: title;
+}
+
+.preview-frame-1 {
+  --panel-area: one;
+}
+
+.preview-frame-2 {
+  --panel-area: two;
+}
+
+.preview-frame-3 {
+  --panel-area: three;
+}
+
+.email-panel {
+  --panel-area: email;
+}
+
+.contact-facts-panel {
+  --panel-area: facts;
+}

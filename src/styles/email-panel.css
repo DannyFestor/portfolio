@@ -1,0 +1,19 @@
+/*
+ * The email panel (#19): the address as the big inked call to action, in a double-ruled panel so
+ * it reads as the page's way out.
+ */
+
+.email-panel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-m);
+  justify-content: center;
+  padding: var(--space-xl) var(--space-2xl);
+  border-style: double;
+  border-width: calc(var(--line-panel) * 2);
+}
+
+.email-panel-heading,
+.email-panel-address {
+  margin: 0;
+}

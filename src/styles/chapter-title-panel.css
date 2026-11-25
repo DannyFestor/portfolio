@@ -1,0 +1,37 @@
+/*
+ * The impact panel (#19): the chapter title in the clear centre of the focus lines, the SFX in a
+ * corner. The lettering keeps its paper outline (fuchidori) over the lines.
+ */
+
+.chapter-title-panel {
+  display: grid;
+  place-items: center;
+  padding: var(--space-5xl) var(--space-2xl);
+}
+
+.chapter-title {
+  display: grid;
+  gap: var(--space-xs);
+  justify-items: center;
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: var(--font-weight-text);
+  line-height: 1;
+  text-align: center;
+}
+
+.chapter-title-number {
+  font-size: var(--font-size-label);
+  text-transform: uppercase;
+  letter-spacing: var(--letter-spacing-label);
+}
+
+.chapter-title-name {
+  font-size: var(--font-size-h1);
+}
+
+.chapter-title-sfx {
+  position: absolute;
+  top: var(--space-l);
+  right: var(--space-xl);
+}

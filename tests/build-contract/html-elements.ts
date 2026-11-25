@@ -9,6 +9,9 @@ export interface HtmlElement {
 const OPENING_TAG_AND_TEXT = /<[a-z][a-z\d-]*(?<attributes>\s[^>]*)?>(?<text>[^<]*)/giu;
 const ATTRIBUTE = /(?<name>[\w-]+)="(?<value>[^"]*)"/gu;
 const WHITESPACE = /\s+/u;
+const WHITESPACE_RUNS = /\s+/gu;
+const MAIN_CONTENT = /<main\b[^>]*>(?<content>[\s\S]*?)<\/main>/u;
+const TAG = /<[^>]+>/gu;
 
 function htmlElementsIn(html: string): HtmlElement[] {
   return [...decodeNumericCharacterReferences(html).matchAll(OPENING_TAG_AND_TEXT)].map(
@@ -40,4 +43,12 @@ export function elementsWithClass(html: string, className: string): HtmlElement[
 /** Every element whose attribute has exactly this value. */
 export function elementsWithAttribute(html: string, name: string, value: string): HtmlElement[] {
   return htmlElementsIn(html).filter((element) => attributeValue(element, name) === value);
+}
+
+/** The text of the page's <main>, tags dropped and whitespace collapsed, as a reader would see it. */
+export function mainText(html: string): string {
+  const content = MAIN_CONTENT.exec(html)?.groups?.["content"] ?? "";
+  return decodeNumericCharacterReferences(content.replaceAll(TAG, " "))
+    .replaceAll(WHITESPACE_RUNS, " ")
+    .trim();
 }

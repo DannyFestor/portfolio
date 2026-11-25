@@ -5,6 +5,7 @@ import {
   elementsWithAttribute,
   elementsWithClass,
   isAriaHidden,
+  mainText,
 } from "./html-elements.ts";
 
 const PAGE = [
@@ -29,5 +30,13 @@ describe("elements in built HTML", () => {
   it("are found by an attribute's exact value, not a longer attribute's", () => {
     const current = elementsWithAttribute(PAGE, "aria-current", "page");
     expect(current.map((element) => attributeValue(element, "href"))).toStrictEqual(["/blog"]);
+  });
+});
+
+describe("the text of <main>", () => {
+  it("leaves out the tags and everything outside <main>", () => {
+    expect(mainText(`<header>Issue</header>${PAGE}<footer>Back</footer>`)).toBe(
+      "Before touching code, I measured it. カチッ not an SFX ドン Work Blog",
+    );
   });
 });

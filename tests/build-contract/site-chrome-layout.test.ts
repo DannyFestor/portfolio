@@ -11,6 +11,7 @@ import { computedRgb } from "../design-tokens/hex-color.ts";
 import { useBuiltSiteBrowser } from "./built-site-browser.ts";
 import type { Browsing } from "./built-site-browser.ts";
 import { findBuiltFiles, urlPathOfPage } from "./built-site.ts";
+import { turnedElements } from "./turned-elements.ts";
 
 /** The narrowest phone the chrome must work on, browsed with JavaScript off (#29). */
 const NARROWEST_PHONE: Browsing = {
@@ -42,19 +43,7 @@ function tabsOutsideViewport(): string[] {
     .map((tab) => tab.textContent.trim());
 }
 
-/** Runs in the page: header and footer elements that are rotated or set vertically. */
-function turnedChromeElements(): string[] {
-  return [...document.querySelectorAll("header, header *, footer, footer *")]
-    .filter((element) => {
-      const style = getComputedStyle(element);
-      return (
-        style.transform !== "none" ||
-        style.rotate !== "none" ||
-        style.writingMode !== "horizontal-tb"
-      );
-    })
-    .map((element) => element.tagName.toLowerCase());
-}
+const CHROME_ELEMENTS = "header, header *, footer, footer *";
 
 function scrollsSideways(page: Page): Promise<boolean> {
   return page.evaluate(
@@ -88,7 +77,7 @@ describe("the chapter tabs (#29)", () => {
 describe("the running header and back cover (#28, #30)", () => {
   it.each(urlPaths)("%s rotates nothing and sets nothing vertically", async (urlPath) => {
     expect(
-      await inspectBuiltPage(urlPath, (page) => page.evaluate(turnedChromeElements)),
+      await inspectBuiltPage(urlPath, (page) => page.evaluate(turnedElements, CHROME_ELEMENTS)),
     ).toStrictEqual([]);
   });
 });

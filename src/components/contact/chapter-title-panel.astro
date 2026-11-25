@@ -1,0 +1,22 @@
+---
+import { CHAPTER_TITLE } from "../../contact/contact-content";
+// The page's one impact moment: the chapter title in a panel of focus lines, with ゴゴゴ.
+import Fuchidori from "../lettering/fuchidori.astro";
+import Sfx from "../lettering/sfx.astro";
+import FocusLines from "../manga/focus-lines.astro";
+import Panel from "../manga/panel.astro";
+
+import "../../styles/chapter-title-panel.css";
+---
+
+<Panel class="chapter-title-panel">
+  <FocusLines />
+  <Sfx
+    sound="ゴゴゴ"
+    class="chapter-title-sfx"
+  />
+  <h1 class="chapter-title">
+    <Fuchidori class="chapter-title-number">{CHAPTER_TITLE.chapter}</Fuchidori>
+    <Fuchidori class="chapter-title-name">{CHAPTER_TITLE.title}</Fuchidori>
+  </h1>
+</Panel>

@@ -1,0 +1,28 @@
+---
+import { NEXT_CHAPTER_STRIP } from "../../contact/contact-content";
+// The 次回予告 (next-chapter preview) label strip on dense screentone. Set horizontally, on a
+// white-out patch: it is read, so it is never vertical or rotated.
+import WhiteOut from "../lettering/white-out.astro";
+import Panel from "../manga/panel.astro";
+
+import "../../styles/label.css";
+import "../../styles/next-chapter-strip.css";
+---
+
+<Panel
+  class="next-chapter-strip"
+  tone="dense"
+>
+  <WhiteOut
+    as="p"
+    class="next-chapter-strip-label"
+  >
+    <span
+      class="next-chapter-strip-japanese"
+      lang="ja"
+    >
+      {NEXT_CHAPTER_STRIP.japanese}
+    </span>
+    <span class="label">{NEXT_CHAPTER_STRIP.english}</span>
+  </WhiteOut>
+</Panel>

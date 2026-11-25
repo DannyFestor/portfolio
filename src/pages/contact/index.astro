@@ -1,5 +1,29 @@
 ---
+// Contact (#19): variant B, the next-chapter preview (次回予告), decided in #38.
+// On phones the panels stack in this order, so the email panel follows the title.
+import ChapterTitlePanel from "../../components/contact/chapter-title-panel.astro";
+import ContactFactsPanel from "../../components/contact/contact-facts-panel.astro";
+import EmailPanel from "../../components/contact/email-panel.astro";
+import NextChapterStrip from "../../components/contact/next-chapter-strip.astro";
+import PreviewFrame from "../../components/contact/preview-frame.astro";
+import MangaPage from "../../components/manga/manga-page.astro";
+import PanelGrid from "../../components/manga/panel-grid.astro";
+import { CONTACT_FOLIO, PREVIEW_FRAMES } from "../../contact/contact-content";
 import BaseLayout from "../../layouts/base-layout.astro";
+
+import "../../styles/contact-page.css";
 ---
 
-<BaseLayout />
+<BaseLayout>
+  <MangaPage folio={CONTACT_FOLIO}>
+    <PanelGrid class="contact-panels">
+      <NextChapterStrip />
+      <ChapterTitlePanel />
+      <EmailPanel />
+      <ContactFactsPanel />
+      {PREVIEW_FRAMES.map((frame) => (
+        <PreviewFrame frame={frame} />
+      ))}
+    </PanelGrid>
+  </MangaPage>
+</BaseLayout>
