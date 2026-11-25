@@ -1,0 +1,34 @@
+---
+// One study in the index: its title, period, track and role, and its impact line.
+import type { CaseStudy } from "../../work/case-study";
+import { roleLine } from "../../work/role-line";
+import PeriodTag from "../lettering/period-tag.astro";
+import Panel from "../manga/panel.astro";
+import TrackLabel from "./track-label.astro";
+
+interface Props {
+  study: CaseStudy;
+  isOpen: boolean;
+}
+
+const { study, isOpen } = Astro.props;
+---
+
+<Panel
+  as="li"
+  class="study-index-entry"
+>
+  <a
+    class="study-index-link"
+    href={study.href}
+    aria-current={isOpen ? "page" : undefined}
+  >
+    <span class="study-index-title">{study.project.title}</span>
+    <span class="study-index-meta">
+      <PeriodTag>{study.period}</PeriodTag>
+      <TrackLabel track={study.track} />
+      <span>{roleLine(study.project)}</span>
+    </span>
+    <span class="study-index-impact">{study.impact.line}</span>
+  </a>
+</Panel>

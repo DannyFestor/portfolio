@@ -1,21 +1,19 @@
 ---
 // A composed manga page: paper with page margins and a folio (page number) at the bottom centre.
-// Put a PanelGrid inside.
-import type { HTMLAttributes } from "astro/types";
+// Put a PanelGrid inside. A section by default; `as` makes it the landmark it holds, such as a nav.
+import type { HTMLTag, Polymorphic } from "astro/types";
 
 import "../../styles/page-composition.css";
 
-interface Props extends HTMLAttributes<"section"> {
-  folio: number;
-}
+type Props<Tag extends HTMLTag> = Polymorphic<{ as: Tag; folio: number }>;
 
-const { folio, class: className, ...attributes } = Astro.props;
+const { as: Tag = "section", folio, class: className, ...attributes } = Astro.props;
 ---
 
-<section
-  class:list={["manga-page", className]}
+<Tag
   {...attributes}
+  class:list={["manga-page", className]}
 >
   <slot />
   <p class="manga-folio">{folio}</p>
-</section>
+</Tag>

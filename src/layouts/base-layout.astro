@@ -1,8 +1,9 @@
 ---
 import BackCover from "../components/site-chrome/back-cover.astro";
 import RunningHeader from "../components/site-chrome/running-header.astro";
-import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
 import { PRELOADED_FONT_URL } from "../fonts/font-subsets";
+import { SITE_PAGE_HEAD } from "../site-chrome/page-head";
+import type { PageHead } from "../site-chrome/page-head";
 import { sitePageAt } from "../site-chrome/site-page";
 
 import "../styles/tokens.css";
@@ -10,7 +11,13 @@ import "../styles/focus.css";
 import "../styles/links.css";
 import "../styles/page-frame.css";
 
+interface Props {
+  head?: PageHead;
+}
+
+const { head = SITE_PAGE_HEAD } = Astro.props;
 const page = sitePageAt(Astro.url.pathname);
+const canonicalUrl = new URL(head.canonicalPath ?? Astro.url.pathname, Astro.site).href;
 ---
 
 <!doctype html>
@@ -28,10 +35,30 @@ const page = sitePageAt(Astro.url.pathname);
       type="font/woff2"
       crossorigin
     />
-    <title>{SITE_TITLE}</title>
+    <title>{head.title}</title>
     <meta
       name="description"
-      content={SITE_DESCRIPTION}
+      content={head.description}
+    />
+    <link
+      rel="canonical"
+      href={canonicalUrl}
+    />
+    <meta
+      property="og:type"
+      content={head.openGraphType}
+    />
+    <meta
+      property="og:title"
+      content={head.title}
+    />
+    <meta
+      property="og:description"
+      content={head.description}
+    />
+    <meta
+      property="og:url"
+      content={canonicalUrl}
     />
   </head>
   <body>

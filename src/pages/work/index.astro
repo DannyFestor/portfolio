@@ -1,5 +1,13 @@
 ---
+// Work (#17): /work opens the newest case study, under that study's own canonical URL.
+import StudySpread from "../../components/work/study-spread.astro";
 import BaseLayout from "../../layouts/base-layout.astro";
+import { newestCaseStudy } from "../../work/case-study-collection";
+import { studyPageHead } from "../../work/study-page-head";
+
+const study = await newestCaseStudy();
 ---
 
-<BaseLayout />
+<BaseLayout head={studyPageHead(study)}>
+  <StudySpread study={study} />
+</BaseLayout>

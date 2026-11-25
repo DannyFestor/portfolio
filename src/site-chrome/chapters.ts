@@ -13,6 +13,13 @@ export interface Chapter {
   readonly href: string;
 }
 
+export const WORK_CHAPTER: Chapter = {
+  number: "01",
+  name: "Work",
+  title: "Case studies",
+  href: "/work",
+};
+
 export const CONTACT_CHAPTER: Chapter = {
   number: "04",
   name: "Contact",
@@ -28,7 +35,7 @@ export const BLOG_CHAPTER: Chapter = {
 };
 
 export const CHAPTERS: readonly Chapter[] = [
-  { number: "01", name: "Work", title: "Case studies", href: "/work" },
+  WORK_CHAPTER,
   { number: "02", name: "About", title: "About the author", href: "/about" },
   BLOG_CHAPTER,
   CONTACT_CHAPTER,

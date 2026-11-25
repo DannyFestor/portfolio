@@ -1,0 +1,42 @@
+/*
+ * The split spread (#17, variant C of #36): two manga pages side by side, the index on the left,
+ * the open study on the right, a double ink spine between them. The index stays in view while the
+ * study scrolls (CSS only). On phones the pages stack: the index first, then the study.
+ */
+
+.study-spread {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  max-width: var(--spread-max-width);
+  margin: 0 auto var(--space-3xl);
+  background-color: var(--color-paper);
+}
+
+.study-spread > .manga-page {
+  max-width: none;
+  margin: 0;
+}
+
+.study-leaf {
+  display: grid;
+  gap: var(--space-2xl);
+  align-content: start;
+  border-top: var(--line-spine) double var(--color-ink);
+}
+
+@media (width > 760px) {
+  .study-spread {
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  }
+
+  .study-index-leaf {
+    position: sticky;
+    top: 0;
+    align-self: start;
+  }
+
+  .study-leaf {
+    border-top: 0;
+    border-left: var(--line-spine) double var(--color-ink);
+  }
+}

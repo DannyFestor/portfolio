@@ -1,0 +1,48 @@
+---
+import type { CaseStudy } from "../../work/case-study";
+// Work (#17): variant C, the split spread, decided in #36. The left page is the index of studies,
+// the right page the open study. On phones the index comes first, then the study.
+import { caseStudies, caseStudyContent } from "../../work/case-study-collection";
+import { STUDY_INDEX, WORK_FOLIOS } from "../../work/work-content";
+import Aside from "../lettering/aside.astro";
+import MangaPage from "../manga/manga-page.astro";
+import StudyHeading from "./study-heading.astro";
+import StudyImpactPanel from "./study-impact-panel.astro";
+import StudyIndex from "./study-index.astro";
+
+import "../../styles/study-spread.css";
+import "../../styles/study-body.css";
+
+interface Props {
+  study: CaseStudy;
+}
+
+const { study } = Astro.props;
+const studies = await caseStudies();
+const Content = await caseStudyContent(study);
+---
+
+<div class="study-spread">
+  <MangaPage
+    as="nav"
+    folio={WORK_FOLIOS.index}
+    class="study-index-leaf"
+    aria-label={STUDY_INDEX.heading}
+  >
+    <StudyIndex
+      studies={studies}
+      openStudy={study}
+    />
+  </MangaPage>
+  <MangaPage
+    as="article"
+    folio={WORK_FOLIOS.study}
+    class="study-leaf"
+  >
+    <StudyImpactPanel impact={study.impact} />
+    <StudyHeading study={study} />
+    <div class="study-body">
+      <Content components={{ Aside }} />
+    </div>
+  </MangaPage>
+</div>

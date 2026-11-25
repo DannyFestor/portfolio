@@ -50,6 +50,11 @@ export function mainHtml(html: string): string {
   return MAIN_CONTENT.exec(html)?.groups?.["content"] ?? "";
 }
 
+/** The markup outside the page's <main>: the site chrome. */
+export function chromeHtml(html: string): string {
+  return html.replace(MAIN_CONTENT, "");
+}
+
 /** The text of the page's <main>, tags dropped and whitespace collapsed, as a reader would see it. */
 export function mainText(html: string): string {
   return decodeNumericCharacterReferences(mainHtml(html).replaceAll(TAG, " "))

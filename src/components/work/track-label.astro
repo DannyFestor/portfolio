@@ -1,0 +1,15 @@
+---
+// The study's Rescue or Build track, as a label; nothing while it is not decided.
+import type { ProjectTrack } from "../../career/project-extras";
+import { TRACK_LABELS } from "../../work/work-content";
+
+import "../../styles/label.css";
+
+interface Props {
+  track: ProjectTrack | undefined;
+}
+
+const { track } = Astro.props;
+---
+
+{track !== undefined && <span class="label">{TRACK_LABELS[track]}</span>}

@@ -1,0 +1,30 @@
+---
+// The open study's heading: period and track, the project title, the role and the stack, all from
+// career.json and the project's extras.
+import type { CaseStudy } from "../../work/case-study";
+import { roleLine } from "../../work/role-line";
+import PeriodTag from "../lettering/period-tag.astro";
+import TrackLabel from "./track-label.astro";
+
+import "../../styles/study-heading.css";
+
+interface Props {
+  study: CaseStudy;
+}
+
+const { study } = Astro.props;
+---
+
+<header class="study-heading">
+  <p class="study-heading-tags">
+    <PeriodTag>{study.period}</PeriodTag>
+    <TrackLabel track={study.track} />
+  </p>
+  <h1 class="study-title">{study.project.title}</h1>
+  <p class="study-role">{roleLine(study.project)}</p>
+  <ul class="study-stack">
+    {study.project.skills.map((skill) => (
+      <li>{skill}</li>
+    ))}
+  </ul>
+</header>
