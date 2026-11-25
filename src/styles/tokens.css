@@ -29,14 +29,51 @@
   --tone-dot-dense: 1.05px;
   --tone-dot-deep: 1.3px;
 
-  /* Type: the self-hosted, subset font files themselves arrive with #25 and #14. */
+  /* Type families: self-hosted subsets, declared by the @font-face rules at the end of this file. */
   --font-display: "Zen Antique", "Hiragino Mincho ProN", serif;
   --font-narration: "Shippori Mincho", "Hiragino Mincho ProN", serif;
   --font-aside: "Yomogi", "Hiragino Maru Gothic ProN", serif;
 
   /*
-   * Spacing scale: PROVISIONAL. Derived from the prototype's most frequent spacing values
-   * (prototype/manga-home), quantized to steps of roughly 1.3 to 1.5. Typography (#25) may adjust it.
+   * Type sizes (#25). Headings in Zen Antique step up by ×1.2 from the 16px narration, rounded to
+   * whole pixels. Phones use the same sizes: there is no separate phone scale.
+   */
+  --font-size-h1: 33px;
+  --font-size-h2: 28px;
+  --font-size-h3: 23px;
+  --font-size-h4: 19px;
+
+  /* Narration: Shippori Mincho. */
+  --font-size-narration: 16px;
+  --line-height-narration: 1.7;
+
+  /* The reading column of blog posts and case studies. */
+  --font-size-reading: 18px;
+  --line-height-reading: 1.75;
+  --measure-reading: 68ch;
+
+  /* Yomogi asides: the floor, never smaller, phones included. */
+  --font-size-aside: 15px;
+
+  /* Labels: Shippori Mincho capitals. */
+  --font-size-label: 12px;
+  --letter-spacing-label: 0.16em;
+
+  /* Dates and periods (2025 — now, 2024 — 25, 17 April 2024): Zen Antique, paper on an ink tag. */
+  --font-size-date: 13px;
+  --letter-spacing-date: 0.12em;
+
+  /* SFX lettering: Zen Antique. */
+  --font-size-sfx: 44px;
+
+  /* Shippori Mincho weights; Zen Antique and Yomogi have 400 only. */
+  --font-weight-text: 400;
+  --font-weight-label: 600;
+  --font-weight-bold: 700;
+
+  /*
+   * Spacing scale, locked in #25. Derived from the prototype's most frequent spacing values
+   * (prototype/manga-home), quantized to steps of roughly 1.3 to 1.5.
    */
   --space-3xs: 2px;
   --space-2xs: 4px;
@@ -65,4 +102,50 @@
   --focus-ring-color: var(--color-ink);
   --focus-ring-width: 2px;
   --focus-ring-offset: 2px;
+}
+
+/*
+ * Self-hosted fonts (#25), subset to Latin and the Japanese the pages set. src/fonts/font-subsets.ts
+ * lists the characters; `vp run fonts:subset` rebuilds the files. Each family's OFL license ships
+ * next to its files. The base layout preloads Zen Antique, the heading face.
+ */
+
+@font-face {
+  font-family: "Zen Antique";
+  font-style: normal;
+  font-weight: 400;
+  src: url("/fonts/zen-antique/400.woff2") format("woff2");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Shippori Mincho";
+  font-style: normal;
+  font-weight: 400;
+  src: url("/fonts/shippori-mincho/400.woff2") format("woff2");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Shippori Mincho";
+  font-style: normal;
+  font-weight: 600;
+  src: url("/fonts/shippori-mincho/600.woff2") format("woff2");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Shippori Mincho";
+  font-style: normal;
+  font-weight: 700;
+  src: url("/fonts/shippori-mincho/700.woff2") format("woff2");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Yomogi;
+  font-style: normal;
+  font-weight: 400;
+  src: url("/fonts/yomogi/400.woff2") format("woff2");
+  font-display: swap;
 }

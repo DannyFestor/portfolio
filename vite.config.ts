@@ -13,6 +13,7 @@ export default defineConfig({
   lint: lintConfig,
   run: {
     tasks: {
+      "fonts:subset": { command: "vpx scripts/subset-fonts.ts" },
       "check:astro": { command: "astro check" },
       "check:css": { command: 'stylelint "**/*.{css,astro}"' },
       "check:unused": { command: "knip" },
