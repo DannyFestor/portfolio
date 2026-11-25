@@ -1,0 +1,25 @@
+---
+import { CAREER_STRIP } from "../../about/about-content";
+// The career as a strip of small panels, read left to right, oldest first, from career.json.
+import TimelineBeat from "./timeline-beat.astro";
+
+import "../../styles/career-strip.css";
+import "../../styles/label.css";
+---
+
+<section
+  class="career-strip"
+  aria-labelledby="career-strip-heading"
+>
+  <h2
+    id="career-strip-heading"
+    class="label"
+  >
+    {CAREER_STRIP.heading}
+  </h2>
+  <ol class="career-strip-beats">
+    {CAREER_STRIP.beats.map((beat) => (
+      <TimelineBeat beat={beat} />
+    ))}
+  </ol>
+</section>

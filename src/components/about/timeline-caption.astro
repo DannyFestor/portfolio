@@ -1,0 +1,24 @@
+---
+// A beat's caption. On a toned beat it sits on a white-out patch, because text never sits on raw
+// screentone; on a paper beat it needs none.
+import WhiteOut from "../lettering/white-out.astro";
+
+interface Props {
+  onTone: boolean;
+}
+
+const { onTone } = Astro.props;
+---
+
+{onTone ? (
+  <WhiteOut
+    as="div"
+    class="timeline-caption"
+  >
+    <slot />
+  </WhiteOut>
+) : (
+  <div class="timeline-caption">
+    <slot />
+  </div>
+)}

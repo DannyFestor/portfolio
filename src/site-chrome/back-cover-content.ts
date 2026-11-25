@@ -17,7 +17,7 @@ interface ExternalLink {
   readonly href: string;
 }
 
-interface ResumeLink {
+export interface ResumeLink {
   readonly title: string;
   /** Set when the title is not English. */
   readonly titleLanguage?: "ja";

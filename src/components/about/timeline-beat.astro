@@ -1,0 +1,32 @@
+---
+import { CAREER_STRIP } from "../../about/about-content";
+import type { TimelineBeat } from "../../about/career-timeline";
+// One engagement on the career strip: its period tag, then the organization and the role. Early
+// chapters are toned and labelled; the current engagement is drawn red.
+import PeriodTag from "../lettering/period-tag.astro";
+import Panel from "../manga/panel.astro";
+import TimelineCaption from "./timeline-caption.astro";
+
+import "../../styles/label.css";
+
+interface Props {
+  beat: TimelineBeat;
+}
+
+const { beat } = Astro.props;
+const isEarlyChapter = beat.stage === "early-chapter";
+---
+
+<Panel
+  as="li"
+  class:list={["timeline-beat", `timeline-beat-${beat.stage}`]}
+  data-stage={beat.stage}
+  tone={isEarlyChapter ? "light" : undefined}
+>
+  <PeriodTag as="p">{beat.period}</PeriodTag>
+  <TimelineCaption onTone={isEarlyChapter}>
+    {isEarlyChapter && <p class="label">{CAREER_STRIP.earlyChapterLabel}</p>}
+    <h3 class="timeline-organization">{beat.organization}</h3>
+    {beat.role !== null && <p class="timeline-role">{beat.role}</p>}
+  </TimelineCaption>
+</Panel>

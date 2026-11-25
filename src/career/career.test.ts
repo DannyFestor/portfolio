@@ -50,6 +50,25 @@ describe("the career loader", () => {
     expect(career.currentEngagement).toStrictEqual(CURRENT_CLIENT);
   });
 
+  it("keeps the qualifications and languages in export order", () => {
+    const degree = {
+      name: "BSc Example",
+      category: "degree",
+      issuer: "Example University",
+      start: "2012-10",
+      date: "2016-11",
+      level: null,
+      score: null,
+    } as const;
+    const languages = [
+      { name: "German", level: "Native" },
+      { name: "English", level: null },
+    ];
+    const withProfile = careerFrom(careerExportFixture({ qualifications: [degree], languages }));
+    expect(withProfile.qualifications).toStrictEqual([degree]);
+    expect(withProfile.languages).toStrictEqual(languages);
+  });
+
   it("has no current engagement when every engagement has ended", () => {
     const ended = careerFrom(careerExportFixture({ engagements: [OLD_JOB] }));
     expect(ended.currentEngagement).toBeUndefined();

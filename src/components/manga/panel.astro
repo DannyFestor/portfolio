@@ -15,7 +15,7 @@ import "../../styles/screentone.css";
 type Props<Tag extends HTMLTag> = Polymorphic<{
   as: Tag;
   slant?: PanelSlant;
-  tone?: ToneDensity;
+  tone?: ToneDensity | undefined;
 }>;
 
 const { as: Tag = "div", slant, tone, class: className, ...attributes } = Astro.props;

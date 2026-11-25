@@ -1,3 +1,6 @@
+/** Text in <main> that must be read: everything not hidden from assistive technology. */
+export const READ_TEXT_IN_MAIN = 'main *:not([aria-hidden="true"], [aria-hidden="true"] *)';
+
 /**
  * Runs in the page: the elements matching `selector` that are rotated or set vertically. Text that
  * must be read is never turned; only decoration hidden from assistive technology may be.

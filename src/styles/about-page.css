@@ -1,0 +1,34 @@
+/*
+ * About (#18): variant A, the character profile page, decided in #37. Page 1: the photo plate
+ * beside the name (the impact panel) and the profile facts. Page 2: the bio beside the résumé
+ * panel, then the career strip. On phones the panels stack in DOM order.
+ */
+
+.about-profile-panels {
+  --panel-grid-template: "plate plate plate plate plate name  name  name  name  name  name  name"
+    auto "plate plate plate plate plate facts facts facts facts facts facts facts" auto;
+}
+
+.about-story-panels {
+  --panel-grid-template: "bio bio bio bio bio bio bio bio resume resume resume resume" auto;
+}
+
+.photo-plate {
+  --panel-area: plate;
+}
+
+.name-panel {
+  --panel-area: name;
+}
+
+.profile-facts-panel {
+  --panel-area: facts;
+}
+
+.bio-panel {
+  --panel-area: bio;
+}
+
+.resume-panel {
+  --panel-area: resume;
+}

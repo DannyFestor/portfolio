@@ -1,0 +1,33 @@
+---
+import { NAME_PANEL } from "../../about/about-content";
+// The page's one impact moment: the name in a panel of focus lines, with ドン.
+import Fuchidori from "../lettering/fuchidori.astro";
+import NarrationBox from "../lettering/narration-box.astro";
+import Sfx from "../lettering/sfx.astro";
+import WhiteOut from "../lettering/white-out.astro";
+import FocusLines from "../manga/focus-lines.astro";
+import Panel from "../manga/panel.astro";
+
+import "../../styles/label.css";
+import "../../styles/name-panel.css";
+---
+
+<Panel class="name-panel">
+  <FocusLines />
+  <Sfx
+    sound="ドン"
+    class="name-panel-sfx"
+  />
+  <div class="name-panel-lettering">
+    <WhiteOut
+      as="p"
+      class="label"
+    >
+      {NAME_PANEL.kicker}
+    </WhiteOut>
+    <h1 class="name-panel-name">
+      <Fuchidori>{NAME_PANEL.name}</Fuchidori>
+    </h1>
+    <NarrationBox>{NAME_PANEL.headline}</NarrationBox>
+  </div>
+</Panel>

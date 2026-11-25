@@ -49,7 +49,7 @@ export interface Project extends Period, VaultNote {
 
 type QualificationCategory = "degree" | "certificate" | "licence" | "test-result";
 
-interface Qualification {
+export interface Qualification {
   readonly name: string;
   readonly category: QualificationCategory;
   readonly issuer: string | null;
@@ -59,7 +59,7 @@ interface Qualification {
   readonly score: string | null;
 }
 
-interface SpokenLanguage {
+export interface SpokenLanguage {
   readonly name: string;
   readonly level: string | null;
 }

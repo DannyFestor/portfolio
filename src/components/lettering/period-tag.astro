@@ -1,0 +1,17 @@
+---
+// A date or period (#25): `2025 — now`, `2024 — 25`, set in Zen Antique, paper on an ink tag.
+import type { HTMLTag, Polymorphic } from "astro/types";
+
+import "../../styles/period-tag.css";
+
+type Props<Tag extends HTMLTag> = Polymorphic<{ as: Tag }>;
+
+const { as: Tag = "span", class: className, ...attributes } = Astro.props;
+---
+
+<Tag
+  {...attributes}
+  class:list={["period-tag", className]}
+>
+  <slot />
+</Tag>

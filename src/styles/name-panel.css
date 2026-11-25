@@ -1,0 +1,41 @@
+/*
+ * The impact panel (#18): the name in the clear centre of the focus lines, the kicker on a
+ * white-out patch above it, the headline in a narration box below, ドン in a corner. On phones the
+ * lettering spans the panel, so the bottom padding leaves ドン its own room.
+ */
+
+.name-panel {
+  display: grid;
+  place-items: center;
+  padding: var(--space-4xl) var(--space-xl) calc(var(--space-5xl) + var(--space-xl));
+}
+
+.name-panel-lettering {
+  display: grid;
+  gap: var(--space-m);
+  justify-items: center;
+  text-align: center;
+}
+
+.name-panel-lettering > * {
+  margin: 0;
+}
+
+.name-panel-name {
+  font-family: var(--font-display);
+  font-size: var(--font-size-h1);
+  font-weight: var(--font-weight-text);
+  line-height: 1;
+}
+
+.name-panel-sfx {
+  position: absolute;
+  bottom: var(--space-l);
+  left: var(--space-xl);
+}
+
+@media (width > 760px) {
+  .name-panel {
+    padding-bottom: var(--space-4xl);
+  }
+}

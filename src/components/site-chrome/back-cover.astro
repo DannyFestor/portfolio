@@ -8,6 +8,7 @@ import {
 } from "../../site-chrome/back-cover-content";
 // The back cover (#30): the footer of every page, three ruled columns that stack on phones.
 import { CHAPTERS } from "../../site-chrome/chapters";
+import ResumeLink from "../links/resume-link.astro";
 import Barcode from "./barcode.astro";
 
 import "../../styles/back-cover.css";
@@ -45,12 +46,7 @@ import "../../styles/label.css";
       ))}
       {RESUME_LINKS.map((resume) => (
         <li>
-          <a
-            href={resume.href}
-            type="application/pdf"
-          >
-            <span lang={resume.titleLanguage}>{resume.title}</span> ({resume.description})
-          </a>
+          <ResumeLink resume={resume} />
         </li>
       ))}
     </ul>

@@ -1,5 +1,33 @@
 ---
+// About (#18): variant A, the character profile page, decided in #37. Two manga pages: the photo
+// plate, the name and the profile facts; then the bio, the résumés and the career strip.
+import { ABOUT_FOLIOS } from "../../about/about-content";
+import BioPanel from "../../components/about/bio-panel.astro";
+import CareerStrip from "../../components/about/career-strip.astro";
+import NamePanel from "../../components/about/name-panel.astro";
+import PhotoPlate from "../../components/about/photo-plate.astro";
+import ProfileFactsPanel from "../../components/about/profile-facts-panel.astro";
+import ResumePanel from "../../components/about/resume-panel.astro";
+import MangaPage from "../../components/manga/manga-page.astro";
+import PanelGrid from "../../components/manga/panel-grid.astro";
 import BaseLayout from "../../layouts/base-layout.astro";
+
+import "../../styles/about-page.css";
 ---
 
-<BaseLayout />
+<BaseLayout>
+  <MangaPage folio={ABOUT_FOLIOS.profile}>
+    <PanelGrid class="about-profile-panels">
+      <PhotoPlate />
+      <NamePanel />
+      <ProfileFactsPanel />
+    </PanelGrid>
+  </MangaPage>
+  <MangaPage folio={ABOUT_FOLIOS.story}>
+    <PanelGrid class="about-story-panels">
+      <BioPanel />
+      <ResumePanel />
+    </PanelGrid>
+    <CareerStrip />
+  </MangaPage>
+</BaseLayout>

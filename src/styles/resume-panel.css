@@ -1,0 +1,32 @@
+/*
+ * The résumé panel (#18): a double-ruled panel, like the Contact page's email panel, so it reads as
+ * a way out. The résumés in Zen Antique, one per line; the profile links in a row below.
+ */
+
+.resume-panel {
+  display: grid;
+  gap: var(--space-m);
+  align-content: start;
+  padding: var(--space-xl);
+  border-style: double;
+  border-width: calc(var(--line-panel) * 2);
+}
+
+.resume-panel > * {
+  margin: 0;
+}
+
+.resume-panel-resumes,
+.resume-panel-profiles {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-s) var(--space-l);
+  padding: 0;
+  list-style: none;
+}
+
+.resume-panel-resumes {
+  flex-direction: column;
+  font-family: var(--font-display);
+  font-size: var(--font-size-h4);
+}

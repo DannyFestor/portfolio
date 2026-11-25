@@ -1,0 +1,26 @@
+/*
+ * The photo plate (#18): the halftone photo as ink dots on paper. The mask's alpha is the ink, so
+ * the plate paints ink and lets the mask cut the dots out of it. Portrait on phones; from the
+ * composition breakpoint on, it fills its two rows of the grid, cropped from the right, so the face
+ * stays in the plate.
+ */
+
+.photo-plate {
+  aspect-ratio: 3 / 4;
+}
+
+.profile-photo {
+  position: absolute;
+  inset: 0;
+  background-color: var(--color-ink);
+  mask-image: var(--halftone-mask);
+  mask-repeat: no-repeat;
+  mask-position: left center;
+  mask-size: cover;
+}
+
+@media (width > 760px) {
+  .photo-plate {
+    aspect-ratio: auto;
+  }
+}

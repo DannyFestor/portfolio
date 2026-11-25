@@ -1,0 +1,17 @@
+---
+// A link to one of the public résumés (#30): its title, marked up in its language, and the PDF note.
+import type { ResumeLink } from "../../site-chrome/back-cover-content";
+
+interface Props {
+  resume: ResumeLink;
+}
+
+const { resume } = Astro.props;
+---
+
+<a
+  href={resume.href}
+  type="application/pdf"
+>
+  <span lang={resume.titleLanguage}>{resume.title}</span> ({resume.description})
+</a>

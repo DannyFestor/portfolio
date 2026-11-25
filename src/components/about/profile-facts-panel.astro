@@ -1,0 +1,30 @@
+---
+import { PROFILE_FACTS } from "../../about/about-content";
+// The profile facts on light screentone, each in a narration box: the label, then its lines.
+import NarrationBox from "../lettering/narration-box.astro";
+import Panel from "../manga/panel.astro";
+
+import "../../styles/label.css";
+import "../../styles/profile-facts-panel.css";
+---
+
+<Panel
+  as="dl"
+  class="profile-facts-panel"
+  tone="light"
+>
+  {PROFILE_FACTS.map((fact) => (
+    <NarrationBox
+      as="div"
+      class="profile-fact"
+    >
+      <dt class="label">{fact.term}</dt>
+      {fact.lines.map((line) => (
+        <dd>
+          {line.text}
+          {line.note !== null && <span class="profile-fact-note">{line.note}</span>}
+        </dd>
+      ))}
+    </NarrationBox>
+  ))}
+</Panel>

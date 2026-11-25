@@ -8,7 +8,7 @@ import type { Browsing } from "./built-site-browser.ts";
 import { readBuiltFile } from "./built-site.ts";
 import { attributeValue, elementsWithClass, mainText } from "./html-elements.ts";
 import { publishedRates } from "./published-rates.ts";
-import { turnedElements } from "./turned-elements.ts";
+import { READ_TEXT_IN_MAIN, turnedElements } from "./turned-elements.ts";
 
 const CONTACT_URL_PATH = "/contact/";
 const html = readBuiltFile("contact/index.html");
@@ -16,9 +16,6 @@ const inspectBuiltPage = useBuiltSiteBrowser();
 
 /** A common phone, browsed with JavaScript off (#19). */
 const PHONE: Browsing = { viewport: { width: 390, height: 844 }, javaScriptEnabled: false };
-
-/** Text in <main> that must be read: everything not hidden from assistive technology. */
-const READ_TEXT = 'main *:not([aria-hidden="true"], [aria-hidden="true"] *)';
 
 interface EmailOnScreen {
   readonly text: string;
@@ -65,7 +62,9 @@ describe("the Contact page (#19)", () => {
 
   it("rotates nothing that must be read and sets none of it vertically", async () => {
     expect(
-      await inspectBuiltPage(CONTACT_URL_PATH, (page) => page.evaluate(turnedElements, READ_TEXT)),
+      await inspectBuiltPage(CONTACT_URL_PATH, (page) =>
+        page.evaluate(turnedElements, READ_TEXT_IN_MAIN),
+      ),
     ).toStrictEqual([]);
   });
 });
