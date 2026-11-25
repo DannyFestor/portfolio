@@ -1,0 +1,32 @@
+/*
+ * Calls to action (#27): no buttons, big inked links in Zen Antique. Hover and press thicken the
+ * underline and turn it red at once; press turns the text red as well.
+ *
+ * The arrow is decoration: its alternative text is empty, and a no-break space keeps it on the
+ * line of the label.
+ */
+
+.call-to-action {
+  font-family: var(--font-display);
+  font-size: var(--font-size-call-to-action);
+  line-height: var(--line-height-call-to-action);
+  color: var(--color-ink);
+  text-decoration-line: underline;
+  text-decoration-thickness: var(--call-to-action-underline-weight);
+  text-decoration-color: var(--link-underline-color);
+  text-underline-offset: var(--call-to-action-underline-offset);
+}
+
+.call-to-action:hover,
+.call-to-action:active {
+  text-decoration-thickness: var(--call-to-action-underline-weight-hover);
+  text-decoration-color: var(--link-underline-color-hover);
+}
+
+.call-to-action:active {
+  color: var(--call-to-action-color-pressed);
+}
+
+.call-to-action::after {
+  content: "\00a0→" / "";
+}

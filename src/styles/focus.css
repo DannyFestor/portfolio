@@ -1,0 +1,9 @@
+/*
+ * Keyboard focus (#27): the same ink ring with a small gap on every link and control. This is the
+ * only stylesheet that may style :focus-visible (Stylelint refuses it elsewhere).
+ */
+
+:focus-visible {
+  outline: var(--focus-ring-width) solid var(--focus-ring-color);
+  outline-offset: var(--focus-ring-offset);
+}
