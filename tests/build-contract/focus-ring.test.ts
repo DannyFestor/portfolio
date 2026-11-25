@@ -6,7 +6,7 @@ import {
   resolvedTokenValue,
   tokenPixels,
 } from "../../integrations/design-tokens/design-tokens.ts";
-import { parseHexColor } from "../design-tokens/hex-color.ts";
+import { computedRgb } from "../design-tokens/hex-color.ts";
 import { useBuiltSiteBrowser } from "./built-site-browser.ts";
 import { findBuiltFiles, urlPathOfPage } from "./built-site.ts";
 
@@ -24,10 +24,10 @@ const inspectBuiltPage = useBuiltSiteBrowser();
 
 /** The ring every link and control must show (#27), as the browser computes it. */
 function expectedRing(): string {
-  const { red, green, blue } = parseHexColor(resolvedTokenValue(tokens, "--focus-ring-color"));
+  const color = computedRgb(resolvedTokenValue(tokens, "--focus-ring-color"));
   const width = tokenPixels(tokens, "--focus-ring-width");
   const offset = tokenPixels(tokens, "--focus-ring-offset");
-  return `solid ${String(width)}px rgb(${String(red)}, ${String(green)}, ${String(blue)}) offset ${String(offset)}px`;
+  return `solid ${String(width)}px ${color} offset ${String(offset)}px`;
 }
 
 /** Runs in the page: describes the focused element once, then marks it as seen. */

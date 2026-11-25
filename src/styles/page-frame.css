@@ -1,0 +1,21 @@
+/*
+ * The page frame (#14): the running header, the composed paper pages and the back cover, on the
+ * grey page background. Mobile first; from the composition breakpoint on (760px, as in
+ * page-composition.css) the page gets wider margins.
+ */
+
+body {
+  padding: 0 var(--space-s);
+  margin: 0;
+  font-family: var(--font-narration);
+  font-size: var(--font-size-narration);
+  line-height: var(--line-height-narration);
+  color: var(--color-ink);
+  background-color: var(--color-page-background);
+}
+
+@media (width > 760px) {
+  body {
+    padding: 0 var(--space-xl);
+  }
+}

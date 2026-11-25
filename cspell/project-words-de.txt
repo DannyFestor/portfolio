@@ -1,1 +1,10 @@
 # Words in German that the site or the docs use.
+Adresse
+Anschrift
+deutsch
+geboren
+Geburtsdatum
+Nationalität
+Postleitzahl
+Staatsangehörigkeit
+Staatsbürgerschaft

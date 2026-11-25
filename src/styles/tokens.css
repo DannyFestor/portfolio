@@ -107,6 +107,13 @@
   /* Fuchidori (縁取り): the paper outline of display lettering and SFX; half of it lies outside the glyphs. */
   --line-fuchidori: 6px;
 
+  /*
+   * Site chrome (#28, #29, #30). The chapter tabs hang from the running header's rule; Contact's tab
+   * always carries a red bottom edge, and hovering any tab thickens its edge to the same weight.
+   */
+  --line-tab-edge: 4px;
+  --barcode-height: 54px;
+
   /* Keyboard focus: a calm ink outline with a small gap, the same on every link and control. */
   --focus-ring-color: var(--color-ink);
   --focus-ring-width: 2px;

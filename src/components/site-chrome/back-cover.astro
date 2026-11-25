@@ -1,0 +1,59 @@
+---
+import {
+  BLURB,
+  CONTENTS,
+  IMPRINT,
+  PROFILE_LINKS,
+  RESUME_LINKS,
+} from "../../site-chrome/back-cover-content";
+// The back cover (#30): the footer of every page, three ruled columns that stack on phones.
+import { CHAPTERS } from "../../site-chrome/chapters";
+import Barcode from "./barcode.astro";
+
+import "../../styles/back-cover.css";
+import "../../styles/label.css";
+---
+
+<footer class="back-cover">
+  <div class="back-cover-column">
+    <h2 class="label">{BLURB.heading}</h2>
+    <p class="back-cover-positioning">{BLURB.positioningLine}</p>
+    <p>{BLURB.subline}</p>
+    <p class="back-cover-confession">{BLURB.confession}</p>
+  </div>
+  <div class="back-cover-column">
+    <h2 class="label">{CONTENTS.heading}</h2>
+    <ol class="back-cover-contents">
+      {CHAPTERS.map((chapter) => (
+        <li>
+          <a href={chapter.href}>{chapter.name}</a>
+        </li>
+      ))}
+    </ol>
+    <p>
+      {CONTENTS.writeTo} <a href={`mailto:${CONTENTS.email}`}>{CONTENTS.email}</a>
+    </p>
+  </div>
+  <div class="back-cover-column">
+    <Barcode />
+    <p class="back-cover-price">{IMPRINT.price}</p>
+    <ul class="back-cover-links">
+      {PROFILE_LINKS.map((link) => (
+        <li>
+          <a href={link.href}>{link.label}</a>
+        </li>
+      ))}
+      {RESUME_LINKS.map((resume) => (
+        <li>
+          <a
+            href={resume.href}
+            type="application/pdf"
+          >
+            <span lang={resume.titleLanguage}>{resume.title}</span> ({resume.description})
+          </a>
+        </li>
+      ))}
+    </ul>
+    <p class="back-cover-colophon">{IMPRINT.colophon}</p>
+  </div>
+</footer>

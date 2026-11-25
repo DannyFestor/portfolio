@@ -14,6 +14,7 @@ export default defineConfig({
   run: {
     tasks: {
       "fonts:subset": { command: "vpx scripts/subset-fonts.ts" },
+      "career:sync": { command: "vpx scripts/career-sync.ts", cache: false },
       "check:astro": { command: "astro check" },
       "check:css": { command: 'stylelint "**/*.{css,astro}"' },
       "check:unused": { command: "knip" },

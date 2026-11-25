@@ -1,0 +1,21 @@
+---
+// The back cover's barcode (#30): decorative, so hidden from assistive technology.
+import { BARCODE_MODULES, barcodeBars } from "../../site-chrome/barcode";
+---
+
+<svg
+  class="barcode"
+  aria-hidden="true"
+  focusable="false"
+  viewBox={`0 0 ${String(BARCODE_MODULES.length)} 1`}
+  preserveAspectRatio="none"
+>
+  {barcodeBars(BARCODE_MODULES).map((bar) => (
+    <rect
+      x={bar.start}
+      y="0"
+      width={bar.width}
+      height="1"
+    />
+  ))}
+</svg>

@@ -1,12 +1,12 @@
 import { describe, expect, it } from "vite-plus/test";
 
-import { isApprovedSfx, MAX_SFX_PER_PAGE } from "../../src/lettering/sfx.ts";
+import { isApprovedSfx, MAX_SFX_PER_PAGE, SFX_CLASS } from "../../src/lettering/sfx.ts";
 import { findBuiltFiles, readBuiltFile } from "./built-site.ts";
-import { isAriaHidden, sfxElementsIn } from "./sfx-markup.ts";
+import { elementsWithClass, isAriaHidden } from "./html-elements.ts";
 
 const pages = findBuiltFiles("**/*.html").map((page) => ({
   page,
-  sfx: sfxElementsIn(readBuiltFile(page)),
+  sfx: elementsWithClass(readBuiltFile(page), SFX_CLASS),
 }));
 
 describe("SFX (decorative, in the page's one impact moment, #31)", () => {

@@ -1,10 +1,16 @@
 ---
+import BackCover from "../components/site-chrome/back-cover.astro";
+import RunningHeader from "../components/site-chrome/running-header.astro";
 import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
 import { PRELOADED_FONT_URL } from "../fonts/font-subsets";
+import { sitePageAt } from "../site-chrome/site-page";
 
 import "../styles/tokens.css";
 import "../styles/focus.css";
 import "../styles/links.css";
+import "../styles/page-frame.css";
+
+const page = sitePageAt(Astro.url.pathname);
 ---
 
 <!doctype html>
@@ -29,6 +35,10 @@ import "../styles/links.css";
     />
   </head>
   <body>
-    <slot />
+    <RunningHeader page={page} />
+    <main>
+      <slot />
+    </main>
+    <BackCover />
   </body>
 </html>
