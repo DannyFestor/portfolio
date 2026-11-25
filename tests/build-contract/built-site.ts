@@ -18,6 +18,22 @@ export function readBuiltFile(relativePath: string): string {
   return readFileSync(join(BUILT_SITE_DIRECTORY, relativePath), "utf8");
 }
 
+const INLINE_STYLE = /<style\b[^>]*>(?<css>[\s\S]*?)<\/style>/gu;
+
+function inlineStyles(page: string): string[] {
+  return [...readBuiltFile(page).matchAll(INLINE_STYLE)].map(
+    (match) => match.groups?.["css"] ?? "",
+  );
+}
+
+/** Every stylesheet the site ships: bundled files and styles inlined into pages. */
+export function builtStylesheets(): string {
+  return [
+    ...findBuiltFiles("**/*.css").map((file) => readBuiltFile(file)),
+    ...findBuiltFiles("**/*.html").flatMap((page) => inlineStyles(page)),
+  ].join("\n");
+}
+
 export function builtFileSize(relativePath: string): number {
   return statSync(join(BUILT_SITE_DIRECTORY, relativePath)).size;
 }

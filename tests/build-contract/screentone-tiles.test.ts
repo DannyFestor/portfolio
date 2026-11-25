@@ -4,23 +4,10 @@ import { readDesignTokens } from "../../integrations/design-tokens/design-tokens
 import { screentoneSettings } from "../../integrations/screentone/screentone-settings.ts";
 import { TONE_DENSITIES, toneClass } from "../../integrations/screentone/tone-density.ts";
 import { svgDataUrl, toneTileSvg } from "../../integrations/screentone/tone-tile.ts";
-import { findBuiltFiles, readBuiltFile } from "./built-site.ts";
-
-const INLINE_STYLE = /<style\b[^>]*>(?<css>[\s\S]*?)<\/style>/gu;
+import { builtStylesheets } from "./built-site.ts";
 
 const settings = screentoneSettings(readDesignTokens(process.cwd()));
-
-function inlineStyles(page: string): string[] {
-  return [...readBuiltFile(page).matchAll(INLINE_STYLE)].map(
-    (match) => match.groups?.["css"] ?? "",
-  );
-}
-
-/** Every stylesheet the site ships: bundled files and styles inlined into pages. */
-const builtCss = [
-  ...findBuiltFiles("**/*.css").map((file) => readBuiltFile(file)),
-  ...findBuiltFiles("**/*.html").flatMap((page) => inlineStyles(page)),
-].join("\n");
+const builtCss = builtStylesheets();
 
 describe("screentone tiles in the built site", () => {
   it.each(TONE_DENSITIES)("include the %s tile, generated from the design tokens", (density) => {

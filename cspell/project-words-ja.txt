@@ -1,4 +1,5 @@
 # Japanese words written in Latin script (romaji).
 Maru
+Mincho
 seinen
 Yomogi

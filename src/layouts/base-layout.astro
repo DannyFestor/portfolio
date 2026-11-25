@@ -1,5 +1,6 @@
 ---
 import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
+import { PRELOADED_FONT_URL } from "../fonts/font-subsets";
 
 import "../styles/tokens.css";
 ---
@@ -11,6 +12,13 @@ import "../styles/tokens.css";
     <meta
       name="viewport"
       content="width=device-width"
+    />
+    <link
+      rel="preload"
+      href={PRELOADED_FONT_URL}
+      as="font"
+      type="font/woff2"
+      crossorigin
     />
     <title>{SITE_TITLE}</title>
     <meta
