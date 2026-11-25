@@ -96,10 +96,17 @@
   /* Widest a composed manga page grows; narrower screens get the full width. */
   --page-max-width: 1080px;
 
+  /* Case studies (#17): a two-page spread grows wider than one page; asides sit in a side column. */
+  --spread-max-width: 1280px;
+  --aside-column-width: 150px;
+
   /* Ink line weights: panel borders, narration boxes, hairline rules and underlines. */
   --line-panel: 3px;
   --line-narration: 2px;
   --line-hairline: 1px;
+
+  /* The spine of a two-page spread, where the pages meet: a double ink rule. */
+  --line-spine: 6px;
 
   /* The hand-drawn arrow of an aside. */
   --line-hand: 1.5px;

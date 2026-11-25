@@ -1,0 +1,36 @@
+/*
+ * The open study's heading (#17): the period tag and track, the project title, then the role and
+ * the stack, all from career.json.
+ */
+
+.study-heading {
+  display: grid;
+  gap: var(--space-s);
+}
+
+.study-heading > * {
+  margin: 0;
+}
+
+.study-heading-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-s);
+  align-items: baseline;
+}
+
+.study-title {
+  font-family: var(--font-display);
+  font-size: var(--font-size-h1);
+  font-weight: var(--font-weight-text);
+  line-height: var(--line-height-call-to-action);
+}
+
+.study-stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2xs) var(--space-s);
+  padding: 0;
+  font-size: var(--font-size-label);
+  list-style: none;
+}

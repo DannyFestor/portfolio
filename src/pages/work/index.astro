@@ -1,5 +1,21 @@
 ---
+// Work (#17): /work opens the newest case study, under that study's own canonical URL.
+import { getCollection } from "astro:content";
+
+import { CAREER } from "../../career/career-data";
+import StudySpread from "../../components/work/study-spread.astro";
+import { PROJECT_EXTRAS } from "../../data/project-extras";
 import BaseLayout from "../../layouts/base-layout.astro";
+import { caseStudiesNewestFirst, newestCaseStudy } from "../../work/case-study";
+import { studyPageHead } from "../../work/study-page-head";
+
+const studies = caseStudiesNewestFirst(await getCollection("caseStudies"), CAREER, PROJECT_EXTRAS);
+const study = newestCaseStudy(studies);
 ---
 
-<BaseLayout />
+<BaseLayout head={studyPageHead(study)}>
+  <StudySpread
+    studies={studies}
+    study={study}
+  />
+</BaseLayout>

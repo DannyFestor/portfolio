@@ -1,0 +1,30 @@
+---
+// The study page's one impact moment: its impact line in a panel of focus lines, with its SFX.
+import type { StudyImpact } from "../../work/case-study";
+import Fuchidori from "../lettering/fuchidori.astro";
+import Sfx from "../lettering/sfx.astro";
+import FocusLines from "../manga/focus-lines.astro";
+import Panel from "../manga/panel.astro";
+
+import "../../styles/study-impact-panel.css";
+
+interface Props {
+  impact: StudyImpact;
+}
+
+const { impact } = Astro.props;
+---
+
+<Panel class="study-impact-panel">
+  <FocusLines />
+  <Sfx
+    sound={impact.sfx}
+    class="study-impact-sfx"
+  />
+  <Fuchidori
+    as="p"
+    class="study-impact-line"
+  >
+    {impact.line}
+  </Fuchidori>
+</Panel>

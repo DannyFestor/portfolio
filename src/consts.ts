@@ -1,3 +1,6 @@
+/** Where the site is published; canonical URLs and the sitemap start with it. */
+export const SITE_URL = "https://festor.info";
+
 export const SITE_TITLE = "Danny Festor — Freelance Software Engineer";
 export const SITE_DESCRIPTION =
   "Freelance software engineering based in Japan — handcrafted or AI-assisted, everything gets engineered before it ships.";

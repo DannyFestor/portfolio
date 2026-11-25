@@ -1,0 +1,26 @@
+---
+// The left page: every study, newest first; the open one carries aria-current="page".
+import type { CaseStudy } from "../../work/case-study";
+import { STUDY_INDEX } from "../../work/work-content";
+import StudyIndexEntry from "./study-index-entry.astro";
+
+import "../../styles/study-index.css";
+
+interface Props {
+  studies: readonly CaseStudy[];
+  openStudy: CaseStudy;
+}
+
+const { studies, openStudy } = Astro.props;
+---
+
+<p class="study-index-heading">{STUDY_INDEX.heading}</p>
+<p class="study-index-intro">{STUDY_INDEX.intro}</p>
+<ol class="study-index-list">
+  {studies.map((study) => (
+    <StudyIndexEntry
+      study={study}
+      isOpen={study.slug === openStudy.slug}
+    />
+  ))}
+</ol>

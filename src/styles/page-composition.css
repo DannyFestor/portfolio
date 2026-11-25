@@ -53,7 +53,11 @@
   gap: var(--gutter);
 }
 
-.panel {
+/*
+ * The panel's defaults, at zero specificity: a page's own panel class (a red border, a thinner
+ * line, a grid inside) always wins, whatever order the bundler puts the stylesheets in.
+ */
+:where(.panel) {
   position: relative;
   box-sizing: border-box;
   display: block;

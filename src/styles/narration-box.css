@@ -3,7 +3,8 @@
  * thin single ink rule. Its paper fill keeps the text off any screentone behind it.
  */
 
-.narration-box {
+/* At zero specificity, so a page's own class for its box wins, whatever the bundle order. */
+:where(.narration-box) {
   box-sizing: border-box;
   padding: var(--space-s) var(--space-m);
   margin: 0;

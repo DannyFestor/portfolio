@@ -3,6 +3,7 @@ import { describe, expect, it } from "vite-plus/test";
 import { findBuiltFiles, readBuiltFile, urlPathOfPage } from "./built-site.ts";
 import {
   attributeValue,
+  chromeHtml,
   elementsWithAttribute,
   elementsWithClass,
   hasClass,
@@ -17,8 +18,9 @@ const pages = findBuiltFiles("**/*.html").map((page) => ({
 
 const chapterPages = pages.filter(({ urlPath }) => urlPath !== "/");
 
+/** The chrome's links to the current page; a page may mark its own links in <main> as well. */
 function currentPageLinks(html: string): HtmlElement[] {
-  return elementsWithAttribute(html, "aria-current", "page");
+  return elementsWithAttribute(chromeHtml(html), "aria-current", "page");
 }
 
 /** A link leads to the page itself or to the chapter the page is in. */

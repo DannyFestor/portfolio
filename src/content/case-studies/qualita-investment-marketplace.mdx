@@ -1,0 +1,33 @@
+---
+project: "Qualita - Investment Marketplace"
+# draft
+description: "Slow queries on an investment marketplace, measured with EXPLAIN ANALYZE: one index took a query from seconds to milliseconds."
+---
+
+{/* draft: the starter study, demo data until content time. Every line of it is replaced then. */}
+
+## Situation
+
+<Aside>it worked, until it got slow</Aside>
+
+A customer of Qualita ran a platform where people register the items they hold as investments, buy and sell them on a marketplace and follow how their prices change. Three applications stood on one backend: the user web app, the admin app and the public service website.
+
+The backend had grown with the marketplace, card payments, contracts and monthly reports. Some of its queries had become slow; one took seconds to answer.
+
+## Decisions
+
+<Aside>measure first</Aside>
+
+**Measure before changing anything.** I ran the slow queries through EXPLAIN ANALYZE, so the database itself showed where the time went, instead of my guesses.
+
+**Fix the cause with the smallest change.** For the worst query, that change was one index.
+
+**Keep the model honest.** Whenever the data model changed, I changed the migrations, the seed data and the diagrams with it.
+
+**Delete what nobody calls.** From late 2024 I proposed improvements and a clean-up of the backend and carried them out, removing GraphQL queries, mutations and types that nothing used any more.
+
+## Result
+
+<Aside>one index</Aside>
+
+The query that took seconds answers in milliseconds. The fix shipped as a database performance hotfix in May 2025, and the API came out of the clean-up smaller than it went in.

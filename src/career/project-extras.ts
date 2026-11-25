@@ -6,7 +6,7 @@
 import type { ApprovedSfx } from "../lettering/sfx.ts";
 import type { Project } from "./career-export.ts";
 
-type ProjectTrack = "rescue" | "build";
+export type ProjectTrack = "rescue" | "build";
 
 export interface ProjectExtras {
   /** Home shows the featured projects. */
