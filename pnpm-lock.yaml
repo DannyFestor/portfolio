@@ -222,6 +222,9 @@ importers:
       '@astrojs/sitemap':
         specifier: ^3.7.6
         version: 3.7.6
+      ajv:
+        specifier: ^8.20.0
+        version: 8.20.0
       astro:
         specifier: ^7.4.13
         version: 7.4.13(@types/node@26.6.6)(@volar/typescript@2.4.31(typescript@6.0.3))(esbuild@0.28.1)(jiti@2.7.0)(typescript@6.0.3)(yaml@2.9.1)

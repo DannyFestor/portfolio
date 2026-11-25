@@ -1,0 +1,112 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "kariera career export",
+  "description": "The public career data `kariera export --json` writes: reviewed notes only, in English. Every key is always present; an absent value is null.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "profile", "engagements", "projects", "qualifications", "languages"],
+  "properties": {
+    "schema_version": { "const": 1 },
+    "profile": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "headline", "summary"],
+      "properties": {
+        "name": { "$ref": "#/$defs/text" },
+        "headline": { "$ref": "#/$defs/text" },
+        "summary": { "$ref": "#/$defs/paragraphs" }
+      }
+    },
+    "engagements": {
+      "description": "Newest start first, then by note name.",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["note", "organization", "engagement_type", "role", "start", "end", "summary"],
+        "properties": {
+          "note": { "$ref": "#/$defs/text" },
+          "organization": { "$ref": "#/$defs/text" },
+          "engagement_type": { "enum": ["employment", "dispatch", "internship", "freelance", "own-business"] },
+          "role": { "$ref": "#/$defs/optional_text" },
+          "start": { "$ref": "#/$defs/month" },
+          "end": { "$ref": "#/$defs/optional_month" },
+          "summary": { "$ref": "#/$defs/paragraphs" }
+        }
+      }
+    },
+    "projects": {
+      "description": "Newest start first, then by note name. `engagement` is the `note` of an exported Engagement.",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "note",
+          "engagement",
+          "title",
+          "start",
+          "end",
+          "role",
+          "focus",
+          "team_size",
+          "industry",
+          "skills",
+          "description",
+          "achievements"
+        ],
+        "properties": {
+          "note": { "$ref": "#/$defs/text" },
+          "engagement": { "$ref": "#/$defs/text" },
+          "title": { "$ref": "#/$defs/text" },
+          "start": { "$ref": "#/$defs/month" },
+          "end": { "$ref": "#/$defs/optional_month" },
+          "role": { "$ref": "#/$defs/text" },
+          "focus": { "$ref": "#/$defs/optional_text" },
+          "team_size": { "type": ["integer", "null"], "minimum": 1 },
+          "industry": { "$ref": "#/$defs/text" },
+          "skills": { "type": "array", "items": { "$ref": "#/$defs/text" } },
+          "description": { "$ref": "#/$defs/paragraphs" },
+          "achievements": { "type": "array", "items": { "$ref": "#/$defs/text" } }
+        }
+      }
+    },
+    "qualifications": {
+      "description": "Newest date first, then by note name.",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["name", "category", "issuer", "start", "date", "level", "score"],
+        "properties": {
+          "name": { "$ref": "#/$defs/text" },
+          "category": { "enum": ["degree", "certificate", "licence", "test-result"] },
+          "issuer": { "$ref": "#/$defs/optional_text" },
+          "start": { "$ref": "#/$defs/optional_month" },
+          "date": { "$ref": "#/$defs/month" },
+          "level": { "$ref": "#/$defs/optional_text" },
+          "score": { "$ref": "#/$defs/optional_text" }
+        }
+      }
+    },
+    "languages": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["name", "level"],
+        "properties": {
+          "name": { "$ref": "#/$defs/text" },
+          "level": { "$ref": "#/$defs/optional_text" }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "text": { "type": "string", "minLength": 1 },
+    "optional_text": { "type": ["string", "null"], "minLength": 1 },
+    "paragraphs": { "type": "array", "items": { "$ref": "#/$defs/text" } },
+    "month": { "type": "string", "pattern": "^[0-9]{4}-(0[1-9]|1[0-2])$" },
+    "optional_month": { "type": ["string", "null"], "pattern": "^[0-9]{4}-(0[1-9]|1[0-2])$" }
+  }
+}
