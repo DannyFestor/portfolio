@@ -1,0 +1,52 @@
+/*
+ * A post's margin notes (#16): the frontispiece with 第N話 on mid tone, the date, the reading time
+ * and the tags. On phones they sit above the text in one wrapping row, the frontispiece small;
+ * from the composition breakpoint on they fill the outer margin and stay in view while the text
+ * scrolls. Nothing in them is rotated or set vertically.
+ */
+
+.episode-margin-notes {
+  display: flex;
+  flex-flow: row wrap;
+  gap: var(--space-s);
+  align-items: center;
+}
+
+.episode-frontispiece {
+  display: grid;
+  place-items: center;
+  padding: var(--space-m);
+  border-width: var(--line-narration);
+}
+
+.episode-number {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: var(--font-size-h3);
+  line-height: 1;
+}
+
+.episode-reading-time {
+  margin: 0;
+}
+
+@media (width > 760px) {
+  .episode-margin-notes {
+    position: sticky;
+    top: var(--space-xl);
+    flex-flow: column nowrap;
+    align-items: flex-start;
+    align-self: start;
+  }
+
+  .episode-frontispiece {
+    box-sizing: border-box;
+    width: 100%;
+    min-height: calc(var(--aside-column-width) * 1.2);
+    margin-bottom: var(--space-s);
+  }
+
+  .episode-number {
+    font-size: var(--font-size-h2);
+  }
+}

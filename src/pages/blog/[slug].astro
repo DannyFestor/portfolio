@@ -1,0 +1,26 @@
+---
+// A blog post (#16) at /blog/<slug>: the printed-volume interior.
+import { getCollection } from "astro:content";
+import type { CollectionEntry } from "astro:content";
+
+import { blogPostsNewestFirst } from "../../blog/blog-post";
+import type { BlogPost } from "../../blog/blog-post";
+import { postPageHead } from "../../blog/post-page-head";
+import EpisodePage from "../../components/blog/episode-page.astro";
+import BaseLayout from "../../layouts/base-layout.astro";
+
+interface Props {
+  post: BlogPost<CollectionEntry<"blog">>;
+}
+
+export async function getStaticPaths(): Promise<{ params: { slug: string }; props: Props }[]> {
+  const posts = blogPostsNewestFirst(await getCollection("blog"));
+  return posts.map((post) => ({ params: { slug: post.slug }, props: { post } }));
+}
+
+const { post } = Astro.props;
+---
+
+<BaseLayout head={postPageHead(post)}>
+  <EpisodePage post={post} />
+</BaseLayout>

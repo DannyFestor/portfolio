@@ -1,0 +1,13 @@
+/*
+ * The reading column (#25) of blog posts and case studies: 18px Shippori Mincho, line height 1.75,
+ * its blocks spaced alike. Each page holds its text to the 68ch measure (--measure-reading).
+ */
+
+.reading-column {
+  font-size: var(--font-size-reading);
+  line-height: var(--line-height-reading);
+}
+
+.reading-column > * {
+  margin: 0 0 var(--space-m);
+}

@@ -7,7 +7,6 @@
 import { CAREER } from "../career/career-data.ts";
 import { SITE_AUTHOR, SITE_PLACE } from "../consts.ts";
 import { PROJECT_EXTRAS } from "../data/project-extras.ts";
-import { BLOG_CHAPTER } from "../site-chrome/chapters.ts";
 import { freelanceSince } from "./freelance-since.ts";
 import { workPanels } from "./work-panels.ts";
 
@@ -60,6 +59,4 @@ export const CONTACT_PANEL = {
 
 export const LATEST_WRITING = {
   label: "Latest writing",
-  // The post pages come with #16; until then the line links the blog chapter.
-  href: BLOG_CHAPTER.href,
 } as const;

@@ -1,4 +1,5 @@
 ---
+import { BLOG_FEED } from "../blog/blog-content";
 import BackCover from "../components/site-chrome/back-cover.astro";
 import RunningHeader from "../components/site-chrome/running-header.astro";
 import { PRELOADED_FONT_URL } from "../fonts/font-subsets";
@@ -9,6 +10,7 @@ import { sitePageAt } from "../site-chrome/site-page";
 import "../styles/tokens.css";
 import "../styles/focus.css";
 import "../styles/links.css";
+import "../styles/code-blocks.css";
 import "../styles/page-frame.css";
 
 interface Props {
@@ -43,6 +45,12 @@ const canonicalUrl = new URL(head.canonicalPath ?? Astro.url.pathname, Astro.sit
     <link
       rel="canonical"
       href={canonicalUrl}
+    />
+    <link
+      rel="alternate"
+      type="application/rss+xml"
+      title={BLOG_FEED.title}
+      href={new URL(BLOG_FEED.href, Astro.site).href}
     />
     <meta
       property="og:type"

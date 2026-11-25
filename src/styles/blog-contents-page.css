@@ -1,0 +1,16 @@
+/*
+ * Blog (#16): variant A, the table of contents (目次), decided in #39. A tall title panel beside
+ * the contents. On phones the panels stack in DOM order: the title panel, then the contents.
+ */
+
+.blog-contents-panels {
+  --panel-grid-template: "title title title toc toc toc toc toc toc toc toc toc" minmax(560px, auto);
+}
+
+.contents-title-panel {
+  --panel-area: title;
+}
+
+.contents-panel {
+  --panel-area: toc;
+}

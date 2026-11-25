@@ -1,0 +1,47 @@
+---
+// A post (#16): variant B, the printed-volume interior, decided in #39. The running head, then the
+// margin notes beside the text: the title, the description in a narration box and the reading
+// column. On phones the margin notes come first, above the text.
+import { render } from "astro:content";
+import type { CollectionEntry } from "astro:content";
+
+import { BLOG_FOLIOS, EPISODE } from "../../blog/blog-content";
+import type { BlogPost } from "../../blog/blog-post";
+import NarrationBox from "../lettering/narration-box.astro";
+import MangaPage from "../manga/manga-page.astro";
+import EpisodeMarginNotes from "./episode-margin-notes.astro";
+import EpisodeRunningHead from "./episode-running-head.astro";
+
+import "../../styles/reading-column.css";
+import "../../styles/post-prose.css";
+import "../../styles/episode-page.css";
+
+interface Props {
+  post: BlogPost<CollectionEntry<"blog">>;
+}
+
+const { post } = Astro.props;
+const { title, description } = post.entry.data;
+const { Content } = await render(post.entry);
+---
+
+<MangaPage
+  as="article"
+  folio={BLOG_FOLIOS.episode}
+  class="episode-page"
+>
+  <EpisodeRunningHead title={title} />
+  <div class="episode-spread">
+    <EpisodeMarginNotes post={post} />
+    <div class="episode-text">
+      <h1 class="episode-title">{title}</h1>
+      <NarrationBox class="episode-description">{description}</NarrationBox>
+      <div class="post-prose reading-column">
+        <Content />
+      </div>
+      <p class="episode-back">
+        <a href={EPISODE.backHref}>{EPISODE.backLink}</a>
+      </p>
+    </div>
+  </div>
+</MangaPage>

@@ -1,0 +1,26 @@
+---
+// The contents: a line of narration, then every post as one line, newest first.
+import { CONTENTS_INTRO } from "../../blog/blog-content";
+import type { BlogPost } from "../../blog/blog-post";
+import NarrationBox from "../lettering/narration-box.astro";
+import Panel from "../manga/panel.astro";
+import ContentsEntry from "./contents-entry.astro";
+
+import "../../styles/label.css";
+import "../../styles/contents-panel.css";
+
+interface Props {
+  posts: readonly BlogPost[];
+}
+
+const { posts } = Astro.props;
+---
+
+<Panel class="contents-panel">
+  <NarrationBox class="contents-intro">{CONTENTS_INTRO}</NarrationBox>
+  <ol class="contents-list">
+    {posts.map((post) => (
+      <ContentsEntry post={post} />
+    ))}
+  </ol>
+</Panel>
