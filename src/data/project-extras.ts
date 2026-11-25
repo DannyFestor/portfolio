@@ -7,12 +7,13 @@ import type { ProjectExtrasByNote } from "../career/project-extras.ts";
 export const PROJECT_EXTRAS: ProjectExtrasByNote = {
   "Lazuli - PDP": {
     featured: true,
+    track: "build",
     // draft
     impactLine: "Asset versioning: snapshots, history and restore for every file.",
   },
   "Qualita - Investment Marketplace": {
     featured: true,
-    track: "rescue",
+    track: "build",
     sfx: "シュッ",
     // draft
     impactLine: "One index: seconds → milliseconds.",
