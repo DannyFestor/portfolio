@@ -6,6 +6,9 @@ Caffe
 categorisation
 cmap
 cocogitto
+colour
+colours
+courierprime
 dbdiagram
 Deeplearning
 Dispatchable
@@ -59,6 +62,7 @@ résumé
 résumés
 Scikit
 screentone
+Shiki
 Shippori
 shipporimincho
 Soketi

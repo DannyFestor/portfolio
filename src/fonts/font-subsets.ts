@@ -93,7 +93,20 @@ const YOMOGI: FontFamilySubset = {
   faces: [{ weight: 400, sourceFile: "Yomogi-Regular.ttf" }],
 };
 
-export const FONT_FAMILIES: readonly FontFamilySubset[] = [ZEN_ANTIQUE, SHIPPORI_MINCHO, YOMOGI];
+/** Code in blog posts (#16): Latin only. */
+export const COURIER_PRIME: FontFamilySubset = {
+  slug: "courier-prime",
+  googleFontsDirectory: "ofl/courierprime",
+  japaneseText: [],
+  faces: [{ weight: 400, sourceFile: "CourierPrime-Regular.ttf" }],
+};
+
+export const FONT_FAMILIES: readonly FontFamilySubset[] = [
+  ZEN_ANTIQUE,
+  SHIPPORI_MINCHO,
+  YOMOGI,
+  COURIER_PRIME,
+];
 
 export function fontFileUrl(family: FontFamilySubset, face: FontFaceSource): string {
   return `/fonts/${family.slug}/${String(face.weight)}.woff2`;

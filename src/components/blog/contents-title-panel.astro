@@ -1,0 +1,40 @@
+---
+// The title panel of the contents: 目次 lettered large and vertical as decoration, then the
+// chapter label and the English heading, set horizontally, and an aside on the clear paper below.
+import { CONTENTS_TITLE } from "../../blog/blog-content";
+import Aside from "../lettering/aside.astro";
+import Fuchidori from "../lettering/fuchidori.astro";
+import WhiteOut from "../lettering/white-out.astro";
+import Panel from "../manga/panel.astro";
+import ScreentoneFade from "../manga/screentone-fade.astro";
+
+import "../../styles/label.css";
+import "../../styles/contents-title-panel.css";
+---
+
+<Panel class="contents-title-panel">
+  <ScreentoneFade
+    density="mid"
+    toward="bottom"
+  />
+  <Fuchidori
+    as="p"
+    class="contents-kanji"
+    lang="ja"
+    aria-hidden="true"
+  >
+    {CONTENTS_TITLE.japanese}
+  </Fuchidori>
+  <div class="contents-title-text">
+    <WhiteOut
+      as="p"
+      class="label"
+    >
+      {CONTENTS_TITLE.label}
+    </WhiteOut>
+    <h1 class="contents-heading">
+      <Fuchidori>{CONTENTS_TITLE.heading}</Fuchidori>
+    </h1>
+  </div>
+  <Aside class="contents-aside">{CONTENTS_TITLE.aside}</Aside>
+</Panel>

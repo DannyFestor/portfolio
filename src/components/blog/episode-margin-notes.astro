@@ -1,0 +1,49 @@
+---
+// The margin column of a post page: a small tone frontispiece with 第N話, the date on an ink tag,
+// the reading time, and the tags as a red aside. On phones it sits above the text.
+import { EPISODE } from "../../blog/blog-content";
+import type { BlogPost } from "../../blog/blog-post";
+import { episodeTitle } from "../../blog/episode-number";
+import { postDateLabel, postDateTime } from "../../blog/post-date";
+import { readingTimeLabel } from "../../blog/reading-time";
+import Aside from "../lettering/aside.astro";
+import Fuchidori from "../lettering/fuchidori.astro";
+import PeriodTag from "../lettering/period-tag.astro";
+import Panel from "../manga/panel.astro";
+
+import "../../styles/label.css";
+import "../../styles/episode-margin-notes.css";
+
+interface Props {
+  post: BlogPost;
+}
+
+const { post } = Astro.props;
+const { pubDate, tags } = post.entry.data;
+---
+
+<aside
+  class="episode-margin-notes"
+  aria-label={EPISODE.marginNotesLabel}
+>
+  <Panel
+    class="episode-frontispiece"
+    tone="mid"
+  >
+    <Fuchidori
+      as="p"
+      class="episode-number"
+      lang="ja"
+    >
+      {episodeTitle(post.episode)}
+    </Fuchidori>
+  </Panel>
+  <PeriodTag
+    as="time"
+    datetime={postDateTime(pubDate)}
+  >
+    {postDateLabel(pubDate)}
+  </PeriodTag>
+  <p class="episode-reading-time label">{readingTimeLabel(post.readingMinutes)}</p>
+  <Aside class="episode-tags">{tags.join(" · ")}</Aside>
+</aside>

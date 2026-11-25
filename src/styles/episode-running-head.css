@@ -1,0 +1,32 @@
+/*
+ * A post page's running head (#16): two labels over a hairline, as in a printed volume. The title
+ * is cut to one line; phones show the author and chapter only.
+ */
+
+.episode-running-head {
+  display: flex;
+  gap: var(--space-xl);
+  justify-content: space-between;
+  padding-bottom: var(--space-xs);
+  margin-bottom: var(--space-xl);
+  border-bottom: var(--line-hairline) solid var(--color-ink);
+}
+
+.episode-running-title {
+  max-width: 50ch;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@media (width <= 760px) {
+  .episode-running-title {
+    display: none;
+  }
+}
+
+@media (width > 760px) {
+  .episode-running-head {
+    margin-bottom: var(--space-3xl);
+  }
+}

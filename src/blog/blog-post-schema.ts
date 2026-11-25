@@ -10,3 +10,14 @@ export const blogPostSchema = z.object({
   updatedDate: z.coerce.date().optional(),
   tags: z.array(nonEmptyText),
 });
+
+type ParsedFrontmatter = z.infer<typeof blogPostSchema>;
+
+/** The frontmatter as the pages read it: nothing in it changes once the collection has loaded. */
+export interface BlogPostFrontmatter extends Readonly<
+  Omit<ParsedFrontmatter, "pubDate" | "updatedDate" | "tags">
+> {
+  readonly pubDate: Readonly<Date>;
+  readonly updatedDate?: Readonly<Date> | undefined;
+  readonly tags: readonly string[];
+}

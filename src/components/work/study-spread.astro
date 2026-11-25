@@ -13,6 +13,7 @@ import StudyImpactPanel from "./study-impact-panel.astro";
 import StudyIndex from "./study-index.astro";
 
 import "../../styles/study-spread.css";
+import "../../styles/reading-column.css";
 import "../../styles/study-body.css";
 
 type Study = CaseStudy<CollectionEntry<"caseStudies">>;
@@ -45,7 +46,7 @@ const { Content } = await render(study.entry);
   >
     <StudyImpactPanel impact={study.impact} />
     <StudyHeading study={study} />
-    <div class="study-body">
+    <div class="study-body reading-column">
       <Content components={{ Aside }} />
     </div>
   </MangaPage>

@@ -1,0 +1,39 @@
+---
+// One line of the contents: the episode number, the title linking the post, its tags, and a dotted
+// leader to the date on an ink tag.
+import type { BlogPost } from "../../blog/blog-post";
+import { contentsNumber } from "../../blog/episode-number";
+import { postDateLabel, postDateTime } from "../../blog/post-date";
+import PeriodTag from "../lettering/period-tag.astro";
+
+interface Props {
+  post: BlogPost;
+}
+
+const { post } = Astro.props;
+const { title, tags, pubDate } = post.entry.data;
+---
+
+<li class="contents-entry">
+  <span class="contents-number">{contentsNumber(post.episode)}</span>
+  <span class="contents-entry-text">
+    <a
+      class="contents-title"
+      href={post.href}
+    >
+      {title}
+    </a>
+    <span class="contents-tags label">{tags.join(" · ")}</span>
+  </span>
+  <span
+    class="contents-leader"
+    aria-hidden="true"
+  ></span>
+  <PeriodTag
+    as="time"
+    class="contents-date"
+    datetime={postDateTime(pubDate)}
+  >
+    {postDateLabel(pubDate)}
+  </PeriodTag>
+</li>

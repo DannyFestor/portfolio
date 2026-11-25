@@ -1,0 +1,36 @@
+/*
+ * A post page (#16): variant B, the printed-volume interior, decided in #39. The margin notes in
+ * an outer column beside the text; on phones they come first, above it. The text keeps the reading
+ * measure.
+ */
+
+.episode-spread {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--space-l);
+}
+
+.episode-title {
+  max-width: var(--measure-reading);
+  margin: 0 0 var(--space-xl);
+  font-family: var(--font-display);
+  font-size: var(--font-size-h1);
+  font-weight: var(--font-weight-text);
+  line-height: 1.2;
+}
+
+.episode-description {
+  max-width: var(--measure-reading);
+  margin-bottom: var(--space-2xl);
+}
+
+.episode-back {
+  margin: var(--space-3xl) 0 0;
+}
+
+@media (width > 760px) {
+  .episode-spread {
+    grid-template-columns: var(--aside-column-width) minmax(0, 1fr);
+    gap: var(--space-3xl);
+  }
+}

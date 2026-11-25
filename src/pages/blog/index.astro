@@ -1,5 +1,26 @@
 ---
+// Blog (#16): variant A, the table of contents (目次), decided in #39. The title panel, then the
+// contents; on phones the contents follow the title panel.
+import { getCollection } from "astro:content";
+
+import { BLOG_FOLIOS } from "../../blog/blog-content";
+import { blogPostsNewestFirst } from "../../blog/blog-post";
+import ContentsPanel from "../../components/blog/contents-panel.astro";
+import ContentsTitlePanel from "../../components/blog/contents-title-panel.astro";
+import MangaPage from "../../components/manga/manga-page.astro";
+import PanelGrid from "../../components/manga/panel-grid.astro";
 import BaseLayout from "../../layouts/base-layout.astro";
+
+import "../../styles/blog-contents-page.css";
+
+const posts = blogPostsNewestFirst(await getCollection("blog"));
 ---
 
-<BaseLayout />
+<BaseLayout>
+  <MangaPage folio={BLOG_FOLIOS.contents}>
+    <PanelGrid class="blog-contents-panels">
+      <ContentsTitlePanel />
+      <ContentsPanel posts={posts} />
+    </PanelGrid>
+  </MangaPage>
+</BaseLayout>

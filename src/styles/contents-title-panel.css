@@ -1,0 +1,50 @@
+/*
+ * The contents' title panel (#16): 目次 large and vertical on a tone that fades out downwards, as
+ * decoration hidden from assistive technology. The label, the heading and the aside read
+ * horizontally on the clear paper below. On phones 目次 moves to the top right corner, at half size.
+ */
+
+.contents-title-panel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-s);
+  justify-content: space-between;
+  padding: var(--space-xl) var(--space-l);
+}
+
+.contents-kanji {
+  align-self: center;
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: var(--font-size-title-kanji);
+  line-height: 1.05;
+  writing-mode: vertical-rl;
+}
+
+.contents-title-text {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  align-items: flex-start;
+}
+
+.contents-heading {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: var(--font-size-h1);
+  font-weight: var(--font-weight-text);
+  line-height: 1.1;
+}
+
+@media (width <= 760px) {
+  .contents-title-panel {
+    padding-right: calc(var(--font-size-title-kanji) / 2 + var(--space-2xl));
+  }
+
+  .contents-kanji {
+    position: absolute;
+    top: var(--space-s);
+    right: var(--space-m);
+    font-size: calc(var(--font-size-title-kanji) / 2);
+  }
+}

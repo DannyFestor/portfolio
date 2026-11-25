@@ -1,0 +1,15 @@
+/*
+ * Code blocks (#16): Shiki hands each token its colour from the print code theme
+ * (src/code-blocks/print-code-theme.ts) as --shiki-print, and the block its background as
+ * --shiki-print-bg. This paints them; the colours themselves live in the theme. Long lines scroll.
+ */
+
+.astro-code {
+  overflow-x: auto;
+  color: var(--shiki-print);
+  background-color: var(--shiki-print-bg);
+}
+
+.astro-code span {
+  color: var(--shiki-print);
+}

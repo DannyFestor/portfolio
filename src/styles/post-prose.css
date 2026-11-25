@@ -1,0 +1,58 @@
+/*
+ * A post's prose (#16): plain text in the reading column. The manga framing stays around the text,
+ * never over it. Headings in Zen Antique; code in Courier Prime on paper with an ink rule, coloured
+ * by the print code theme (src/code-blocks/print-code-theme.ts).
+ */
+
+.post-prose {
+  max-width: var(--measure-reading);
+}
+
+.post-prose :is(h2, h3, h4) {
+  margin-top: var(--space-2xl);
+  font-family: var(--font-display);
+  font-weight: var(--font-weight-text);
+  line-height: 1.25;
+}
+
+.post-prose h2 {
+  padding-bottom: var(--space-xs);
+  font-size: var(--font-size-h2);
+  border-bottom: var(--line-narration) solid var(--color-ink);
+}
+
+.post-prose h3 {
+  font-size: var(--font-size-h3);
+}
+
+.post-prose h4 {
+  font-size: var(--font-size-h4);
+}
+
+.post-prose :is(ul, ol) {
+  padding-left: var(--space-xl);
+}
+
+.post-prose li + li {
+  margin-top: var(--space-2xs);
+}
+
+/* Inline code: a small ink-bordered tag, like a lettered label. */
+.post-prose :not(pre) > code {
+  padding: 0 var(--space-2xs);
+  font-family: var(--font-code);
+  font-size: 0.86em;
+  border: var(--line-hairline) solid var(--color-ink);
+}
+
+/* Code blocks: paper with a heavy ink rule on the left, no dark slab. Tabs indent by four. */
+.post-prose pre {
+  padding: var(--space-m) var(--space-l);
+  margin: var(--space-xl) 0;
+  font-family: var(--font-code);
+  font-size: var(--font-size-code);
+  line-height: var(--line-height-code);
+  tab-size: 4;
+  border: var(--line-narration) solid var(--color-ink);
+  border-left-width: var(--space-xs);
+}

@@ -1,0 +1,86 @@
+/*
+ * The contents (#16): a line of narration, then one line per post, like a printed contents page:
+ * the number in indigo, the title and its tags, a dotted leader, the date on an ink tag. On phones
+ * the leader goes and the date drops under the title.
+ */
+
+.contents-panel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xl);
+  padding: var(--space-xl) var(--space-2xl);
+}
+
+.contents-intro {
+  max-width: var(--measure-reading);
+}
+
+.contents-list {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.contents-entry {
+  display: grid;
+  grid-template-columns: var(--space-3xl) minmax(0, auto) minmax(var(--space-xl), 1fr) auto;
+  gap: var(--space-s);
+  align-items: baseline;
+  padding: var(--space-s) 0;
+  border-bottom: var(--line-hairline) solid var(--color-ink);
+}
+
+.contents-entry:first-child {
+  border-top: var(--line-narration) solid var(--color-ink);
+}
+
+.contents-number {
+  font-family: var(--font-display);
+  font-size: var(--font-size-h3);
+  line-height: 1;
+  color: var(--color-tone);
+}
+
+.contents-entry-text {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3xs);
+  max-width: var(--measure-reading);
+}
+
+.contents-title {
+  font-family: var(--font-display);
+  font-size: var(--font-size-h4);
+  line-height: 1.3;
+}
+
+.contents-leader {
+  align-self: end;
+  height: 0.6em;
+  margin-bottom: var(--space-xs);
+  border-bottom: var(--line-narration) dotted var(--color-ink);
+}
+
+.contents-date {
+  align-self: end;
+  white-space: nowrap;
+}
+
+@media (width <= 760px) {
+  .contents-panel {
+    padding: var(--space-l) var(--space-m);
+  }
+
+  .contents-entry {
+    grid-template-columns: var(--space-2xl) minmax(0, 1fr);
+  }
+
+  .contents-leader {
+    display: none;
+  }
+
+  .contents-date {
+    grid-column: 2;
+    justify-self: start;
+  }
+}
