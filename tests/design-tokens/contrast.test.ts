@@ -1,6 +1,9 @@
 import { describe, expect, it } from "vite-plus/test";
 
-import { readDesignTokens, tokenValue } from "../../integrations/design-tokens/design-tokens.ts";
+import {
+  readDesignTokens,
+  resolvedTokenValue,
+} from "../../integrations/design-tokens/design-tokens.ts";
 import { contrastRatio } from "./wcag-contrast.ts";
 
 const tokens = readDesignTokens(process.cwd());
@@ -52,26 +55,47 @@ const TEXT_PAIRS: readonly TextPair[] = [
   },
 ];
 
-/** The focus ring must stand out against every surface a focusable element sits on. */
-const FOCUS_RING_SURFACES: readonly string[] = ["--color-paper", "--color-page-background"];
+interface NonTextPair {
+  readonly mark: string;
+  readonly surface: string;
+  readonly usage: string;
+}
+
+/** Marks that carry meaning without being text: they must stand out from the surface they sit on. */
+const NON_TEXT_PAIRS: readonly NonTextPair[] = [
+  { mark: "--focus-ring-color", surface: "--color-paper", usage: "keyboard focus" },
+  { mark: "--focus-ring-color", surface: "--color-page-background", usage: "keyboard focus" },
+  { mark: "--link-underline-color", surface: "--color-paper", usage: "link underline" },
+  {
+    mark: "--link-underline-color-hover",
+    surface: "--color-paper",
+    usage: "hovered link underline",
+  },
+  {
+    mark: "--link-underline-color-visited",
+    surface: "--color-paper",
+    usage: "visited link underline",
+  },
+];
+
+function tokenContrast(first: string, second: string): number {
+  return contrastRatio(resolvedTokenValue(tokens, first), resolvedTokenValue(tokens, second));
+}
 
 describe("design-token text contrast (WCAG 2.2 AA)", () => {
   it.each(TEXT_PAIRS)(
     "$text on $background ($usage) reaches $minimum:1",
     ({ text, background, minimum }) => {
-      const ratio = contrastRatio(tokenValue(tokens, text), tokenValue(tokens, background));
-      expect(ratio).toBeGreaterThanOrEqual(minimum);
+      expect(tokenContrast(text, background)).toBeGreaterThanOrEqual(minimum);
     },
   );
 });
 
-describe("focus ring contrast (WCAG 2.2 AA)", () => {
-  it("draws the focus ring in ink", () => {
-    expect(tokenValue(tokens, "--focus-ring-color")).toBe("var(--color-ink)");
-  });
-
-  it.each(FOCUS_RING_SURFACES)("--color-ink focus ring on %s reaches 3:1", (surface) => {
-    const ratio = contrastRatio(tokenValue(tokens, "--color-ink"), tokenValue(tokens, surface));
-    expect(ratio).toBeGreaterThanOrEqual(NON_TEXT_MINIMUM);
-  });
+describe("design-token non-text contrast (WCAG 2.2 AA)", () => {
+  it.each(NON_TEXT_PAIRS)(
+    `$mark on $surface ($usage) reaches ${String(NON_TEXT_MINIMUM)}:1`,
+    ({ mark, surface }) => {
+      expect(tokenContrast(mark, surface)).toBeGreaterThanOrEqual(NON_TEXT_MINIMUM);
+    },
+  );
 });

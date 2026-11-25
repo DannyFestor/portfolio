@@ -21,7 +21,7 @@ const BLUE_WEIGHT = 0.0722;
 
 const FLARE = 0.05;
 
-function parseHexColor(hex: string): Rgb {
+export function parseHexColor(hex: string): Rgb {
   const channels = HEX_COLOR.exec(hex)?.groups;
   if (channels === undefined) {
     throw new Error(`Not a six-digit hex color: ${hex}`);

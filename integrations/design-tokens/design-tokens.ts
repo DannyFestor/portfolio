@@ -10,6 +10,7 @@ export type DesignTokens = Readonly<Record<string, string>>;
 const CUSTOM_PROPERTY = /(?<name>--[\w-]+)\s*:\s*(?<value>[^;]+);/gu;
 const PLAIN_NUMBER = /^\d+(?:\.\d+)?$/u;
 const PIXEL_LENGTH = /^(?<amount>\d+(?:\.\d+)?)px$/u;
+const TOKEN_REFERENCE = /^var\((?<name>--[\w-]+)\)$/u;
 
 export function parseDesignTokens(css: string): DesignTokens {
   return Object.fromEntries(
@@ -33,9 +34,16 @@ export function tokenValue(tokens: DesignTokens, name: string): string {
   return value;
 }
 
+/** The value a token stands for, following `var(--other)` references to the token they name. */
+export function resolvedTokenValue(tokens: DesignTokens, name: string): string {
+  const value = tokenValue(tokens, name);
+  const referencedName = TOKEN_REFERENCE.exec(value)?.groups?.["name"];
+  return referencedName === undefined ? value : resolvedTokenValue(tokens, referencedName);
+}
+
 /** A plain number without a unit, such as an opacity. */
 export function tokenNumber(tokens: DesignTokens, name: string): number {
-  const value = tokenValue(tokens, name);
+  const value = resolvedTokenValue(tokens, name);
   if (!PLAIN_NUMBER.test(value)) {
     throw new Error(`${name} in ${TOKEN_FILE} is ${value}, not a plain number.`);
   }
@@ -44,7 +52,7 @@ export function tokenNumber(tokens: DesignTokens, name: string): number {
 
 /** A length in CSS pixels. */
 export function tokenPixels(tokens: DesignTokens, name: string): number {
-  const value = tokenValue(tokens, name);
+  const value = resolvedTokenValue(tokens, name);
   const amount = PIXEL_LENGTH.exec(value)?.groups?.["amount"];
   if (amount === undefined) {
     throw new Error(`${name} in ${TOKEN_FILE} is ${value}, not a length in px.`);

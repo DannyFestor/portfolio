@@ -1,0 +1,19 @@
+---
+// A call to action (#27): no button, a big inked link with an arrow, for example the email address.
+import type { HTMLAttributes } from "astro/types";
+
+import "../../styles/call-to-action.css";
+
+interface Props extends Omit<HTMLAttributes<"a">, "role"> {
+  href: string;
+}
+
+const { class: className, ...attributes } = Astro.props;
+---
+
+<a
+  class:list={["call-to-action", className]}
+  {...attributes}
+>
+  <slot />
+</a>

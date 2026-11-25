@@ -1,0 +1,24 @@
+/*
+ * Links in prose (#27): an ink underline set off from the text. Hover makes it thicker and red at
+ * once; a visited link keeps an indigo underline.
+ *
+ * :where() keeps every rule at zero specificity, so a component that draws its links differently
+ * (a call to action, the header, nav or footer) restyles them without a specificity contest.
+ */
+
+:where(a:any-link) {
+  color: inherit;
+  text-decoration-line: underline;
+  text-decoration-thickness: var(--link-underline-weight);
+  text-decoration-color: var(--link-underline-color);
+  text-underline-offset: var(--link-underline-offset);
+}
+
+:where(a:visited) {
+  text-decoration-color: var(--link-underline-color-visited);
+}
+
+:where(a:any-link:hover) {
+  text-decoration-thickness: var(--link-underline-weight-hover);
+  text-decoration-color: var(--link-underline-color-hover);
+}

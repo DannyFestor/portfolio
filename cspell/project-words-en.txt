@@ -24,6 +24,7 @@ résumé
 screentone
 Shippori
 shipporimincho
+stylesheet
 subtable
 unicodes
 unifiedjs

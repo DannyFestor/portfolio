@@ -111,6 +111,28 @@
   --focus-ring-color: var(--color-ink);
   --focus-ring-width: 2px;
   --focus-ring-offset: 2px;
+
+  /*
+   * Links in prose (#27): an ink hairline underline, set off from the text. Hover thickens it and
+   * turns it red; a visited link keeps an indigo underline.
+   */
+  --link-underline-color: var(--color-ink);
+  --link-underline-color-hover: var(--color-accent);
+  --link-underline-color-visited: var(--color-tone);
+  --link-underline-weight: var(--line-hairline);
+  --link-underline-weight-hover: var(--line-panel);
+  --link-underline-offset: 3px;
+
+  /*
+   * Calls to action (#27): no buttons, big inked links in Zen Antique. Hover and press thicken the
+   * underline and turn it red; press turns the text red as well. Sizes from the element sheet.
+   */
+  --font-size-call-to-action: 26px;
+  --line-height-call-to-action: 1.2;
+  --call-to-action-color-pressed: var(--color-accent);
+  --call-to-action-underline-weight: var(--line-panel);
+  --call-to-action-underline-weight-hover: 6px;
+  --call-to-action-underline-offset: 6px;
 }
 
 /*
