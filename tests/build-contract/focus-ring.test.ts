@@ -6,7 +6,7 @@ import {
   resolvedTokenValue,
   tokenPixels,
 } from "../../integrations/design-tokens/design-tokens.ts";
-import { parseHexColor } from "../design-tokens/wcag-contrast.ts";
+import { parseHexColor } from "../design-tokens/hex-color.ts";
 import { useBuiltSiteBrowser } from "./built-site-browser.ts";
 import { findBuiltFiles, urlPathOfPage } from "./built-site.ts";
 

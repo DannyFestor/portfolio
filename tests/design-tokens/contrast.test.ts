@@ -4,6 +4,9 @@ import {
   readDesignTokens,
   resolvedTokenValue,
 } from "../../integrations/design-tokens/design-tokens.ts";
+import { screentoneSettings } from "../../integrations/screentone/screentone-settings.ts";
+import { TONE_DENSITIES } from "../../integrations/screentone/tone-density.ts";
+import { toneSurfaceColor } from "./screentone-surface.ts";
 import { contrastRatio } from "./wcag-contrast.ts";
 
 const tokens = readDesignTokens(process.cwd());
@@ -96,6 +99,25 @@ describe("design-token non-text contrast (WCAG 2.2 AA)", () => {
     `$mark on $surface ($usage) reaches ${String(NON_TEXT_MINIMUM)}:1`,
     ({ mark, surface }) => {
       expect(tokenContrast(mark, surface)).toBeGreaterThanOrEqual(NON_TEXT_MINIMUM);
+    },
+  );
+});
+
+/**
+ * A toned panel reads as the average of its dots and the paper (#27, decided 2026-11-25). Over a
+ * single dot the ink ring is darker than 3:1 would need, but the dots cover a small share of the
+ * panel; the ring is measured against the tone as the reader sees it.
+ */
+describe("focus ring on toned panels (WCAG 2.2 AA)", () => {
+  const settings = screentoneSettings(tokens);
+  const paper = resolvedTokenValue(tokens, "--color-paper");
+
+  it.each(TONE_DENSITIES)(
+    `--focus-ring-color on %s tone reaches ${String(NON_TEXT_MINIMUM)}:1`,
+    (density) => {
+      const surface = toneSurfaceColor(paper, settings, density);
+      const ring = resolvedTokenValue(tokens, "--focus-ring-color");
+      expect(contrastRatio(ring, surface)).toBeGreaterThanOrEqual(NON_TEXT_MINIMUM);
     },
   );
 });

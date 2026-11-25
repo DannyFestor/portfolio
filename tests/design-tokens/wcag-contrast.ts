@@ -1,14 +1,6 @@
 /** WCAG 2.2 contrast ratio between two sRGB colors, per the relative-luminance definition. */
 
-interface Rgb {
-  readonly red: number;
-  readonly green: number;
-  readonly blue: number;
-}
-
-const HEX_COLOR = /^#(?<red>[\da-f]{2})(?<green>[\da-f]{2})(?<blue>[\da-f]{2})$/iu;
-const HEX_RADIX = 16;
-const CHANNEL_MAX = 255;
+import { CHANNEL_MAX, parseHexColor } from "./hex-color.ts";
 
 const LINEAR_SEGMENT_LIMIT = 0.040_45;
 const LINEAR_SEGMENT_SLOPE = 12.92;
@@ -20,15 +12,6 @@ const GREEN_WEIGHT = 0.7152;
 const BLUE_WEIGHT = 0.0722;
 
 const FLARE = 0.05;
-
-export function parseHexColor(hex: string): Rgb {
-  const channels = HEX_COLOR.exec(hex)?.groups;
-  if (channels === undefined) {
-    throw new Error(`Not a six-digit hex color: ${hex}`);
-  }
-  const channel = (name: string): number => Number.parseInt(channels[name] ?? "", HEX_RADIX);
-  return { red: channel("red"), green: channel("green"), blue: channel("blue") };
-}
 
 function linearChannel(channel: number): number {
   const encoded = channel / CHANNEL_MAX;
