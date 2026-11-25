@@ -1,0 +1,13 @@
+/*
+ * White-out (#31): small text that has to sit over screentone goes on a crisp paper patch with a
+ * thin ink edge. No blur, no glow.
+ */
+
+.white-out {
+  box-sizing: border-box;
+  display: inline-block;
+  padding: var(--space-2xs) var(--space-xs);
+  color: var(--color-ink);
+  background-color: var(--color-paper);
+  border: var(--line-hairline) solid var(--color-ink);
+}

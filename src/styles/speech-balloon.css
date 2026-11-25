@@ -1,0 +1,54 @@
+/*
+ * Speech balloon (#31): a classic oval with a curved tail, for real quotes only. The only rounded
+ * shape on the site. The tail hangs from the middle of the bottom rule, where the oval runs flat.
+ */
+
+.speech-balloon {
+  display: grid;
+  gap: var(--space-3xl);
+  margin: 0;
+}
+
+/* A narration box (narration-box.css), shaped as an oval. */
+.speech-balloon > .speech-balloon-quote {
+  position: relative;
+  padding: var(--space-2xl) var(--space-3xl);
+  text-align: center;
+  border-radius: 50%;
+}
+
+.speech-balloon-quote > p {
+  margin: 0;
+}
+
+/* The tail's roots sit on the centre line of the bottom rule; its right root is at the middle. */
+.speech-balloon-tail {
+  position: absolute;
+  top: calc(100% + var(--line-narration) / 2);
+  right: 50%;
+  width: var(--space-2xl);
+  height: var(--space-2xl);
+  overflow: visible;
+}
+
+.speech-balloon-tail-fill {
+  fill: var(--color-paper);
+}
+
+.speech-balloon-tail-outline {
+  fill: none;
+  stroke: var(--color-ink);
+  stroke-width: var(--line-narration);
+  stroke-linecap: square;
+  stroke-linejoin: round;
+}
+
+.speech-balloon-attribution {
+  justify-self: end;
+  font-family: var(--font-narration);
+  font-size: var(--font-size-label);
+  font-weight: var(--font-weight-label);
+  color: var(--color-ink);
+  text-transform: uppercase;
+  letter-spacing: var(--letter-spacing-label);
+}

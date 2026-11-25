@@ -10,14 +10,11 @@ import {
   findBuiltFiles,
   readBuiltFile,
 } from "./built-site.ts";
+import { decodeNumericCharacterReferences } from "./character-references.ts";
 
 const LAST_ASCII_CODE_POINT = 0x7f;
 const HEXADECIMAL = 16;
 const CODE_POINT_DIGITS = 4;
-const NUMERIC_CHARACTER_REFERENCE = /&#(?:x[\da-f]+|\d+);/giu;
-const HEXADECIMAL_REFERENCE = /^&#x/iu;
-const REFERENCE_PREFIX = "&#";
-const REFERENCE_SUFFIX = ";";
 const FONT_URL = /url\(\s*["']?(?<url>[^"')\s]+\.woff2)/gu;
 
 const shippedFontFiles = findBuiltFiles("fonts/**/*.woff2");
@@ -26,22 +23,6 @@ const shippedFontFiles = findBuiltFiles("fonts/**/*.woff2");
 const coveredCodePoints = new Set(
   shippedFontFiles.flatMap((file) => [...woff2CodePoints(join(BUILT_SITE_DIRECTORY, file))]),
 );
-
-/** `&#x732B;` or `&#29483;` to the character it stands for. */
-function decodeNumericCharacterReference(reference: string): string {
-  const digits = reference.slice(REFERENCE_PREFIX.length, -REFERENCE_SUFFIX.length);
-  return String.fromCodePoint(
-    HEXADECIMAL_REFERENCE.test(reference)
-      ? Number.parseInt(digits.slice(1), HEXADECIMAL)
-      : Number(digits),
-  );
-}
-
-function decodeNumericCharacterReferences(html: string): string {
-  return html.replaceAll(NUMERIC_CHARACTER_REFERENCE, (reference) =>
-    decodeNumericCharacterReference(reference),
-  );
-}
 
 function describeCodePoint(codePoint: number): string {
   const hex = codePoint.toString(HEXADECIMAL).toUpperCase().padStart(CODE_POINT_DIGITS, "0");

@@ -1,0 +1,10 @@
+/*
+ * Fuchidori (縁取り, #31): display lettering over screentone or focus lines keeps a paper outline.
+ * The stroke is painted under the glyphs, so its inner half stays hidden and the glyphs keep
+ * their weight.
+ */
+
+.fuchidori {
+  -webkit-text-stroke: var(--line-fuchidori) var(--color-paper);
+  paint-order: stroke fill;
+}

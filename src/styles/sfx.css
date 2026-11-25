@@ -1,0 +1,16 @@
+/*
+ * SFX (#31): red vertical Zen Antique sound effects with a paper outline (fuchidori.css), tilted a
+ * little. Decorative, hidden from assistive technology, part of the page's one impact moment. The
+ * page places them.
+ */
+
+.sfx {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-size: var(--font-size-sfx);
+  font-weight: var(--font-weight-text);
+  line-height: 1;
+  color: var(--color-accent);
+  writing-mode: vertical-rl;
+  transform: rotate(var(--tilt-sfx));
+}

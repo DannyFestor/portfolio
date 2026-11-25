@@ -3,7 +3,8 @@
  * enforces it). Concept: seinen manga page composition on near-white paper, locked in #7.
  *
  * Contrast (WCAG 2.2 AA) of every text/background pair is asserted by tests/design-tokens.
- * Text never sits on raw screentone; it goes in a paper narration box or on a paper halo.
+ * Text never sits on raw screentone: it goes in a paper narration box or on a white-out patch, or
+ * display lettering gets a paper outline (fuchidori).
  *
  * No duration tokens: the pages are static like print, so hover and press states switch instantly.
  */
@@ -54,6 +55,7 @@
 
   /* Yomogi asides: the floor, never smaller, phones included. */
   --font-size-aside: 15px;
+  --line-height-aside: 1.3;
 
   /* Labels: Shippori Mincho capitals. */
   --font-size-label: 12px;
@@ -63,8 +65,9 @@
   --font-size-date: 13px;
   --letter-spacing-date: 0.12em;
 
-  /* SFX lettering: Zen Antique. */
+  /* SFX lettering: Zen Antique, tilted a little. Text that must be read is never rotated. */
   --font-size-sfx: 44px;
+  --tilt-sfx: 6deg;
 
   /* Shippori Mincho weights; Zen Antique and Yomogi have 400 only. */
   --font-weight-text: 400;
@@ -97,6 +100,12 @@
   --line-panel: 3px;
   --line-narration: 2px;
   --line-hairline: 1px;
+
+  /* The hand-drawn arrow of an aside. */
+  --line-hand: 1.5px;
+
+  /* Fuchidori (縁取り): the paper outline of display lettering and SFX; half of it lies outside the glyphs. */
+  --line-fuchidori: 6px;
 
   /* Keyboard focus: a calm ink outline with a small gap, the same on every link and control. */
   --focus-ring-color: var(--color-ink);
