@@ -13,6 +13,8 @@
   "ignoreBinaries": [
     // uv runs pyftsubset for scripts/subset-fonts.ts; it is a system tool, so the project has no Python.
     "uvx",
+    // `vp run career:sync` calls the career vault's CLI on Danny's machine only; CI never does.
+    "kariera",
   ],
   "ignoreDependencies": [
     // Loaded by the `astro check` command, which knip cannot trace to the package.

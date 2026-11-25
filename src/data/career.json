@@ -1,0 +1,978 @@
+{
+  "schema_version": 1,
+  "profile": {
+    "name": "Danny-Christian Festor",
+    "headline": "Full-stack web developer in Japan",
+    "summary": [
+      "Freelance full-stack web developer in Japan, working under the trade name Brücke since July 2020. Builds web systems from the user interface to the backend and database, mainly with PHP and Laravel, TypeScript and Go. Takes features autonomously from request through planning and implementation to delivery. Works in German, English and Japanese.",
+      "Worked as lead developer at Creative Innovation from 2021 to 2024, mostly on Laravel, Livewire, Alpine.js and Tailwind CSS systems: web shops, CMSs, a membership system for a medical society and the API of a matching app. Worked as backend lead at Qualita from 2024 to 2025, on the TypeScript and GraphQL backend of an investment and online marketplace platform on serverless AWS and on a Next.js shop. Since June 2025 develops the Go backend of Lazuli's product data platform on PostgreSQL and Google Cloud, with Google Vertex AI and AI coding tools.",
+      "Earlier work was in machine learning and computer vision: speech and face recognition research at Honda Research Institute Japan as an engineer of Yume Technology (2017 to 2018), and defect detection on semiconductor wafers at Sony Semiconductor Manufacturing (2018 to 2020)."
+    ]
+  },
+  "engagements": [
+    {
+      "note": "2025-06 Lazuli",
+      "organization": "Lazuli",
+      "engagement_type": "freelance",
+      "role": "Backend engineer",
+      "start": "2025-06",
+      "end": null,
+      "summary": [
+        "Works as a freelance developer in the development team of Lazuli since June 2025, on Lazuli's product data platform (PDP) with Go, PostgreSQL and Google Cloud, including Google Vertex AI, and with Claude Code and Cursor as AI coding tools. The work covers a file and asset management service and the AI-based extraction, categorisation and export of product data. From June 2025 to March 2026 the work was contracted and invoiced through Qualita, which acted as Agency; since April 2026 the contract is direct with Lazuli."
+      ]
+    },
+    {
+      "note": "2024-05 Qualita",
+      "organization": "Qualita",
+      "engagement_type": "freelance",
+      "role": "Backend lead",
+      "start": "2024-05",
+      "end": "2025-06",
+      "summary": [
+        "Worked as a freelance developer for Qualita from May 2024 to June 2025, directly contracted, on two projects for Qualita's customers. Until early 2025 (with maintenance work until May) the work was the backend of an investment and online marketplace platform with TypeScript, a GraphQL API, PostgreSQL and serverless AWS, including card payments with Pay.jp. From February 2025 it was the full-stack development of a children's toy recommendation shop with Next.js, Prisma and PostgreSQL. In June 2025 the work moved to the team of Lazuli, still through Qualita."
+      ]
+    },
+    {
+      "note": "2021-02 Creative Innovation",
+      "organization": "Creative Innovation",
+      "engagement_type": "freelance",
+      "role": "Lead developer",
+      "start": "2021-02",
+      "end": "2024-04",
+      "summary": [
+        "Worked as a freelance lead developer in the development team of Creative Innovation (CI) from February 2021 to April 2024, taking features autonomously from request to implementation. The placement came through Hajimari's IT Pro Partners service, after Hajimari had scouted the freelancer. Built and maintained web systems for CI's own services and for CI's customers, mostly full-stack with Laravel, Livewire, Alpine.js and Tailwind CSS: a CMS with WebRTC video calls, a matching-app API, web shops with automatic video creation and video sales, a membership system for a medical society, education and survey CMSs, a Flutter-based student survey app and a CMS built on an existing PHP codebase. In most months several customer projects ran in parallel, and progress was reported to CI in a monthly report."
+      ]
+    },
+    {
+      "note": "2020-07 Brücke",
+      "organization": "Brücke",
+      "engagement_type": "own-business",
+      "role": "Freelance full-stack web developer",
+      "start": "2020-07",
+      "end": "2021-01",
+      "summary": [
+        "Worked as a freelance full-stack web developer under the trade name Brücke from July 2020 to January 2021, on own projects without a Client or Agency. Built a personal portfolio website in three languages (German, English and Japanese) with Laravel, Livewire, Alpine.js and Tailwind CSS, a payroll calculation application for a kindergarten in Nagasaki that reads the export of a time-tracking system (Vue.js and Electron.js), and the renewal of the homepage of a freelance video editor with Nuxt.js on Netlify. Worked alone on all three, from requirements to operation."
+      ]
+    },
+    {
+      "note": "2018-10 Sony Semiconductor Manufacturing",
+      "organization": "Sony Semiconductor Manufacturing",
+      "engagement_type": "employment",
+      "role": "Data analyst and system engineer",
+      "start": "2018-10",
+      "end": "2020-04",
+      "summary": [
+        "Worked as a direct-hire employee of Sony Semiconductor Manufacturing in Isahaya, Nagasaki, from October 2018 to April 2020, in a team of ten. Built machine learning systems that use computer vision to find and analyse defects on semiconductor wafers: developed the algorithms, built the neural networks and analysed the results, with Python, TensorFlow and NNabla."
+      ]
+    },
+    {
+      "note": "2017-02 Yume Technology",
+      "organization": "Yume Technology",
+      "engagement_type": "dispatch",
+      "role": "Engineer",
+      "start": "2017-02",
+      "end": "2018-09",
+      "summary": [
+        "Worked as an engineer employed by the dispatch company Yume Technology from February 2017 to September 2018, placed at Honda Research Institute Japan in Wako, Saitama. In the research team, worked on the advance development of speech and face recognition systems: trained neural networks, developed algorithms and analysed the results. Programmed a multi-party dialogue robot in Java and Python and supported overseas interns at the institute. Reported on the placement to Yume's sales representative every month."
+      ]
+    },
+    {
+      "note": "2015-09 Mercedes-Benz R&D Japan",
+      "organization": "Mercedes-Benz R&D Japan",
+      "engagement_type": "internship",
+      "role": "IT support intern",
+      "start": "2015-09",
+      "end": "2016-03",
+      "summary": [
+        "Completed an internship in the IT Support Team of Mercedes-Benz R&D Japan in Kawasaki, as assistant of IT Operations and the Information Security Office. Coordinated the migration of a Lotus Notes database to Microsoft SharePoint, including application testing, troubleshooting and user support. Worked out processes as countermeasures to the findings of an internal information security audit, managed the site's IT assets (hardware, software and user accounts) and resolved issues with PCs, applications and the network. Developed new software in C# and ASP.NET and debugged it."
+      ]
+    },
+    {
+      "note": "2009-10 Katalyst Labs",
+      "organization": "Katalyst Labs",
+      "engagement_type": "employment",
+      "role": "Translation and quality assurance",
+      "start": "2009-10",
+      "end": "2010-08",
+      "summary": [
+        "Worked as a translator and quality assurance tester at Katalyst Labs in Shibuya, Tokyo, from October 2009 to August 2010. Translated computer software from Japanese and English into German, proofread the texts and tested video game software for bugs."
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "note": "Lazuli - PDP",
+      "engagement": "2025-06 Lazuli",
+      "title": "Product data platform (PDP)",
+      "start": "2025-06",
+      "end": null,
+      "role": "Backend engineer",
+      "focus": "Backend",
+      "team_size": 12,
+      "industry": "B2B SaaS",
+      "skills": [
+        "Go",
+        "REST",
+        "PostgreSQL",
+        "Google Cloud",
+        "Vertex AI",
+        "Claude Code",
+        "Cursor",
+        "BigQuery",
+        "Gemini",
+        "Jira",
+        "golangci-lint",
+        "Git"
+      ],
+      "description": [
+        "Backend development of Lazuli's product data platform (PDP), a B2B SaaS product for managing and structuring product data with the help of AI. Works autonomously from feature request to delivery. The first area is a file and asset management service: users upload images, videos and other files, which are preprocessed automatically and classified, tagged and searched with neural networks and Google Vertex AI (Gemini-based). The backend work covers folders, favourites, user tables, asset versioning with snapshots and restoration, imports from cloud storage services and fixes to file conversion. The second area is AI-based product data management: users upload CSV, XLSX, PDF or image files that contain tables, and the platform extracts the data, estimates categories and exports category-annotated data for marketplaces such as Amazon and Rakuten. The work there covers the extraction endpoints, category estimation, table editing on PostgreSQL, syndication exports, a SQL query runner and audit logs. The backend is written in Go with PostgreSQL on Google Cloud, and Claude Code and Cursor are used as AI coding tools. Automated tests keep the operation stable."
+      ],
+      "achievements": [
+        "Delivered asset versioning for the file management service: update history, snapshots, copies in cloud storage and restoration",
+        "Built extraction endpoints for tables in PDF and Excel files and the category estimation for the extracted product data",
+        "Implemented table editing on a PostgreSQL row store and named tables for the PDP Pro offering",
+        "Designed the data models and category seeds for Shopify and Rakuten syndication and built the Rakuten CSV export"
+      ]
+    },
+    {
+      "note": "Qualita - Toy Shop",
+      "engagement": "2024-05 Qualita",
+      "title": "Children's toy recommendation shop",
+      "start": "2025-02",
+      "end": "2025-06",
+      "role": "Backend lead",
+      "focus": "Backend",
+      "team_size": 8,
+      "industry": "E-commerce, education",
+      "skills": [
+        "JavaScript",
+        "TypeScript",
+        "PostgreSQL",
+        "Next.js",
+        "React",
+        "Prisma",
+        "REST",
+        "AWS",
+        "Git"
+      ],
+      "description": [
+        "Development of an online shop that recommends toys for children: users answered a questionnaire about their child's personality, age and skills, and the system suggested matching toys. The corporate and admin side let companies manage their own products and staff, and administrators approved products before they appeared in the shop. The work focused on the backend of both the admin and the user side, with frontend work where needed. The shop was built with TypeScript and Next.js server components, Prisma and SQL on PostgreSQL, and image storage on AWS S3. Work included corporate staff management with first-login password setup, product attributes such as size, a category master, a refactoring of error reporting, the introduction of MinIO, and code reviews of large pull requests."
+      ],
+      "achievements": [
+        "Built corporate staff management, including creating staff accounts and first-login password setup",
+        "Added product attributes such as size and a category master for product registration",
+        "Refactored the error reporting and introduced MinIO",
+        "Reviewed two large teammate pull requests with 228 and 175 changed files"
+      ]
+    },
+    {
+      "note": "Qualita - Investment Marketplace",
+      "engagement": "2024-05 Qualita",
+      "title": "Investment and online marketplace platform",
+      "start": "2024-05",
+      "end": "2025-05",
+      "role": "Backend lead",
+      "focus": "Backend",
+      "team_size": 6,
+      "industry": "E-commerce",
+      "skills": [
+        "JavaScript",
+        "TypeScript",
+        "Node.js",
+        "SST",
+        "PostgreSQL",
+        "GraphQL",
+        "AWS",
+        "Serverless",
+        "Pay.jp",
+        "Docker",
+        "Kysely",
+        "Pothos",
+        "Biome",
+        "Postman",
+        "dbdiagram.io",
+        "Backlog",
+        "Git"
+      ],
+      "description": [
+        "Backend development of an investment and online marketplace platform where users register items they hold as investments, buy and sell items on the marketplace and follow price changes, with prices checked on a schedule. The platform consisted of a user web application, an admin application and a public service website; the team had six members and the work focused on the backend. The backend was written in TypeScript on AWS with serverless infrastructure managed with SST, exposed a GraphQL API and stored data in PostgreSQL through a query builder and SQL. The work covered the marketplace, card payments with Pay.jp including webhook handling, contract and monthly report APIs, the database design and its performance, and bug fixing in the integration and general test phases. From late 2024, backend improvements and clean-up were proposed and carried out, and a database performance hotfix was shipped in May 2025."
+      ],
+      "achievements": [
+        "Designed the entity-relationship model and database migrations and kept migrations, seed data and diagrams current as the data model changed",
+        "Built large parts of the marketplace GraphQL API: item listing and detail, offers, favourites, cart, discount eligibility and a show or hide switch for single items",
+        "Researched and implemented card payments with Pay.jp end to end: customers, cards, charges, subscriptions, a serverless webhook handler and guards against concurrent purchases",
+        "Diagnosed slow queries with EXPLAIN ANALYZE; adding an index took one query from seconds to milliseconds",
+        "Wrote the Pay.jp integration guide for the frontend team and answered API questions from teammates",
+        "Removed unused GraphQL queries, mutations and types in a backend clean-up"
+      ]
+    },
+    {
+      "note": "Creative Innovation - Inquiry Form Revision",
+      "engagement": "2021-02 Creative Innovation",
+      "title": "Inquiry form revision for an education company",
+      "start": "2024-01",
+      "end": "2024-01",
+      "role": "Lead developer",
+      "focus": "Frontend",
+      "team_size": null,
+      "industry": "Education",
+      "skills": [
+        "JavaScript",
+        "MySQL",
+        "Git"
+      ],
+      "description": [
+        "Larger revision of the front end of the inquiry forms on the side of an education company. The custom scripts of each page were replaced by reusable common components, so that all forms are handled in the same way and future forms can be developed considerably faster."
+      ],
+      "achievements": [
+        "Replaced the custom script of each page with reusable common components",
+        "Unified the handling of all forms, which speeds up the development of future forms"
+      ]
+    },
+    {
+      "note": "Creative Innovation - Vogaro CMS",
+      "engagement": "2021-02 Creative Innovation",
+      "title": "Vogaro CMS",
+      "start": "2023-11",
+      "end": "2024-04",
+      "role": "Lead developer",
+      "focus": "Full stack",
+      "team_size": 3,
+      "industry": "Automotive",
+      "skills": [
+        "PHP",
+        "jQuery",
+        "JavaScript",
+        "SQL",
+        "Docker",
+        "GitLab",
+        "AWS",
+        "MySQL",
+        "Git"
+      ],
+      "description": [
+        "Full-stack development of a CMS for a website about automotive wheels, based on files of the Lacne CMS that were handed over for the project. Features were added to the admin area to match the client's needs, implemented from designs supplied in XD, and the backend that delivers the content registered in the admin to a front end built by another company was developed from scratch. Phase 1 covered the product-related CMS and phase 2 the news and fair management.",
+        "The code is PHP 5 without a framework, the custom admin tools use jQuery and JavaScript, and database queries are plain SQL without an ORM. The development environment is a self-made Docker setup, extended with a custom container that compiles the other company's front-end assets. The system was hosted on AWS EC2 with RDS and deployed automatically from pushes to the GitLab staging and master branches."
+      ],
+      "achievements": [
+        "Studied the Lacne CMS code base, fixed bugs and extended it to the client's needs",
+        "Added the management of brands, wheels, wheel parts, optional parts, sizes and products to the admin in November and December 2023",
+        "Developed the backend that delivers the admin content, pages and database data to the front end built by another company",
+        "Completed phase 1, the product-related CMS, in early January 2024 and reduced the number of database queries considerably",
+        "Fixed a major bug in which the public and private setting deleted related data",
+        "Completed the news management and the fair management of phase 2 in February 2024",
+        "Built a custom Docker container that compiles the other company's front-end assets"
+      ]
+    },
+    {
+      "note": "Creative Innovation - Specialist Certification System",
+      "engagement": "2021-02 Creative Innovation",
+      "title": "Specialist and certified physician certification system",
+      "start": "2023-10",
+      "end": "2024-01",
+      "role": "Lead developer",
+      "focus": "Backend",
+      "team_size": null,
+      "industry": "Healthcare",
+      "skills": [
+        "PHP",
+        "Laravel",
+        "MySQL",
+        "Git"
+      ],
+      "description": [
+        "Development of a system for the certification of specialists and certified physicians (専門医・認定医) of a palliative medicine society, connected to the society's member management system. In October 2023 the backend functions were implemented and the designs applied, the database connection to the member management system was built and the case registration was developed. The member management system gained a function to set the instructors of the certification system. In January 2024 work started on a facility management function, due for early February."
+      ],
+      "achievements": [
+        "Built the database connection between the certification system and the member management system",
+        "Developed the case registration",
+        "Added the instructor setting function for the certification system to the member management system",
+        "Started the facility management function in January 2024"
+      ]
+    },
+    {
+      "note": "Creative Innovation - Conference QR Entry",
+      "engagement": "2021-02 Creative Innovation",
+      "title": "QR code entry and exit management system for a conference",
+      "start": "2023-08",
+      "end": "2023-09",
+      "role": "Lead developer",
+      "focus": "Full stack",
+      "team_size": null,
+      "industry": "Healthcare",
+      "skills": [
+        "PHP",
+        "Laravel",
+        "MySQL",
+        "Git"
+      ],
+      "description": [
+        "Development of an app that manages entry to and exit from the venue of the academic conference (学術大会) of a palliative medicine society with QR codes. Development started in early August 2023 with a prototype that read a QR code and fetched the user information. It became an app that uses Laravel's encrypted route feature to send every member a personal QR code and records the entry and exit history in front of the conference venue. An admin side, including the sending of the QR codes to members by email, was added. After functional checks and bug fixes the system was used in production at the conference on 2 September 2023."
+      ],
+      "achievements": [
+        "Built the QR code reading prototype that fetches the user information in August 2023",
+        "Implemented personal QR codes with Laravel's encrypted routes and the entry and exit history of the venue",
+        "Added the admin side, including the emailing of QR codes to the members",
+        "Fixed the bugs found before production use; the system ran in production on 2 September 2023 without problems"
+      ]
+    },
+    {
+      "note": "Creative Innovation - Pharmacist Certification",
+      "engagement": "2021-02 Creative Innovation",
+      "title": "Certified pharmacist program system",
+      "start": "2023-06",
+      "end": "2023-09",
+      "role": "Lead developer",
+      "focus": "Full stack",
+      "team_size": 4,
+      "industry": "Healthcare",
+      "skills": [
+        "Laravel",
+        "MySQL",
+        "Git"
+      ],
+      "description": [
+        "Development of a system for the certified pharmacist program of an association of hospital pharmacists in Japan, built through CI. In June 2023 the association's own API was not finished, so a mock API based on the expected specification was built together with scripts and schedules that call it and store the data in the database. From July 2023 the certification application system and improvements to the admin area were developed on Laravel, and by September 2023 all screens, including member certification and renewal requirements, were complete. The Laravel side was to be updated once the association's API became available."
+      ],
+      "achievements": [
+        "Built a mock API from the expected specification so that development could continue while the association's API was unfinished",
+        "Implemented scripts and schedules that call the API and store the results in the database",
+        "Completed the certification application system, including the member certification and renewal requirement screens, by September 2023"
+      ]
+    },
+    {
+      "note": "Creative Innovation - Survey Admin Excel Migration",
+      "engagement": "2021-02 Creative Innovation",
+      "title": "Survey data migration from Excel to Laravel with admin functions",
+      "start": "2023-06",
+      "end": "2023-06",
+      "role": "Lead developer",
+      "focus": "Backend",
+      "team_size": null,
+      "industry": "Education",
+      "skills": [
+        "PHP",
+        "Laravel",
+        "MySQL",
+        "Git"
+      ],
+      "description": [
+        "Migration of a survey data set from an Excel sheet into a Laravel application, with admin functions built around it. In June 2023 the data was brought into Laravel, a CSV import was added to the admin, and search and filter functions were added to the admin screens."
+      ],
+      "achievements": [
+        "Brought the survey data from an Excel sheet into Laravel",
+        "Added the CSV import to the admin",
+        "Added search and filter functions to the admin"
+      ]
+    },
+    {
+      "note": "Creative Innovation - Survey CMS",
+      "engagement": "2021-02 Creative Innovation",
+      "title": "Survey CMS for material requests",
+      "start": "2023-05",
+      "end": "2023-09",
+      "role": "Lead developer",
+      "focus": "Full stack",
+      "team_size": 3,
+      "industry": "Education",
+      "skills": [
+        "PHP",
+        "Vue.js",
+        "TypeScript",
+        "SQL",
+        "Docker",
+        "MySQL",
+        "Git"
+      ],
+      "description": [
+        "Development of a survey system with which students and their parents choose levels, courses and similar options and request that suitable materials are sent to them by post. The backend was implemented in PHP and the screens and functions with Vue.js and TypeScript. Database queries were written in SQL. Hosting and deployment were handled by a colleague, and the development environment was Docker."
+      ],
+      "achievements": [
+        "Implemented the PHP backend with SQL queries",
+        "Developed the screens and functions with Vue.js and TypeScript",
+        "Covered the work from requirements definition to maintenance and operations"
+      ]
+    },
+    {
+      "note": "Creative Innovation - School Branch CMS",
+      "engagement": "2021-02 Creative Innovation",
+      "title": "School branch CMS for an education company",
+      "start": "2023-04",
+      "end": "2024-01",
+      "role": "Lead developer",
+      "focus": "Full stack",
+      "team_size": 3,
+      "industry": "Education",
+      "skills": [
+        "PHP",
+        "Laravel",
+        "Vue.js",
+        "TypeScript",
+        "Inertia.js",
+        "SQL",
+        "Docker",
+        "MySQL",
+        "Git"
+      ],
+      "description": [
+        "Full-stack development of a CMS for the content of the branches (校舎) of an education company's schools, built as new features on a Laravel backend that a colleague had written. Branch management and branch content management were developed; the content management screens use Vue.js, are connected to Laravel with Inertia.js without an API and include reordering of the displayed content.",
+        "From September 2023 the public pages were implemented from new designs: prefecture selection, branch search and branch details. In January 2024 further branch-side and headquarters-side features followed, among them image links in the branch announcements. Database queries used Eloquent ORM or SQL. Hosting and deployment were handled by a colleague, and the development environment was Docker (Laradock)."
+      ],
+      "achievements": [
+        "Developed the branch management and branch content management screens with Vue.js, including the reordering of displayed content",
+        "Set up the project environment, tables and models and implemented branch registration and editing in September 2023",
+        "Implemented the new designs of the prefecture selection, branch search and branch detail pages and the branch search function in September and October 2023",
+        "Added image links to the branch-side announcement management in January 2024, with the stored image code rendered on the user side",
+        "Fixed unrelated bugs found along the way"
+      ]
+    },
+    {
+      "note": "Creative Innovation - NiCoLi",
+      "engagement": "2021-02 Creative Innovation",
+      "title": "NiCoLi student management system",
+      "start": "2023-02",
+      "end": "2023-08",
+      "role": "Lead developer",
+      "focus": "Full stack",
+      "team_size": 3,
+      "industry": "Education",
+      "skills": [
+        "Dart",
+        "Flutter",
+        "Node.js",
+        "TypeScript",
+        "SQL",
+        "GitLab",
+        "Docker",
+        "AWS",
+        "Laravel",
+        "MySQL",
+        "Git"
+      ],
+      "description": [
+        "Maintenance and extension of the NiCoLi student survey and management application that CI took over from another company and that cram schools use: students answered surveys, and teachers and administrators viewed the results. The application had a Flutter front end for web and mobile and a Node.js backend on AWS Lambda with SQL databases on RDS, and was deployed from GitLab. Dart and Flutter were learned on the job while reworking screens, adding features and cleaning up the inherited code. Features included switching the survey year for municipalities, simple login, and admin screens with Japanese localisation, search, filters and CSV import and export. In June 2023 a separate survey dataset was also moved from Excel into a Laravel application with CSV import and search in its admin area."
+      ],
+      "achievements": [
+        "Fixed SQL injection weaknesses in parts of the inherited backend and reported the remaining affected code to CI",
+        "Reduced the database queries of API endpoints by using joins, for example from 15 queries to 3 for one endpoint",
+        "Fixed a Flutter bug that called the API on every screen change, which removed display errors and lowered AWS Lambda usage",
+        "Corrected the survey score calculation, including wrong results when a survey was answered several times in a year",
+        "Added year switching for municipalities, simple login, and CSV import and export with search and filters to the admin screens"
+      ]
+    },
+    {
+      "note": "Creative Innovation - Lesson Reservation",
+      "engagement": "2021-02 Creative Innovation",
+      "title": "Lesson reservation system for an education company",
+      "start": "2023-01",
+      "end": "2023-01",
+      "role": "Lead developer",
+      "focus": "Full stack",
+      "team_size": null,
+      "industry": "Education",
+      "skills": [
+        "Laravel",
+        "Livewire",
+        "MySQL",
+        "Git"
+      ],
+      "description": [
+        "Preparation of a lesson reservation system for a client in education. In January 2023 the development environment was set up and checked for correct operation, before the project itself started."
+      ],
+      "achievements": [
+        "Set up the development environment and verified that it works, ready for the start of the project"
+      ]
+    },
+    {
+      "note": "Creative Innovation - Sales Promotion ASP",
+      "engagement": "2021-02 Creative Innovation",
+      "title": "Online sales promotion ASP service",
+      "start": "2023-01",
+      "end": "2023-11",
+      "role": "Lead developer",
+      "focus": "Full stack",
+      "team_size": null,
+      "industry": "Marketing",
+      "skills": [
+        "PHP",
+        "Laravel",
+        "jQuery",
+        "JavaScript",
+        "HTML",
+        "CSS",
+        "MySQL",
+        "Git"
+      ],
+      "description": [
+        "Development and extension of an ASP service for online sales promotion, built with Laravel and jQuery. In January 2023 the product order flow was changed from single items to several items per order, a change that touched 82 files across flows and processing and was followed by bug fixes in February. From October 2023 a landing page (LP) builder was added to the admin: after a technical survey the grapes.js library was chosen and adapted to the needs of the service, and LP creation, a preview in the admin and the display of the LPs on the user side were implemented. In November 2023 saving and restoring pages as templates and the adding, editing and deleting of pages and templates in the admin followed."
+      ],
+      "achievements": [
+        "Changed the product order flow from single items to orders with several items, a change across 82 files, and fixed the bugs it introduced",
+        "Surveyed technologies for an LP builder, chose grapes.js and adapted it to the needs of the service",
+        "Implemented LP creation in the admin with a preview and the display of LPs on the user side",
+        "Added saving and restoring pages as templates and the management of pages and templates in the admin in November 2023"
+      ]
+    },
+    {
+      "note": "Creative Innovation - Video Sales Web Shop",
+      "engagement": "2021-02 Creative Innovation",
+      "title": "Video sales web shop platform",
+      "start": "2022-08",
+      "end": "2023-06",
+      "role": "Lead developer",
+      "focus": "Full stack",
+      "team_size": 4,
+      "industry": "E-commerce",
+      "skills": [
+        "PHP",
+        "Laravel",
+        "Livewire",
+        "Alpine.js",
+        "Tailwind CSS",
+        "FilamentPHP",
+        "SQL",
+        "Docker",
+        "GitLab",
+        "AWS",
+        "HTML",
+        "CSS",
+        "MySQL",
+        "Git"
+      ],
+      "description": [
+        "Full-stack development of a service in which vendors register their own video sales web shops and manage their customers and products. The platform has an admin side, a vendor side and a consumer side, and sells digital content, live streams and physical goods, with a chat for live streams. The screens were implemented from designs supplied in XD, together with the detail pages, the shopping cart, the vendor registration system and the admin area for client and product management.",
+        "The backend is built with Laravel, the front end with Livewire, Alpine.js and Tailwind CSS, and the admin area with FilamentPHP. Database queries used Eloquent ORM or SQL. The system was hosted on AWS EC2 with RDS and S3 for the sales items, deployed automatically from pushes to the GitLab staging and master branches, and developed in Docker (Laradock). After the first implementation in autumn 2022, work consisted of change requests, design improvements and bug fixes."
+      ],
+      "achievements": [
+        "Implemented the admin, vendor and consumer sides from the kickoff in October 2022 and completed the planned basic functions in November 2022",
+        "Added upload time limits for vendors, configurable globally by time, weekday and date, and later changed so that uploads outside the limit are allowed but publishing is blocked",
+        "Added site settings, sales completion, ABC analysis, popularity ranking and chat for live streams in December 2022",
+        "Improved the chat data volume and polling after tests showed that the last 100 messages were fetched every two seconds",
+        "Added the Google index header setting, vendor plan settings and contract display in January 2023",
+        "Added consumer registration from the admin side with a notification email and a duplication function for digital content, live streams and goods in April 2023",
+        "Fixed duplicate entries in the cart behaviour analysis and the display order of the cart"
+      ]
+    },
+    {
+      "note": "Creative Innovation - Memorial Video Service",
+      "engagement": "2021-02 Creative Innovation",
+      "title": "Memorial video creation web shop",
+      "start": "2022-04",
+      "end": "2023-06",
+      "role": "Lead developer",
+      "focus": "Full stack",
+      "team_size": 4,
+      "industry": "E-commerce",
+      "skills": [
+        "PHP",
+        "Laravel",
+        "Livewire",
+        "Alpine.js",
+        "Tailwind CSS",
+        "FilamentPHP",
+        "SQL",
+        "Docker",
+        "GitLab",
+        "AWS",
+        "HTML",
+        "CSS",
+        "FFmpeg",
+        "MySQL",
+        "Git"
+      ],
+      "description": [
+        "Full-stack development of a web shop where customers upload images and other material, choose a template and, after payment, receive an automatically generated memorial video. Implemented the screens from supplied XD designs, the pages and payment flow and the admin area with FilamentPHP, and designed a Laravel queue worker that renders the videos with FFmpeg scripts, covering the work from basic design through operations. The system was built with Laravel, Livewire, Alpine.js and Tailwind CSS, hosted on AWS EC2 with RDS, with uploads and videos stored on S3 and deployments from GitLab. In 2023 sharing of finished videos via LINE and a field for the name of the deceased on material upload were added, and in June 2023 a point system was prototyped as a replacement for direct payment."
+      ],
+      "achievements": [
+        "Designed the worker queue that renders videos automatically with FFmpeg after payment",
+        "Implemented the user-side screens and the video creation and preview functions from the supplied designs for the first release",
+        "Built the admin area with FilamentPHP",
+        "Added LINE sharing of finished videos in January 2023",
+        "Prototyped a point system with admin and user point top-up and consumption on video download in June 2023"
+      ]
+    },
+    {
+      "note": "Creative Innovation - Society Membership System",
+      "engagement": "2021-02 Creative Innovation",
+      "title": "Membership management system for a palliative medicine society",
+      "start": "2022-03",
+      "end": "2024-04",
+      "role": "Lead developer",
+      "focus": "Full stack",
+      "team_size": 4,
+      "industry": "Healthcare",
+      "skills": [
+        "PHP",
+        "Laravel",
+        "Livewire",
+        "Alpine.js",
+        "Tailwind CSS",
+        "SQL",
+        "Docker",
+        "GitLab",
+        "AWS",
+        "HTML",
+        "CSS",
+        "MySQL",
+        "Git"
+      ],
+      "description": [
+        "Development of the membership management system of a Japanese palliative medicine society. Members check their membership fees, take part in the general assembly and apply for letters of commission. Administrators register members and manage announcements, fees and meetings. The login and registration screens, part of the member screens and part of the admin area were developed.",
+        "The backend is built with Laravel. The admin area was built in-house and the member side was implemented, both with Livewire, Alpine.js and Tailwind CSS. Database queries used Eloquent ORM or SQL. The system was hosted on AWS EC2 with RDS, deployed automatically from pushes to the GitLab staging and master branches, and developed in Docker (Laradock). From August 2022 the work consisted largely of maintenance and feedback handling."
+      ],
+      "achievements": [
+        "Developed the login and registration screens, part of the member screens and part of the admin area",
+        "Restored the letter-of-commission function in August 2022",
+        "Handled maintenance issues and feedback, a few new features and bug fixes in August and September 2022"
+      ]
+    },
+    {
+      "note": "Creative Innovation - B2B Sales Meeting Service",
+      "engagement": "2021-02 Creative Innovation",
+      "title": "B2B online sales meeting service",
+      "start": "2021-11",
+      "end": "2022-03",
+      "role": "Lead developer",
+      "focus": "Backend",
+      "team_size": 6,
+      "industry": "Communications",
+      "skills": [
+        "PHP",
+        "Laravel",
+        "SCSS",
+        "WebRTC",
+        "SQL",
+        "GitLab",
+        "Docker",
+        "MySQL",
+        "Git"
+      ],
+      "description": [
+        "Development of a B2B service of CI's own in which companies upload documents and hold sales meetings directly with customers. The service offers chat and video calls, and during a meeting pages of the documents can be opened on the other party's screen. Meeting links are encrypted for security.",
+        "The API is built with Laravel, video calls use WebRTC and database queries use Eloquent ORM or SQL. The front end runs on a JavaScript framework that a colleague had written in-house, and the design is implemented in SCSS. The system was deployed automatically from pushes to the GitLab staging and master branches and developed in Docker (Laradock)."
+      ],
+      "achievements": [
+        "Developed the Laravel API of the meeting service",
+        "Implemented the screen designs in SCSS on top of the colleague's JavaScript framework"
+      ]
+    },
+    {
+      "note": "Creative Innovation - Matching App API",
+      "engagement": "2021-02 Creative Innovation",
+      "title": "Matching app API and company-side web interface",
+      "start": "2021-09",
+      "end": "2022-09",
+      "role": "Lead developer",
+      "focus": "Full stack",
+      "team_size": 3,
+      "industry": "Web services (matching app)",
+      "skills": [
+        "PHP",
+        "Laravel",
+        "PHPUnit",
+        "OpenAPI",
+        "Livewire",
+        "Alpine.js",
+        "Tailwind CSS",
+        "SQL",
+        "AWS",
+        "GitLab",
+        "Docker",
+        "HTML",
+        "CSS",
+        "MySQL",
+        "Git"
+      ],
+      "description": [
+        "Development of the API of a mobile matching app that connects companies and people using only a face photo. Midway through the project a specification change added a PC web interface for companies, and an admin area was built as well.",
+        "The API is built with Laravel, covered with PHPUnit tests and documented in OpenAPI to support maintenance. The company-side screens were implemented from designs supplied in XD, and the admin area was built in-house, both with Laravel, Livewire, Alpine.js and Tailwind CSS. Database queries used Eloquent ORM or SQL. The system was hosted on AWS EC2 with RDS and S3 for images, deployed automatically from pushes to the GitLab staging and master branches, and developed in Docker (Laradock)."
+      ],
+      "achievements": [
+        "Built the Laravel API for the mobile app",
+        "Implemented the company-side PC screens from the supplied designs after the specification change",
+        "Built the admin area",
+        "Covered the API with PHPUnit tests and documented it in OpenAPI to support maintenance",
+        "Handled feedback and display change requests in August and September 2022"
+      ]
+    },
+    {
+      "note": "Creative Innovation - PR Company CMS",
+      "engagement": "2021-02 Creative Innovation",
+      "title": "PR company CMS with video calls",
+      "start": "2021-02",
+      "end": "2021-08",
+      "role": "Lead developer",
+      "focus": "Full stack",
+      "team_size": 3,
+      "industry": "Marketing",
+      "skills": [
+        "PHP",
+        "Laravel",
+        "jQuery",
+        "Bootstrap",
+        "WebRTC",
+        "SQL",
+        "AWS",
+        "GitLab",
+        "Docker",
+        "MySQL",
+        "Git"
+      ],
+      "description": [
+        "Development of the CMS of a PR company, covering the admin, member and user functions. The admin side updates the content of the PR site and manages members and surveys. Members sit in a phone booth and log in on a tablet, and the admin side shows which booths are in use. Members hold video calls with users over WebRTC and, during a call, show a survey or PR items to the user with a button press. After the call and the user's survey answers, the admin side checks the input and manages the sending of the PR items.",
+        "The admin, member and user sides were implemented with Laravel, the front ends with jQuery and Bootstrap, and database queries with Eloquent ORM or SQL. The system was hosted on AWS EC2 with RDS, deployed automatically from pushes to the GitLab staging and master branches, and developed in Docker (Laradock)."
+      ],
+      "achievements": [
+        "Developed the admin, member and user functions of the CMS with Laravel",
+        "Implemented the WebRTC video call between member and user, with surveys and PR items shown on a button press during the call",
+        "Built the admin views for survey input, the sending of PR items and the booths currently in use"
+      ]
+    },
+    {
+      "note": "Brücke - Homepage Renewal",
+      "engagement": "2020-07 Brücke",
+      "title": "Homepage renewal for a freelance video editor",
+      "start": "2020-07",
+      "end": "2020-09",
+      "role": "Developer",
+      "focus": "Full stack",
+      "team_size": 1,
+      "industry": "Video editing",
+      "skills": [
+        "Nuxt.js",
+        "Netlify",
+        "Tailwind CSS",
+        "Git"
+      ],
+      "description": [
+        "Renewal of the homepage of a freelance video editor. The site was rebuilt with Nuxt.js and Tailwind CSS and hosted on Netlify. All phases from requirements definition to maintenance and operations were carried out alone."
+      ],
+      "achievements": [
+        "Rebuilt the homepage with Nuxt.js and Tailwind CSS on Netlify",
+        "Carried out all phases from requirements definition to maintenance and operations alone"
+      ]
+    },
+    {
+      "note": "Brücke - Kindergarten Payroll App",
+      "engagement": "2020-07 Brücke",
+      "title": "Kindergarten payroll calculation app",
+      "start": "2020-07",
+      "end": "2021-01",
+      "role": "Developer",
+      "focus": "Full stack",
+      "team_size": 1,
+      "industry": "Education",
+      "skills": [
+        "Vue.js",
+        "Electron",
+        "Node.js",
+        "Git"
+      ],
+      "description": [
+        "Development of a payroll calculation application for the childcare workers of a kindergarten in Nagasaki, with a teacher administration. The application reads the export file of Kodomon (コドモン), the kindergarten's time-tracking system, and calculates the salaries. It is built with Vue.js and Electron on Node.js. The technology was chosen first and all phases from requirements definition to operation were carried out alone."
+      ],
+      "achievements": [
+        "Chose the technology and implemented the application alone from requirements definition to operation",
+        "Implemented the import of the time-tracking system's export file for the salary calculation of the childcare workers",
+        "Added the teacher administration"
+      ]
+    },
+    {
+      "note": "Brücke - Portfolio Site",
+      "engagement": "2020-07 Brücke",
+      "title": "Personal portfolio website",
+      "start": "2020-07",
+      "end": "2021-01",
+      "role": "Developer",
+      "focus": "Full stack",
+      "team_size": 1,
+      "industry": "Web development",
+      "skills": [
+        "PHP",
+        "Laravel",
+        "Livewire",
+        "Alpine.js",
+        "Tailwind CSS",
+        "FilamentPHP",
+        "GitHub",
+        "Git"
+      ],
+      "description": [
+        "Development of a personal portfolio website in three languages: German, English and Japanese. The site is built with Laravel, Livewire, Alpine.js and Tailwind CSS, with FilamentPHP for the admin area, and its code is kept on GitHub. All phases from requirements definition to maintenance and operations were carried out alone."
+      ],
+      "achievements": [
+        "Built the site in German, English and Japanese",
+        "Carried out all phases from requirements definition to maintenance and operations alone"
+      ]
+    },
+    {
+      "note": "Sony Semiconductor Manufacturing - Wafer Defect Detection",
+      "engagement": "2018-10 Sony Semiconductor Manufacturing",
+      "title": "Machine learning system for wafer defect detection",
+      "start": "2018-10",
+      "end": "2020-04",
+      "role": "Data analyst and system engineer",
+      "focus": "Machine learning",
+      "team_size": 10,
+      "industry": "Electronics manufacturing",
+      "skills": [
+        "Python",
+        "TensorFlow",
+        "NNabla",
+        "F Sharp",
+        "Machine Learning",
+        "Neural Networks",
+        "Computer Vision",
+        "Git"
+      ],
+      "description": [
+        "Development of machine learning systems that use computer vision to find and analyse defects on semiconductor wafers, in a team of ten at the semiconductor plant in Isahaya, Nagasaki. Algorithms were developed, neural networks built and the results analysed, with Python, TensorFlow, NNabla and F#."
+      ],
+      "achievements": [
+        "Developed the algorithms for the detection of wafer defects",
+        "Built the neural networks that find defects on wafer images with computer vision",
+        "Analysed the results of the models"
+      ]
+    },
+    {
+      "note": "Yume Technology - Dialogue Robot Research",
+      "engagement": "2017-02 Yume Technology",
+      "title": "Multi-party dialogue robot and speech and face recognition research",
+      "start": "2017-03",
+      "end": "2018-09",
+      "role": "Development team member",
+      "focus": "Machine learning",
+      "team_size": 7,
+      "industry": "Automotive",
+      "skills": [
+        "Java",
+        "Python",
+        "C++",
+        "Deeplearning4j",
+        "TensorFlow",
+        "GitHub",
+        "Machine Learning",
+        "Neural Networks",
+        "Computer Vision",
+        "Git"
+      ],
+      "description": [
+        "Research support at Honda Research Institute Japan in Wako, Saitama, as an engineer dispatched by Yume Technology. The work was the advance development of speech and face recognition systems and the programming of a multi-party dialogue robot, in Java and Python and from October 2017 also in C++. Neural networks for speech and face recognition were trained to raise efficiency, algorithms were developed and results analysed. Overseas interns at the institute were supported.",
+        "The slides on the placement describe the tools: ROS modules, Weka for the classification of sound and posture, OpenCV and Kinect for faces, Caffe and later TensorFlow for the face recognition networks, and Julius and the LIUM speaker diarization for speech. Progress was reported to Yume's sales representative in monthly reports."
+      ],
+      "achievements": [
+        "Developed advance speech and face recognition systems: trained neural networks, developed algorithms and analysed the results",
+        "Programmed a multi-party dialogue robot in Java and Python and supported overseas interns at the institute",
+        "Contributed to the improvement of the face recognition system in late 2017",
+        "Moved the project to GitHub in January 2018",
+        "Handled a large increase of annotation work in February 2018",
+        "Implemented face detection and tracking with OpenCV in March and April 2018",
+        "Studied machine learning algorithms with Scikit-Learn and Keras from May to August 2018 and handed the work over in September 2018"
+      ]
+    },
+    {
+      "note": "Mercedes-Benz R&D Japan - Lotus Notes Migration",
+      "engagement": "2015-09 Mercedes-Benz R&D Japan",
+      "title": "IT operations support and Lotus Notes to SharePoint migration",
+      "start": "2015-09",
+      "end": "2016-03",
+      "role": "IT support intern",
+      "focus": null,
+      "team_size": null,
+      "industry": "Automotive",
+      "skills": [
+        "C Sharp",
+        "Git"
+      ],
+      "description": [
+        "Internship in the IT Support Team of Mercedes-Benz R&D Japan in Kawasaki, as assistant of IT Operations and the Information Security Office. The work covered the migration of a Lotus Notes database to Microsoft SharePoint, countermeasures to the findings of an internal information security audit, the management of the site's IT assets and everyday IT troubleshooting, and the development of new software applications in C# and ASP.NET."
+      ],
+      "achievements": [
+        "Coordinated the migration of a Lotus Notes database to Microsoft SharePoint, including application testing, troubleshooting and user support",
+        "Worked out processes as countermeasures to the findings of an internal information security audit with the aim of raising the security level of the local IT environment",
+        "Managed the IT assets of the site (hardware, software and user accounts) and acted on user requests",
+        "Resolved issues with PCs, applications and the network infrastructure",
+        "Developed new software applications in C# and ASP.NET and debugged them by testing and fixing errors"
+      ]
+    }
+  ],
+  "qualifications": [
+    {
+      "name": "TOEIC 980",
+      "category": "test-result",
+      "issuer": null,
+      "start": null,
+      "date": "2020-01",
+      "level": null,
+      "score": "980/990"
+    },
+    {
+      "name": "BSc Electrical Engineering and Information Technology",
+      "category": "degree",
+      "issuer": "Ruhr-Universität Bochum",
+      "start": "2012-10",
+      "date": "2016-11",
+      "level": "Bachelor of Science, specialisation Information Technology",
+      "score": null
+    },
+    {
+      "name": "MA Japanese Linguistics",
+      "category": "degree",
+      "issuer": "Ruhr-Universität Bochum",
+      "start": "2010-10",
+      "date": "2012-10",
+      "level": "Master of Arts",
+      "score": null
+    },
+    {
+      "name": "JLPT N2",
+      "category": "test-result",
+      "issuer": "Japan Foundation",
+      "start": null,
+      "date": "2012-01",
+      "level": "N2",
+      "score": null
+    },
+    {
+      "name": "BA Japanology and English Studies",
+      "category": "degree",
+      "issuer": "Ruhr-Universität Bochum",
+      "start": "2005-10",
+      "date": "2009-07",
+      "level": "Bachelor of Arts",
+      "score": null
+    },
+    {
+      "name": "Abitur",
+      "category": "degree",
+      "issuer": "Berufskolleg für Technik und Gestaltung",
+      "start": null,
+      "date": "2004-06",
+      "level": null,
+      "score": null
+    },
+    {
+      "name": "Ordinary Car Driving Licence (Japan, Class 1)",
+      "category": "licence",
+      "issuer": null,
+      "start": null,
+      "date": "2003-02",
+      "level": null,
+      "score": null
+    }
+  ],
+  "languages": [
+    {
+      "name": "English",
+      "level": "Fluent (TOEIC 980/990)"
+    },
+    {
+      "name": "German",
+      "level": "Native"
+    },
+    {
+      "name": "Japanese",
+      "level": "Business level (JLPT N2)"
+    }
+  ]
+}

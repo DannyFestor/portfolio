@@ -1,8 +1,15 @@
 # Japanese words written in Latin script (romaji).
 fuchidori
+Hajimari
+Isahaya
 keirekisho
+Kodomon
 Maru
 Mincho
+Saitama
 seinen
+Shibuya
 shokumu
+Wako
 Yomogi
+Yume

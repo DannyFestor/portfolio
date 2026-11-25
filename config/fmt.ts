@@ -1,7 +1,14 @@
 import type { OxfmtConfig } from "vite-plus/fmt";
 
 export const fmtConfig: OxfmtConfig = {
-  ignorePatterns: ["dist/**", ".astro/**", "pnpm-lock.yaml"],
+  // career.json and its schema are kariera's output, kept byte for byte so a sync shows only real changes.
+  ignorePatterns: [
+    "dist/**",
+    ".astro/**",
+    "pnpm-lock.yaml",
+    "src/data/career.json",
+    "src/data/career-export.schema.json",
+  ],
   astro: true,
   sortImports: true,
   sortPackageJson: true,
