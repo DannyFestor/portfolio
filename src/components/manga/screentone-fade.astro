@@ -1,0 +1,22 @@
+---
+// A gradation tone: a child that fills its panel and fades out `toward` one side or corner.
+import type { ToneDensity } from "../../../integrations/screentone/tone-density.ts";
+import { toneClass } from "../../../integrations/screentone/tone-density.ts";
+import { fadeDirectionStyle } from "./screentone-fade.ts";
+import type { FadeDirection } from "./screentone-fade.ts";
+
+import "../../styles/screentone.css";
+
+interface Props {
+  density: ToneDensity;
+  toward: FadeDirection;
+}
+
+const { density, toward } = Astro.props;
+---
+
+<span
+  class:list={["screentone-fade", toneClass(density)]}
+  style={fadeDirectionStyle(toward)}
+  aria-hidden="true"
+></span>

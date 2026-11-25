@@ -1,12 +1,8 @@
+import { distanceBetween } from "../../src/geometry/point.ts";
+import type { Point } from "../../src/geometry/point.ts";
 import { darknessOf, dotRadius, inkCoverage } from "./dot-shape.ts";
-import {
-  cellCentre,
-  distanceBetween,
-  screenRotation,
-  toImageSpace,
-  toScreenSpace,
-} from "./screen-geometry.ts";
-import type { Point, ScreenRotation } from "./screen-geometry.ts";
+import { cellCentre, screenRotation, toImageSpace, toScreenSpace } from "./screen-geometry.ts";
+import type { ScreenRotation } from "./screen-geometry.ts";
 
 /** The classic angle for a single-ink screen: the eye notices dot rows least along the diagonal. */
 const SCREEN_ANGLE_DEGREES = 45;

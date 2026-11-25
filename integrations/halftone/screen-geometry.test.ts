@@ -1,13 +1,8 @@
 import { describe, expect, it } from "vite-plus/test";
 
-import {
-  cellCentre,
-  distanceBetween,
-  screenRotation,
-  toImageSpace,
-  toScreenSpace,
-} from "./screen-geometry.ts";
-import type { Point } from "./screen-geometry.ts";
+import { distanceBetween } from "../../src/geometry/point.ts";
+import type { Point } from "../../src/geometry/point.ts";
+import { cellCentre, screenRotation, toImageSpace, toScreenSpace } from "./screen-geometry.ts";
 
 /** 45°, the angle of the unit square's diagonal. */
 const EIGHTH_TURN_RADIANS = Math.atan2(1, 1);

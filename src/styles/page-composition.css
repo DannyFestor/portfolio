@@ -1,0 +1,105 @@
+/*
+ * Page composition (#32): manga pages of ink-bordered panels on paper, white gutters between them.
+ *
+ * Mobile first. Narrower than the composition breakpoint, a page is one column of panels in reading
+ * (DOM) order. From the breakpoint on, the page composes its panels on a 12-column grid.
+ *
+ * Pages never write grid or clip properties. They set two custom properties, which only the
+ * composed layout below reads, so the one-column collapse needs no specificity contest:
+ *
+ *   --panel-grid-template  on a .panel-grid: rows of 12 area names, each with its row height,
+ *                          as in `grid-template`, for example
+ *                          "est est est est est est est est pho pho pho pho" 220px
+ *                          "sub sub sub eng eng eng eng eng pho pho pho pho" minmax(170px, auto)
+ *   --panel-area           on a .panel: the named area it fills
+ *
+ * Neither inherits, so a grid nested in a panel starts clean. Reading order is DOM order: write the
+ * panels in the order they are read, and never reorder them with `order`.
+ */
+
+@property --panel-grid-template {
+  syntax: "*";
+  inherits: false;
+}
+
+@property --panel-area {
+  syntax: "*";
+  inherits: false;
+}
+
+.manga-page {
+  position: relative;
+  box-sizing: border-box;
+  max-width: var(--page-max-width);
+  padding: var(--space-l) var(--space-m) var(--space-3xl);
+  margin: 0 auto var(--space-3xl);
+  background-color: var(--color-paper);
+}
+
+/* The page number, at the bottom centre of the page. */
+.manga-folio {
+  position: absolute;
+  right: 0;
+  bottom: var(--space-l);
+  left: 0;
+  margin: 0;
+  font-family: var(--font-display);
+  text-align: center;
+}
+
+.panel-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--gutter);
+}
+
+.panel {
+  position: relative;
+  box-sizing: border-box;
+  display: block;
+  overflow: hidden;
+  background-color: var(--color-paper);
+  border: var(--line-panel) solid var(--color-ink);
+  isolation: isolate;
+}
+
+/* Angled panels are square in the one-column layout: the CSS border draws them. */
+.panel-outline {
+  display: none;
+}
+
+@media (width > 760px) {
+  .manga-page {
+    padding: var(--space-3xl) var(--space-3xl) var(--space-4xl);
+  }
+
+  /* The area strings define the 12 columns; grid-auto-columns makes them equal. */
+  .panel-grid {
+    grid-template: var(--panel-grid-template);
+    grid-auto-columns: minmax(0, 1fr);
+  }
+
+  .panel {
+    grid-area: var(--panel-area, auto);
+  }
+
+  /* The content is clipped to the outline polygon; --panel-clip comes from the Panel component. */
+  .angled-panel {
+    border-width: 0;
+    clip-path: var(--panel-clip);
+  }
+
+  /* The stroke is doubled: the clip cuts its outer half, leaving one line weight inside the edge. */
+  .panel-outline {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    display: block;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    fill: none;
+    stroke: var(--color-ink);
+    stroke-width: calc(var(--line-panel) * 2);
+  }
+}

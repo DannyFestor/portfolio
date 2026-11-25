@@ -18,7 +18,10 @@
   /* Red is for SFX, impact lines, status marks and asides. #cf332a, not the prototype's #d1352b: same look, 4.5:1 on paper. */
   --color-accent: #cf332a;
 
-  /* Screentone: indigo dots on a 45° lattice; densities differ by dot radius only. Tile generation: #32. */
+  /*
+   * Screentone: indigo dots on a 45° lattice; densities differ by dot radius only. The pitch is the
+   * distance between neighbouring dots. integrations/screentone generates the tone tiles from these.
+   */
   --tone-opacity: 0.85;
   --tone-pitch: 6px;
   --tone-dot-light: 0.65px;
@@ -49,6 +52,9 @@
 
   /* White gutter between panels. */
   --gutter: var(--space-m);
+
+  /* Widest a composed manga page grows; narrower screens get the full width. */
+  --page-max-width: 1080px;
 
   /* Ink line weights: panel borders, narration boxes, hairline rules and underlines. */
   --line-panel: 3px;

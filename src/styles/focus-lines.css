@@ -1,0 +1,14 @@
+/*
+ * Focus lines (#32) for the one impact panel per page: ink wedges radiating from the panel centre,
+ * which stays clear for the lettering. They fill their panel and lie behind its content.
+ */
+
+.focus-lines {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  fill: var(--color-ink);
+}

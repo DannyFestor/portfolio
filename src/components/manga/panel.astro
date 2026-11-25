@@ -1,0 +1,32 @@
+---
+// An ink-bordered panel. `slant` makes it an angled panel with an SVG outline (square on phones),
+// `tone` gives it a flat screentone. The page places it with --panel-area.
+import type { HTMLTag, Polymorphic } from "astro/types";
+
+import type { ToneDensity } from "../../../integrations/screentone/tone-density.ts";
+import { AngledPanelShape } from "./angled-panel-shape.ts";
+import type { PanelSlant } from "./angled-panel-shape.ts";
+import PanelOutline from "./panel-outline.astro";
+import { panelClasses, panelClipStyle } from "./panel.ts";
+
+import "../../styles/page-composition.css";
+import "../../styles/screentone.css";
+
+type Props<Tag extends HTMLTag> = Polymorphic<{
+  as: Tag;
+  slant?: PanelSlant;
+  tone?: ToneDensity;
+}>;
+
+const { as: Tag = "div", slant, tone, class: className, ...attributes } = Astro.props;
+const shape = slant === undefined ? undefined : AngledPanelShape.slanted(slant);
+---
+
+<Tag
+  {...attributes}
+  class:list={[panelClasses(shape, tone), className]}
+  style={panelClipStyle(shape)}
+>
+  <slot />
+  {shape !== undefined && <PanelOutline shape={shape} />}
+</Tag>
