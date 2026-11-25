@@ -3,7 +3,7 @@ import { describe, expect, it } from "vite-plus/test";
 import { careerFrom } from "../career/career.ts";
 import type { ProjectExtrasByNote } from "../career/project-extras.ts";
 import { careerExportFixture, projectFixture } from "../career/test-support/career-fixtures.ts";
-import { caseStudiesNewestFirst } from "./case-study.ts";
+import { caseStudiesNewestFirst, newestCaseStudy } from "./case-study.ts";
 import type { CaseStudyEntry } from "./case-study.ts";
 
 const OLDER = projectFixture({ note: "Example - Older", start: "2019-01", end: "2020-06" });
@@ -19,7 +19,9 @@ function entry(id: string, project: string): CaseStudyEntry {
   return { id, data: { project, description: `About ${id}.` } };
 }
 
-const ENTRIES = [entry("older-study", OLDER.note), entry("newer-study", NEWER.note)];
+const OLDER_ENTRY = entry("older-study", OLDER.note);
+const NEWER_ENTRY = entry("newer-study", NEWER.note);
+const ENTRIES = [OLDER_ENTRY, NEWER_ENTRY];
 
 describe("the case studies", () => {
   it("are ordered by their project, newest first", () => {
@@ -30,6 +32,7 @@ describe("the case studies", () => {
   it("read their project, period and track from the career data and the extras", () => {
     const [newest] = caseStudiesNewestFirst(ENTRIES, career, EXTRAS);
     expect(newest).toStrictEqual({
+      entry: NEWER_ENTRY,
       slug: "newer-study",
       href: "/work/newer-study/",
       description: "About newer-study.",
@@ -56,6 +59,19 @@ describe("the case studies", () => {
     const extras = { ...EXTRAS, [NEWER.note]: { sfx: "ドン" as const } };
     expect(() => caseStudiesNewestFirst(ENTRIES, career, extras)).toThrow(
       'The case study of "Example - Newer" needs an sfx and an impactLine in src/data/project-extras.ts.',
+    );
+  });
+});
+
+describe("the study /work opens", () => {
+  it("is the newest", () => {
+    const studies = caseStudiesNewestFirst(ENTRIES, career, EXTRAS);
+    expect(newestCaseStudy(studies).slug).toBe("newer-study");
+  });
+
+  it("must exist", () => {
+    expect(() => newestCaseStudy([])).toThrow(
+      "/work opens the newest case study, but src/content/case-studies has none.",
     );
   });
 });

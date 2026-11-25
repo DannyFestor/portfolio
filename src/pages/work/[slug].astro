@@ -1,20 +1,38 @@
 ---
 // A case study (#17) at /work/<slug>: the split spread with this study open.
+import { getCollection } from "astro:content";
+import type { CollectionEntry } from "astro:content";
+
+import { CAREER } from "../../career/career-data";
 import StudySpread from "../../components/work/study-spread.astro";
+import { PROJECT_EXTRAS } from "../../data/project-extras";
 import BaseLayout from "../../layouts/base-layout.astro";
+import { caseStudiesNewestFirst } from "../../work/case-study";
 import type { CaseStudy } from "../../work/case-study";
-import { caseStudyPaths } from "../../work/case-study-collection";
 import { studyPageHead } from "../../work/study-page-head";
 
+type Study = CaseStudy<CollectionEntry<"caseStudies">>;
+
 interface Props {
-  study: CaseStudy;
+  study: Study;
+  studies: Study[];
 }
 
-export const getStaticPaths = caseStudyPaths;
+export async function getStaticPaths(): Promise<{ params: { slug: string }; props: Props }[]> {
+  const studies = caseStudiesNewestFirst(
+    await getCollection("caseStudies"),
+    CAREER,
+    PROJECT_EXTRAS,
+  );
+  return studies.map((study) => ({ params: { slug: study.slug }, props: { study, studies } }));
+}
 
-const { study } = Astro.props;
+const { study, studies } = Astro.props;
 ---
 
 <BaseLayout head={studyPageHead(study)}>
-  <StudySpread study={study} />
+  <StudySpread
+    studies={studies}
+    study={study}
+  />
 </BaseLayout>
