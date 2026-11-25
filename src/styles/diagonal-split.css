@@ -1,0 +1,20 @@
+/*
+ * A diagonal split (#15): two angled panels whose gutter runs at a slant, as wide as the grid gap.
+ * The wrapper draws no box, so both panels sit in the page grid. From the composition breakpoint
+ * on, each panel reaches --diagonal-split-overhang of its grid area into the gap; the slant of its
+ * edge comes from src/components/manga/diagonal-split.ts.
+ */
+
+.diagonal-split {
+  display: contents;
+}
+
+@media (width > 760px) {
+  .diagonal-split-before {
+    margin-right: calc(var(--diagonal-split-overhang) * -1);
+  }
+
+  .diagonal-split-after {
+    margin-left: calc(var(--diagonal-split-overhang) * -1);
+  }
+}

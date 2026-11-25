@@ -1,0 +1,45 @@
+/*
+ * A work panel (#15): period tag, title, client line, beat and impact line, stacked. Lettering over
+ * tone keeps a paper outline or sits on paper. The impact line is red display lettering.
+ */
+
+.work-panel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-s);
+  align-items: flex-start;
+  padding: var(--space-xl);
+}
+
+.work-panel > p {
+  margin: 0;
+}
+
+.work-title {
+  font-size: var(--font-size-h3);
+}
+
+.work-client {
+  font-weight: var(--font-weight-bold);
+}
+
+.work-beat {
+  max-width: 28em;
+}
+
+.work-impact {
+  font-family: var(--font-display);
+  font-size: var(--font-size-h4);
+  line-height: 1.2;
+  color: var(--color-accent);
+}
+
+.work-panel-wide .work-impact {
+  font-size: var(--font-size-h2);
+}
+
+@media (width > 760px) {
+  .work-panel-tall {
+    justify-content: flex-end;
+  }
+}

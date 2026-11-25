@@ -1,0 +1,30 @@
+---
+// The two worlds, AI-era rescue and Greenfield build, split by a diagonal gutter.
+import { WORLDS } from "../../home/home-content";
+import { DiagonalSplit } from "../manga/diagonal-split";
+import WorldPanel from "./world-panel.astro";
+
+import "../../styles/diagonal-split.css";
+
+/** How far each world reaches into the gutter, in percent of its grid area. */
+const WORLDS_OVERHANG_PERCENT = 6;
+
+const split = DiagonalSplit.withOverhang(WORLDS_OVERHANG_PERCENT);
+const [rescue, build] = WORLDS;
+---
+
+<div
+  class="diagonal-split"
+  style={split.style}
+>
+  <WorldPanel
+    world={rescue}
+    slant={split.before}
+    class="world-rescue diagonal-split-before"
+  />
+  <WorldPanel
+    world={build}
+    slant={split.after}
+    class="world-build diagonal-split-after"
+  />
+</div>

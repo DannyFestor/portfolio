@@ -1,0 +1,41 @@
+---
+// The positioning line as the page's heading, lettered in two panels: the quiet beat on light tone,
+// then the angled impact panel with focus lines and カチッ, the page's one impact moment.
+import { POSITIONING_BEATS } from "../../consts";
+import Fuchidori from "../lettering/fuchidori.astro";
+import NarrationBox from "../lettering/narration-box.astro";
+import Sfx from "../lettering/sfx.astro";
+import FocusLines from "../manga/focus-lines.astro";
+import Panel from "../manga/panel.astro";
+
+import "../../styles/positioning-panels.css";
+
+const IMPACT_SLANT = { edge: "left", end: "bottom", inset: 9 } as const;
+---
+
+<h1 class="positioning">
+  <Panel
+    as="span"
+    class="positioning-quiet-panel"
+    tone="light"
+  >
+    <NarrationBox
+      as="span"
+      class="positioning-quiet-beat"
+    >
+      {POSITIONING_BEATS.quiet}
+    </NarrationBox>
+  </Panel>{" "}
+  <Panel
+    as="span"
+    class="positioning-impact-panel"
+    slant={IMPACT_SLANT}
+  >
+    <FocusLines />
+    <Fuchidori class="positioning-impact-beat">{POSITIONING_BEATS.impact}</Fuchidori>
+    <Sfx
+      sound="カチッ"
+      class="positioning-sfx"
+    />
+  </Panel>
+</h1>

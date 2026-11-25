@@ -1,0 +1,15 @@
+---
+// Home's second page: the two worlds, then the three work panels.
+import { HOME_FOLIOS } from "../../home/home-content";
+import MangaPage from "../manga/manga-page.astro";
+import PanelGrid from "../manga/panel-grid.astro";
+import WorkPanels from "./work-panels.astro";
+import WorldsPanels from "./worlds-panels.astro";
+---
+
+<MangaPage folio={HOME_FOLIOS.work}>
+  <PanelGrid class="home-work-panels">
+    <WorldsPanels />
+    <WorkPanels />
+  </PanelGrid>
+</MangaPage>

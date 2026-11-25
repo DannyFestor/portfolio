@@ -1,0 +1,26 @@
+---
+// The establishing panel: where and who, in a narration box on a fading deep tone.
+import { ESTABLISHING_PANEL } from "../../home/home-content";
+import Aside from "../lettering/aside.astro";
+import NarrationBox from "../lettering/narration-box.astro";
+import Panel from "../manga/panel.astro";
+import ScreentoneFade from "../manga/screentone-fade.astro";
+
+import "../../styles/establishing-panel.css";
+import "../../styles/label.css";
+---
+
+<Panel class="establishing-panel">
+  <ScreentoneFade
+    density="deep"
+    toward="bottom left"
+  />
+  <NarrationBox
+    as="div"
+    class="establishing-narration"
+  >
+    <p class="label">{ESTABLISHING_PANEL.place}</p>
+    <p>{ESTABLISHING_PANEL.introduction}</p>
+  </NarrationBox>
+  <Aside class="establishing-aside">{ESTABLISHING_PANEL.aside}</Aside>
+</Panel>

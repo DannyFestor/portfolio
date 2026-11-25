@@ -1,0 +1,30 @@
+/*
+ * The establishing panel (#15): the narration box hangs from the top left corner, the aside sits at
+ * the bottom right, on the paper the fading tone leaves.
+ */
+
+.establishing-panel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2xl);
+  justify-content: space-between;
+  padding-bottom: var(--space-l);
+}
+
+.establishing-narration {
+  max-width: 24em;
+  border-top-width: 0;
+  border-left-width: 0;
+}
+
+.establishing-narration > p {
+  margin: 0;
+}
+
+.establishing-aside {
+  align-self: flex-end;
+  max-width: 14em;
+  padding: var(--space-2xs) var(--space-xs);
+  margin-right: var(--space-xl);
+  background-color: var(--color-paper);
+}

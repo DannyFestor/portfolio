@@ -1,0 +1,7 @@
+/* The subline panel (#15): the subline in a narration box on mid tone. */
+
+.subline-panel {
+  display: flex;
+  align-items: center;
+  padding: var(--space-l) var(--space-xl);
+}

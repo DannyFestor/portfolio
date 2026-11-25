@@ -1,0 +1,18 @@
+---
+// The way out of the cover: the availability status and the email as the big inked call to action.
+import { CONTACT_PANEL } from "../../home/home-content";
+import AvailabilityStatus from "../contact/availability-status.astro";
+import EmailCallToAction from "../links/email-call-to-action.astro";
+import Panel from "../manga/panel.astro";
+
+import "../../styles/display-heading.css";
+import "../../styles/home-contact-panel.css";
+---
+
+<Panel class="home-contact-panel">
+  <AvailabilityStatus />
+  <h2 class="home-contact-heading display-heading">{CONTACT_PANEL.heading}</h2>
+  <p class="home-contact-address">
+    <EmailCallToAction />
+  </p>
+</Panel>

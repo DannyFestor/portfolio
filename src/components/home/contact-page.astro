@@ -1,0 +1,17 @@
+---
+// Home's third page: the contact panel, the latest writing and a quiet panel to close.
+import { HOME_FOLIOS } from "../../home/home-content";
+import MangaPage from "../manga/manga-page.astro";
+import PanelGrid from "../manga/panel-grid.astro";
+import ContactPanel from "./contact-panel.astro";
+import LatestWritingPanel from "./latest-writing-panel.astro";
+import QuietEndPanel from "./quiet-end-panel.astro";
+---
+
+<MangaPage folio={HOME_FOLIOS.contact}>
+  <PanelGrid class="home-contact-panels">
+    <ContactPanel />
+    <LatestWritingPanel />
+    <QuietEndPanel />
+  </PanelGrid>
+</MangaPage>

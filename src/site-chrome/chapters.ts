@@ -20,10 +20,17 @@ export const CONTACT_CHAPTER: Chapter = {
   href: "/contact",
 };
 
+export const BLOG_CHAPTER: Chapter = {
+  number: "03",
+  name: "Blog",
+  title: "Writing",
+  href: "/blog",
+};
+
 export const CHAPTERS: readonly Chapter[] = [
   { number: "01", name: "Work", title: "Case studies", href: "/work" },
   { number: "02", name: "About", title: "About the author", href: "/about" },
-  { number: "03", name: "Blog", title: "Writing", href: "/blog" },
+  BLOG_CHAPTER,
   CONTACT_CHAPTER,
 ];
 

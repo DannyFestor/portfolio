@@ -1,0 +1,35 @@
+---
+import type { WorldContent } from "../../home/home-content";
+import Aside from "../lettering/aside.astro";
+import Fuchidori from "../lettering/fuchidori.astro";
+import NarrationBox from "../lettering/narration-box.astro";
+// One of the two worlds: its title, what it means in a narration box, and a note.
+import type { PanelSlant } from "../manga/angled-panel-shape";
+import Panel from "../manga/panel.astro";
+
+import "../../styles/display-heading.css";
+import "../../styles/world-panel.css";
+
+interface Props {
+  world: WorldContent;
+  slant: PanelSlant;
+  class: string;
+}
+
+const { world, slant, class: className } = Astro.props;
+---
+
+<Panel
+  as="article"
+  class:list={["world-panel", className]}
+  slant={slant}
+>
+  <Fuchidori
+    as="h2"
+    class="world-title display-heading"
+  >
+    {world.title}
+  </Fuchidori>
+  <NarrationBox>{world.body}</NarrationBox>
+  <Aside class="world-aside">{world.aside}</Aside>
+</Panel>

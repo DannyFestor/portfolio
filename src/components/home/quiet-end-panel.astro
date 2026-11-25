@@ -1,0 +1,17 @@
+---
+// A wordless panel that closes the cover: deep tone fading out. Decoration only.
+import Panel from "../manga/panel.astro";
+import ScreentoneFade from "../manga/screentone-fade.astro";
+
+import "../../styles/quiet-end-panel.css";
+---
+
+<Panel
+  class="quiet-end-panel"
+  aria-hidden="true"
+>
+  <ScreentoneFade
+    density="deep"
+    toward="top right"
+  />
+</Panel>

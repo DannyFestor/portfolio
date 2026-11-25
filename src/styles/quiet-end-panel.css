@@ -1,0 +1,11 @@
+/* The quiet end panel (#15): decoration that closes the composed page; phones leave it out. */
+
+.panel.quiet-end-panel {
+  display: none;
+}
+
+@media (width > 760px) {
+  .panel.quiet-end-panel {
+    display: block;
+  }
+}

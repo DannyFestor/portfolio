@@ -1,0 +1,29 @@
+/*
+ * The two worlds (#15): title, narration and a note, stacked. From the composition breakpoint on,
+ * the side by the diagonal gutter keeps clear of the slant.
+ */
+
+.world-panel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-m);
+  padding: var(--space-2xl) var(--space-xl);
+}
+
+.world-title {
+  font-size: var(--font-size-h2);
+}
+
+.world-aside {
+  align-self: flex-end;
+}
+
+@media (width > 760px) {
+  .world-rescue {
+    padding-right: var(--space-5xl);
+  }
+
+  .world-build {
+    padding-left: var(--space-5xl);
+  }
+}

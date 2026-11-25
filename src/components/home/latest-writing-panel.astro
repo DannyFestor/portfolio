@@ -1,0 +1,40 @@
+---
+// The latest writing line: the newest post's title and its date.
+import { getCollection } from "astro:content";
+
+import { latestPost } from "../../blog/latest-post";
+import { postDateLabel, postDateTime } from "../../blog/post-date";
+import { LATEST_WRITING } from "../../home/home-content";
+import PeriodTag from "../lettering/period-tag.astro";
+import WhiteOut from "../lettering/white-out.astro";
+import Panel from "../manga/panel.astro";
+
+import "../../styles/label.css";
+import "../../styles/latest-writing-panel.css";
+
+const post = latestPost(await getCollection("blog"));
+---
+
+<Panel
+  class="latest-writing-panel"
+  tone="light"
+>
+  <WhiteOut
+    as="h2"
+    class="label"
+  >
+    {LATEST_WRITING.label}
+  </WhiteOut>
+  <WhiteOut
+    as="p"
+    class="latest-writing-title"
+  >
+    <a href={LATEST_WRITING.href}>{post.data.title}</a>
+  </WhiteOut>
+  <PeriodTag
+    as="time"
+    datetime={postDateTime(post.data.pubDate)}
+  >
+    {postDateLabel(post.data.pubDate)}
+  </PeriodTag>
+</Panel>
