@@ -1,9 +1,17 @@
 /**
  * The career as the pages read it (#13): engagements and projects newest first, lookups by vault
- * note name and the current engagement, from data validated against the kept kariera schema.
+ * note name and the current engagement, qualifications and languages in export order, from data
+ * validated against the kept kariera schema.
  */
 import { validCareerExport } from "./career-export-validation.ts";
-import type { CareerExport, Engagement, Profile, Project } from "./career-export.ts";
+import type {
+  CareerExport,
+  Engagement,
+  Profile,
+  Project,
+  Qualification,
+  SpokenLanguage,
+} from "./career-export.ts";
 import { newestFirst } from "./newest-first.ts";
 import { NotesByName } from "./notes-by-name.ts";
 
@@ -11,6 +19,8 @@ export class Career {
   readonly profile: Profile;
   readonly engagements: readonly Engagement[];
   readonly projects: readonly Project[];
+  readonly qualifications: readonly Qualification[];
+  readonly languages: readonly SpokenLanguage[];
   readonly #engagementsByNote: NotesByName<Engagement>;
   readonly #projectsByNote: NotesByName<Project>;
 
@@ -18,6 +28,8 @@ export class Career {
     this.profile = careerExport.profile;
     this.engagements = newestFirst(careerExport.engagements);
     this.projects = newestFirst(careerExport.projects);
+    this.qualifications = careerExport.qualifications;
+    this.languages = careerExport.languages;
     this.#engagementsByNote = new NotesByName("engagement", this.engagements);
     this.#projectsByNote = new NotesByName("project", this.projects);
   }

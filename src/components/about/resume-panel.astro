@@ -1,0 +1,28 @@
+---
+import { RESUME_PANEL } from "../../about/about-content";
+// The résumés and profile links: the same links as the back cover, as their own panel.
+import { PROFILE_LINKS, RESUME_LINKS } from "../../site-chrome/back-cover-content";
+import ResumeLink from "../links/resume-link.astro";
+import Panel from "../manga/panel.astro";
+
+import "../../styles/label.css";
+import "../../styles/resume-panel.css";
+---
+
+<Panel class="resume-panel">
+  <h2 class="label">{RESUME_PANEL.heading}</h2>
+  <ul class="resume-panel-resumes">
+    {RESUME_LINKS.map((resume) => (
+      <li>
+        <ResumeLink resume={resume} />
+      </li>
+    ))}
+  </ul>
+  <ul class="resume-panel-profiles">
+    {PROFILE_LINKS.map((link) => (
+      <li>
+        <a href={link.href}>{link.label}</a>
+      </li>
+    ))}
+  </ul>
+</Panel>

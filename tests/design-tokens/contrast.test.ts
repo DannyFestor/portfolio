@@ -45,6 +45,12 @@ const TEXT_PAIRS: readonly TextPair[] = [
     minimum: BODY_TEXT_MINIMUM,
   },
   {
+    text: "--color-paper",
+    background: "--color-accent",
+    usage: "the current engagement's period tag",
+    minimum: BODY_TEXT_MINIMUM,
+  },
+  {
     text: "--color-tone",
     background: "--color-paper",
     usage: "indigo numerals and code tokens",

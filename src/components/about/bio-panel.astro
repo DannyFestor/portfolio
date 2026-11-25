@@ -1,0 +1,21 @@
+---
+import { BIO } from "../../about/about-content";
+// The bio: the background story in one narration box.
+import NarrationBox from "../lettering/narration-box.astro";
+import Panel from "../manga/panel.astro";
+
+import "../../styles/bio-panel.css";
+import "../../styles/label.css";
+---
+
+<Panel class="bio-panel">
+  <h2 class="label">{BIO.heading}</h2>
+  <NarrationBox
+    as="div"
+    class="bio-text"
+  >
+    {BIO.paragraphs.map((paragraph) => (
+      <p>{paragraph}</p>
+    ))}
+  </NarrationBox>
+</Panel>

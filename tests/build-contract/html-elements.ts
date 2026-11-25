@@ -45,10 +45,14 @@ export function elementsWithAttribute(html: string, name: string, value: string)
   return htmlElementsIn(html).filter((element) => attributeValue(element, name) === value);
 }
 
+/** The markup inside the page's <main>. */
+export function mainHtml(html: string): string {
+  return MAIN_CONTENT.exec(html)?.groups?.["content"] ?? "";
+}
+
 /** The text of the page's <main>, tags dropped and whitespace collapsed, as a reader would see it. */
 export function mainText(html: string): string {
-  const content = MAIN_CONTENT.exec(html)?.groups?.["content"] ?? "";
-  return decodeNumericCharacterReferences(content.replaceAll(TAG, " "))
+  return decodeNumericCharacterReferences(mainHtml(html).replaceAll(TAG, " "))
     .replaceAll(WHITESPACE_RUNS, " ")
     .trim();
 }

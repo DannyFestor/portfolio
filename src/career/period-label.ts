@@ -2,16 +2,13 @@
  * The period style decided in #25: `2025 — now`, `2024 — 25`, `2018 — 20`. The end year is
  * shortened to two digits only within the start's century; a period still running ends in "now".
  */
-import type { Month, Period } from "./career-export.ts";
+import type { Period } from "./career-export.ts";
+import { yearOf } from "./month.ts";
 
 const PERIOD_SEPARATOR = " — ";
 const RUNNING_PERIOD_END = "now";
 const YEARS_PER_CENTURY = 100;
 const SHORT_YEAR_DIGITS = 2;
-
-function yearOf(month: Month): number {
-  return Number(month.slice(0, month.indexOf("-")));
-}
 
 function centuryOf(year: number): number {
   return Math.floor(year / YEARS_PER_CENTURY);

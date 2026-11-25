@@ -1,0 +1,15 @@
+/*
+ * Period tag (#25): dates and periods in Zen Antique, paper on an ink tag, for example `2025 — now`
+ * on the About page's career strip.
+ */
+
+.period-tag {
+  display: inline-block;
+  padding: var(--space-3xs) var(--space-xs);
+  font-family: var(--font-display);
+  font-size: var(--font-size-date);
+  font-weight: var(--font-weight-text);
+  color: var(--color-paper);
+  letter-spacing: var(--letter-spacing-date);
+  background-color: var(--color-ink);
+}

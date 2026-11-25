@@ -1,0 +1,74 @@
+/*
+ * The career strip (#18): one small panel per engagement, read left to right. One column on the
+ * narrowest phones, two on wider ones, four from the composition breakpoint on. Early chapters are
+ * toned; the current engagement has a red border and a red period tag.
+ */
+
+.career-strip {
+  margin-top: var(--space-3xl);
+}
+
+.career-strip > h2 {
+  margin: 0 0 var(--space-s);
+}
+
+.career-strip-beats {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--gutter);
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.timeline-beat {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-s);
+  align-items: flex-start;
+  padding: var(--space-s);
+}
+
+.timeline-beat .period-tag {
+  margin: 0;
+}
+
+.timeline-caption {
+  display: grid;
+  gap: var(--space-2xs);
+}
+
+.timeline-caption > * {
+  margin: 0;
+}
+
+.timeline-organization {
+  font-family: var(--font-display);
+  font-size: var(--font-size-h4);
+  font-weight: var(--font-weight-text);
+  line-height: var(--line-height-aside);
+}
+
+.timeline-role {
+  line-height: var(--line-height-aside);
+}
+
+.timeline-beat-current {
+  border-color: var(--color-accent);
+}
+
+.timeline-beat-current .period-tag {
+  background-color: var(--color-accent);
+}
+
+@media (width > 480px) {
+  .career-strip-beats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (width > 760px) {
+  .career-strip-beats {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}

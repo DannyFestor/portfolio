@@ -1,0 +1,21 @@
+/* The bio (#18): a label, then the background story as paragraphs in one narration box. */
+
+.bio-panel {
+  display: grid;
+  gap: var(--space-s);
+  align-content: start;
+  padding: var(--space-xl);
+}
+
+.bio-panel > h2 {
+  margin: 0;
+}
+
+.bio-text {
+  display: grid;
+  gap: var(--space-s);
+}
+
+.bio-text > p {
+  margin: 0;
+}
