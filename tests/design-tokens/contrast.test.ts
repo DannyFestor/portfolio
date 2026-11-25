@@ -8,8 +8,8 @@ const tokens = readDesignTokens(process.cwd());
 /** WCAG 2.2 AA, success criterion 1.4.3. */
 const BODY_TEXT_MINIMUM = 4.5;
 
-/** Large text: at least 24px regular or 18.66px bold. */
-const LARGE_TEXT_MINIMUM = 3;
+/** WCAG 2.2 AA, success criterion 1.4.11: focus indicators and other non-text UI. */
+const NON_TEXT_MINIMUM = 3;
 
 interface TextPair {
   readonly text: string;
@@ -47,10 +47,13 @@ const TEXT_PAIRS: readonly TextPair[] = [
   {
     text: "--color-accent",
     background: "--color-paper",
-    usage: "red display lettering and SFX only",
-    minimum: LARGE_TEXT_MINIMUM,
+    usage: "SFX, impact lines, status marks and asides",
+    minimum: BODY_TEXT_MINIMUM,
   },
 ];
+
+/** The focus ring must stand out against every surface a focusable element sits on. */
+const FOCUS_RING_SURFACES: readonly string[] = ["--color-paper", "--color-page-background"];
 
 describe("design-token text contrast (WCAG 2.2 AA)", () => {
   it.each(TEXT_PAIRS)(
@@ -60,4 +63,15 @@ describe("design-token text contrast (WCAG 2.2 AA)", () => {
       expect(ratio).toBeGreaterThanOrEqual(minimum);
     },
   );
+});
+
+describe("focus ring contrast (WCAG 2.2 AA)", () => {
+  it("draws the focus ring in ink", () => {
+    expect(tokenValue(tokens, "--focus-ring-color")).toBe("var(--color-ink)");
+  });
+
+  it.each(FOCUS_RING_SURFACES)("--color-ink focus ring on %s reaches 3:1", (surface) => {
+    const ratio = contrastRatio(tokenValue(tokens, "--color-ink"), tokenValue(tokens, surface));
+    expect(ratio).toBeGreaterThanOrEqual(NON_TEXT_MINIMUM);
+  });
 });
