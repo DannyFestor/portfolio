@@ -17,7 +17,7 @@ interface BeatOnPage {
   readonly border: string;
 }
 
-/** Runs in the page: each beat of the career strip, its stage and its border colour. */
+/** Runs in the page: each beat of the career strip, its stage and its border color. */
 function beatsOnPage(): BeatOnPage[] {
   return [...document.querySelectorAll<HTMLElement>(".timeline-beat")].map((beat) => ({
     organization: beat.querySelector(".timeline-organization")?.textContent.trim(),
