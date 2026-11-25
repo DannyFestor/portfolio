@@ -67,11 +67,11 @@ describe("design-token text contrast (WCAG 2.2 AA)", () => {
 
 describe("focus ring contrast (WCAG 2.2 AA)", () => {
   it("draws the focus ring in ink", () => {
-    expect(tokenValue("--focus-ring-color")).toBe("var(--color-ink)");
+    expect(tokenValue(tokens, "--focus-ring-color")).toBe("var(--color-ink)");
   });
 
   it.each(FOCUS_RING_SURFACES)("--color-ink focus ring on %s reaches 3:1", (surface) => {
-    const ratio = contrastRatio(tokenValue("--color-ink"), tokenValue(surface));
+    const ratio = contrastRatio(tokenValue(tokens, "--color-ink"), tokenValue(tokens, surface));
     expect(ratio).toBeGreaterThanOrEqual(NON_TEXT_MINIMUM);
   });
 });
