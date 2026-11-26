@@ -40,6 +40,8 @@ Laravel
 licence
 LIUM
 Livewire
+llms
+llmstxt
 loca
 localisation
 ltrimstr
@@ -71,6 +73,7 @@ startxref
 stylesheet
 subline
 subtable
+summarised
 TOEIC
 unicodes
 unifiedjs

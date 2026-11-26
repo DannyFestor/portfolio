@@ -3,6 +3,9 @@ import { BLOG_FEED } from "../blog/blog-content";
 import BackCover from "../components/site-chrome/back-cover.astro";
 import RunningHeader from "../components/site-chrome/running-header.astro";
 import { PRELOADED_FONT_URL } from "../fonts/font-subsets";
+import { jsonLd } from "../seo/json-ld";
+import { siteUrlOf } from "../seo/site-url";
+import { canonicalUrlOf, linkPreviewTags } from "../site-chrome/link-preview";
 import { SITE_PAGE_HEAD } from "../site-chrome/page-head";
 import type { PageHead } from "../site-chrome/page-head";
 import { sitePageAt } from "../site-chrome/site-page";
@@ -19,7 +22,7 @@ interface Props {
 
 const { head = SITE_PAGE_HEAD } = Astro.props;
 const page = sitePageAt(Astro.url.pathname);
-const canonicalUrl = new URL(head.canonicalPath ?? Astro.url.pathname, Astro.site).href;
+const canonicalUrl = canonicalUrlOf(head, Astro.url.pathname);
 ---
 
 <!doctype html>
@@ -50,24 +53,18 @@ const canonicalUrl = new URL(head.canonicalPath ?? Astro.url.pathname, Astro.sit
       rel="alternate"
       type="application/rss+xml"
       title={BLOG_FEED.title}
-      href={new URL(BLOG_FEED.href, Astro.site).href}
+      href={siteUrlOf(BLOG_FEED.href)}
     />
-    <meta
-      property="og:type"
-      content={head.openGraphType}
-    />
-    <meta
-      property="og:title"
-      content={head.title}
-    />
-    <meta
-      property="og:description"
-      content={head.description}
-    />
-    <meta
-      property="og:url"
-      content={canonicalUrl}
-    />
+    {linkPreviewTags(head, canonicalUrl).map((tag) => (
+      <meta {...tag} />
+    ))}
+    {head.structuredData !== undefined && (
+      <script
+        type="application/ld+json"
+        is:inline
+        set:html={jsonLd(head.structuredData)}
+      />
+    )}
   </head>
   <body>
     <RunningHeader page={page} />

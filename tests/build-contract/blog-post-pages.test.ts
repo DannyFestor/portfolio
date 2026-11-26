@@ -2,26 +2,24 @@ import { describe, expect, it } from "vite-plus/test";
 
 import { episodeTitle } from "../../src/blog/episode-number.ts";
 import { postPageTitle } from "../../src/blog/post-page-head.ts";
-import { SITE_URL } from "../../src/consts.ts";
 import { contentsLines, POST_PAGES } from "./blog-contents.ts";
 import { useBuiltSiteBrowser } from "./built-site-browser.ts";
 import { readBuiltFile, urlPathOfPage } from "./built-site.ts";
-import { decodeNumericCharacterReferences } from "./character-references.ts";
-import { attributeValue, elementsWithAttribute, elementsWithClass } from "./html-elements.ts";
+import { elementsWithClass } from "./html-elements.ts";
+import { canonicalUrl, metaContent, ownUrlOf, pageTitle } from "./page-head.ts";
 
 const inspectBuiltPage = useBuiltSiteBrowser();
 
 /** The narrowest phone, browsed with JavaScript off. */
 const NARROWEST_PHONE = { viewport: { width: 320, height: 640 }, javaScriptEnabled: false };
 
-const TITLE = /<title>(?<title>[^<]*)<\/title>/u;
 const CODE_BLOCK = /<pre\b[^>]*>[\s\S]*?<\/pre>/gu;
 const COLOR = /color:(?<color>[^;"]+)/gu;
 const TOKEN_COLOR = /^var\(--color-[a-z-]+\)$/u;
 const READING_TIME = /^\d+ min read$/u;
 
 interface PostHead {
-  readonly title: string;
+  readonly title: string | undefined;
   readonly canonical: string | undefined;
   readonly type: string | undefined;
 }
@@ -39,12 +37,10 @@ function postTitle(page: string): string {
 
 function headOf(page: string): PostHead {
   const html = readBuiltFile(page);
-  const [canonical] = elementsWithAttribute(html, "rel", "canonical");
-  const [type] = elementsWithAttribute(html, "property", "og:type");
   return {
-    title: decodeNumericCharacterReferences(TITLE.exec(html)?.groups?.["title"] ?? ""),
-    canonical: canonical === undefined ? undefined : attributeValue(canonical, "href"),
-    type: type === undefined ? undefined : attributeValue(type, "content"),
+    title: pageTitle(html),
+    canonical: canonicalUrl(html),
+    type: metaContent(html, "property", "og:type"),
   };
 }
 
@@ -78,7 +74,7 @@ describe("the post pages (#16)", () => {
   it.each(POST_PAGES)("%s has its own title, canonical URL and Open Graph type", (page) => {
     expect(headOf(page)).toStrictEqual({
       title: postPageTitle(postTitle(page)),
-      canonical: new URL(urlPathOfPage(page), SITE_URL).href,
+      canonical: ownUrlOf(page),
       type: "article",
     });
   });

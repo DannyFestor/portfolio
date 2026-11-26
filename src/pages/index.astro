@@ -4,12 +4,13 @@
 import ContactPage from "../components/home/contact-page.astro";
 import OpeningPage from "../components/home/opening-page.astro";
 import WorkPage from "../components/home/work-page.astro";
+import { HOME_PAGE_HEAD } from "../home/home-page-head";
 import BaseLayout from "../layouts/base-layout.astro";
 
 import "../styles/home-page.css";
 ---
 
-<BaseLayout>
+<BaseLayout head={HOME_PAGE_HEAD}>
   <OpeningPage />
   <WorkPage />
   <ContactPage />

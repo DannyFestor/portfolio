@@ -43,3 +43,22 @@ export function urlPathOfPage(relativePath: string): string {
   const path = `/${relativePath.split("\\").join(posix.sep)}`;
   return path.endsWith("/index.html") ? path.slice(0, -"index.html".length) : path;
 }
+
+/** A built HTML page: its URL path and its markup. */
+export interface BuiltPage {
+  readonly urlPath: string;
+  readonly html: string;
+}
+
+export function builtPages(): BuiltPage[] {
+  return findBuiltFiles("**/*.html").map((page) => ({
+    urlPath: urlPathOfPage(page),
+    html: readBuiltFile(page),
+  }));
+}
+
+/** Whether a URL path on the site leads to a built file: `/about/` to about/index.html. */
+export function isBuiltUrlPath(urlPath: string): boolean {
+  const file = urlPath.endsWith("/") ? `${urlPath}index.html` : urlPath;
+  return existsSync(join(BUILT_SITE_DIRECTORY, file));
+}

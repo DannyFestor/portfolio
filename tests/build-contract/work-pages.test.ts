@@ -2,7 +2,6 @@ import type { Page } from "playwright";
 import { describe, expect, it } from "vite-plus/test";
 
 import { CAREER } from "../../src/career/career-data.ts";
-import { SITE_URL } from "../../src/consts.ts";
 import { PROJECT_EXTRAS } from "../../src/data/project-extras.ts";
 import { SFX_CLASS } from "../../src/lettering/sfx.ts";
 import { useBuiltSiteBrowser } from "./built-site-browser.ts";
@@ -14,6 +13,7 @@ import {
   elementsWithClass,
   mainHtml,
 } from "./html-elements.ts";
+import { canonicalUrl, metaContent, ownUrlOf, pageTitle } from "./page-head.ts";
 import { READ_TEXT_IN_MAIN, turnedElements } from "./turned-elements.ts";
 
 const WORK_PAGE = "work/index.html";
@@ -29,7 +29,6 @@ const NARROWEST_PHONE: Browsing = {
   javaScriptEnabled: false,
 };
 
-const TITLE = /<title>(?<title>[^<]*)<\/title>/u;
 const SECTION_LABEL = /<h2\b[^>]*>(?<label>[^<]*)<\/h2>/gu;
 
 interface PageHeadSummary {
@@ -40,15 +39,10 @@ interface PageHeadSummary {
 
 function headOf(page: string): PageHeadSummary {
   const html = readBuiltFile(page);
-  const [canonical] = elementsWithAttribute(html, "rel", "canonical");
-  const openGraph = ["og:type", "og:title", "og:url"].map((property) => {
-    const [meta] = elementsWithAttribute(html, "property", property);
-    return meta === undefined ? undefined : attributeValue(meta, "content");
-  });
   return {
-    title: TITLE.exec(html)?.groups?.["title"],
-    canonical: canonical === undefined ? undefined : attributeValue(canonical, "href"),
-    openGraph,
+    title: pageTitle(html),
+    canonical: canonicalUrl(html),
+    openGraph: ["og:type", "og:title", "og:url"].map((key) => metaContent(html, "property", key)),
   };
 }
 
@@ -89,7 +83,7 @@ describe("the case study pages (#17)", () => {
   });
 
   it.each(STUDY_PAGES)("%s has its own title, canonical URL and Open Graph", (page) => {
-    const url = new URL(urlPathOfPage(page), SITE_URL).href;
+    const url = ownUrlOf(page);
     const title = `${studyTitle(page)} — Danny Festor`;
     expect(headOf(page)).toStrictEqual({
       title,
