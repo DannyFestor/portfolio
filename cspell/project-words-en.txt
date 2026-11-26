@@ -67,6 +67,7 @@ screentone
 Shiki
 Shippori
 shipporimincho
+sitemapindex
 Soketi
 specialisation
 startxref

@@ -15,6 +15,8 @@ export default defineConfig({
     tasks: {
       "fonts:subset": { command: "vpx scripts/subset-fonts.ts" },
       "career:sync": { command: "vpx scripts/career-sync.ts", cache: false },
+      // The post-deploy smoke test (#21): reads the sitemap in dist/ and requests festor.info.
+      "smoke:production": { command: "vpx scripts/smoke-test.ts", cache: false },
       // Generates the astro:content types into .astro/, so the type-aware lint sees real collection types.
       "sync:types": { command: "astro sync" },
       "check:astro": { command: "astro check" },
