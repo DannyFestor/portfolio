@@ -27,6 +27,15 @@ export function attributeValue({ attributes }: HtmlElement, name: string): strin
     ?.groups?.["value"];
 }
 
+/**
+ * Whether the element carries the attribute, valued or bare: `crossorigin` and `crossorigin=""`
+ * both do.
+ */
+export function hasAttribute(element: HtmlElement, name: string): boolean {
+  const bareAttributes = element.attributes.replaceAll(ATTRIBUTE, " ").split(WHITESPACE);
+  return attributeValue(element, name) !== undefined || bareAttributes.includes(name);
+}
+
 export function hasClass(element: HtmlElement, className: string): boolean {
   return (attributeValue(element, "class") ?? "").split(WHITESPACE).includes(className);
 }

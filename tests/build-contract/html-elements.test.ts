@@ -4,6 +4,7 @@ import {
   attributeValue,
   elementsWithAttribute,
   elementsWithClass,
+  hasAttribute,
   isAriaHidden,
   mainText,
 } from "./html-elements.ts";
@@ -30,6 +31,18 @@ describe("elements in built HTML", () => {
   it("are found by an attribute's exact value, not a longer attribute's", () => {
     const current = elementsWithAttribute(PAGE, "aria-current", "page");
     expect(current.map((element) => attributeValue(element, "href"))).toStrictEqual(["/blog"]);
+  });
+
+  it("carry a bare attribute, but not one named only inside another attribute's value", () => {
+    const preloads = elementsWithAttribute(
+      '<link rel="preload" crossorigin><link rel="preload" title="crossorigin">',
+      "rel",
+      "preload",
+    );
+    expect(preloads.map((element) => hasAttribute(element, "crossorigin"))).toStrictEqual([
+      true,
+      false,
+    ]);
   });
 });
 
