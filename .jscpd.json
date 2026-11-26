@@ -2,5 +2,5 @@
   "exitCode": 1,
   "threshold": 0,
   "gitignore": true,
-  "ignore": ["pnpm-lock.yaml", "tools/**", "public/fonts/**/OFL.txt"]
+  "ignore": ["pnpm-lock.yaml", "tools/**", "public/fonts/**/OFL.txt", "src/fonts/**/OFL.txt"]
 }

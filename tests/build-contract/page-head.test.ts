@@ -51,7 +51,7 @@ describe("every page's head (#20)", () => {
       "og:description": metaContent(html, "name", "description"),
       "og:url": canonicalUrl(html),
       "og:site_name": SITE_AUTHOR,
-      "twitter:card": "summary",
+      "twitter:card": "summary_large_image",
     });
   });
 

@@ -2,9 +2,10 @@
  * The self-hosted fonts (#25): which faces ship, where they come from, and which characters each
  * subset keeps. This is the one list of the Japanese characters the site sets.
  *
- * `vp run fonts:subset` (scripts/subset-fonts.ts) rebuilds public/fonts from this file. New
- * Japanese copy needs its characters added here, in the family it is set in, and a rerun; the
- * build-contract tests fail on any character in the built pages that no shipped subset covers.
+ * `vp run fonts:subset` (scripts/subset-fonts.ts) rebuilds public/fonts from this file, and the TTF
+ * copies under src/fonts that the share image is rendered with. New Japanese copy needs its
+ * characters added here, in the family it is set in, and a rerun; the build-contract tests fail on
+ * any character in the built pages that no shipped subset covers.
  */
 import { APPROVED_SFX } from "../lettering/sfx.ts";
 
@@ -65,6 +66,11 @@ export const ZEN_ANTIQUE: FontFamilySubset = {
   faces: [ZEN_ANTIQUE_REGULAR],
 };
 
+const SHIPPORI_MINCHO_SEMI_BOLD: FontFaceSource = {
+  weight: 600,
+  sourceFile: "ShipporiMincho-SemiBold.ttf",
+};
+
 /** Narration, body text and labels. */
 export const SHIPPORI_MINCHO: FontFamilySubset = {
   slug: "shippori-mincho",
@@ -77,7 +83,7 @@ export const SHIPPORI_MINCHO: FontFamilySubset = {
   ],
   faces: [
     { weight: 400, sourceFile: "ShipporiMincho-Regular.ttf" },
-    { weight: 600, sourceFile: "ShipporiMincho-SemiBold.ttf" },
+    SHIPPORI_MINCHO_SEMI_BOLD,
     { weight: 700, sourceFile: "ShipporiMincho-Bold.ttf" },
   ],
 };
@@ -115,6 +121,37 @@ export function fontFileUrl(family: FontFamilySubset, face: FontFaceSource): str
 /** The URL of every font file that ships. */
 export function allFontFileUrls(): string[] {
   return FONT_FAMILIES.flatMap((family) => family.faces.map((face) => fontFileUrl(family, face)));
+}
+
+/** One face of a family. */
+export interface FamilyFace {
+  readonly family: FontFamilySubset;
+  readonly face: FontFaceSource;
+}
+
+/** Where a family's build-time TTF copies are written, relative to the project root. */
+export function buildFontDirectory(family: FontFamilySubset): string {
+  return `src/fonts/${family.slug}`;
+}
+
+/**
+ * The faces the share image (#20) is lettered in. Satori, which renders it at build time, reads no
+ * woff2, so `vp run fonts:subset` also writes these faces as TTF, with the same subset, under
+ * src/fonts: build inputs, never shipped.
+ */
+export const SHARE_IMAGE_FACES = {
+  display: { family: ZEN_ANTIQUE, face: ZEN_ANTIQUE_REGULAR },
+  narration: { family: SHIPPORI_MINCHO, face: SHIPPORI_MINCHO_SEMI_BOLD },
+} as const satisfies Readonly<Record<string, FamilyFace>>;
+
+/** The TTF copy of a face the share image sets, relative to the project root. */
+export function buildFontFilePath({ family, face }: FamilyFace): string {
+  return `${buildFontDirectory(family)}/${String(face.weight)}.ttf`;
+}
+
+/** The family's license, next to its TTF copies, relative to the project root. */
+export function buildLicenseFilePath(family: FontFamilySubset): string {
+  return `${buildFontDirectory(family)}/OFL.txt`;
 }
 
 export function licenseFileUrl(family: FontFamilySubset): string {
