@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vite-plus/test";
 
-import { findBuiltFiles, readBuiltFile, urlPathOfPage } from "./built-site.ts";
+import { builtPages } from "./built-site.ts";
 import {
   attributeValue,
   chromeHtml,
@@ -11,10 +11,7 @@ import {
 } from "./html-elements.ts";
 import type { HtmlElement } from "./html-elements.ts";
 
-const pages = findBuiltFiles("**/*.html").map((page) => ({
-  urlPath: urlPathOfPage(page),
-  html: readBuiltFile(page),
-}));
+const pages = builtPages();
 
 const chapterPages = pages.filter(({ urlPath }) => urlPath !== "/");
 

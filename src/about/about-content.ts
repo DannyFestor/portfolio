@@ -5,12 +5,21 @@
  */
 import { CAREER } from "../career/career-data.ts";
 import { SITE_AUTHOR } from "../consts.ts";
+import { ABOUT_STRUCTURED_DATA } from "../seo/site-structured-data.ts";
+import { SITE_PAGE_HEAD } from "../site-chrome/page-head.ts";
+import type { PageHead } from "../site-chrome/page-head.ts";
 import { careerTimeline } from "./career-timeline.ts";
 import { degreeLines, languageLines } from "./profile-facts.ts";
 import type { ProfileFact } from "./profile-facts.ts";
 
 /** Living and working in Japan since this year; engagements that ended before it are early chapters. */
 const IN_JAPAN_SINCE = 2017;
+
+/** The site's title and description, and the person the page is about (#20). */
+export const ABOUT_PAGE_HEAD: PageHead = {
+  ...SITE_PAGE_HEAD,
+  structuredData: ABOUT_STRUCTURED_DATA,
+};
 
 /** The About chapter is two manga pages. */
 export const ABOUT_FOLIOS = { profile: 1, story: 2 } as const;

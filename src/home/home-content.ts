@@ -7,6 +7,9 @@
 import { CAREER } from "../career/career-data.ts";
 import { SITE_AUTHOR, SITE_PLACE } from "../consts.ts";
 import { PROJECT_EXTRAS } from "../data/project-extras.ts";
+import { HOME_STRUCTURED_DATA } from "../seo/site-structured-data.ts";
+import { SITE_PAGE_HEAD } from "../site-chrome/page-head.ts";
+import type { PageHead } from "../site-chrome/page-head.ts";
 import { freelanceSince } from "./freelance-since.ts";
 import { workPanels } from "./work-panels.ts";
 
@@ -16,6 +19,9 @@ export interface WorldContent {
   readonly body: string;
   readonly aside: string;
 }
+
+/** The site's title and description, and who the site is by (#20). */
+export const HOME_PAGE_HEAD: PageHead = { ...SITE_PAGE_HEAD, structuredData: HOME_STRUCTURED_DATA };
 
 /** Home is three manga pages: the opening, the two worlds and the work, then contact and writing. */
 export const HOME_FOLIOS = { opening: 1, work: 2, contact: 3 } as const;
