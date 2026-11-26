@@ -12,10 +12,10 @@ export const MASK_DIRECTORY = "src/assets/halftone";
 
 export const MASK_SIZE: RasterSize = { width: 960, height: 1280 };
 
-const HALFTONE_SCREENS: readonly HalftoneScreen[] = [
-  { name: "coarse", pitch: 8 },
-  { name: "fine", pitch: 5 },
-];
+/** The photo plate's screen, which the share image prints through as well. */
+export const COARSE_SCREEN: HalftoneScreen = { name: "coarse", pitch: 8 };
+
+const HALFTONE_SCREENS: readonly HalftoneScreen[] = [COARSE_SCREEN, { name: "fine", pitch: 5 }];
 
 /** One mask to render: `photoPath` screened through `screen`, written to `maskPath`. */
 export interface PlannedMask {
