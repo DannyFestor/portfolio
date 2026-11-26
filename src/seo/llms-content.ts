@@ -7,7 +7,13 @@
 import type { BlogPost } from "../blog/blog-post.ts";
 import { CAREER } from "../career/career-data.ts";
 import type { SpokenLanguage } from "../career/career-export.ts";
-import { AVAILABILITY_STATUS, CONTACT_EMAIL, POSITIONING_LINE, SITE_PLACE } from "../consts.ts";
+import {
+  AVAILABILITY_STATUS,
+  CONTACT_EMAIL,
+  POSITIONING_LINE,
+  SITE_AUTHOR,
+  SITE_PLACE,
+} from "../consts.ts";
 import { WORLDS } from "../home/home-content.ts";
 import { RESUME_LINKS } from "../site-chrome/back-cover-content.ts";
 import { CHAPTERS, COVER_HREF } from "../site-chrome/chapters.ts";
@@ -99,7 +105,7 @@ export function llmsDocument(
   posts: readonly BlogPost[],
 ): LlmsDocument {
   return {
-    title: CAREER.profile.name,
+    title: SITE_AUTHOR,
     // draft: the positioning line is locked, the words around it are not
     summary: `Freelance software engineer in ${SITE_PLACE}. ${POSITIONING_LINE}`,
     details: details(),

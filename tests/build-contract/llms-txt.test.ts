@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vite-plus/test";
 
 import { CAREER } from "../../src/career/career-data.ts";
-import { AVAILABILITY_STATUS, POSITIONING_LINE, SITE_URL } from "../../src/consts.ts";
+import { AVAILABILITY_STATUS, POSITIONING_LINE, SITE_AUTHOR, SITE_URL } from "../../src/consts.ts";
 import { siteUrlOf } from "../../src/seo/site-url.ts";
 import { personalDataFound } from "../privacy/personal-data.ts";
 import { builtPages, isBuiltUrlPath, readBuiltFile } from "./built-site.ts";
@@ -15,9 +15,9 @@ function leadsToBuiltFileOnSite(url: string): boolean {
 }
 
 describe("/llms.txt (#20)", () => {
-  it("is titled with the name in career.json and summed up with the positioning line", () => {
+  it("is titled with Danny's name and summed up with the positioning line", () => {
     const [title, summary] = llms.split("\n\n");
-    expect(title).toBe(`# ${CAREER.profile.name}`);
+    expect(title).toBe(`# ${SITE_AUTHOR}`);
     expect(summary).toMatch(/^> /u);
     expect(summary).toContain(POSITIONING_LINE);
   });
