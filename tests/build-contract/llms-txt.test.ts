@@ -1,18 +1,14 @@
 import { describe, expect, it } from "vite-plus/test";
 
 import { CAREER } from "../../src/career/career-data.ts";
-import { AVAILABILITY_STATUS, POSITIONING_LINE, SITE_AUTHOR, SITE_URL } from "../../src/consts.ts";
+import { AVAILABILITY_STATUS, POSITIONING_LINE, SITE_AUTHOR } from "../../src/consts.ts";
 import { siteUrlOf } from "../../src/seo/site-url.ts";
 import { personalDataFound } from "../privacy/personal-data.ts";
-import { builtPages, isBuiltUrlPath, readBuiltFile } from "./built-site.ts";
+import { builtPages, leadsToBuiltFileOnSite, readBuiltFile } from "./built-site.ts";
 
 const llms = readBuiltFile("llms.txt");
 const LINK = /\]\((?<url>[^)\s]+)\)/gu;
 const links = Array.from(llms.matchAll(LINK), (match) => match.groups?.["url"] ?? "");
-
-function leadsToBuiltFileOnSite(url: string): boolean {
-  return url.startsWith(`${SITE_URL}/`) && isBuiltUrlPath(new URL(url).pathname);
-}
 
 describe("/llms.txt (#20)", () => {
   it("is titled with Danny's name and summed up with the positioning line", () => {

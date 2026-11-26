@@ -1,6 +1,8 @@
 import { existsSync, globSync, readFileSync, statSync } from "node:fs";
 import { join, posix } from "node:path";
 
+import { SITE_URL } from "../../src/consts.ts";
+
 export const BUILT_SITE_DIRECTORY = "dist";
 
 function assertSiteIsBuilt(): void {
@@ -16,6 +18,11 @@ export function findBuiltFiles(pattern: string): string[] {
 
 export function readBuiltFile(relativePath: string): string {
   return readFileSync(join(BUILT_SITE_DIRECTORY, relativePath), "utf8");
+}
+
+/** Reads a built file by its URL path: `/robots.txt` reads dist/robots.txt. */
+export function readBuiltUrlPath(urlPath: string): string {
+  return readBuiltFile(urlPath.slice(1));
 }
 
 const INLINE_STYLE = /<style\b[^>]*>(?<css>[\s\S]*?)<\/style>/gu;
@@ -61,4 +68,9 @@ export function builtPages(): BuiltPage[] {
 export function isBuiltUrlPath(urlPath: string): boolean {
   const file = urlPath.endsWith("/") ? `${urlPath}index.html` : urlPath;
   return existsSync(join(BUILT_SITE_DIRECTORY, file));
+}
+
+/** Whether a full URL is on festor.info and leads to a built file. */
+export function leadsToBuiltFileOnSite(url: string): boolean {
+  return url.startsWith(`${SITE_URL}/`) && isBuiltUrlPath(new URL(url).pathname);
 }

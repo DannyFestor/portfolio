@@ -1,0 +1,54 @@
+name: Deploy
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+# One deployment at a time: the run in progress always finishes, and of the runs queued behind it
+# only the newest goes ahead.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  check-all:
+    name: check-all
+    uses: ./.github/workflows/ci.yml
+    with:
+      publish-site: true
+
+  deploy:
+    name: deploy
+    needs: check-all
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Publish the checked site
+        id: deployment
+        uses: actions/deploy-pages@368f82528645a54fb793d4d04e342629a3f51346 # v5.0.1
+
+  smoke-test:
+    name: smoke-test
+    needs: deploy
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: ./.github/actions/setup-project
+      - name: Download the published site
+        uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
+        with:
+          name: github-pages
+          path: ${{ runner.temp }}/github-pages
+      - name: Unpack it into dist/
+        run: mkdir dist && tar -xf "$RUNNER_TEMP/github-pages/artifact.tar" -C dist
+      - name: Every sitemap page and promised file answers 200 on festor.info
+        run: vp run smoke:production
